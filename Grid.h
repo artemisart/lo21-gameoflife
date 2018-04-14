@@ -3,39 +3,56 @@
 
 #include<vector>
 
-template<typename T>
+struct Index1D
+{
+	int i;
+	Index1D(const int i) : i(i) {}
+};
+
+
+struct Index2D
+{
+	int row, col;
+	Index2D(const int row, const int col) : row(row), col(col) {}
+};
+
+
+template<typename T, typename I>
 class Grid
 {
+public:
+	virtual T getCell(const I idx) const = 0;
+	virtual void setCell(const I idx, const T value) = 0;
 };
 
 
 template<typename T>
-class Grid1D : Grid<T>
+class Grid1D : Grid<T,Index1D>
 {
 private:
-    std::size_t size;
-    std::vector<T> values;
+	std::size_t size;
+	std::vector<T> values;
 
 public:
-    Grid1D(std::size_t size);
+	Grid1D(const std::size_t size);
 
-    T getCell(int i);
-    void setCell(int i, T value);
+	T getCell(const Index1D idx) const;
+	void setCell(const Index1D idx, const T value);
 };
 
 
 template<typename T>
-class Grid2D
+class Grid2D : Grid<T, Index2D>
 {
 private:
-    std::size_t height, width;
-    std::vector<T> values;
+	std::size_t height, width;
+	std::vector<T> values;
 
 public:
-    Grid2D(std::size_t height, std::size_t width);
+	Grid2D(const std::size_t height, const std::size_t width);
 
-    T getCell(int row, int col);
-    void setCell(int row, int col, T value);
+	T getCell(const Index2D idx) const;
+	void setCell(const Index2D idx, const T value);
 };
 
 #endif // GRID_H

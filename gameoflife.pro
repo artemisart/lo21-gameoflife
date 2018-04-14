@@ -6,9 +6,15 @@ SOURCES += \
     main.cpp \
     automate.cpp \
     autocell.cpp \
-    Grid.cpp
+    Grid.cpp \
+    Automaton.cpp \
+    History.cpp \
+    Rule.cpp
 
 HEADERS += \
     automate.h \
     autocell.h \
-    Grid.h
+    Grid.h \
+    Automaton.h \
+    History.h \
+    Rule.h
