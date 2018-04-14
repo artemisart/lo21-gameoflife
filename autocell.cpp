@@ -3,7 +3,7 @@
 
 unsigned int AutoCell::dimension=25;
 
-AutoCell::AutoCell (QWidget* parent) {
+AutoCell::AutoCell (QWidget* parent) : QWidget(parent) {
 
     numl=new QLabel("Numero");
     numeroBitl[0] = new QLabel("111");
@@ -140,6 +140,7 @@ void AutoCell::cellActivation(const QModelIndex& index){
         depart->item(0, index.column())->setTextColor("white");
 
     }
+    this->faireSimulation();
 }
 
 
@@ -149,6 +150,7 @@ void AutoCell::synchronizeNumToNumBit(int j){
     for(unsigned int i=0; i<8; i++){
         numeroBit[i]->setText(QString(numbit[i]));
     }
+    this->faireSimulation();
 }
 
 void AutoCell::synchronizeNumBitToNum(const QString& s){
@@ -160,5 +162,5 @@ void AutoCell::synchronizeNumBitToNum(const QString& s){
     }
     int i=NumBitToNum(str);
     num->setValue(i);
-
+    this->faireSimulation();
 }
