@@ -3,14 +3,20 @@
 
 #include<vector>
 
-struct Index1D
+struct Index
+{
+	Index() {}
+};
+
+
+struct Index1D : public Index
 {
 	int i;
 	Index1D(const int i) : i(i) {}
 };
 
 
-struct Index2D
+struct Index2D : public Index
 {
 	int row, col;
 	Index2D(const int row, const int col) : row(row), col(col) {}
@@ -27,7 +33,7 @@ public:
 
 
 template<typename T>
-class Grid1D : Grid<T,Index1D>
+class Grid1D : public Grid<T,Index1D>
 {
 private:
 	std::size_t size;
@@ -42,7 +48,7 @@ public:
 
 
 template<typename T>
-class Grid2D : Grid<T, Index2D>
+class Grid2D : public Grid<T, Index2D>
 {
 private:
 	std::size_t height, width;
