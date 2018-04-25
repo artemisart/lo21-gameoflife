@@ -21,7 +21,7 @@ template<typename T, typename I>
 class Grid
 {
 public:
-	virtual T getCell(const I idx) const = 0;
+    virtual T getCell(const I idx) const = 0;
 	virtual void setCell(const I idx, const T value) = 0;
 };
 
@@ -35,6 +35,7 @@ private:
 
 public:
 	Grid1D(const std::size_t size);
+    ~Grid1D();
 
 	T getCell(const Index1D idx) const;
 	void setCell(const Index1D idx, const T value);
@@ -49,7 +50,8 @@ private:
 	std::vector<T> values;
 
 public:
-	Grid2D(const std::size_t height, const std::size_t width);
+    Grid2D(const std::size_t height, const std::size_t width);
+    ~Grid2D();
 
 	T getCell(const Index2D idx) const;
 	void setCell(const Index2D idx, const T value);

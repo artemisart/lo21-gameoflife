@@ -8,10 +8,10 @@ template<typename T, typename I>
 class Automaton
 {
 private:
-	History<Grid<T,I>> history;
+    History<Grid<T,I>> history;
 public:
-	Automaton();
-	void calculate(const Grid<T,I> &old, Grid<T,I> &next) const;
+    Automaton(); //initialiser historique ou passer historique en pramètre
+    void calculate(const Grid<T,I> &old, Grid<T,I> &next) const; //
 	void next();
 	void run(const int count);
 };
