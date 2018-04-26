@@ -13,7 +13,8 @@ private:
 
 public:
 	History(const int size);
-    void setStaconst (T &start);
+    ~History();
+    void setStart (const T &start);
 	T &getLast() const;
     T &get(int i) const; //retourner en arrière
 };
