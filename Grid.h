@@ -2,26 +2,7 @@
 #define GRID_H
 
 #include<vector>
-
-struct Index
-{
-	Index() {}
-};
-
-
-struct Index1D : public Index
-{
-	int i;
-	Index1D(const int i) : i(i) {}
-};
-
-
-struct Index2D : public Index
-{
-	int row, col;
-	Index2D(const int row, const int col) : row(row), col(col) {}
-};
-
+#include "Index.h"
 
 template<typename T, typename I>
 class Grid
