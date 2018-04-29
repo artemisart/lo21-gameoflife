@@ -17,4 +17,5 @@ HEADERS += \
     Grid.h \
     Automaton.h \
     History.h \
-    Rule.h
+    Rule.h \
+    Index.h
