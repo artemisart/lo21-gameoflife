@@ -3,12 +3,14 @@
 
 #include "Grid.h"
 #include "History.h"
+#include "Rule.h"
 
 template<typename T, typename I>
 class Automaton
 {
 private:
     History<Grid<T,I>> history;
+	Rule<T,I> rule;
 public:
     Automaton(); //initialiser historique ou passer historique en pramètre
     void calculate(const Grid<T,I> &old, Grid<T,I> &next) const; //
