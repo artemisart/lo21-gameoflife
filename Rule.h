@@ -9,11 +9,12 @@ class Rule
 {
 public:
 	Rule();
+	virtual ~Rule() = 0;
 	virtual T calcNextState(const Grid<T,I> &grid, const I index) const = 0;
 };
 
 
-class Rule1D : Rule<bool, Index1D>
+class Rule1D : public Rule<bool, Index1D>
 {
 private:
 	std::uint8_t num;
@@ -23,7 +24,7 @@ public:
 };
 
 
-class Rule2D : Rule<bool, Index2D>
+class Rule2D : public Rule<bool, Index2D>
 {
 private:
 	std::uint8_t born, survive;
