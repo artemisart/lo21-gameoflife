@@ -21,6 +21,7 @@ private:
 
 public:
 	Rule1D(const std::uint8_t num);
+	bool calcNextState(const Grid<bool,Index1D> &grid, const Index1D index) const;
 };
 
 
