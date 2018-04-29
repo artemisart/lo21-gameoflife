@@ -8,59 +8,43 @@ Grid1D<T>::Grid1D(std::size_t size) :
 
 template<typename T>
 Grid2D<T>::Grid2D(std::size_t height, std::size_t width) :
-	height(height), width(width)
+	height(height), width(width),
+	values(height * width, 0)
+{}
+
+template<typename T>
+Grid1D<T>::~Grid1D()
 {
-    int i=0;
-    int j=0;
-    while(i<height){
-        while(j<width){
-            values[i][j]= new T;
-            values[i][j]= 0;
-            j++;
-        }
-        i++;
-    }
-
-}
-
-template<typename T>
-Grid1D<T>::~Grid1D(){
-    int i=0;
-    while (i<size) {
-        delete values[i];
-        i++;
-    }
+	delete values;
 }
 
 
 template<typename T>
-Grid2D<T>::~Grid2D(){
-    int i=0, j=0;
-    while (i<height) {
-        while(j<width){
-            delete values[i][j];
-            i++;
-        }
-        j++;
-    }
+Grid2D<T>::~Grid2D()
+{
+	delete values;
 }
 
 template<typename T>
-T Grid1D<T>::getCell(const Index1D idx) const {
+T Grid1D<T>::getCell(const Index1D idx) const
+{
     return values[idx.i];
 }
 
 template<typename T>
-T Grid2D<T>::getCell(const Index2D idx)const{
-    return values[idx.col][idx.row];
+T Grid2D<T>::getCell(const Index2D idx) const
+{
+	return values[idx.row * this->width + idx.row];
 }
 
 template<typename T>
-void  Grid1D<T>::setCell(const Index1D idx, const T value){
-    values[idx.i]=value;
+void  Grid1D<T>::setCell(const Index1D idx, const T value)
+{
+	values[idx.i] = value;
 }
 
 template<typename T>
-void Grid2D<T>::setCell(const Index2D idx, const T value){
-    values[idx.row][idx.col]=value;
+void Grid2D<T>::setCell(const Index2D idx, const T value)
+{
+	values[idx.row * this->width + idx.col] = value;
 }
