@@ -2,15 +2,9 @@
 
 template<typename T>
 Grid1D<T>::Grid1D(std::size_t size) :
-	size(size)
-{
-    int i=0;
-    while(i<size){
-        values[i]= new T;
-        values[i]=0;
-        i++;
-    }
-}
+	size(size),
+	values(size, 0)
+{}
 
 template<typename T>
 Grid2D<T>::Grid2D(std::size_t height, std::size_t width) :
