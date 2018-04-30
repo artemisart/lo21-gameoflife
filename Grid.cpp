@@ -34,7 +34,7 @@ T Grid1D<T>::getCell(const Index1D idx) const
 template<typename T>
 T Grid2D<T>::getCell(const Index2D idx) const
 {
-	return values[idx.row * this->width + idx.row];
+    return values[idx.row * this->width + idx.col]; //faire une fonction getIndex() ?
 }
 
 template<typename T>

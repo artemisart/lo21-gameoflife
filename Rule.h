@@ -3,12 +3,13 @@
 
 #include <cstdint>
 #include "Grid.h"
+#include "Index.h"
 
 template<typename T, typename I>
 class Rule
 {
 public:
-	virtual Rule();
+    Rule() {}
 	virtual ~Rule() = 0;
 	virtual T calcNextState(const Grid<T,I> &grid, const I index) const = 0;
 };
@@ -21,11 +22,11 @@ private:
 
 public:
 	Rule1D();
-	~Rule1D();
+    ~Rule1D() {}
 	Rule1D(const std::uint8_t i);
 	std::uint8_t getnum();
 	void setnum(const std::uint8_t i);
-	bool calcNextState(const Grid1D<bool,Index1D> &grid, const Index1D index) const;
+    bool calcNextState(const Grid1D<bool> &grid, const Index1D index) const;
 };
 
 
@@ -36,13 +37,13 @@ private:
 
 public:
 	Rule2D();
-	~Rule2D();
+    ~Rule2D() {}
 	Rule2D(const std::uint8_t i, const std::uint8_t j);
 	std::uint8_t getborn();
 	std::uint8_t getsurvive();
 	void setborn(const std::uint8_t i);
 	void setsurvive(const std::uint8_t i);
-	bool calcNextState(const Grid2D<bool,Index2D> &grid, const Index2D index) const;
+    bool calcNextState(const Grid2D<bool> &grid, const Index2D index) const;
 };
 
 #endif // RULES_H

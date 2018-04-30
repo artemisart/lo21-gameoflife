@@ -1,12 +1,14 @@
 #include "Rule.h"
 
-template<typename T, typename I>
 
 /*--------------------------------RULE 1D---------------------------------------- */
 
-Rule1D::Rule1D():num(0){
+Rule1D::Rule1D() : num(0)
+{
+
 }
-Rule1D::Rule1D(const std::uint8_t i):num(0){
+
+Rule1D::Rule1D(const std::uint8_t i) : num(0){
 		this->num=i;
 }
 std::uint8_t Rule1D::getnum(){
@@ -15,7 +17,7 @@ std::uint8_t Rule1D::getnum(){
 void Rule1D::setnum(const std::uint8_t i=0){
 		this->num=i;
 }
-bool Rule1D::calcNextState(const Grid<bool, Index1D> &grid, const Index1D index) const{
+bool Rule1D::calcNextState(const Grid1D<bool> &grid, const Index1D index) const{
 	Index1D idx; 
 	idx=index;
 	idx.i--;
@@ -30,9 +32,13 @@ bool Rule1D::calcNextState(const Grid<bool, Index1D> &grid, const Index1D index)
 
 /*--------------------------------RULE 2D---------------------------------------- */
 
-Rule2D::Rule2D():born(255),survive(0){
+Rule2D::Rule2D() : born(255), survive(0)
+{
+
 }
-Rule2D::Rule2D(const std::uint8_t i, const std::uint8_t j){
+
+Rule2D::Rule2D(const std::uint8_t i, const std::uint8_t j)
+{
 	this->born=i;
 	this->survive=j;
 }
@@ -48,7 +54,7 @@ void Rule2D::setborn(const std::uint8_t i=255){
 void Rule2D::setsurvive(const std::uint8_t i=0){
 	this->survive=i;
 }
-bool Rule2D::calcNextState(const Grid2D<bool,Index2D> &grid, const Index2D index) const{
+bool Rule2D::calcNextState(const Grid2D<bool> &grid, const Index2D index) const{
 	Index2D idx;
 	idx=index;
 	int voisins = 0;

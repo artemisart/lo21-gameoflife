@@ -1,5 +1,5 @@
 QT += widgets
-QMAKE_CXXFLAGS = -std=c++11
+QMAKE_CXXFLAGS = -std=c++11 -Wall
 QMAKE_LFLAGS = -std=c++11
 
 SOURCES += \

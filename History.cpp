@@ -39,3 +39,9 @@ T& History<T>::get(const int i) const
 
 	return this->ring[i % this->ring.size()];
 }
+
+template<typename T>
+void History<T>::push(const T& newElement)
+{
+
+}
