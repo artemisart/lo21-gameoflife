@@ -1,62 +1,63 @@
 #include "Rule.h"
 
+/*--------------------------------RULE 1D-------------------------------------*/
 
-/*--------------------------------RULE 1D---------------------------------------- */
+Rule1D::Rule1D(const std::uint8_t i) : num(i) {}
 
-Rule1D::Rule1D() : num(0)
+std::uint8_t Rule1D::getNum() const
 {
-
+	return this->num;
 }
 
-Rule1D::Rule1D(const std::uint8_t i) : num(0){
-		this->num=i;
+void Rule1D::setNum(const std::uint8_t i)
+{
+	this->num = i;
 }
-std::uint8_t Rule1D::getnum(){
-		return this->num;
-}
-void Rule1D::setnum(const std::uint8_t i=0){
-		this->num=i;
-}
-bool Rule1D::calcNextState(const Grid1D<bool> &grid, const Index1D index) const{
-	Index1D idx; 
-	idx=index;
+
+bool Rule1D::calcNextState(const Grid<bool,Index1D> &grid, const Index1D index) const
+{
+	Index1D idx = index;
 	idx.i--;
-	int x =grid.getCell(idx)*4;
+	int x = grid.getCell(idx)*4;
 	idx.i++;
-	x = x + grid.getCell(idx)*2; 
+	x += grid.getCell(idx)*2;
 	idx.i++;
-	x = x + grid.getCell(idx);
-	bool newVal = (bool) (this->num >>x) & 1;
+	x += grid.getCell(idx);
+	bool newVal = (this->num >> x) & 1;
 	return newVal; 
 }
 
-/*--------------------------------RULE 2D---------------------------------------- */
+/*--------------------------------RULE 2D-------------------------------------*/
 
-Rule2D::Rule2D() : born(255), survive(0)
+
+Rule2D::Rule2D(const std::uint8_t b, const std::uint8_t s) :
+	born(b),
+	survive(s)
+{}
+
+std::uint8_t Rule2D::getBorn() const
 {
-
+	return this->born;
 }
 
-Rule2D::Rule2D(const std::uint8_t i, const std::uint8_t j)
+std::uint8_t Rule2D::getSurvive() const
 {
-	this->born=i;
-	this->survive=j;
+	return this->survive;
 }
-std::uint8_t Rule2D::getborn(){
-		return this->born;
+
+void Rule2D::setBorn(const std::uint8_t i)
+{
+	this->born = i;
 }
-std::uint8_t Rule2D::getsurvive(){
-		return this->survive;
+
+void Rule2D::setSurvive(const std::uint8_t i)
+{
+	this->survive = i;
 }
-void Rule2D::setborn(const std::uint8_t i=255){
-	this->born=i;
-}
-void Rule2D::setsurvive(const std::uint8_t i=0){
-	this->survive=i;
-}
-bool Rule2D::calcNextState(const Grid2D<bool> &grid, const Index2D index) const{
-	Index2D idx;
-	idx=index;
+
+bool Rule2D::calcNextState(const Grid<bool,Index2D> &grid, const Index2D index) const
+{
+	Index2D idx = index;
 	int voisins = 0;
 		idx.row--; idx.col--;
 		voisins = voisins + grid.getCell(idx);
@@ -74,12 +75,9 @@ bool Rule2D::calcNextState(const Grid2D<bool> &grid, const Index2D index) const{
 		voisins = voisins + grid.getCell(idx);
 		idx.row++;
 		voisins = voisins + grid.getCell(idx);
-	bool newVal;
-	if (grid.getCell(index)){ //si la cell est vivante
-		newVal = (this->survive >>voisins) &1;
-	}
-	else{ // si la cellule est morte
-		newVal = (this->born >>voisins) & 1;
-	}
-	return newVal;
+
+	if (grid.getCell(index)) // the current cell is alive
+		return (this->survive >> voisins) & 1;
+	else // the current cell is dead
+		return (this->born >> voisins) & 1;
 }
