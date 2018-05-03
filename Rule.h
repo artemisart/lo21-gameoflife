@@ -9,10 +9,15 @@ class Rule
 {
 public:
 	Rule();
-	virtual ~Rule() = 0;
+	virtual ~Rule();
 	virtual T calcNextState(const Grid<T,I> &grid, const I index) const = 0;
 };
 
+// template<typename T, typename I>
+// Rule<T,I>::Rule()
+// {
+
+// }
 
 class Rule1D : public Rule<bool, Index1D>
 {
