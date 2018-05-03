@@ -15,9 +15,9 @@ private:
 	// Rule<typename G::EtatType, typename G::IndexType> *rule;
 public:
     Automaton(); //initialiser historique ou passer historique en pramètre
-    void calculate(const Grid<T,I> &old, Grid<T,I> &next) const; //
-	void next();
-	void run(const int count);
+	virtual void calculate(const Grid<T,I> &old, Grid<T,I> &next) const; //
+	virtual void next();
+	virtual void run(const int count);
 };
 
 template<typename T, typename I>
