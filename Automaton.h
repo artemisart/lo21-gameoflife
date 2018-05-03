@@ -52,7 +52,7 @@ template<typename T>
 void Automaton<T,Index1D>::calculate(const Grid<T,Index1D> &old, Grid<T,Index1D> &next) const
 {
 	for (int i = 0; i < old.size; ++i)
-		next.setCell(i, this->calcNextState(old, i));
+		next.setCell(i, rule->calcNextState(old, i));
 }
 
 template<typename T>
@@ -60,7 +60,7 @@ void Automaton<T,Index2D>::calculate(const Grid<T,Index2D> &old, Grid<T,Index2D>
 {
 	for (int row = 0; i < old.height; ++i)
 		for (int col = 0; i < old.width; ++i)
-			next.setCell(i, this->calcNextState(old, i));
+			next.setCell(i, rule->calcNextState(old, i));
 }
 
 #endif // AUTOMATON_H
