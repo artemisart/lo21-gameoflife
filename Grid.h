@@ -26,8 +26,8 @@ public:
 	Grid1D(const std::size_t size);
     ~Grid1D();
 
-	T getCell(const Index1D idx) const;
-	void setCell(const Index1D idx, const T value);
+	virtual T getCell(const Index1D idx) const;
+	virtual void setCell(const Index1D idx, const T value);
 };
 
 
@@ -42,8 +42,8 @@ public:
     Grid2D(const std::size_t height, const std::size_t width);
     ~Grid2D();
 
-	T getCell(const Index2D idx) const;
-	void setCell(const Index2D idx, const T value);
+	virtual T getCell(const Index2D idx) const;
+	virtual void setCell(const Index2D idx, const T value);
 };
 
 #endif // GRID_H

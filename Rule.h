@@ -28,7 +28,7 @@ public:
 	std::uint8_t getNum() const;
 	void setNum(const std::uint8_t i);
 
-	bool calcNextState(const Grid<bool,Index1D> &grid, const Index1D index) const;
+	virtual bool calcNextState(const Grid<bool,Index1D> &grid, const Index1D index) const;
 };
 
 
@@ -47,7 +47,7 @@ public:
 	void setBorn(const std::uint8_t i);
 	void setSurvive(const std::uint8_t i);
 
-	bool calcNextState(const Grid<bool,Index2D> &grid, const Index2D index) const;
+	virtual bool calcNextState(const Grid<bool,Index2D> &grid, const Index2D index) const;
 };
 
 #endif // RULES_H
