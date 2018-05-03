@@ -3,19 +3,19 @@
 
 
 template<typename T>
-History<T>::History(const int size) : ring(size) {}
+RingHistory<T>::RingHistory(const int size) : ring(size) {}
 
 template<typename T>
-History<T>::~History()
+RingHistory<T>::~RingHistory()
 {
-	delete ring;
-	delete start;
+	delete this->ring;
 }
 
 template<typename T>
-void History<T>::setStart (const T &start)
+void RingHistory<T>::setStart (const T &start)
 {
-	this->start = &start;
+	this->History<T>::setStart(start);
+
 	for (auto &elem : this->ring)
 		elem = nullptr;
 	this->ring[0] = &start;
@@ -23,13 +23,13 @@ void History<T>::setStart (const T &start)
 }
 
 template<typename T>
-T& History<T>::getLast() const
+T& RingHistory<T>::getLast() const
 {
 	return this->ring[this->current % this->ring.size()];
 }
 
 template<typename T>
-T& History<T>::get(const int i) const
+T* RingHistory<T>::get(const int i) const
 {
 	if (i > this->current)
 		throw new std::exception(); // TODO
@@ -41,7 +41,7 @@ T& History<T>::get(const int i) const
 }
 
 template<typename T>
-void History<T>::push(const T& newElement)
+void RingHistory<T>::push(const T& newElement)
 {
 
 }
