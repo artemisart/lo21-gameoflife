@@ -2,7 +2,8 @@
 #define INDEX_H
 
 /**
- * @brief The Index struct is used to represent a position (index) in n-dimensional space.
+ * @brief The Index struct is used to represent a position (index) in
+ * n-dimensional space.
  * Note that this struct doesn't implement anything and that you should use a
  * subclass to do actual work.
  */
@@ -26,7 +27,7 @@ struct Index1D : public Index
 	 * @param i Offset from current position
 	 * @return
 	 */
-	Index1D offset(const int di) { return Index1D(this->i + di); }
+	Index1D offset(const int di) const { return Index1D(this->i + di); }
 };
 
 /**
@@ -45,7 +46,7 @@ struct Index2D : public Index
 	 * @param dcol Row offset from current position
 	 * @return
 	 */
-	Index2D offset(const int drow, const int dcol)
+	Index2D offset(const int drow, const int dcol) const
 	{
 		return Index2D(this->row + drow, this->col + dcol);
 	}
