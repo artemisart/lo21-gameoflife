@@ -16,15 +16,10 @@ void Rule1D::setNum(const std::uint8_t i)
 
 bool Rule1D::calcNextState(const Grid<bool,Index1D> &grid, const Index1D index) const
 {
-	Index1D idx = index;
-	idx.i--;
-	int x = grid.getCell(idx)*4;
-	idx.i++;
-	x += grid.getCell(idx)*2;
-	idx.i++;
-	x += grid.getCell(idx);
-	bool newVal = (this->num >> x) & 1;
-	return newVal; 
+	int y = + 4*grid.getCell(index.offset(-1))
+			+ 2*grid.getCell(index)
+			+ 1*grid.getCell(index.offset(+1));
+	return (this->num >> y) & 1;
 }
 
 /*--------------------------------RULE 2D-------------------------------------*/
@@ -57,27 +52,18 @@ void Rule2D::setSurvive(const std::uint8_t i)
 
 bool Rule2D::calcNextState(const Grid<bool,Index2D> &grid, const Index2D index) const
 {
-	Index2D idx = index;
-	int voisins = 0;
-		idx.row--; idx.col--;
-		voisins = voisins + grid.getCell(idx);
-		idx.row++;
-		voisins = voisins + grid.getCell(idx);
-		idx.row++;
-		voisins = voisins + grid.getCell(idx);
-		idx.col++;
-		voisins = voisins + grid.getCell(idx);
-		idx.row--; idx.row--;
-		voisins = voisins + grid.getCell(idx);
-		idx.col++;
-		voisins = voisins + grid.getCell(idx);
-		idx.row++;
-		voisins = voisins + grid.getCell(idx);
-		idx.row++;
-		voisins = voisins + grid.getCell(idx);
+	int neighbourCount =
+			+ grid.getCell(index.offset(-1, -1))
+			+ grid.getCell(index.offset(-1,  0))
+			+ grid.getCell(index.offset(-1, +1))
+			+ grid.getCell(index.offset( 0, -1))
+			+ grid.getCell(index.offset( 0, +1))
+			+ grid.getCell(index.offset(+1, -1))
+			+ grid.getCell(index.offset(+1,  0))
+			+ grid.getCell(index.offset(+1, +1));
 
 	if (grid.getCell(index)) // the current cell is alive
-		return (this->survive >> voisins) & 1;
+		return (this->survive >> neighbourCount) & 1;
 	else // the current cell is dead
-		return (this->born >> voisins) & 1;
+		return (this->born >> neighbourCount) & 1;
 }
