@@ -10,11 +10,13 @@ template<typename T, typename I>
 class Automaton
 {
 private:
-    History<Grid<T,I>> history;
+	History<Grid<T,I>> *history;
 	Rule<T,I> *rule;
 	// Rule<typename G::EtatType, typename G::IndexType> *rule;
 public:
     Automaton(); //initialiser historique ou passer historique en pramètre
+	virtual ~Automaton();
+
 	virtual void calculate(const Grid<T,I> &old, Grid<T,I> &next) const; //
 	virtual void next();
 	virtual void run(const int count);
@@ -23,11 +25,11 @@ public:
 template<typename T, typename I>
 void Automaton<T,I>::next()
 {
-	T lastGrid = this->history.getLast();
+	auto *lastGrid = this->history->getLast();
 	// crée une nouvelle grille avec la même taille que les précédentes
-	T *newGrid = new T(lastGrid);
-	this->calculate(lastGrid, newGrid);
-	this->history.push(newGrid);
+//	auto *newGrid = new Grid<T,I>(lastGrid); // FIXME Grid est abstrait donc c'est pas possible là
+//	this->calculate(lastGrid, newGrid);
+//	this->history->push(newGrid);
 }
 
 template<typename T, typename I>

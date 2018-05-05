@@ -23,7 +23,7 @@ void RingHistory<T>::setStart (const T &start)
 }
 
 template<typename T>
-T& RingHistory<T>::getLast() const
+T* RingHistory<T>::getLast() const
 {
 	return this->ring[this->current % this->ring.size()];
 }
@@ -41,7 +41,7 @@ T* RingHistory<T>::get(const int i) const
 }
 
 template<typename T>
-void RingHistory<T>::push(const T& newElement)
+void RingHistory<T>::push(const T *newElement)
 {
-
+	// TODO
 }

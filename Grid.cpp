@@ -38,7 +38,7 @@ T Grid2D<T>::getCell(const Index2D idx) const
 }
 
 template<typename T>
-void  Grid1D<T>::setCell(const Index1D idx, const T value)
+void Grid1D<T>::setCell(const Index1D idx, const T value)
 {
 	values[idx.i] = value;
 }

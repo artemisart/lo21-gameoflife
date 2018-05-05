@@ -33,12 +33,12 @@ public:
 	 * @brief Returns the first element stored in the history.
 	 * @return
 	 */
-	virtual T &getStart() const { return this->start; }
+	virtual T *getStart() const { return this->start; }
 	/**
 	 * @brief Returns the last element stored in the history.
 	 * @return
 	 */
-	virtual T &getLast() const = 0;
+	virtual T *getLast() const = 0;
 	/**
 	 * @brief Returns the i-th element stored in the history or a nullptr if
 	 * this element isn't available.
@@ -50,7 +50,7 @@ public:
 	 * @brief Add a new element to be stored in the history.
 	 * @param newElement
 	 */
-	virtual void push(const T &newElement) = 0;
+	virtual void push(const T *newElement) = 0;
 };
 
 /**
@@ -69,9 +69,9 @@ public:
 	~RingHistory();
 
 	virtual void setStart (const T &start);
-	virtual T &getLast() const;
+	virtual T *getLast() const;
 	virtual T *get(const int i) const;
-	virtual void push(const T &newElement);
+	virtual void push(const T *newElement);
 };
 
 #endif // HISTORY_H
