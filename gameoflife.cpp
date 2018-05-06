@@ -54,12 +54,18 @@ QWidget* Gameoflife::createNewWindow(){
     this->hide();
 
     retour=new QPushButton("Retour au menu principal");
+    runSimulation = new QPushButton("Lancer la simulation");
+    next=new QPushButton("Calculer l'état suivant");
+
     colone1=new QVBoxLayout();
+    colone1->addWidget(runSimulation);
+    colone1->addWidget(next);
     colone1->addWidget(retour);
 
     Simulation->setLayout(colone1);
     connect(retour, SIGNAL(clicked()),this, SLOT(retour_menu()) );
-
+  //  connect(runSimulation, SIGNAL(clicked()), this, SLOT(run());
+   // connect(next, SIGNAL(clicked()), this, SLOT(next()));
 
     return Simulation;
 }
