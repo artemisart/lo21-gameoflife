@@ -7,7 +7,7 @@
 int main(int argc, char* argv[])
 {
     QApplication app(argc, argv);
-    AutoCell fenetre;
+    Gameoflife fenetre;
     fenetre.show();
     return app.exec();
 
