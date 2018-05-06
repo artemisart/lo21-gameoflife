@@ -16,6 +16,8 @@ class Gameoflife : public QWidget{
     QVBoxLayout *presentation2;
     QWidget * Simulation;
     QPushButton * retour;
+    QPushButton * runSimulation;
+    QPushButton * next;
     QVBoxLayout * colone1;
 
 public :
