@@ -9,7 +9,8 @@ SOURCES += \
     Grid.cpp \
     Automaton.cpp \
     History.cpp \
-    Rule.cpp
+    Rule.cpp \
+    gameoflife.cpp
 
 HEADERS += \
     automate.h \
@@ -18,4 +19,5 @@ HEADERS += \
     Automaton.h \
     History.h \
     Rule.h \
-    Index.h
+    Index.h \
+    gameoflife.h
