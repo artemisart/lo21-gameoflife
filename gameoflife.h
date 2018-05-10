@@ -5,6 +5,9 @@
 #include<QPushButton>
 #include<QHBoxLayout>
 #include<QLabel>
+#include<QLineEdit>
+#include<QTableWidget>
+#include<QHeaderView>
 
 class Gameoflife : public QWidget{
     Q_OBJECT
@@ -18,7 +21,13 @@ class Gameoflife : public QWidget{
     QPushButton * retour;
     QPushButton * runSimulation;
     QPushButton * next;
-    QVBoxLayout * colone1;
+    QPushButton *size;
+    QVBoxLayout * colone1,  *grid;
+    QLineEdit * colField, *rowField;
+    QHBoxLayout * param;
+    QTableWidget *depart;
+    static unsigned int dimension;
+
 
 public :
     explicit Gameoflife(QWidget* parent = nullptr);
@@ -29,6 +38,8 @@ private slots :
     void Simulation_Automaton2D();
     void Simulation_HexaAutomaton();
     void retour_menu();
+    void setGrid1D();
+    void setGrid2D();
 
 
 };
