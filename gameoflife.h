@@ -8,24 +8,21 @@
 #include <QPushButton>
 #include <QTableWidget>
 #include <QWidget>
+#include<QSpinBox>
+#include<QIntValidator>
+
 
 class Gameoflife : public QWidget {
     Q_OBJECT
-	QPushButton* Automaton1D;
-	QPushButton* Automaton2D;
-	QPushButton* HexaAutomaton;
-	QHBoxLayout* presentation;
-	QLabel* introduction;
-	QVBoxLayout* presentation2;
+    QHBoxLayout* presentation, *numeroc, *param, *wrapper;
+    QLabel* introduction, *numl, *numeroBitl[8];
+    QVBoxLayout* presentation2, *colone1, *colone2, *grid, *numc, *bitc[8];
 	QWidget* Simulation;
-	QPushButton* retour;
-	QPushButton* runSimulation;
-	QPushButton* next;
-	QPushButton* size;
-    QVBoxLayout *colone1, *grid;
-    QLineEdit *colField, *rowField;
-	QHBoxLayout* param;
+    QPushButton * Automaton1D, *Automaton2D, *HexaAutomaton, *retour,* runSimulation, *next, *size;
+    QLineEdit *colField, *rowField, *numeroBit[8];
 	QTableWidget* depart;
+    QSpinBox *num;
+    QIntValidator *zeroOneValidator;
     static unsigned int dimension;
 
 public:
@@ -39,6 +36,8 @@ private slots:
     void retour_menu();
     void setGrid1D();
     void setGrid2D();
+    void synchronizeNumToNumBit(int i);
+    void synchronizeNumBitToNum(const QString& s);
 };
 
 #endif // GAMEOFLIFE

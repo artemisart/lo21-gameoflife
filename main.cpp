@@ -3,6 +3,7 @@
 #include "Automaton.h"
 #include "History.h"
 #include "autocell.h"
+#include "gameoflife.h"
 
 int main(int argc, char* argv[])
 {
