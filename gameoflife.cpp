@@ -50,7 +50,7 @@ void Gameoflife::Simulation_Automaton1D()
 	param->addWidget(size);
 	param->addLayout(colone1);
 
-  unsigned int taille = 25;
+	int taille = 25;
 
 	depart = new QTableWidget(1, dim, Simulation);
 	depart->setFixedSize(dim * taille, taille);
@@ -58,7 +58,8 @@ void Gameoflife::Simulation_Automaton1D()
 	depart->verticalHeader()->setVisible(false);
 	depart->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	depart->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-  for(unsigned int i=0; i<dim; i++){
+
+	for (int i = 0; i < dim; i++) {
 		depart->setColumnWidth(i, taille);
 		depart->setItem(0, i, new QTableWidgetItem(""));
 	}
@@ -95,7 +96,7 @@ void Gameoflife::Simulation_Automaton2D()
 	param->addWidget(size);
 	param->addLayout(colone1);
 
-    unsigned int taille = 25;
+	int taille = 25;
 
 	depart = new QTableWidget(dimRow, dimCol, Simulation);
 	depart->setFixedSize(dimCol * taille, dimRow * taille);
@@ -103,8 +104,9 @@ void Gameoflife::Simulation_Automaton2D()
 	depart->verticalHeader()->setVisible(false);
 	depart->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	depart->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    for(unsigned int i=0; i<dimCol; i++){
-        for(unsigned int j=0; j<dimRow; j++){
+
+	for (int i = 0; i < dimCol; i++) {
+		for (int j = 0; j < dimRow; j++) {
 			depart->setColumnWidth(i, taille);
 			depart->setRowHeight(j, taille);
 			depart->setItem(j, i, new QTableWidgetItem(""));
@@ -161,13 +163,14 @@ void Gameoflife::setGrid1D()
 
 	depart->setColumnCount(dimCol);
 
-    unsigned int taille = 25;
+	int taille = 25;
 	depart->setFixedSize(dimCol * taille, taille);
 	depart->horizontalHeader()->setVisible(false);
 	depart->verticalHeader()->setVisible(false);
 	depart->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	depart->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    for(unsigned int i=0; i<dimCol; i++){
+
+	for (int i = 0; i < dimCol; i++) {
 		depart->setColumnWidth(i, taille);
 		depart->setItem(0, i, new QTableWidgetItem(""));
 	}
@@ -184,15 +187,16 @@ void Gameoflife::setGrid2D()
 	depart->setColumnCount(dimCol);
 	depart->setRowCount(dimRow);
 
-    unsigned int taille = 25;
+	int taille = 25;
 
 	depart->setFixedSize(dimCol * taille, dimRow * taille);
 	depart->horizontalHeader()->setVisible(false);
 	depart->verticalHeader()->setVisible(false);
 	depart->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	depart->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    for(unsigned int i=0; i<dimCol; i++){
-        for(unsigned int j=0; j<dimRow; j++){
+
+	for (int i = 0; i < dimCol; i++) {
+		for (int j = 0; j < dimRow; j++) {
 			depart->setColumnWidth(i, taille);
 			depart->setRowHeight(j, taille);
 			depart->setItem(j, i, new QTableWidgetItem(""));
