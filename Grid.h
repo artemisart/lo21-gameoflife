@@ -1,13 +1,13 @@
 #ifndef GRID_H
 #define GRID_H
 
-#include<vector>
 #include <functional>
+#include <vector>
+
 #include "Index.h"
 
-template<typename T, typename I>
-class Grid
-{
+template <typename T, typename I>
+class Grid {
 public:
 	Grid();
 	virtual ~Grid();
@@ -19,9 +19,8 @@ public:
 	virtual void iterate(const std::function<T(const I index)> functor) = 0;
 };
 
-template<typename T>
-class Grid1D : public Grid<T,Index1D>
-{
+template <typename T>
+class Grid1D : public Grid<T, Index1D> {
 private:
 	std::size_t size;
 	std::vector<T> values;
@@ -36,9 +35,8 @@ public:
 	virtual void iterate(const std::function<T(const Index1D)> functor);
 };
 
-template<typename T>
-class Grid2D : public Grid<T, Index2D>
-{
+template <typename T>
+class Grid2D : public Grid<T, Index2D> {
 private:
 	std::size_t height, width;
 	std::vector<T> values;
