@@ -2,6 +2,7 @@
 #define GRID_H
 
 #include<vector>
+#include <functional>
 #include "Index.h"
 
 template<typename T, typename I>
@@ -14,8 +15,9 @@ public:
 	// typedef I IndexType;
 	virtual T getCell(const I idx) const = 0;
 	virtual void setCell(const I idx, const T value) = 0;
-};
 
+	virtual void iterate(const std::function<T(const I index)> functor) = 0;
+};
 
 template<typename T>
 class Grid1D : public Grid<T,Index1D>
@@ -30,8 +32,9 @@ public:
 
 	virtual T getCell(const Index1D idx) const;
 	virtual void setCell(const Index1D idx, const T value);
-};
 
+	virtual void iterate(const std::function<T(const Index1D)> functor);
+};
 
 template<typename T>
 class Grid2D : public Grid<T, Index2D>
@@ -46,6 +49,8 @@ public:
 
 	virtual T getCell(const Index2D idx) const;
 	virtual void setCell(const Index2D idx, const T value);
+
+	virtual void iterate(const std::function<T(const Index2D)> functor);
 };
 
 #endif // GRID_H

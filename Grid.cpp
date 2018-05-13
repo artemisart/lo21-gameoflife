@@ -44,7 +44,22 @@ void Grid1D<T>::setCell(const Index1D idx, const T value)
 }
 
 template<typename T>
+void Grid1D<T>::iterate(const std::function<T(const Index1D)> functor)
+{
+	for (Index1D i; i.i < size; ++i.i)
+		setCell(i, functor(i));
+}
+
+template <typename T>
 void Grid2D<T>::setCell(const Index2D idx, const T value)
 {
 	values[idx.row * this->width + idx.col] = value;
+}
+
+template <typename T>
+void Grid2D<T>::iterate(const std::function<T(const Index2D)> functor)
+{
+	for (Index2D i; i.row < height; ++i.row)
+		for (i.col = 0; i.col < width; ++i.col)
+			setCell(i, functor(i));
 }
