@@ -13,7 +13,10 @@ private:
 	Rule<T, I>* rule = nullptr;
 	// Rule<typename G::EtatType, typename G::IndexType> *rule;
 public:
-	Automaton() {} //initialiser historique ou passer historique en pramètre
+	Automaton(History<Grid<T, I>>* history)
+		: history(history)
+	{
+	}
 	virtual ~Automaton() {}
 
 	virtual void calculate(const Grid<T, I>& old, Grid<T, I>& next) const; //
