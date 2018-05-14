@@ -12,14 +12,14 @@
  * one), or the n last ones, or it can even be a sparse history (every n-th one)
  * with dynamic recalculation of intermediate steps.
  */
-template<typename T>
+template <typename T>
 class History
 {
 private:
-	T *start = nullptr;
+	const T* start = nullptr;
 
 public:
-	History();
+	History() {}
 	virtual ~History() { delete this->start; }
 
 	/**
@@ -33,19 +33,19 @@ public:
 	 * @brief Returns the first element stored in the history.
 	 * @return
 	 */
-	virtual T *getStart() const { return this->start; }
+	virtual const T* getStart() const { return this->start; }
 	/**
 	 * @brief Returns the last element stored in the history.
 	 * @return
 	 */
-	virtual T *getLast() const = 0;
+	virtual const T* getLast() const = 0;
 	/**
 	 * @brief Returns the i-th element stored in the history or a nullptr if
 	 * this element isn't available.
 	 * @param i index of the element to retrieve
 	 * @return
 	 */
-	virtual T *get(const int i) const = 0; // TODO peut-être tout passer en pointeur du coup ?
+	virtual const T* get(const int i) const = 0; // TODO peut-être tout passer en pointeur du coup ?
 	/**
 	 * @brief Add a new element to be stored in the history.
 	 * @param newElement
@@ -57,21 +57,51 @@ public:
  * @brief The RingHistory stores the last n elements.
  * It implements a ring buffer for memory efficiency.
  */
-template<typename T>
-class RingHistory : public History<T>
-{
+template <typename T>
+class RingHistory : public History<T> {
 private:
-	std::vector<T*> ring;
+	std::vector<const T*> ring;
 	int current = 0;
 
 public:
-	RingHistory(const int size);
-	~RingHistory();
+	RingHistory(const int size)
+		: ring(size, nullptr)
+	{
+	}
+	~RingHistory()
+	{
+		for (auto e : ring)
+			delete e;
+		ring.clear();
+	}
 
-	virtual void setStart (const T &start);
-	virtual T *getLast() const;
-	virtual T *get(const int i) const;
-	virtual void push(const T *newElement);
+	virtual void setStart(const T& start)
+	{
+		this->History<T>::setStart(start);
+
+		for (auto& elem : this->ring)
+			elem = nullptr;
+		this->ring[0] = &start;
+		this->current = 0;
+	}
+	virtual const T* getLast() const
+	{
+		return this->ring[this->current % this->ring.size()];
+	}
+	virtual const T* get(const int i) const
+	{
+		if (i > this->current)
+			throw new std::exception(); // TODO
+		// std::cout << "Cet état n'a pas été enregistré, seulement les"<< size << " derniers états on été enregristrès \n";
+		if (i < this->current - this->ring.size())
+			throw new std::exception(); // TODO
+
+		return this->ring[i % this->ring.size()];
+	}
+	virtual void push(const T* newElement)
+	{
+		// TODO
+	}
 };
 
 #endif // HISTORY_H

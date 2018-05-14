@@ -28,14 +28,14 @@ public:
 	std::uint8_t getNum() const;
 	void setNum(const std::uint8_t i);
 
-	virtual bool calcNextState(const Grid<bool,Index1D> &grid, const Index1D index) const;
+	virtual bool calcNextState(const Grid<bool, Index1D>& grid, const Index1D index) const;
 };
 
 
 class Rule2D : public Rule<bool, Index2D>
 {
 private:
-	std::uint8_t born, survive;
+	std::uint8_t born = 255, survive = 0;
 	// born represent regles quand cell dead, survive quand cell lives
 
 public:
