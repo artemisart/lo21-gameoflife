@@ -33,11 +33,12 @@ void Automaton<T, I>::next()
 {
 	if (!this->history)
 		throw std::logic_error("history is null");
+
+	// TODO check this
 	auto* lastGrid = this->history->getLast();
-	// crée une nouvelle grille avec la même taille que les précédentes
-	//	auto *newGrid = new Grid<T,I>(lastGrid); // FIXME Grid est abstrait donc c'est pas possible là
-	//	this->calculate(lastGrid, newGrid);
-	//	this->history->push(newGrid);
+	auto* newGrid = lastGrid->createNew();
+	this->calculate(lastGrid, newGrid);
+	this->history->push(newGrid);
 }
 
 template <typename T, typename I>
