@@ -11,7 +11,7 @@ class Automaton {
 private:
 	History<Grid<T, I>>* history = nullptr;
 	Rule<T, I>* rule = nullptr;
-	// Rule<typename G::EtatType, typename G::IndexType> *rule;
+
 public:
 	Automaton(History<Grid<T, I>>* history, Rule<T, I>* rule)
 		: history(history)
@@ -53,5 +53,7 @@ void Automaton<T, I>::calculate(const Grid<T, I>& old, Grid<T, I>& next) const
 {
 	next.iterate_set([&](I idx) { return rule->calcNextState(old, idx); });
 }
+
+// TODO fonctions de sauvegarde
 
 #endif // AUTOMATON_H

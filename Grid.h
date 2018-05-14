@@ -81,4 +81,7 @@ public:
 	}
 };
 
+// TODO fonctions de sauvegarde
+// TODO createNew pour allouer une nouvelle grille de même types
+
 #endif // GRID_H

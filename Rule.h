@@ -45,4 +45,6 @@ public:
 	virtual bool calcNextState(const Grid<bool, Index2D>& grid, const Index2D index) const;
 };
 
+// TODO fonction de sauvegarde
+
 #endif // RULES_H
