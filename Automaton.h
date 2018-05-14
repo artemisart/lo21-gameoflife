@@ -13,13 +13,17 @@ private:
 	Rule<T, I>* rule = nullptr;
 	// Rule<typename G::EtatType, typename G::IndexType> *rule;
 public:
-	Automaton(History<Grid<T, I>>* history)
+	Automaton(History<Grid<T, I>>* history, Rule<T, I>* rule)
 		: history(history)
+		, rule(rule)
 	{
 	}
 	virtual ~Automaton() {}
 
-	virtual void calculate(const Grid<T, I>& old, Grid<T, I>& next) const; //
+	History<Grid<T, I>>* getHistory() { return history; }
+	Rule<T, I>* getRule() { return rule; }
+
+	virtual void calculate(const Grid<T, I>& old, Grid<T, I>& next) const;
 	virtual void next();
 	virtual void run(const int count);
 };
