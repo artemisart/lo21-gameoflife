@@ -1,23 +1,20 @@
 #ifndef RULES_H
 #define RULES_H
 
-#include <cstdint> // pour std::uint8_t
 #include "Grid.h"
 #include "Index.h"
+#include <cstdint> // pour std::uint8_t
 
-template<typename T, typename I>
-class Rule
-{
+template <typename T, typename I>
+class Rule {
 public:
 	Rule() {}
 	virtual ~Rule() {}
 
-	virtual T calcNextState(const Grid<T,I> &grid, const I index) const = 0;
+	virtual T calcNextState(const Grid<T, I>& grid, const I index) const = 0;
 };
 
-
-class Rule1D : public Rule<bool, Index1D>
-{
+class Rule1D : public Rule<bool, Index1D> {
 private:
 	std::uint8_t num;
 
@@ -31,9 +28,7 @@ public:
 	virtual bool calcNextState(const Grid<bool, Index1D>& grid, const Index1D index) const;
 };
 
-
-class Rule2D : public Rule<bool, Index2D>
-{
+class Rule2D : public Rule<bool, Index2D> {
 private:
 	std::uint8_t born = 255, survive = 0;
 	// born represent regles quand cell dead, survive quand cell lives
@@ -47,7 +42,7 @@ public:
 	void setBorn(const std::uint8_t i);
 	void setSurvive(const std::uint8_t i);
 
-	virtual bool calcNextState(const Grid<bool,Index2D> &grid, const Index2D index) const;
+	virtual bool calcNextState(const Grid<bool, Index2D>& grid, const Index2D index) const;
 };
 
 #endif // RULES_H

@@ -1,7 +1,7 @@
 #ifndef HISTORY_H
 #define HISTORY_H
 
-#include<vector>
+#include <vector>
 
 /**
  * @brief The History abstract class stores a history of elements (usually
@@ -13,8 +13,7 @@
  * with dynamic recalculation of intermediate steps.
  */
 template <typename T>
-class History
-{
+class History {
 private:
 	const T* start = nullptr;
 
@@ -28,7 +27,7 @@ public:
 	 * calling this method.
 	 * @param start The first element to be stored
 	 */
-	virtual void setStart(const T &start) { this->start = &start; }
+	virtual void setStart(const T& start) { this->start = &start; }
 	/**
 	 * @brief Returns the first element stored in the history.
 	 * @return
@@ -50,7 +49,7 @@ public:
 	 * @brief Add a new element to be stored in the history.
 	 * @param newElement
 	 */
-	virtual void push(const T *newElement) = 0;
+	virtual void push(const T* newElement) = 0;
 };
 
 /**

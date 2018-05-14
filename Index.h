@@ -7,8 +7,7 @@
  * Note that this struct doesn't implement anything and that you should use a
  * subclass to do actual work.
  */
-struct Index
-{
+struct Index {
 	Index() {}
 };
 
@@ -28,7 +27,10 @@ struct Index1D : public Index {
 	 * @param i Offset from current position
 	 * @return
 	 */
-	Index1D offset(const int di) const { return Index1D(this->i + di); }
+	Index1D offset(const int di) const
+	{
+		return Index1D(this->i + di);
+	}
 };
 
 /**
