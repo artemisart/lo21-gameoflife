@@ -17,13 +17,13 @@ int main(int argc, char* argv[])
 	// instantiating templates classes force them to be compiled, and so we can
 	// check errors
 
-	auto* a = new Automaton<bool, Index1D>();
+	auto* h = new RingHistory<Grid<bool, Index1D>>(5);
+	auto* a = new Automaton<bool, Index1D>(h);
 	a->next();
 	a->run(2);
 
 	auto* g1 = new Grid1D<bool>(10);
 	auto* g2 = new Grid2D<bool>(20, 20);
-	auto* h = new RingHistory<Grid<bool, Index1D>>(5);
 	auto* r = new Rule1D();
 	r->setNum(2);
 	r->calcNextState(*g1, Index1D(2));
