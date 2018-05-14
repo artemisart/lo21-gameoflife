@@ -6,10 +6,12 @@
 
 int main(int argc, char* argv[])
 {
-    QApplication app(argc, argv);
+	/*
+	QApplication app(argc, argv);
     AutoCell fenetre;
     fenetre.show();
-    return app.exec();
+	return app.exec();
+	//*/
 
 	// vvv - test here - vvv
 	// instantiating templates classes force them to be compiled, and so we can
