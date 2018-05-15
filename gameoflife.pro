@@ -10,7 +10,9 @@ SOURCES += \
     Automaton.cpp \
     History.cpp \
     Rule.cpp \
-    gameoflife.cpp
+    gameoflife.cpp \
+    dialog.cpp \
+    Automate1D.cpp
 
 HEADERS += \
     automate.h \
@@ -20,4 +22,10 @@ HEADERS += \
     History.h \
     Rule.h \
     Index.h \
-    gameoflife.h
+    gameoflife.h \
+    dialog.h \
+    Automate1D.h
+
+FORMS += \
+    dialog.ui \
+    Automate1D.ui
