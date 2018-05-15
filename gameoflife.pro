@@ -6,9 +6,6 @@ SOURCES += \
     main.cpp \
     automate.cpp \
     autocell.cpp \
-    Grid.cpp \
-    Automaton.cpp \
-    History.cpp \
     Rule.cpp \
     gameoflife.cpp \
     dialog.cpp \
