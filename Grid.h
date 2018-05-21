@@ -3,6 +3,10 @@
 
 #include <functional>
 #include <vector>
+#include <fstream>
+#include <QFile>
+#include <QIODevice>
+#include
 
 #include "Index.h"
 
@@ -17,6 +21,7 @@ public:
 	virtual void setCell(const I idx, const T value) = 0;
 
 	virtual void iterate_set(const std::function<T(const I index)> functor) = 0;
+	virtual void save(const QFile fich);
 };
 
 template <typename T>
@@ -26,9 +31,7 @@ private:
 	std::vector<T> values;
 
 public:
-	Grid1D(const std::size_t size)
-		: size(size)
-		, values(size, 0)
+	Grid1D(const std::size_t size): size(size), values(size, 0)
 	{
 	}
 	virtual ~Grid1D() {}
@@ -47,6 +50,29 @@ public:
 		for (Index1D i; i.i < size; ++i.i)
 			setCell(i, functor(i));
 	}
+
+	virtual bool save(const QFile fich)
+	{	
+		try{
+			fich.open(QIODevice::Truncate);
+			fich.putChar(dynamic_cast<char>(1));
+			fich.putChar(',');
+			fich.putChar(dynamic_cast<char>(this->size));
+			fich.putChar(',');
+			for(Index1D i; i.i < (this->size) ; ++i.i)
+			{
+				char nb = dynamic_cast<char>(this.getCell(i)); 
+				fich.putChar(nb);
+			}
+			fich.close();
+		}
+		catch(exception const& e)
+		{
+			cerr << "erreur: " << e.what() << endl;
+		}
+		return true;
+	}
+
 };
 
 template <typename T>
@@ -79,6 +105,32 @@ public:
 			for (i.col = 0; i.col < width; ++i.col)
 				setCell(i, functor(i));
 	}
+
+	virtual void save(const QFile fich)
+	{
+		try{
+			fich.open(QIODevice::Truncate);
+			fich.putChar(dynamic_cast<char>(2));
+			fich.putChar(',');
+			fich.putChar(dynamic_cast<char>(this->height));
+			fich.putChar(',');
+			fich.putChar(dynamic_cast<char>(this->width));
+			fich.putChar(',');
+			for(Index2D i; i.row < height; ++i.row)
+				for (i.col = 0; i.col < width; ++i.col)
+				{
+					char nb = dynamic_cast<char>(this.getCell(i)); 
+					fich.putChar(nb);
+				}
+			fich.close();
+		}
+		catch(exception const& e)
+		{
+			cerr << "erreur: " << e.what() << endl;
+		}
+		return true;
+	}
+
 };
 
 // TODO fonctions de sauvegarde
