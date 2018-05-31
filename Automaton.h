@@ -36,9 +36,9 @@ void Automaton<T, I>::next()
 
 	// TODO check this
 	auto* lastGrid = this->history->getLast();
-	auto* newGrid = lastGrid->createNew();
-	this->calculate(lastGrid, newGrid);
-	this->history->push(newGrid);
+    auto* newGrid = lastGrid->createNew();
+    this->calculate(lastGrid, newGrid);
+    this->history->push(newGrid);
 }
 
 template <typename T, typename I>

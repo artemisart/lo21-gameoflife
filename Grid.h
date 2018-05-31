@@ -16,6 +16,7 @@ public:
 	virtual T getCell(const I idx) const = 0;
 	virtual void setCell(const I idx, const T value) = 0;
 
+
 	virtual void iterate_set(const std::function<T(const I index)> functor) = 0;
 };
 
