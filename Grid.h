@@ -4,9 +4,8 @@
 #include <functional>
 #include <vector>
 #include <fstream>
-#include <QFile>
-#include <QIODevice>
-#include
+#include <string>
+#include <iostream>
 
 #include "Index.h"
 
@@ -21,7 +20,7 @@ public:
 	virtual void setCell(const I idx, const T value) = 0;
 
 	virtual void iterate_set(const std::function<T(const I index)> functor) = 0;
-	virtual void save(const QFile fich);
+	virtual void save(const std::string& nom);
 };
 
 template <typename T>
@@ -51,26 +50,22 @@ public:
 			setCell(i, functor(i));
 	}
 
-	virtual bool save(const QFile fich)
+	virtual void save(const std::string& nom)
 	{	
 		try{
-			fich.open(QIODevice::Truncate);
-			fich.putChar(dynamic_cast<char>(1));
-			fich.putChar(',');
-			fich.putChar(dynamic_cast<char>(this->size));
-			fich.putChar(',');
-			for(Index1D i; i.i < (this->size) ; ++i.i)
+			std::ofstream fich(nom, std::ios::out | std::ios::trunc);
+			fich << "1," << size << ",";
+			for(Index1D i; i.i < (size) ; ++i.i)
 			{
-				char nb = dynamic_cast<char>(this.getCell(i)); 
-				fich.putChar(nb);
+				fich << getCell(i); 
+				fich << ',';
 			}
 			fich.close();
 		}
-		catch(exception const& e)
+		catch( const std::string& e)
 		{
-			cerr << "erreur: " << e.what() << endl;
+			std::cout << "erreur: " << e << "\n";
 		}
-		return true;
 	}
 
 };
@@ -106,29 +101,23 @@ public:
 				setCell(i, functor(i));
 	}
 
-	virtual void save(const QFile fich)
-	{
+	virtual void save(const std::string& nom)
+	{	
 		try{
-			fich.open(QIODevice::Truncate);
-			fich.putChar(dynamic_cast<char>(2));
-			fich.putChar(',');
-			fich.putChar(dynamic_cast<char>(this->height));
-			fich.putChar(',');
-			fich.putChar(dynamic_cast<char>(this->width));
-			fich.putChar(',');
-			for(Index2D i; i.row < height; ++i.row)
+			std::ofstream fich(nom, std::ios::out | std::ios::trunc);
+			fich << "2," << height << "," << width << ",";
+			for (Index2D i; i.row < height; ++i.row)
 				for (i.col = 0; i.col < width; ++i.col)
-				{
-					char nb = dynamic_cast<char>(this.getCell(i)); 
-					fich.putChar(nb);
-				}
+			{
+				fich << getCell(i); 
+				fich << ',';
+			}
 			fich.close();
 		}
-		catch(exception const& e)
+		catch( const std::string& e)
 		{
-			cerr << "erreur: " << e.what() << endl;
+			std::cout << "erreur: " << e << "\n";
 		}
-		return true;
 	}
 
 };
