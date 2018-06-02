@@ -18,8 +18,8 @@ public:
 	virtual void setCell(const I idx, const T value) = 0;
 
 	virtual Grid<T, I>* createNew() const = 0;
-	virtual void iterate_get(const std::function<void(const T cell)> functor) = 0;
-    virtual void iterate_set(const std::function<T(const I index)> functor) const = 0;
+	virtual void iterate_get(const std::function<void(const T cell)> functor) const = 0;
+	virtual void iterate_set(const std::function<T(const I index)> functor) = 0;
 	virtual void save(const std::string& filePath) const = 0;
 };
 
@@ -51,7 +51,7 @@ public:
 		return newGrid;
 	}
 
-    virtual void iterate_get(const std::function<void(const T)> functor) const
+	virtual void iterate_get(const std::function<void(const T)> functor) const
 	{
 		for (Index1D i; i.i < values.size(); ++i.i)
 			functor(getCell(i));
@@ -105,7 +105,7 @@ public:
 		return newGrid;
 	}
 
-    virtual void iterate_get(const std::function<void(const T)> functor) const
+	virtual void iterate_get(const std::function<void(const T)> functor) const
 	{
 		for (Index2D i; i.row < height; ++i.row)
 			for (i.col = 0; i.col < width; ++i.col)
