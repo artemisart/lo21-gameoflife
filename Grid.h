@@ -1,11 +1,11 @@
 #ifndef GRID_H
 #define GRID_H
 
-#include <functional>
-#include <vector>
 #include <fstream>
-#include <string>
+#include <functional>
 #include <iostream>
+#include <string>
+#include <vector>
 
 #include "Index.h"
 
@@ -67,13 +67,10 @@ public:
 				fich << ',';
 			}
 			fich.close();
-		}
-		catch( const std::string& e)
-		{
+		} catch (const std::string& e) {
 			std::cout << "erreur: " << e << "\n";
 		}
 	}
-
 };
 
 template <typename T>
@@ -119,19 +116,15 @@ public:
 			std::ofstream fich(nom, std::ios::out | std::ios::trunc);
 			fich << "2," << height << "," << width << ",";
 			for (Index2D i; i.row < height; ++i.row)
-				for (i.col = 0; i.col < width; ++i.col)
-			{
-				fich << getCell(i); 
-				fich << ',';
-			}
+				for (i.col = 0; i.col < width; ++i.col) {
+					fich << getCell(i);
+					fich << ',';
+				}
 			fich.close();
-		}
-		catch( const std::string& e)
-		{
+		} catch (const std::string& e) {
 			std::cout << "erreur: " << e << "\n";
 		}
 	}
-
 };
 
 // TODO fonctions de sauvegarde
