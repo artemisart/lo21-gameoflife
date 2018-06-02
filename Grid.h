@@ -20,7 +20,7 @@ public:
 	virtual void setCell(const I idx, const T value) = 0;
 
 	virtual void iterate_set(const std::function<T(const I index)> functor) = 0;
-	virtual void save(const std::string& nom);
+	virtual void save(const std::string& nom) const = 0;
 };
 
 template <typename T>
@@ -49,10 +49,9 @@ public:
 		for (Index1D i; i.i < size; ++i.i)
 			setCell(i, functor(i));
 	}
-
-	virtual void save(const std::string& nom)
-	{	
-		try{
+	virtual void save(const std::string& nom) const
+	{
+		try {
 			std::ofstream fich(nom, std::ios::out | std::ios::trunc);
 			fich << "1," << size << ",";
 			for(Index1D i; i.i < (size) ; ++i.i)
@@ -100,10 +99,9 @@ public:
 			for (i.col = 0; i.col < width; ++i.col)
 				setCell(i, functor(i));
 	}
-
-	virtual void save(const std::string& nom)
-	{	
-		try{
+	virtual void save(const std::string& nom) const
+	{
+		try {
 			std::ofstream fich(nom, std::ios::out | std::ios::trunc);
 			fich << "2," << height << "," << width << ",";
 			for (Index2D i; i.row < height; ++i.row)
