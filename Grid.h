@@ -18,9 +18,9 @@ public:
 	virtual void setCell(const I idx, const T value) = 0;
 
 	virtual Grid<T, I>* createNew() const = 0;
-	virtual void iterate_get(const std::function<void(const T)> functor) = 0;
+	virtual void iterate_get(const std::function<void(const T cell)> functor) = 0;
 	virtual void iterate_set(const std::function<T(const I index)> functor) = 0;
-	virtual void save(const std::string& nom) const = 0;
+	virtual void save(const std::string& filePath) const = 0;
 };
 
 template <typename T>
@@ -61,16 +61,13 @@ public:
 		for (Index1D i; i.i < values.size(); ++i.i)
 			setCell(i, functor(i));
 	}
-	virtual void save(const std::string& nom) const
+	virtual void save(const std::string& filePath) const
 	{
 		try {
-			std::ofstream fich(nom, std::ios::out | std::ios::trunc);
-			fich << "1," << values.size() << ",";
-			for (Index1D i; i.i < values.size(); ++i.i) {
-				fich << getCell(i);
-				fich << ',';
-			}
-			fich.close();
+			std::ofstream file(filePath, std::ios::out | std::ios::trunc);
+			file << "1," << values.size() << ",";
+			iterate_get([&](const T cell) { file << cell; });
+			file.close();
 		} catch (const std::string& e) {
 			std::cout << "erreur: " << e << "\n";
 		}
@@ -120,17 +117,13 @@ public:
 			for (i.col = 0; i.col < width; ++i.col)
 				setCell(i, functor(i));
 	}
-	virtual void save(const std::string& nom) const
+	virtual void save(const std::string& filePath) const
 	{
 		try {
-			std::ofstream fich(nom, std::ios::out | std::ios::trunc);
-			fich << "2," << height << "," << width << ",";
-			for (Index2D i; i.row < height; ++i.row)
-				for (i.col = 0; i.col < width; ++i.col) {
-					fich << getCell(i);
-					fich << ',';
-				}
-			fich.close();
+			std::ofstream file(filePath, std::ios::out | std::ios::trunc);
+			file << "2," << height << "," << width << ",";
+			iterate_get([&](const T cell) { file << cell; });
+			file.close();
 		} catch (const std::string& e) {
 			std::cout << "erreur: " << e << "\n";
 		}
