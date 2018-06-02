@@ -14,8 +14,6 @@ class Grid {
 public:
 	Grid() {}
 	virtual ~Grid() {}
-	// typedef T EtatType;
-	// typedef I IndexType;
 	virtual T getCell(const I idx) const = 0;
 	virtual void setCell(const I idx, const T value) = 0;
 
@@ -128,6 +126,5 @@ public:
 };
 
 // TODO fonctions de sauvegarde
-// TODO createNew pour allouer une nouvelle grille de même types
 
 #endif // GRID_H
