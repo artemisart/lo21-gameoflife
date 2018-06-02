@@ -3,12 +3,12 @@
 #include "Automaton.h"
 #include "History.h"
 #include "autocell.h"
+#include "gameoflife.h"
 
 int main(int argc, char* argv[])
 {
-	/*
 	QApplication app(argc, argv);
-    AutoCell fenetre;
+    Gameoflife fenetre;
     fenetre.show();
 	return app.exec();
 	//*/
