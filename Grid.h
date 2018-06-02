@@ -27,11 +27,11 @@ public:
 template <typename T>
 class Grid1D : public Grid<T, Index1D> {
 private:
-	std::size_t size = 0;
 	std::vector<T> values;
 
 public:
-	Grid1D(const std::size_t size): size(size), values(size, 0)
+	Grid1D(const std::size_t size)
+		: values(size, 0)
 	{
 	}
 	virtual ~Grid1D() {}
@@ -54,17 +54,16 @@ public:
 
 	virtual void iterate_set(const std::function<T(const Index1D)> functor)
 	{
-		for (Index1D i; i.i < size; ++i.i)
+		for (Index1D i; i.i < values.size(); ++i.i)
 			setCell(i, functor(i));
 	}
 	virtual void save(const std::string& nom) const
 	{
 		try {
 			std::ofstream fich(nom, std::ios::out | std::ios::trunc);
-			fich << "1," << size << ",";
-			for(Index1D i; i.i < (size) ; ++i.i)
-			{
-				fich << getCell(i); 
+			fich << "1," << values.size() << ",";
+			for (Index1D i; i.i < values.size(); ++i.i) {
+				fich << getCell(i);
 				fich << ',';
 			}
 			fich.close();
