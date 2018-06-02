@@ -1,6 +1,6 @@
 
 #include "automate.h"
-
+/*
 
 Etat::Etat(unsigned int n):
     dimension(n),
@@ -45,12 +45,6 @@ Etat& Etat::operator=(const Etat& e) {
     return *this;
 }
 
-
-Automate::Automate(unsigned short int num):numero(num),numeroBit(NumToNumBit(num)){
-}
-
-Automate::Automate(const std::string& num) :numero(NumBitToNum(num)),numeroBit(num) {
-}
 
 
 
@@ -143,6 +137,5 @@ const Automate& AutomateManager::getAutomate(unsigned short int num) {
     if (!automates[num]) automates[num] = new Automate(num);
     return *automates[num];
 }
-const Automate& AutomateManager::getAutomate(const std::string& numBit) {
-    return getAutomate(NumBitToNum(numBit));
-}
+
+*/

@@ -4,19 +4,23 @@
 #include "History.h"
 #include "autocell.h"
 #include "gameoflife.h"
+#include "automate_1d.h"
+#include "welcome.h"
 
 int main(int argc, char* argv[])
 {
-	QApplication app(argc, argv);
-    Gameoflife fenetre;
+
+
+    QApplication app(argc, argv);
+    Welcome fenetre;
     fenetre.show();
-	return app.exec();
+    return app.exec();
 	//*/
 
 	// vvv - test here - vvv
 	// instantiating templates classes force them to be compiled, and so we can
 	// check errors
-
+/*
 	auto* h = new RingHistory<Grid<bool, Index1D>>(5);
 	auto* r = new Rule1D();
 	auto* a = new Automaton<bool, Index1D>(h, r);
@@ -46,7 +50,7 @@ int main(int argc, char* argv[])
 
 	func(1);
 
-	std::function<int(int)> _func = func;
+    std::function<int(int)> _func = func; */
 
 	return 0;
 }

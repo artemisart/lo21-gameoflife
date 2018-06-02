@@ -1,6 +1,6 @@
 #ifndef AUTOMATE
 #define AUTOMATE
-
+/*
 #include <string>
 #include <iostream>
 
@@ -192,6 +192,6 @@ public:
     static AutomateManager& getAutomateManager();
     static void libererAutomateManager();
 };
-
+*/
 #endif // AUTOMATE
 

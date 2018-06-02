@@ -1,6 +1,6 @@
 #include "automate.h"
 #include "autocell.h"
-
+/*
 unsigned int AutoCell::dimension=25;
 
 AutoCell::AutoCell (QWidget* parent) : QWidget(parent) {
@@ -104,7 +104,7 @@ void AutoCell::faireSimulation(){
              etats->item(0,j)->setBackgroundColor("white");
          }
 
-     }*/
+     }
 
    const Automate& A=
    AutomateManager::getAutomateManager().getAutomate(num->value());
@@ -164,3 +164,4 @@ void AutoCell::synchronizeNumBitToNum(const QString& s){
     num->setValue(i);
     this->faireSimulation();
 }
+*/

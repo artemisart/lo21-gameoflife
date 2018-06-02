@@ -1,6 +1,6 @@
 #ifndef AUTOCELL
 #define AUTOCELL
-
+/*
 #include <QString>
 #include <QIntValidator>
 #include <QLabel>
@@ -36,7 +36,7 @@ class AutoCell : public QWidget{
     void synchronizeNumBitToNum(const QString& s);
     void faireSimulation();
     void cellActivation(const QModelIndex& index);
-};
+}; */
 
 #endif // AUTOCELL
 
