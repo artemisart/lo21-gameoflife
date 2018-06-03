@@ -17,6 +17,20 @@ Automate_2D::Automate_2D(QWidget *parent) :
         }
       }
 
+    zeroOneValidator = new QIntValidator(this);
+    zeroOneValidator->setRange(0,1);
+
+    ui->numBit1->setValidator(zeroOneValidator);
+    ui->numBit2->setValidator(zeroOneValidator);
+    ui->numBit3->setValidator(zeroOneValidator);
+    ui->numBit4->setValidator(zeroOneValidator);
+    ui->numBit5->setValidator(zeroOneValidator);
+    ui->numBit6->setValidator(zeroOneValidator);
+    ui->numBit7->setValidator(zeroOneValidator);
+    ui->numBit8->setValidator(zeroOneValidator);
+
+
+
     connect(ui->size, SIGNAL(clicked()), this, SLOT(setSize()));
 
     connect(ui->rule, SIGNAL(valueChanged(int)), this, SLOT(synchronizeNumToNumBit(int)));
@@ -48,6 +62,8 @@ Automate_2D::~Automate_2D()
 
 void Automate_2D::setSize(){
 
+    ui->grid->clearSelection();
+
     QString dimensionCol = ui->hauteur->text();
     QString dimensionRow = ui->largeur->text();
 
@@ -72,7 +88,9 @@ void Automate_2D::setSize(){
 
 
 void Automate_2D::synchronizeNumToNumBit(int j){
-    std::string numbit=NumToNumBit(j);
+    ui->grid->clearSelection();
+
+     QString numbit=NumToNumBit(j);
      ui->numBit1->setText(QString(numbit[0]));
      ui->numBit2->setText(QString(numbit[1]));
      ui->numBit3->setText(QString(numbit[2]));
@@ -85,15 +103,20 @@ void Automate_2D::synchronizeNumToNumBit(int j){
 }
 
 void Automate_2D::synchronizeNumBitToNum(const QString& s){
-    std::string str;
-    str+=ui->numBit1->text().toStdString();
-    str+=ui->numBit2->text().toStdString();
-    str+=ui->numBit3->text().toStdString();
-    str+=ui->numBit4->text().toStdString();
-    str+=ui->numBit5->text().toStdString();
-    str+=ui->numBit6->text().toStdString();
-    str+=ui->numBit7->text().toStdString();
-    str+=ui->numBit8->text().toStdString();
+
+
+    QString str;
+
+    if(ui->numBit1->text()=="" || ui->numBit2->text()=="" ||ui->numBit3->text()=="" || ui->numBit4->text()=="" || ui->numBit5->text()=="" || ui->numBit6->text()=="" || ui->numBit7->text()=="" || ui->numBit8->text()=="" ) return;
+
+    str+=ui->numBit1->text();
+    str+=ui->numBit2->text();
+    str+=ui->numBit3->text();
+    str+=ui->numBit4->text();
+    str+=ui->numBit5->text();
+    str+=ui->numBit6->text();
+    str+=ui->numBit7->text();
+    str+=ui->numBit8->text();
 
 
     int i=NumBitToNum(str);

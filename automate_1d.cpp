@@ -3,6 +3,7 @@
 #include<iostream>
 #include"Rule.h"
 #include<QString>
+#include<QIntValidator>
 
 Automate_1D::Automate_1D(QWidget *parent) :
     QWidget(parent),
@@ -13,7 +14,22 @@ Automate_1D::Automate_1D(QWidget *parent) :
 
     for (int i = 0; i < 20; i++) {
         ui->grid->setColumnWidth(i,25);
-        ui->grid->setItem(0, i, new QTableWidgetItem(""));    }
+        ui->grid->setItem(0, i, new QTableWidgetItem(""));
+    }
+
+    zeroOneValidator = new QIntValidator(this);
+    zeroOneValidator->setRange(0,1);
+
+    ui->numBit1->setValidator(zeroOneValidator);
+    ui->numBit2->setValidator(zeroOneValidator);
+    ui->numBit3->setValidator(zeroOneValidator);
+    ui->numBit4->setValidator(zeroOneValidator);
+    ui->numBit5->setValidator(zeroOneValidator);
+    ui->numBit6->setValidator(zeroOneValidator);
+    ui->numBit7->setValidator(zeroOneValidator);
+    ui->numBit8->setValidator(zeroOneValidator);
+
+
 
     connect(ui->size, SIGNAL(clicked()), this, SLOT(setSize()));
     connect(ui->rule, SIGNAL(valueChanged(int)), this, SLOT(synchronizeNumToNumBit(int)));
@@ -66,7 +82,7 @@ void Automate_1D::setSize(){
 }
 
 
-short unsigned int NumBitToNum(const std::string& num) {
+short unsigned int NumBitToNum(const QString& num) {
     if (num.size() != 8) throw("Numero d'automate indefini");
     int puissance = 1;
     short unsigned int numero = 0;
@@ -78,8 +94,8 @@ short unsigned int NumBitToNum(const std::string& num) {
     return numero;
 }
 
-std::string NumToNumBit(short unsigned int num) {
-    std::string numeroBit;
+QString NumToNumBit(short unsigned int num) {
+    QString numeroBit;
     if (num > 256) throw("Numero d'automate indefini");
     unsigned short int p = 128;
     int i = 7;
@@ -97,7 +113,7 @@ std::string NumToNumBit(short unsigned int num) {
 
 
 void Automate_1D::synchronizeNumToNumBit(int j){
-     std::string numbit=NumToNumBit(j);
+     QString numbit=NumToNumBit(j);
      ui->numBit1->setText(QString(numbit[0]));
      ui->numBit2->setText(QString(numbit[1]));
      ui->numBit3->setText(QString(numbit[2]));
@@ -110,19 +126,21 @@ void Automate_1D::synchronizeNumToNumBit(int j){
 }
 
 void Automate_1D::synchronizeNumBitToNum(const QString& s){
-    std::string str;
-    str+=ui->numBit1->text().toStdString();
-    str+=ui->numBit2->text().toStdString();
-    str+=ui->numBit3->text().toStdString();
-    str+=ui->numBit4->text().toStdString();
-    str+=ui->numBit5->text().toStdString();
-    str+=ui->numBit6->text().toStdString();
-    str+=ui->numBit7->text().toStdString();
-    str+=ui->numBit8->text().toStdString();
+    QString str;
 
-    ui->rule->setValue(stoi(str));
-    //int i=NumBitToNum(str);
-  //  ui->rule->setValue(i);
+    if(ui->numBit1->text()=="" || ui->numBit2->text()=="" ||ui->numBit3->text()=="" || ui->numBit4->text()=="" || ui->numBit5->text()=="" || ui->numBit6->text()=="" || ui->numBit7->text()=="" || ui->numBit8->text()=="" ) return;
+
+    str+=ui->numBit1->text();
+    str+=ui->numBit2->text();
+    str+=ui->numBit3->text();
+    str+=ui->numBit4->text();
+    str+=ui->numBit5->text();
+    str+=ui->numBit6->text();
+    str+=ui->numBit7->text();
+    str+=ui->numBit8->text();
+
+    int i=NumBitToNum(str);
+    ui->rule->setValue(i);
 
 }
 

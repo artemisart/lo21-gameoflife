@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QModelIndex>
+#include<QIntValidator>
 
 namespace Ui {
 class Automate_2D;
@@ -21,6 +22,8 @@ public:
 private:
     Ui::Automate_2D *ui;
     QWidget* parent;
+    QIntValidator* zeroOneValidator;
+
 
 
 private slots:
@@ -34,7 +37,7 @@ private slots:
 
 };
 
-std::string NumToNumBit(short unsigned int num);
+QString NumToNumBit(short unsigned int num);
 short unsigned int NumBitToNum(const std::string& num);
 
 
