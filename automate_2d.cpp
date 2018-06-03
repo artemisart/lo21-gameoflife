@@ -27,7 +27,7 @@ Automate_2D::Automate_2D(QWidget *parent) :
 
     connect(ui->run, SIGNAL(clicked()), this, SLOT(simulation()));
 
-    connect(ui->grid, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(cellActivation(const QModelIndex&)));
+    connect(ui->grid, SIGNAL(doubleClicked(QModelIndex&)), this, SLOT(cellActivation(const QModelIndex&)));
 
     connect(ui->next, SIGNAL(clicked()), this, SLOT(next()));
     connect(ui->menu, SIGNAL(clicked()), this, SLOT(menu()));
@@ -51,7 +51,7 @@ void Automate_2D::setSize(){
     ui->grid->setRowCount(dimRow);
 
     for (int i = 0; i < dimCol; i++) {
-        for(int j=0; j<dimRow; i++){
+        for(int j=0; j<dimRow; j++){
             ui->grid->setColumnWidth(i,25);
             ui->grid->setRowHeight(j, 25);
             ui->grid->setItem(j, i, new QTableWidgetItem(""));
@@ -59,9 +59,10 @@ void Automate_2D::setSize(){
         }
 
     }
-
-
 }
+
+
+
 
 void Automate_2D::synchronizeNumToNumBit(int j){
     std::string numbit=NumToNumBit(j);
@@ -97,17 +98,17 @@ void Automate_2D::simulation(){
 
         }
 
-void Automate_2D::cellActivation(const QModelIndex& index){
-       if(ui->grid->item(0, index.column())->text()==""){
-
-           ui->grid->item(index.row(), index.column())->setText("_");
+void Automate_2D::cellActivation(QModelIndex& index){
+       if(ui->grid->item(index.row(), index.column())->text()==""){
+           //ui->grid->item(index.row(), index.column())->setText("_");
            ui->grid->item(index.row(), index.column())->setBackgroundColor("black");
-           ui->grid->item(index.row(), index.column())->setTextColor("black");
+         //  ui->grid->item(index.row(), index.column())->setTextColor("black");
+          // ui->grid->setRowHeight(index.row(),10);
 
         }else {
-           ui->grid->item(index.row(), index.column())->setText("");
-           ui->grid->item(index.row(), index.column())->setBackgroundColor("white");
-           ui->grid->item(index.row(), index.column())->setTextColor("white");
+          // ui->grid->item(index.row(), index.column())->setText("");
+         //  ui->grid->item(index.row(), index.column())->setBackgroundColor("white");
+          // ui->grid->item(index.row(), index.column())->setTextColor("white");
 
             }
 }

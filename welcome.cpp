@@ -11,6 +11,7 @@ Welcome::Welcome(QWidget *parent) :
     connect(ui->Automate_1D, SIGNAL(clicked()), this, SLOT(Simulation_Automaton1D()));
     connect(ui->Automate_2D, SIGNAL(clicked()), this, SLOT(Simulation_Automaton2D()));
     connect(ui->Automate_2D, SIGNAL(clicked()), this, SLOT(Simulation_AutomatonHexa()));
+    connect(ui->quit,SIGNAL(clicked()), this, SLOT(Quit()) );
 
 
 }
@@ -38,4 +39,8 @@ void Welcome::Simulation_Automaton2D(){
 
 void Welcome::Simulation_AutomatonHexa(){
 
+}
+
+void Welcome::Quit(){
+    this->close();
 }

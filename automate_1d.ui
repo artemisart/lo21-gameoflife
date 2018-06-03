@@ -1,32 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Dialog</class>
- <widget class="QDialog" name="Dialog">
+ <class>Automate_1D</class>
+ <widget class="QWidget" name="Automate_1D">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>827</width>
-    <height>534</height>
+    <width>805</width>
+    <height>616</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Form</string>
   </property>
   <widget class="QWidget" name="verticalLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>572</x>
+     <x>604</x>
      <y>10</y>
-     <width>201</width>
-     <height>511</height>
+     <width>189</width>
+     <height>556</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_5">
+    <property name="sizeConstraint">
+     <enum>QLayout::SetDefaultConstraint</enum>
+    </property>
     <item>
      <widget class="QPushButton" name="charge">
       <property name="text">
        <string>Charger un Automate Existant</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="save">
+      <property name="text">
+       <string>Sauvegarder la configuration</string>
       </property>
      </widget>
     </item>
@@ -69,17 +79,27 @@
   <widget class="QWidget" name="verticalLayoutWidget_2">
    <property name="geometry">
     <rect>
-     <x>10</x>
+     <x>20</x>
      <y>10</y>
-     <width>551</width>
-     <height>501</height>
+     <width>578</width>
+     <height>556</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_6">
+    <property name="sizeConstraint">
+     <enum>QLayout::SetDefaultConstraint</enum>
+    </property>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_3">
       <item>
-       <widget class="QSpinBox" name="spinBox">
+       <widget class="QLabel" name="size_2">
+        <property name="text">
+         <string>Taille</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QSpinBox" name="size_Box">
         <property name="value">
          <number>20</number>
         </property>
@@ -108,14 +128,21 @@
       <item>
        <layout class="QVBoxLayout" name="verticalLayout_17">
         <item>
-         <widget class="QLabel" name="rules">
+         <widget class="QLabel" name="rule_l">
           <property name="text">
            <string>Règles</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit"/>
+         <widget class="QSpinBox" name="rule">
+          <property name="minimumSize">
+           <size>
+            <width>100</width>
+            <height>0</height>
+           </size>
+          </property>
+         </widget>
         </item>
         <item>
          <spacer name="verticalSpacer_10">
@@ -142,7 +169,11 @@
          </widget>
         </item>
         <item>
-         <widget class="QSpinBox" name="spinBox_3"/>
+         <widget class="QLineEdit" name="numBit1">
+          <property name="text">
+           <string>0</string>
+          </property>
+         </widget>
         </item>
         <item>
          <spacer name="verticalSpacer_3">
@@ -169,7 +200,11 @@
          </widget>
         </item>
         <item>
-         <widget class="QSpinBox" name="spinBox_13"/>
+         <widget class="QLineEdit" name="numBit2">
+          <property name="text">
+           <string>0</string>
+          </property>
+         </widget>
         </item>
         <item>
          <spacer name="verticalSpacer_2">
@@ -196,7 +231,11 @@
          </widget>
         </item>
         <item>
-         <widget class="QSpinBox" name="spinBox_14"/>
+         <widget class="QLineEdit" name="numBit3">
+          <property name="text">
+           <string>0</string>
+          </property>
+         </widget>
         </item>
         <item>
          <spacer name="verticalSpacer_4">
@@ -223,7 +262,11 @@
          </widget>
         </item>
         <item>
-         <widget class="QSpinBox" name="spinBox_15"/>
+         <widget class="QLineEdit" name="numBit4">
+          <property name="text">
+           <string>0</string>
+          </property>
+         </widget>
         </item>
         <item>
          <spacer name="verticalSpacer_5">
@@ -250,7 +293,11 @@
          </widget>
         </item>
         <item>
-         <widget class="QSpinBox" name="spinBox_16"/>
+         <widget class="QLineEdit" name="numBit5">
+          <property name="text">
+           <string>0</string>
+          </property>
+         </widget>
         </item>
         <item>
          <spacer name="verticalSpacer_6">
@@ -277,7 +324,11 @@
          </widget>
         </item>
         <item>
-         <widget class="QSpinBox" name="spinBox_11"/>
+         <widget class="QLineEdit" name="numBit6">
+          <property name="text">
+           <string>0</string>
+          </property>
+         </widget>
         </item>
         <item>
          <spacer name="verticalSpacer_7">
@@ -304,7 +355,11 @@
          </widget>
         </item>
         <item>
-         <widget class="QSpinBox" name="spinBox_18"/>
+         <widget class="QLineEdit" name="numBit7">
+          <property name="text">
+           <string>0</string>
+          </property>
+         </widget>
         </item>
         <item>
          <spacer name="verticalSpacer_8">
@@ -331,7 +386,11 @@
          </widget>
         </item>
         <item>
-         <widget class="QSpinBox" name="spinBox_17"/>
+         <widget class="QLineEdit" name="numBit8">
+          <property name="text">
+           <string>0</string>
+          </property>
+         </widget>
         </item>
         <item>
          <spacer name="verticalSpacer_9">
@@ -351,10 +410,150 @@
      </layout>
     </item>
     <item>
-     <widget class="QTableWidget" name="tableWidget"/>
+     <widget class="QLabel" name="init_l">
+      <property name="text">
+       <string>Définissez la configuration de départ : </string>
+      </property>
+     </widget>
     </item>
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_6"/>
+     <widget class="QTableWidget" name="grid">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="verticalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOff</enum>
+      </property>
+      <property name="horizontalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOff</enum>
+      </property>
+      <property name="sizeAdjustPolicy">
+       <enum>QAbstractScrollArea::AdjustToContents</enum>
+      </property>
+      <attribute name="horizontalHeaderVisible">
+       <bool>false</bool>
+      </attribute>
+      <attribute name="verticalHeaderVisible">
+       <bool>false</bool>
+      </attribute>
+      <row>
+       <property name="text">
+        <string>Nouvelle ligne</string>
+       </property>
+      </row>
+      <column>
+       <property name="text">
+        <string>Nouvelle colonne</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Nouvelle colonne</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Nouvelle colonne</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Nouvelle colonne</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Nouvelle colonne</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Nouvelle colonne</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Nouvelle colonne</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Nouvelle colonne</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Nouvelle colonne</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Nouvelle colonne</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Nouvelle colonne</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Nouvelle colonne</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Nouvelle colonne</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Nouvelle colonne</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Nouvelle colonne</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Nouvelle colonne</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Nouvelle colonne</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Nouvelle colonne</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Nouvelle colonne</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Nouvelle colonne</string>
+       </property>
+      </column>
+     </widget>
     </item>
    </layout>
   </widget>
