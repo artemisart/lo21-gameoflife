@@ -2,6 +2,7 @@
 #include "ui_automate_1d.h"
 #include<iostream>
 #include"Rule.h"
+#include<QString>
 
 Automate_1D::Automate_1D(QWidget *parent) :
     QWidget(parent),
@@ -96,7 +97,7 @@ std::string NumToNumBit(short unsigned int num) {
 
 
 void Automate_1D::synchronizeNumToNumBit(int j){
-    std::string numbit=NumToNumBit(j);
+     std::string numbit=NumToNumBit(j);
      ui->numBit1->setText(QString(numbit[0]));
      ui->numBit2->setText(QString(numbit[1]));
      ui->numBit3->setText(QString(numbit[2]));
@@ -119,9 +120,9 @@ void Automate_1D::synchronizeNumBitToNum(const QString& s){
     str+=ui->numBit7->text().toStdString();
     str+=ui->numBit8->text().toStdString();
 
-
-    int i=NumBitToNum(str);
-    ui->rule->setValue(i);
+    ui->rule->setValue(stoi(str));
+    //int i=NumBitToNum(str);
+  //  ui->rule->setValue(i);
 
 }
 

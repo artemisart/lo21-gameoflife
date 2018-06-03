@@ -28,7 +28,7 @@ private slots:
      void synchronizeNumToNumBit(int j);
      void synchronizeNumBitToNum(const QString& s);
      void simulation();
-     void cellActivation(QModelIndex& index);
+     void cellActivation(const QModelIndex& index);
      void next();
      void menu();
 
