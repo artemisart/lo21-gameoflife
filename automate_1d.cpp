@@ -4,6 +4,7 @@
 #include"Rule.h"
 #include<QString>
 #include<QIntValidator>
+#include"Automaton.h"
 
 Automate_1D::Automate_1D(QWidget *parent) :
     QWidget(parent),
@@ -16,6 +17,12 @@ Automate_1D::Automate_1D(QWidget *parent) :
         ui->grid->setColumnWidth(i,25);
         ui->grid->setItem(0, i, new QTableWidgetItem(""));
     }
+
+    auto* h = new RingHistory<Grid<bool, Index1D>>(10);
+    auto* r = new Rule1D();
+    auto* a = new Automaton<bool, Index1D>(h, r);
+    auto* g1 = new Grid1D<bool>(20);
+    h->setStart(*g1);
 
     zeroOneValidator = new QIntValidator(this);
     zeroOneValidator->setRange(0,1);
@@ -146,6 +153,11 @@ void Automate_1D::synchronizeNumBitToNum(const QString& s){
 
 void Automate_1D::simulation(){
 
+   /*
+    auto* r = new Rule1D();
+    auto* a = new Automaton<bool, Index1D>(h, r);
+    auto* g1 = new Grid1D<bool>(20);
+    h->setStart(*g1);*/
         }
 
 void Automate_1D::cellActivation(const QModelIndex& index){
@@ -154,11 +166,14 @@ void Automate_1D::cellActivation(const QModelIndex& index){
            ui->grid->item(0, index.column())->setText("_");
            ui->grid->item(0, index.column())->setBackgroundColor("black");
            ui->grid->item(0, index.column())->setTextColor("black");
+          // a->getHistory()->setCell(Index1D(0, index.column()), true);
 
         }else {
            ui->grid->item(0, index.column())->setText("");
            ui->grid->item(0, index.column())->setBackgroundColor("white");
            ui->grid->item(0, index.column())->setTextColor("white");
+          // a->getHistory()->setCell(Index1D(0, index.column()), false);
+
 
             }
 }
@@ -172,3 +187,4 @@ void Automate_1D::menu(){
     this->hide();
     this->parent->show();
 }
+

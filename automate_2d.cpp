@@ -35,6 +35,7 @@ Automate_2D::Automate_2D(QWidget *parent) :
 
     connect(ui->rule, SIGNAL(valueChanged(int)), this, SLOT(synchronizeNumToNumBit(int)));
 
+
     connect(ui->numBit1, SIGNAL(textChanged(QString)), this, SLOT(synchronizeNumBitToNum(QString)));
     connect(ui->numBit2, SIGNAL(textChanged(QString)), this, SLOT(synchronizeNumBitToNum(QString)));
     connect(ui->numBit3, SIGNAL(textChanged(QString)), this, SLOT(synchronizeNumBitToNum(QString)));
@@ -153,3 +154,4 @@ void Automate_2D::menu(){
     this->hide();
     this->parent->show();
 }
+

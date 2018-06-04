@@ -21,9 +21,9 @@ int main(int argc, char* argv[])
 	// instantiating templates classes force them to be compiled, and so we can
 	// check errors
 /*
-	auto* h = new RingHistory<Grid<bool, Index1D>>(5);
-	auto* r = new Rule1D();
-	auto* a = new Automaton<bool, Index1D>(h, r);
+    auto* h = new RingHistory<Grid<bool, Index1D>>(5);
+    auto* r = new Rule1D();
+    auto* a = new Automaton<bool, Index1D>(h, r);
 	auto* g1 = new Grid1D<bool>(10);
 	h->setStart(*g1);
 

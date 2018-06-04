@@ -94,7 +94,7 @@
       <item>
        <widget class="QLabel" name="size_l">
         <property name="text">
-         <string>Hauteur</string>
+         <string>Largeur</string>
         </property>
        </widget>
       </item>
@@ -108,7 +108,7 @@
       <item>
        <widget class="QLabel" name="label">
         <property name="text">
-         <string>Largeur:</string>
+         <string>Hauteur</string>
         </property>
        </widget>
       </item>
@@ -423,6 +423,20 @@
          </spacer>
         </item>
        </layout>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>Nombre d'états de la simulation</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QSpinBox" name="nb_etats"/>
       </item>
      </layout>
     </item>

@@ -5,6 +5,7 @@
 #include<QModelIndex>
 #include<QString>
 #include<QIntValidator>
+#include<Automaton.h>
 
 namespace Ui {
 class Automate_1D;
@@ -23,6 +24,7 @@ private:
     Ui::Automate_1D *ui;
     QWidget* parent;
     QIntValidator* zeroOneValidator;
+    Automaton<bool, Index1D>* a;
 
 private slots:
      void setSize();
