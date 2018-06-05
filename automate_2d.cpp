@@ -2,6 +2,7 @@
 #include "ui_automate_2d.h"
 #include "automate_1d.h"
 
+
 Automate_2D::Automate_2D(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Automate_2D)

@@ -6,6 +6,8 @@
 #include<QString>
 #include<QIntValidator>
 #include<Automaton.h>
+#include"Rule.h"
+#include<QTableWidget>
 
 namespace Ui {
 class Automate_1D;
@@ -19,12 +21,21 @@ public:
     explicit Automate_1D(QWidget *parent = 0);
     ~Automate_1D();
     void setParent(QWidget* par){parent=par;}
+    void inc_Rang(){rang++;}
+    const int getRang()const {return rang;}
+    void init_simulation();
 
 private:
     Ui::Automate_1D *ui;
     QWidget* parent;
     QIntValidator* zeroOneValidator;
     Automaton<bool, Index1D>* a;
+    Rule1D* r;
+    RingHistory<Grid<bool, Index1D>>* h;
+    Grid<bool, Index1D>* start;
+    int rang;
+    QTableWidget* etats;
+    bool sim;
 
 private slots:
      void setSize();

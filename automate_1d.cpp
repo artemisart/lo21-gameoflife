@@ -5,12 +5,17 @@
 #include<QString>
 #include<QIntValidator>
 #include"Automaton.h"
+#include"Rule.h"
 
 Automate_1D::Automate_1D(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::Automate_1D)
+    ui(new Ui::Automate_1D),
+    rang(0),
+    sim(false)
 {
     ui->setupUi(this);
+    ui->grid->setFixedSize(ui->size_Box->value()*25, 25);
+
 
 
     for (int i = 0; i < 20; i++) {
@@ -18,11 +23,13 @@ Automate_1D::Automate_1D(QWidget *parent) :
         ui->grid->setItem(0, i, new QTableWidgetItem(""));
     }
 
-    auto* h = new RingHistory<Grid<bool, Index1D>>(10);
-    auto* r = new Rule1D();
-    auto* a = new Automaton<bool, Index1D>(h, r);
-    auto* g1 = new Grid1D<bool>(20);
-    h->setStart(*g1);
+
+    h = new RingHistory<Grid<bool, Index1D>>(10);
+    r = new Rule1D();
+    a = new Automaton<bool, Index1D>(h, r);
+
+    start= new Grid1D<bool>(20);
+    h->setStart(*start);
 
     zeroOneValidator = new QIntValidator(this);
     zeroOneValidator->setRange(0,1);
@@ -58,7 +65,6 @@ Automate_1D::Automate_1D(QWidget *parent) :
     connect(ui->next, SIGNAL(clicked()), this, SLOT(next()));
     connect(ui->menu, SIGNAL(clicked()), this, SLOT(menu()));
 
-
 }
 
 Automate_1D::~Automate_1D()
@@ -84,6 +90,10 @@ void Automate_1D::setSize(){
         ui->grid->setItem(0, i, new QTableWidgetItem(""));
 
     }
+    auto* g1 = new Grid1D<bool>(dimCol);
+    //delete h; est-ce necessaire ?
+    h->setStart(*g1);
+
 
 
 }
@@ -130,6 +140,7 @@ void Automate_1D::synchronizeNumToNumBit(int j){
      ui->numBit7->setText(QString(numbit[6]));
      ui->numBit8->setText(QString(numbit[7]));
 
+     r->setNum(j);
 }
 
 void Automate_1D::synchronizeNumBitToNum(const QString& s){
@@ -148,17 +159,30 @@ void Automate_1D::synchronizeNumBitToNum(const QString& s){
 
     int i=NumBitToNum(str);
     ui->rule->setValue(i);
+    r->setNum(i);
+
 
 }
 
 void Automate_1D::simulation(){
+    init_simulation(); /*
+    int j;
+    int i;
+    for(j=0; j< ui->nb_etats->value(); j++)
 
-   /*
-    auto* r = new Rule1D();
-    auto* a = new Automaton<bool, Index1D>(h, r);
-    auto* g1 = new Grid1D<bool>(20);
-    h->setStart(*g1);*/
-        }
+        for(i=0; i<ui->size_Box->value(); i++){
+          if( h->getLast()->getCell(i)){
+              ui->grid->item(j,i)->setBackgroundColor("black");
+
+          }
+          else{
+              ui->grid->item(j,i)->setBackgroundColor("white");
+          }
+      }
+    inc_Rang(); */
+
+
+}
 
 void Automate_1D::cellActivation(const QModelIndex& index){
        if(ui->grid->item(0, index.column())->text()==""){
@@ -166,19 +190,33 @@ void Automate_1D::cellActivation(const QModelIndex& index){
            ui->grid->item(0, index.column())->setText("_");
            ui->grid->item(0, index.column())->setBackgroundColor("black");
            ui->grid->item(0, index.column())->setTextColor("black");
-          // a->getHistory()->setCell(Index1D(0, index.column()), true);
+           start->setCell(Index1D(index.column()), true);
 
         }else {
            ui->grid->item(0, index.column())->setText("");
            ui->grid->item(0, index.column())->setBackgroundColor("white");
            ui->grid->item(0, index.column())->setTextColor("white");
-          // a->getHistory()->setCell(Index1D(0, index.column()), false);
+           start->setCell(Index1D(index.column()), false);
 
 
             }
 }
 
 void Automate_1D::next(){
+    if(sim == false){init_simulation();}
+    else {
+   //     a->next();
+/*
+        for(unsigned int i=0; i<ui->size_Box->value(); i++){
+            if(h->getLast()->getCell(i)){
+                ui->grid->item(getRang(), i)->setBackgroundColor("black");
+            }
+            else{
+                ui->grid->item(getRang(), i)->setBackgroundColor("white");
+            }
+        }
+        inc_Rang();*/
+    }
 
 }
 
@@ -188,3 +226,30 @@ void Automate_1D::menu(){
     this->parent->show();
 }
 
+
+void Automate_1D::init_simulation(){
+    etats=new QTableWidget(ui->nb_etats->value(),ui->size_Box->value(), this);
+    etats->setFixedSize(ui->size_Box->value()*25, ui->nb_etats->value()*25);
+    etats->horizontalHeader()->setVisible(false);
+    etats->verticalHeader()->setVisible(false);
+    etats->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    etats->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+         //non editable
+    etats->setEditTriggers(QAbstractItemView::NoEditTriggers);
+
+    for(unsigned int i=0; i<ui->nb_etats->value(); i++){
+
+        for(unsigned int j=0; j<ui->size_Box->value(); j++){
+            etats->setColumnWidth(j, 25);
+            etats->setRowHeight(i,25);
+           etats->setItem(i, j, new QTableWidgetItem(""));
+        }
+    }
+
+    ui->interface_2->addWidget(etats);
+
+    sim=true;
+
+
+}
