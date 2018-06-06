@@ -102,7 +102,7 @@ public:
 	}
 	virtual void setCell(const Index2D idx, const T value)
 	{
-		values[idx.row * this->width + idx.col] = value;
+		values.at(idx.row * this->width + idx.col) = value;
 	}
 
 	Grid2D<T>* createNew() const
