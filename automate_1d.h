@@ -17,7 +17,7 @@ class Automate_1D : public QWidget {
     Q_OBJECT
 
 public:
-	explicit Automate_1D(QWidget* parent = 0);
+	explicit Automate_1D(QWidget* parent = nullptr);
     ~Automate_1D();
 	void setParent(QWidget* par) { parent = par; }
 	void inc_Rang() { rang++; }

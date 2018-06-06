@@ -13,8 +13,8 @@ class Automate_2D : public QWidget {
     Q_OBJECT
 
 public:
-	explicit Automate_2D(QWidget* parent = 0);
-    ~Automate_2D();
+	explicit Automate_2D(QWidget* parent = nullptr);
+	~Automate_2D();
 	void setParent(QWidget* par) { parent = par; }
 
 private:
