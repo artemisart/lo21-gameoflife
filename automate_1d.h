@@ -21,9 +21,9 @@ public:
 	explicit Automate_1D(QWidget* parent = nullptr);
     ~Automate_1D();
 	void setParent(QWidget* par) { parent = par; }
-	void inc_Rang() { rang++; }
+	void incRang() { rang++; }
 	int getRang() const { return rang; }
-    void init_simulation();
+	void initSimulation();
 
 private:
 	Ui::Automate_1D* ui;

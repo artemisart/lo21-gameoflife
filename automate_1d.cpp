@@ -143,7 +143,7 @@ void Automate_1D::synchronizeNumBitToNum(const QString& s)
 
 void Automate_1D::simulation()
 {
-    init_simulation(); /*
+	initSimulation(); /*
     int j;
     int i;
     for(j=0; j< ui->nb_etats->value(); j++)
@@ -180,19 +180,16 @@ void Automate_1D::cellActivation(const QModelIndex& index)
 void Automate_1D::next()
 {
 	if (sim == false) {
-		init_simulation();
+		initSimulation();
 	} else {
-		//     a->next();
-		/*
-        for(unsigned int i=0; i<ui->size_Box->value(); i++){
-            if(h->getLast()->getCell(i)){
-                ui->grid->item(getRang(), i)->setBackgroundColor("black");
-            }
-            else{
-                ui->grid->item(getRang(), i)->setBackgroundColor("white");
-            }
+		a->next();
+
+		auto lastRow = h->getLast();
+		for (int i = 0; i < ui->size_Box->value(); i++) {
+			auto color = lastRow->getCell(i) ? "black" : "white";
+			ui->grid->item(getRang(), i)->setBackgroundColor(color);
         }
-        inc_Rang();*/
+		incRang();
     }
 }
 
@@ -202,7 +199,7 @@ void Automate_1D::menu()
     this->parent->show();
 }
 
-void Automate_1D::init_simulation()
+void Automate_1D::initSimulation()
 {
 	etats = new QTableWidget(ui->nb_etats->value(), ui->size_Box->value(), this);
 	etats->setFixedSize(ui->size_Box->value() * 25, ui->nb_etats->value() * 25);
