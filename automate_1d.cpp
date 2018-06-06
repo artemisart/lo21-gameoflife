@@ -48,7 +48,7 @@ Automate_1D::Automate_1D(QWidget* parent)
 
     connect(ui->run, SIGNAL(clicked()), this, SLOT(simulation()));
 
-    connect(ui->grid, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(cellActivation(const QModelIndex&)));
+	connect(ui->grid, SIGNAL(clicked(QModelIndex)), this, SLOT(cellActivation(const QModelIndex&)));
 
     connect(ui->next, SIGNAL(clicked()), this, SLOT(next()));
     connect(ui->menu, SIGNAL(clicked()), this, SLOT(menu()));
