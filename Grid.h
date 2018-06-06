@@ -54,7 +54,6 @@ public:
 	Grid1D<T>* createNew() const
 	{
 		auto* newGrid = new Grid1D(values.size());
-		newGrid->iterate_set([&](const Index1D i) { return this->getCell(i); });
 		return newGrid;
 	}
 
@@ -109,7 +108,6 @@ public:
 	Grid2D<T>* createNew() const
 	{
 		auto* newGrid = new Grid2D(height, width);
-		newGrid->iterate_set([&](const Index2D i) { return this->getCell(i); });
 		return newGrid;
 	}
 
