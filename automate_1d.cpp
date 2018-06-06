@@ -8,8 +8,13 @@ Automate_1D::Automate_1D(QWidget* parent)
 	, sim(false)
 {
     ui->setupUi(this);
-	ui->grid->setFixedSize(ui->size_Box->value() * 25, 25);
+	QLineEdit* _numBits[8] = {
+		ui->numBit1, ui->numBit2, ui->numBit3, ui->numBit4,
+		ui->numBit5, ui->numBit6, ui->numBit7, ui->numBit8
+	};
+	std::copy_n(_numBits, 8, numBits); // because numBits is not directly assignable
 
+	ui->grid->setFixedSize(ui->size_Box->value() * 25, 25);
     for (int i = 0; i < 20; i++) {
 		ui->grid->setColumnWidth(i, 25);
         ui->grid->setItem(0, i, new QTableWidgetItem(""));
@@ -22,29 +27,14 @@ Automate_1D::Automate_1D(QWidget* parent)
 	start = new Grid1D<bool>(20);
     h->setStart(*start);
 
-    zeroOneValidator = new QIntValidator(this);
-	zeroOneValidator->setRange(0, 1);
-
-    ui->numBit1->setValidator(zeroOneValidator);
-    ui->numBit2->setValidator(zeroOneValidator);
-    ui->numBit3->setValidator(zeroOneValidator);
-    ui->numBit4->setValidator(zeroOneValidator);
-    ui->numBit5->setValidator(zeroOneValidator);
-    ui->numBit6->setValidator(zeroOneValidator);
-    ui->numBit7->setValidator(zeroOneValidator);
-    ui->numBit8->setValidator(zeroOneValidator);
+	zeroOneValidator = new QIntValidator(0, 1, this);
+	for (auto nb : numBits) {
+		nb->setValidator(zeroOneValidator);
+		connect(nb, SIGNAL(textChanged(QString)), this, SLOT(synchronizeNumBitToNum(QString)));
+	}
 
     connect(ui->size, SIGNAL(clicked()), this, SLOT(setSize()));
     connect(ui->rule, SIGNAL(valueChanged(int)), this, SLOT(synchronizeNumToNumBit(int)));
-
-    connect(ui->numBit1, SIGNAL(textChanged(QString)), this, SLOT(synchronizeNumBitToNum(QString)));
-    connect(ui->numBit2, SIGNAL(textChanged(QString)), this, SLOT(synchronizeNumBitToNum(QString)));
-    connect(ui->numBit3, SIGNAL(textChanged(QString)), this, SLOT(synchronizeNumBitToNum(QString)));
-    connect(ui->numBit4, SIGNAL(textChanged(QString)), this, SLOT(synchronizeNumBitToNum(QString)));
-    connect(ui->numBit5, SIGNAL(textChanged(QString)), this, SLOT(synchronizeNumBitToNum(QString)));
-    connect(ui->numBit6, SIGNAL(textChanged(QString)), this, SLOT(synchronizeNumBitToNum(QString)));
-    connect(ui->numBit7, SIGNAL(textChanged(QString)), this, SLOT(synchronizeNumBitToNum(QString)));
-    connect(ui->numBit8, SIGNAL(textChanged(QString)), this, SLOT(synchronizeNumBitToNum(QString)));
 
     connect(ui->run, SIGNAL(clicked()), this, SLOT(simulation()));
 

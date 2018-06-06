@@ -4,6 +4,7 @@
 #include "Rule.h"
 #include <Automaton.h>
 #include <QIntValidator>
+#include <QLineEdit>
 #include <QModelIndex>
 #include <QString>
 #include <QTableWidget>
@@ -35,6 +36,7 @@ private:
     int rang;
     QTableWidget* etats;
     bool sim;
+	QLineEdit* numBits[8];
 
 private slots:
 	void setSize();
