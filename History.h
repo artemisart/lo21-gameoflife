@@ -100,7 +100,10 @@ public:
 	}
 	virtual void push(const T* newElement)
 	{
-		// TODO
+		auto& elem = ring[++current % ring.size()];
+		if (elem != nullptr)
+			delete elem;
+		elem = newElement;
 	}
 };
 
