@@ -2,7 +2,6 @@
 #define HISTORY_H
 
 #include <vector>
-#include <memory>
 
 /**
  * @brief The History abstract class stores a history of elements (usually
@@ -16,7 +15,7 @@
 template <typename T>
 class History {
 private:
-	std::unique_ptr<const T> start = nullptr;
+	const T* start = nullptr;
 
 public:
 	History() {}
@@ -60,7 +59,7 @@ public:
 template <typename T>
 class RingHistory : public History<T> {
 private:
-	std::vector<std::unique_ptr<const T>> ring;
+	std::vector<const T*> ring;
 	int current = 0;
 
 public:

@@ -1,8 +1,6 @@
 #ifndef AUTOMATON_H
 #define AUTOMATON_H
 
-#include <memory>
-
 #include "Grid.h"
 #include "History.h"
 #include "Index.h"
@@ -11,8 +9,8 @@
 template <typename T, typename I>
 class Automaton {
 private:
-	std::unique_ptr<History<Grid<T, I>>> history = nullptr;
-	std::unique_ptr<Rule<T, I>> rule = nullptr;
+	History<Grid<T, I>>* history = nullptr;
+	Rule<T, I>* rule = nullptr;
 
 public:
 	Automaton(History<Grid<T, I>>* history, Rule<T, I>* rule)
