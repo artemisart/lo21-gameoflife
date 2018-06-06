@@ -4,6 +4,7 @@
 #include <fstream>
 #include <functional>
 #include <iostream>
+#include <memory>
 #include <string>
 #include <vector>
 
@@ -17,7 +18,7 @@ public:
 	virtual T getCell(const I idx) const = 0;
 	virtual void setCell(const I idx, const T value) = 0;
 
-	virtual Grid<T, I>* createNew() const = 0;
+	virtual std::unique_ptr<Grid<T, I>> createNew() const = 0;
 	virtual void iterate_get(const std::function<void(const T cell)> functor) const = 0;
 	virtual void iterate_set(const std::function<T(const I index)> functor) = 0;
 	virtual void save(const std::string& filePath) const = 0;
@@ -44,9 +45,9 @@ public:
 		values[idx.i] = value;
 	}
 
-	Grid1D<T>* createNew() const
+	std::unique_ptr<Grid<T, Index1D>> createNew() const
 	{
-		auto* newGrid = new Grid1D(values.size());
+		std::unique_ptr<Grid1D<T>> newGrid(new Grid1D<T>(values.size()));
 		newGrid->iterate_set([&](const Index1D i) { return this->getCell(i); });
 		return newGrid;
 	}
@@ -98,9 +99,9 @@ public:
 		values[idx.row * this->width + idx.col] = value;
 	}
 
-	Grid2D<T>* createNew() const
+	std::unique_ptr<Grid<T, Index2D>> createNew() const
 	{
-		auto* newGrid = new Grid2D(height, width);
+		std::unique_ptr<Grid2D> newGrid(new Grid2D(height, width));
 		newGrid->iterate_set([&](const Index2D i) { return this->getCell(i); });
 		return newGrid;
 	}

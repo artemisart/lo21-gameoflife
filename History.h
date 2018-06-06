@@ -1,8 +1,8 @@
 #ifndef HISTORY_H
 #define HISTORY_H
 
-#include <vector>
 #include <memory>
+#include <vector>
 
 /**
  * @brief The History abstract class stores a history of elements (usually
@@ -16,11 +16,13 @@
 template <typename T>
 class History {
 private:
-	std::unique_ptr<const T> start = nullptr;
+	std::unique_ptr<const T> start;
 
 public:
 	History() {}
-	virtual ~History() { delete this->start; }
+	History(const History& other) = delete;
+	virtual void operator=(const History& other) = delete;
+	virtual ~History() {}
 
 	/**
 	 * @brief Stores the first element, and resets the history.
@@ -28,12 +30,12 @@ public:
 	 * calling this method.
 	 * @param start The first element to be stored
 	 */
-	virtual void setStart(const T& start) { this->start = &start; }
+	virtual void setStart(const T& start) { this->start.reset(&start); }
 	/**
 	 * @brief Returns the first element stored in the history.
 	 * @return
 	 */
-	virtual const T* getStart() const { return this->start; }
+	virtual const T* getStart() const { return this->start.get(); }
 	/**
 	 * @brief Returns the last element stored in the history.
 	 * @return
@@ -68,35 +70,36 @@ public:
 		: ring(size, nullptr)
 	{
 	}
+	RingHistory(const RingHistory& other) = delete;
 	~RingHistory()
 	{
-		for (auto e : ring)
-			delete e;
-		ring.clear();
+		//		for (auto e : ring)
+		//			delete e;
+		//		ring.clear();
 	}
 
 	virtual void setStart(const T& start)
 	{
 		this->History<T>::setStart(start);
-
-		for (auto& elem : this->ring)
-			elem = nullptr;
-		this->ring[0] = &start;
+		// TODO FIXME
+		//		for (auto& elem : this->ring)
+		//			elem.release();
+		this->ring[0].reset(&start);
 		this->current = 0;
 	}
 	virtual const T* getLast() const
 	{
-		return this->ring[this->current % this->ring.size()];
+		return this->ring[this->current % this->ring.size()].get();
 	}
 	virtual const T* get(const int i) const
 	{
 		if (i > this->current)
-			throw new std::exception(); // TODO
+			throw new std::exception(); // TODO return nullptr instead
 		// std::cout << "Cet état n'a pas été enregistré, seulement les"<< size << " derniers états on été enregristrès \n";
 		if (i < this->current - this->ring.size())
-			throw new std::exception(); // TODO
+			throw new std::exception(); // TODO return nullptr instead
 
-		return this->ring[i % this->ring.size()];
+		return this->ring[i % this->ring.size()].get();
 	}
 	virtual void push(const T* newElement)
 	{

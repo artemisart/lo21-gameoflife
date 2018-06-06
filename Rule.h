@@ -47,6 +47,4 @@ public:
 
 // TODO fonction de sauvegarde
 
-
-
 #endif // RULES_H

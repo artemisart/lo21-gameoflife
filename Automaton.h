@@ -11,8 +11,8 @@
 template <typename T, typename I>
 class Automaton {
 private:
-	std::unique_ptr<History<Grid<T, I>>> history = nullptr;
-	std::unique_ptr<Rule<T, I>> rule = nullptr;
+	std::unique_ptr<History<Grid<T, I>>> history;
+	std::unique_ptr<Rule<T, I>> rule;
 
 public:
 	Automaton(History<Grid<T, I>>* history, Rule<T, I>* rule)
@@ -20,10 +20,12 @@ public:
 		, rule(rule)
 	{
 	}
+	Automaton(const Automaton& other) = delete;
+	virtual void operator=(const Automaton& other) = delete;
 	virtual ~Automaton() {}
 
-	History<Grid<T, I>>* getHistory() { return history; }
-	Rule<T, I>* getRule() { return rule; }
+	History<Grid<T, I>>* getHistory() { return history.get(); }
+	Rule<T, I>* getRule() { return rule.get(); }
 
 	virtual void calculate(const Grid<T, I>& old, Grid<T, I>& next) const;
 	virtual void next();
@@ -33,14 +35,14 @@ public:
 template <typename T, typename I>
 void Automaton<T, I>::next()
 {
-	if (!this->history)
+	if (this->history == nullptr)
 		throw std::logic_error("history is null");
 
 	// TODO check this
-	auto* lastGrid = this->history->getLast();
-	auto* newGrid = lastGrid->createNew();
+	auto lastGrid = this->history->getLast();
+	auto newGrid = lastGrid->createNew();
 	this->calculate(*lastGrid, *newGrid);
-	this->history->push(newGrid);
+	this->history->push(newGrid.get());
 }
 
 template <typename T, typename I>
