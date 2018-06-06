@@ -51,11 +51,7 @@ Automate_1D::~Automate_1D()
 
 void Automate_1D::setSize()
 {
-
-    QString dimensionCol = ui->size_Box->text();
-
-    int dimCol = dimensionCol.toInt();
-
+	int dimCol = ui->size_Box->value();
     ui->grid->setColumnCount(dimCol);
 
     ui->grid->horizontalHeader()->setVisible(false);
@@ -75,6 +71,7 @@ void Automate_1D::setSize()
 short unsigned int NumBitToNum(const QString& num)
 {
 	if (num.size() != 8)
+		// FIXME cette condition va pas du tout, dès qu'on a 00 ou 01 dans un champ ça fait tout crasher
 		throw("Numero d'automate indefini");
     int puissance = 1;
     short unsigned int numero = 0;
