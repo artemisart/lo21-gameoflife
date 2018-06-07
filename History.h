@@ -89,17 +89,21 @@ public:
 	}
 	virtual const T* get(const int i) const
 	{
-		if (i > this->current)
-			throw new std::exception(); // TODO
-		// std::cout << "Cet état n'a pas été enregistré, seulement les"<< size << " derniers états on été enregristrès \n";
-		if (i < this->current - this->ring.size())
-			throw new std::exception(); // TODO
+		if (i < 0)
+			return nullptr;
+		if (i > current) // we can't get the future
+			return nullptr;
+		if (i < current - ring.size()) // too old, we don't have it anymore
+			return nullptr;
 
 		return this->ring[i % this->ring.size()];
 	}
 	virtual void push(const T* newElement)
 	{
-		// TODO
+		auto& elem = ring[++current % ring.size()];
+		if (elem != nullptr)
+			delete elem;
+		elem = newElement;
 	}
 };
 

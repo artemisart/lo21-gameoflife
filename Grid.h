@@ -12,6 +12,8 @@
 template <typename T, typename I>
 class Grid {
 public:
+	bool wrapAround = false;
+
 	Grid() {}
 	virtual ~Grid() {}
 	virtual T getCell(const I idx) const = 0;
@@ -37,17 +39,21 @@ public:
 
 	virtual T getCell(const Index1D idx) const
 	{
-		return values[idx.i];
+		if (this->wrapAround)
+			return values[idx.i % values.size()];
+		else if (idx.i < 0 || idx.i >= values.size())
+			return T();
+		else
+			return values[idx.i];
 	}
 	virtual void setCell(const Index1D idx, const T value)
 	{
-		values[idx.i] = value;
+		values.at(idx.i) = value;
 	}
 
 	Grid1D<T>* createNew() const
 	{
 		auto* newGrid = new Grid1D(values.size());
-		newGrid->iterate_set([&](const Index1D i) { return this->getCell(i); });
 		return newGrid;
 	}
 
@@ -92,17 +98,17 @@ public:
 
 	virtual T getCell(const Index2D idx) const
 	{
+		// TODO FIXME wrapAround
 		return values[idx.row * this->width + idx.col];
 	}
 	virtual void setCell(const Index2D idx, const T value)
 	{
-		values[idx.row * this->width + idx.col] = value;
+		values.at(idx.row * this->width + idx.col) = value;
 	}
 
 	Grid2D<T>* createNew() const
 	{
 		auto* newGrid = new Grid2D(height, width);
-		newGrid->iterate_set([&](const Index2D i) { return this->getCell(i); });
 		return newGrid;
 	}
 

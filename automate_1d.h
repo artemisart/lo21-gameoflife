@@ -4,6 +4,7 @@
 #include "Rule.h"
 #include <Automaton.h>
 #include <QIntValidator>
+#include <QLineEdit>
 #include <QModelIndex>
 #include <QString>
 #include <QTableWidget>
@@ -17,10 +18,10 @@ class Automate_1D : public QWidget {
     Q_OBJECT
 
 public:
-	explicit Automate_1D(QWidget* parent = 0);
+	explicit Automate_1D(QWidget* parent = nullptr);
     ~Automate_1D();
 	void setParent(QWidget* par) { parent = par; }
-	void inc_Rang() { rang++; }
+	void incRang() { rang++; }
 	int getRang() const { return rang; }
     void init_simulation(int row);
 
@@ -35,6 +36,7 @@ private:
     int rang;
     QTableWidget* etats;
     bool sim;
+	QLineEdit* numBits[8];
 
 private slots:
 	void setSize();
