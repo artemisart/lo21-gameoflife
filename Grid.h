@@ -72,6 +72,7 @@ public:
 			std::cout << "erreur: " << e << "\n";
 		}
 	}
+    const int get_size() const {return values.size();}
 };
 
 template <typename T>

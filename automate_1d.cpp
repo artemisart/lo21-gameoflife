@@ -156,7 +156,7 @@ void Automate_1D::synchronizeNumBitToNum(const QString& s)
 
 void Automate_1D::simulation()
 {
-    init_simulation(); /*
+    init_simulation(ui->nb_etats->value()); /*
     int j;
     int i;
     for(j=0; j< ui->nb_etats->value(); j++)
@@ -192,9 +192,13 @@ void Automate_1D::cellActivation(const QModelIndex& index)
 
 void Automate_1D::next()
 {
-	if (sim == false) {
-		init_simulation();
-	} else {
+    if (sim == false) {
+       init_simulation(1);
+
+
+
+
+    } //else {*/
 		//     a->next();
 		/*
         for(unsigned int i=0; i<ui->size_Box->value(); i++){
@@ -206,7 +210,21 @@ void Automate_1D::next()
             }
         }
         inc_Rang();*/
+   // }
+
+    etats->setRowCount(etats->rowCount()+1);
+    a->next();
+/*
+    auto* grid = h->getLast();
+    for(unsigned int i=0; i< ui->size_Box->value() ; i++){
+        if(grid->getCell(i)==true){
+            etats->item(getRang(), i)->setBackgroundColor("black");
+        }
+        else{
+            etats->item(getRang(), i)->setBackgroundColor("white");
+        }
     }
+    inc_Rang(); */
 }
 
 void Automate_1D::menu()
@@ -215,9 +233,9 @@ void Automate_1D::menu()
     this->parent->show();
 }
 
-void Automate_1D::init_simulation()
+void Automate_1D::init_simulation(int row)
 {
-	etats = new QTableWidget(ui->nb_etats->value(), ui->size_Box->value(), this);
+    etats = new QTableWidget(row, ui->size_Box->value(), this);
 	etats->setFixedSize(ui->size_Box->value() * 25, ui->nb_etats->value() * 25);
     etats->horizontalHeader()->setVisible(false);
     etats->verticalHeader()->setVisible(false);
@@ -236,7 +254,20 @@ void Automate_1D::init_simulation()
         }
     }
 
+    for(unsigned int k=0; k<ui->size_Box->value(); k++){
+        if(start->getCell(k) == true){
+
+            etats->item(0, k)->setBackgroundColor("black");
+
+        } else {
+            etats->item(0,k)->setBackgroundColor("white");
+
+        }
+
+    }
+
     ui->interface_2->addWidget(etats);
+    ui->interface_2->removeWidget(ui->grid);
 
 	sim = true;
 }
