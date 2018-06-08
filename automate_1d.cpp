@@ -1,5 +1,6 @@
 #include "automate_1d.h"
 #include "ui_automate_1d.h"
+#include<QMessageBox>
 
 Automate_1D::Automate_1D(QWidget* parent)
 	: QWidget(parent)
@@ -143,21 +144,9 @@ void Automate_1D::synchronizeNumBitToNum(const QString& s)
 
 void Automate_1D::simulation()
 {
-    init_simulation(ui->nb_etats->value()); /*
-    int j;
-    int i;
-    for(j=0; j< ui->nb_etats->value(); j++)
+   // init_simulation(ui->nb_etats->value());
+    while(getRang()<ui->nb_etats->value()){next();}
 
-        for(i=0; i<ui->size_Box->value(); i++){
-          if( h->getLast()->getCell(i)){
-              ui->grid->item(j,i)->setBackgroundColor("black");
-
-          }
-          else{
-              ui->grid->item(j,i)->setBackgroundColor("white");
-          }
-      }
-    inc_Rang(); */
 }
 
 void Automate_1D::cellActivation(const QModelIndex& index)
@@ -182,36 +171,34 @@ void Automate_1D::next()
     if (sim == false) {
        init_simulation(1);
 
+    }
+    if(rang<ui->nb_etats->value()){
 
+        a->next();
 
+        auto* grid = h->getLast();
 
-    } //else {*/
-		//     a->next();
-		/*
-        for(unsigned int i=0; i<ui->size_Box->value(); i++){
-            if(h->getLast()->getCell(i)){
-                ui->grid->item(getRang(), i)->setBackgroundColor("black");
+        etats->setRowCount(etats->rowCount()+1);
+
+        for (int j = 0; j < ui->size_Box->value(); j++) {
+            etats->setItem(getRang(), j, new QTableWidgetItem(""));
+            if(grid->getCell(j)==1){
+            etats->item(getRang(),j)->setBackgroundColor("black");
             }
             else{
-                ui->grid->item(getRang(), i)->setBackgroundColor("white");
+
+              etats->item(getRang(),j)->setBackgroundColor("white");
             }
         }
-        inc_Rang();*/
-   // }
 
-    etats->setRowCount(etats->rowCount()+1);
-    a->next();
-/*
-    auto* grid = h->getLast();
-    for(unsigned int i=0; i< ui->size_Box->value() ; i++){
-        if(grid->getCell(i)==true){
-            etats->item(getRang(), i)->setBackgroundColor("black");
-        }
-        else{
-            etats->item(getRang(), i)->setBackgroundColor("white");
-        }
+        incRang();
     }
-    inc_Rang(); */
+    else {
+        QMessageBox::warning(
+            this,
+            tr("Game Of Life"),
+            tr("You have already reached the maximum number of states in the simulation") );
+    }
 }
 
 void Automate_1D::menu()
@@ -232,7 +219,7 @@ void Automate_1D::init_simulation(int row)
 	//non editable
     etats->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
-	for (int i = 0; i < ui->nb_etats->value(); i++) {
+    for (int i = 0; i < row; i++) {
 
 		for (int j = 0; j < ui->size_Box->value(); j++) {
             etats->setColumnWidth(j, 25);
@@ -252,6 +239,7 @@ void Automate_1D::init_simulation(int row)
         }
 
     }
+    incRang();
 
     ui->interface_2->addWidget(etats);
     ui->interface_2->removeWidget(ui->grid);
