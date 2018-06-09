@@ -98,8 +98,12 @@ public:
 
 	virtual T getCell(const Index2D idx) const
 	{
-		// TODO FIXME wrapAround
-		return values[idx.row * this->width + idx.col];
+		if (this->wrapAround)
+			return values[(idx.row % this->height) * this->width + idx.col % this->width];
+		else if (idx.row < 0 || idx.row >= this->height || idx.col < 0 || idx.col >= this->width)
+			return T();
+		else
+			return values[idx.row * this->width + idx.col];
 	}
 	virtual void setCell(const Index2D idx, const T value)
 	{
