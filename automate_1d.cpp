@@ -1,6 +1,6 @@
 #include "automate_1d.h"
 #include "ui_automate_1d.h"
-#include<QMessageBox>
+#include <QMessageBox>
 
 Automate_1D::Automate_1D(QWidget* parent)
 	: QWidget(parent)
@@ -109,15 +109,8 @@ QString NumToNumBit(short unsigned int num)
 void Automate_1D::synchronizeNumToNumBit(int j)
 {
 	QString numbit = NumToNumBit(j);
-	ui->numBit1->setText(QString(numbit[0]));
-	ui->numBit2->setText(QString(numbit[1]));
-	ui->numBit3->setText(QString(numbit[2]));
-	ui->numBit4->setText(QString(numbit[3]));
-	ui->numBit5->setText(QString(numbit[4]));
-	ui->numBit6->setText(QString(numbit[5]));
-	ui->numBit7->setText(QString(numbit[6]));
-	ui->numBit8->setText(QString(numbit[7]));
-
+	for (int i = 0; i < 8; ++i)
+		numBits[i]->setText(QString(numbit[i]));
 	r->setNum(j);
 }
 
@@ -125,17 +118,11 @@ void Automate_1D::synchronizeNumBitToNum(const QString& s)
 {
     QString str;
 
-	if (ui->numBit1->text() == "" || ui->numBit2->text() == "" || ui->numBit3->text() == "" || ui->numBit4->text() == "" || ui->numBit5->text() == "" || ui->numBit6->text() == "" || ui->numBit7->text() == "" || ui->numBit8->text() == "")
-		return;
-
-	str += ui->numBit1->text();
-	str += ui->numBit2->text();
-	str += ui->numBit3->text();
-	str += ui->numBit4->text();
-	str += ui->numBit5->text();
-	str += ui->numBit6->text();
-	str += ui->numBit7->text();
-	str += ui->numBit8->text();
+	for (auto nb : numBits) {
+		if (nb->text().size() == 0)
+			return;
+		str += nb->text();
+	}
 
 	int i = NumBitToNum(str);
     ui->rule->setValue(i);
@@ -144,60 +131,44 @@ void Automate_1D::synchronizeNumBitToNum(const QString& s)
 
 void Automate_1D::simulation()
 {
-   // init_simulation(ui->nb_etats->value());
-    while(getRang()<ui->nb_etats->value()){next();}
-
+	// init_simulation(ui->nb_etats->value());
+	while (getRang() < ui->nb_etats->value())
+		next();
 }
 
 void Automate_1D::cellActivation(const QModelIndex& index)
 {
-	if (ui->grid->item(0, index.column())->text() == "") {
-
-		ui->grid->item(0, index.column())->setText("_");
-		ui->grid->item(0, index.column())->setBackgroundColor("black");
-		ui->grid->item(0, index.column())->setTextColor("black");
-		start->setCell(Index1D(index.column()), true);
-
-	} else {
-		ui->grid->item(0, index.column())->setText("");
-		ui->grid->item(0, index.column())->setBackgroundColor("white");
-		ui->grid->item(0, index.column())->setTextColor("white");
-		start->setCell(Index1D(index.column()), false);
-	}
+	int col = index.column();
+	bool newVal = !start->getCell(col);
+	ui->grid->item(0, col)->setBackgroundColor(newVal ? "black" : "white");
+	start->setCell(col, newVal);
 }
 
 void Automate_1D::next()
 {
     if (sim == false) {
-       init_simulation(1);
-
+		init_simulation(1);
     }
-    if(rang<ui->nb_etats->value()){
+	if (rang < ui->nb_etats->value()) {
 
         a->next();
 
         auto* grid = h->getLast();
 
-        etats->setRowCount(etats->rowCount()+1);
+		etats->setRowCount(etats->rowCount() + 1);
 
         for (int j = 0; j < ui->size_Box->value(); j++) {
             etats->setItem(getRang(), j, new QTableWidgetItem(""));
-            if(grid->getCell(j)==1){
-            etats->item(getRang(),j)->setBackgroundColor("black");
-            }
-            else{
-
-              etats->item(getRang(),j)->setBackgroundColor("white");
-            }
+			bool val = grid->getCell(j);
+			etats->item(getRang(), j)->setBackgroundColor(val ? "black" : "white");
         }
 
         incRang();
-    }
-    else {
+	} else {
         QMessageBox::warning(
             this,
             tr("Game Of Life"),
-            tr("You have already reached the maximum number of states in the simulation") );
+			tr("You have already reached the maximum number of states in the simulation"));
     }
 }
 
@@ -228,17 +199,8 @@ void Automate_1D::init_simulation(int row)
         }
     }
 
-    for(unsigned int k=0; k<ui->size_Box->value(); k++){
-        if(start->getCell(k) == true){
-
-            etats->item(0, k)->setBackgroundColor("black");
-
-        } else {
-            etats->item(0,k)->setBackgroundColor("white");
-
-        }
-
-    }
+	for (int k = 0; k < ui->size_Box->value(); k++)
+		etats->item(0, k)->setBackgroundColor(start->getCell(k) ? "black" : "white");
     incRang();
 
     ui->interface_2->addWidget(etats);
