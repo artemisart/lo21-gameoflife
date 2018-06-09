@@ -1,8 +1,13 @@
 #ifndef AUTOMATE_2D_H
 #define AUTOMATE_2D_H
 
+#include "Rule.h"
+#include <Automaton.h>
 #include <QIntValidator>
+#include <QLineEdit>
 #include <QModelIndex>
+#include <QString>
+#include <QTableWidget>
 #include <QWidget>
 
 namespace Ui {
@@ -16,11 +21,23 @@ public:
 	explicit Automate_2D(QWidget* parent = nullptr);
 	~Automate_2D();
 	void setParent(QWidget* par) { parent = par; }
+    void incRang() { rang++; }
+    int getRang() const { return rang; }
+    void init_simulation();
 
 private:
 	Ui::Automate_2D* ui;
     QWidget* parent;
     QIntValidator* zeroOneValidator;
+    Automaton<bool, Index2D>* a;
+    Rule2D* r;
+    RingHistory<Grid<bool, Index2D>>* h;
+    Grid<bool, Index2D>* start;
+    int rang;
+    QTableWidget* etats[];
+    bool sim;
+    QLineEdit* numBits[8];
+
 
 private slots:
 	void setSize();

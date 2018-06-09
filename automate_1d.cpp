@@ -144,7 +144,6 @@ void Automate_1D::synchronizeNumBitToNum(const QString& s)
 
 void Automate_1D::simulation()
 {
-   // init_simulation(ui->nb_etats->value());
     while(getRang()<ui->nb_etats->value()){next();}
 
 }
