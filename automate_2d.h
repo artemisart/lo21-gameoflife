@@ -36,13 +36,15 @@ private:
     int rang;
     QTableWidget* etats[];
     bool sim;
-    QLineEdit* numBits[8];
+    QLineEdit* survive[8], *born[8];
 
 
 private slots:
 	void setSize();
-	void synchronizeNumToNumBit(int j);
-	void synchronizeNumBitToNum(const QString& s);
+    void synchronizeNumToNumBit_b(int j);
+    void synchronizeNumBitToNum_b(const QString& s);
+    void synchronizeNumToNumBit_s(int j);
+    void synchronizeNumBitToNum_s(const QString& s);
 	void simulation();
 	void cellActivation(const QModelIndex& index);
 	void next();

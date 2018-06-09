@@ -171,7 +171,7 @@ void Automate_1D::next()
        init_simulation(1);
 
     }
-    if(rang<ui->nb_etats->value()){
+    if(rang<=ui->nb_etats->value()){
 
         a->next();
 

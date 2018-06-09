@@ -10,11 +10,17 @@ Automate_2D::Automate_2D(QWidget* parent)
     , sim(false)
 {
     ui->setupUi(this);
-    QLineEdit* _numBits[8] = {
-        ui->numBit1, ui->numBit2, ui->numBit3, ui->numBit4,
-        ui->numBit5, ui->numBit6, ui->numBit7, ui->numBit8
+    QLineEdit* _survive[9] = {
+        ui->Survive0, ui->Survive1, ui->Survive2, ui->Survive3,
+        ui->Survive4, ui->Survive5, ui->Survive6, ui->Survive7,
     };
-    std::copy_n(_numBits, 8, numBits); // because numBits is not directly assignable
+    QLineEdit*_born[8] = {
+        ui->Born0, ui->Born1, ui->Born2, ui->Born3,
+        ui->Born4, ui->Born5, ui->Born6, ui->Born7,
+    };
+    std::copy_n(_survive, 8, survive); // because numBits is not directly assignable
+
+    std::copy_n(_born, 8,born );
 
     ui->grid->setFixedSize(ui->hauteur->value()* 25, ui->largeur->value()* 25);
     for (int i = 0; i < 20; i++) {
@@ -33,13 +39,19 @@ Automate_2D::Automate_2D(QWidget* parent)
     h->setStart(*start);
 
     zeroOneValidator = new QIntValidator(0, 1, this);
-    for (auto nb : numBits) {
-        nb->setValidator(zeroOneValidator);
-        connect(nb, SIGNAL(textChanged(QString)), this, SLOT(synchronizeNumBitToNum(QString)));
+    for (auto brn : born) {
+        brn->setValidator(zeroOneValidator);
+        connect(brn, SIGNAL(textChanged(QString)), this, SLOT(synchronizeNumBitToNum_b(QString)));
+    }
+
+    for (auto surv : survive) {
+        surv->setValidator(zeroOneValidator);
+        connect(surv, SIGNAL(textChanged(QString)), this, SLOT(synchronizeNumBitToNum_s(QString)));
     }
 
     connect(ui->size, SIGNAL(clicked()), this, SLOT(setSize()));
-    connect(ui->rule, SIGNAL(valueChanged(int)), this, SLOT(synchronizeNumToNumBit(int)));
+    connect(ui->born, SIGNAL(valueChanged(int)), this, SLOT(synchronizeNumToNumBit_b(int)));
+    connect(ui->Survive, SIGNAL(valueChanged(int)), this, SLOT(synchronizeNumToNumBit_s(int)));
 
     connect(ui->run, SIGNAL(clicked()), this, SLOT(simulation()));
 
@@ -83,42 +95,82 @@ void Automate_2D::setSize()
 
 }
 
-void Automate_2D::synchronizeNumToNumBit(int j)
+void Automate_2D::synchronizeNumToNumBit_s(int j)
 {
 
     QString numbit = NumToNumBit(j);
-    ui->numBit1->setText(QString(numbit[0]));
-    ui->numBit2->setText(QString(numbit[1]));
-    ui->numBit3->setText(QString(numbit[2]));
-    ui->numBit4->setText(QString(numbit[3]));
-    ui->numBit5->setText(QString(numbit[4]));
-    ui->numBit6->setText(QString(numbit[5]));
-    ui->numBit7->setText(QString(numbit[6]));
-    ui->numBit8->setText(QString(numbit[7]));
 
-    r->setBorn(j);
+    ui->Survive0->setText(QString(numbit[0]));
+    ui->Survive1->setText(QString(numbit[1]));
+    ui->Survive2->setText(QString(numbit[2]));
+    ui->Survive3->setText(QString(numbit[3]));
+    ui->Survive4->setText(QString(numbit[4]));
+    ui->Survive5->setText(QString(numbit[5]));
+    ui->Survive6->setText(QString(numbit[6]));
+    ui->Survive7->setText(QString(numbit[7]));
+
+    r->setSurvive(j);
 
 }
 
-void Automate_2D::synchronizeNumBitToNum(const QString& s)
+
+void Automate_2D::synchronizeNumToNumBit_b(int j)
+{
+
+    QString numbit = NumToNumBit(j);
+
+    ui->Born0->setText(QString(numbit[0]));
+    ui->Born1->setText(QString(numbit[1]));
+    ui->Born2->setText(QString(numbit[2]));
+    ui->Born3->setText(QString(numbit[3]));
+    ui->Born4->setText(QString(numbit[4]));
+    ui->Born5->setText(QString(numbit[5]));
+    ui->Born6->setText(QString(numbit[6]));
+    ui->Born7->setText(QString(numbit[7]));
+
+    r->setSurvive(j);
+
+}
+
+void Automate_2D::synchronizeNumBitToNum_s(const QString& s)
 {
 
     QString str;
 
-	if (ui->numBit1->text() == "" || ui->numBit2->text() == "" || ui->numBit3->text() == "" || ui->numBit4->text() == "" || ui->numBit5->text() == "" || ui->numBit6->text() == "" || ui->numBit7->text() == "" || ui->numBit8->text() == "")
-		return;
+    for(unsigned int k=0; k<8; k++){
+        if(survive[k]->text()=="")
+            return;
 
-	str += ui->numBit1->text();
-	str += ui->numBit2->text();
-	str += ui->numBit3->text();
-	str += ui->numBit4->text();
-	str += ui->numBit5->text();
-	str += ui->numBit6->text();
-	str += ui->numBit7->text();
-	str += ui->numBit8->text();
+    }
+
+    for(unsigned int j=0; j<8; j++){
+        str += survive[j]->text();
+    }
 
 	int i = NumBitToNum(str);
-    ui->rule->setValue(i);
+    ui->Survive->setValue(i);
+    r->setSurvive(i);
+
+}
+
+
+void Automate_2D::synchronizeNumBitToNum_b(const QString& s)
+{
+
+    QString str;
+
+    for(unsigned int k=0; k<8; k++){
+        if(born[k]->text()=="")
+            return;
+
+    }
+
+    for(unsigned int j=0; j<8; j++){
+        str += born[j]->text();
+    }
+
+    int i = NumBitToNum(str);
+    ui->born->setValue(i);
     r->setBorn(i);
 
 }
@@ -152,10 +204,10 @@ void Automate_2D::cellActivation(const QModelIndex& index)
 void Automate_2D::next()
 {
 
-    if(rang<ui->nb_etats->value()){
+    if(rang<=ui->nb_etats->value()){
+        int s=getRang();
 
         a->next();
-       /* int s=getRang();
         auto* grid = h->getLast();
 
         init_simulation();
@@ -176,7 +228,7 @@ void Automate_2D::next()
         }
 
 
-        incRang();*/
+        incRang();
     }
     else {
         QMessageBox::warning(
@@ -196,12 +248,20 @@ void Automate_2D::menu()
 void Automate_2D::init_simulation(){
     int a = getRang();
     etats[a] = new QTableWidget(ui->hauteur->value(), ui->largeur->value(), this);
-    etats[a]->setFixedSize(ui->hauteur->value() * 25, ui->largeur->value() * 25);
+    etats[a]->setFixedSize(ui->hauteur->value()*25, ui->largeur->value() * 25);
     etats[a]->horizontalHeader()->setVisible(false);
     etats[a]->verticalHeader()->setVisible(false);
     etats[a]->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     etats[a]->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
+    for (int i = 0; i < 20; i++) {
+        for(unsigned int j=0; j<20; j++){
+            etats[a]->setColumnWidth(i, 25);
+            etats[a]->setRowHeight(j,25);
+            etats[a]->setItem( i,j, new QTableWidgetItem(""));
+        }
+
+    }
     //non editable
     etats[a]->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
