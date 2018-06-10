@@ -39,10 +39,11 @@ Automate_2D::Automate_2D(QWidget* parent)
     h->setStart(*start);
 
     zeroOneValidator = new QIntValidator(0, 1, this);
-
-	/*    for(unsigned int i=0; i<9; i++){
+	for (int i = 0; i < 9; i++) {
         born[i]->setValidator(zeroOneValidator);
+		survive[i]->setValidator(zeroOneValidator);
     }
+	/*
 
     for (auto brn : born) {
         brn->setValidator(zeroOneValidator);
