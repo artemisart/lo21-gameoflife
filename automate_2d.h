@@ -37,7 +37,7 @@ private:
     QTableWidget* etats;
     bool sim;
     QLineEdit* survive[9], *born[9];
-    QScrollArea  *scrollarea;
+    QTimer *timer;
 
 
 private slots:
@@ -50,6 +50,10 @@ private slots:
 	void cellActivation(const QModelIndex& index);
 	void next();
 	void menu();
+    void reset();
+    void stop();
+    void run();
+
 };
 
 QString NumToNumBit(short unsigned int num);

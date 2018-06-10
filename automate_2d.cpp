@@ -4,16 +4,18 @@
 #include <QMessageBox>
 #include<QScrollArea>
 #include <unistd.h>     //for using the function sleep
+#include <QTimer>
 
 Automate_2D::Automate_2D(QWidget* parent)
 	: QWidget(parent)
 	, ui(new Ui::Automate_2D)
     , rang(0)
-    , sim(false)
+    , sim(true)
 {
     ui->setupUi(this);
 
-
+    timer = new QTimer(parent);
+    connect(timer, SIGNAL(timeout()), this, SLOT(run()));
 
   QLineEdit* _survive[9] = {
         ui->Survive0, ui->Survive1, ui->Survive2, ui->Survive3,
@@ -70,12 +72,37 @@ Automate_2D::Automate_2D(QWidget* parent)
 
     connect(ui->next, SIGNAL(clicked()), this, SLOT(next()));
     connect(ui->menu, SIGNAL(clicked()), this, SLOT(menu()));
+    connect(ui->reset, SIGNAL(clicked()), this, SLOT(reset()));
+    connect(ui->stop, SIGNAL(clicked()), this, SLOT(stop()));
+
 }
 
 
 Automate_2D::~Automate_2D()
 {
     delete ui;
+}
+
+void Automate_2D::reset(){
+    ui->largeur->setValue(20);
+    ui->hauteur->setValue(20);
+    ui->Survive->setValue(0);
+    ui->born->setValue(0);
+    setSize();
+
+    for(int i=0; i<20;i++){
+        for(int j=0; j<20; j++){
+            ui->grid->item(i,j)->setBackgroundColor("white");
+            start->setCell(Index2D(i,j), false);
+
+
+        }
+    }
+
+}
+
+void Automate_2D::stop(){
+    sim = false;
 }
 
 void Automate_2D::setSize()
@@ -190,13 +217,22 @@ void Automate_2D::synchronizeNumBitToNum_b(const QString& s)
 
 void Automate_2D::simulation()
 {
-    while(1){
 
-        sleep(3);
+    sim=true;
+    run();
+
+
+
+
+
+}
+
+void Automate_2D::run(){
+    if(sim==true){
+        timer->start(2000);
+
         next();
     }
-
-
 }
 
 void Automate_2D::cellActivation(const QModelIndex& index)
