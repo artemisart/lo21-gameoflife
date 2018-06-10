@@ -36,9 +36,7 @@ private:
     int rang;
     QTableWidget* etats;
     bool sim;
-    QLineEdit* survive[9], *born[9];
-    QScrollArea  *scrollarea;
-
+	QLineEdit *survive[9], *born[9];
 
 private slots:
 	void setSize();

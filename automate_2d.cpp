@@ -2,7 +2,6 @@
 #include "automate_1d.h"
 #include "ui_automate_2d.h"
 #include <QMessageBox>
-#include<QScrollArea>
 #include <unistd.h>     //for using the function sleep
 
 Automate_2D::Automate_2D(QWidget* parent)
