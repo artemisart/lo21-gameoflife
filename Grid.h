@@ -18,6 +18,7 @@ public:
 	virtual ~Grid() {}
 	virtual T getCell(const I idx) const = 0;
 	virtual void setCell(const I idx, const T value) = 0;
+	virtual I getSize() const = 0;
 
 	virtual Grid<T, I>* createNew() const = 0;
 	virtual void iterate_get(const std::function<void(const T cell)> functor) const = 0;
@@ -78,7 +79,7 @@ public:
 			std::cout << "erreur: " << e << "\n";
 		}
 	}
-    const int get_size() const {return values.size();}
+	virtual Index1D getSize() const { return values.size(); }
 };
 
 template <typename T>
@@ -109,8 +110,9 @@ public:
 	{
 		values.at(idx.row * this->width + idx.col) = value;
 	}
+	virtual Index2D getSize() const { return Index2D(height, width); }
 
-	Grid2D<T>* createNew() const
+	virtual Grid2D<T>* createNew() const
 	{
 		auto* newGrid = new Grid2D(height, width);
 		return newGrid;
