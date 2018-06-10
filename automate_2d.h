@@ -39,7 +39,6 @@ private:
     QLineEdit* survive[9], *born[9];
     QTimer *timer;
 
-
 private slots:
 	void setSize();
     void synchronizeNumToNumBit_b(int j);

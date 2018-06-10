@@ -21,34 +21,32 @@ Automate_2D::Automate_2D(QWidget* parent)
         ui->Survive0, ui->Survive1, ui->Survive2, ui->Survive3,
         ui->Survive4, ui->Survive5, ui->Survive6, ui->Survive7, ui->Survive8
     };
-    QLineEdit*_born[9] = {
+	QLineEdit* _born[9] = {
         ui->Born0, ui->Born1, ui->Born2, ui->Born3,
-        ui->Born4, ui->Born5, ui->Born6, ui->Born7,ui->Born8
+		ui->Born4, ui->Born5, ui->Born6, ui->Born7, ui->Born8
     };
-   std::copy_n(_survive, 8, survive); // because numBits is not directly assignable
+	std::copy_n(_survive, 8, survive); // because numBits is not directly assignable
 
-    std::copy_n(_born, 8,born );
+	std::copy_n(_born, 8, born);
 
-    ui->grid->setFixedSize(ui->largeur->value()* 25, ui->hauteur->value()* 25);
+	ui->grid->setFixedSize(ui->largeur->value() * 25, ui->hauteur->value() * 25);
     for (int i = 0; i < 20; i++) {
-        for(unsigned int j=0; j<20; j++){
+		for (int j = 0; j < 20; j++) {
             ui->grid->setColumnWidth(i, 25);
-            ui->grid->setRowHeight(j,25);
-            ui->grid->setItem( i,j, new QTableWidgetItem(""));
+			ui->grid->setRowHeight(j, 25);
+			ui->grid->setItem(i, j, new QTableWidgetItem(""));
         }
-
     }
     h = new RingHistory<Grid<bool, Index2D>>(10);
     r = new Rule2D();
     a = new Automaton<bool, Index2D>(h, r);
 
-    start = new Grid2D<bool>(20,20);
+	start = new Grid2D<bool>(20, 20);
     h->setStart(*start);
-
 
     zeroOneValidator = new QIntValidator(0, 1, this);
 
-/*    for(unsigned int i=0; i<9; i++){
+	/*    for(unsigned int i=0; i<9; i++){
         born[i]->setValidator(zeroOneValidator);
     }
 
@@ -57,7 +55,7 @@ Automate_2D::Automate_2D(QWidget* parent)
         connect(brn, SIGNAL(textChanged(QString)), this, SLOT(synchronizeNumBitToNum_b(QString)));
     }*/
 
- /*   for (auto surv : survive) {
+	/*   for (auto surv : survive) {
         surv->setValidator(zeroOneValidator);
         connect(surv, SIGNAL(textChanged(QString)), this, SLOT(synchronizeNumBitToNum_s(QString)));
     }
@@ -76,7 +74,6 @@ Automate_2D::Automate_2D(QWidget* parent)
     connect(ui->stop, SIGNAL(clicked()), this, SLOT(stop()));
 
 }
-
 
 Automate_2D::~Automate_2D()
 {
@@ -108,10 +105,9 @@ void Automate_2D::stop(){
 void Automate_2D::setSize()
 {
 
-
-    int dimCol =ui->hauteur->value();
+	int dimCol = ui->hauteur->value();
     int dimRow = ui->largeur->value();
-    ui->grid->setMinimumSize(25*dimRow, 25*dimCol);
+	ui->grid->setMinimumSize(25 * dimRow, 25 * dimCol);
 
     ui->grid->setColumnCount(dimCol);
     ui->grid->setRowCount(dimRow);
@@ -121,18 +117,15 @@ void Automate_2D::setSize()
     ui->grid->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->grid->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-
     for (int i = 0; i < dimCol; i++) {
 		for (int j = 0; j < dimRow; j++) {
             ui->grid->setColumnWidth(j, 25);
             ui->grid->setRowHeight(i, 25);
-            ui->grid->setItem( i,j, new QTableWidgetItem(""));
+			ui->grid->setItem(i, j, new QTableWidgetItem(""));
         }
     }
     auto* g1 = new Grid2D<bool>(dimCol, dimRow);
     h->setStart(*g1);
-
-
 }
 
 void Automate_2D::synchronizeNumToNumBit_s(int j)
@@ -150,9 +143,7 @@ void Automate_2D::synchronizeNumToNumBit_s(int j)
     ui->Survive7->setText(QString(numbit[7]));
 
     r->setSurvive(j);
-
 }
-
 
 void Automate_2D::synchronizeNumToNumBit_b(int j)
 {
@@ -169,7 +160,6 @@ void Automate_2D::synchronizeNumToNumBit_b(int j)
     ui->Born7->setText(QString(numbit[7]));
 
     r->setSurvive(j);
-
 }
 
 void Automate_2D::synchronizeNumBitToNum_s(const QString& s)
@@ -177,42 +167,37 @@ void Automate_2D::synchronizeNumBitToNum_s(const QString& s)
 
     QString str;
 
-    for(unsigned int k=0; k<8; k++){
-        if(survive[k]->text()=="")
+	for (unsigned int k = 0; k < 8; k++) {
+		if (survive[k]->text() == "")
             return;
+	}
 
-    }
-
-    for(unsigned int j=0; j<8; j++){
+	for (unsigned int j = 0; j < 8; j++) {
         str += survive[j]->text();
     }
 
 	int i = NumBitToNum(str);
     ui->Survive->setValue(i);
     r->setSurvive(i);
-
 }
-
 
 void Automate_2D::synchronizeNumBitToNum_b(const QString& s)
 {
 
     QString str;
 
-    for(unsigned int k=0; k<8; k++){
-        if(born[k]->text()=="")
+	for (unsigned int k = 0; k < 8; k++) {
+		if (born[k]->text() == "")
             return;
-
     }
 
-    for(unsigned int j=0; j<8; j++){
+	for (unsigned int j = 0; j < 8; j++) {
         str += born[j]->text();
     }
 
     int i = NumBitToNum(str);
     ui->born->setValue(i);
     r->setBorn(i);
-
 }
 
 void Automate_2D::simulation()
@@ -243,15 +228,13 @@ void Automate_2D::cellActivation(const QModelIndex& index)
 		ui->grid->item(row, col)->setText("_");
 		ui->grid->item(index.row(), index.column())->setBackgroundColor("black");
 		ui->grid->item(row, col)->setTextColor("black");
-        start->setCell(Index2D(index.row(),index.column()), true);
-
+		start->setCell(Index2D(index.row(), index.column()), true);
 
 	} else {
 		ui->grid->item(index.row(), index.column())->setText("");
 		ui->grid->item(index.row(), index.column())->setBackgroundColor("white");
 		ui->grid->item(index.row(), index.column())->setTextColor("white");
-        start->setCell(Index2D(index.row(),index.column()), false);
-
+		start->setCell(Index2D(index.row(), index.column()), false);
     }
 }
 
@@ -259,37 +242,31 @@ void Automate_2D::next()
 {
 
     //if(rang<ui->nb_etats->value()){
-        ui->grid->setEditTriggers(QAbstractItemView::NoEditTriggers);
+	ui->grid->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
-        a->next();
-        auto* grid = h->getLast();
+	a->next();
+	auto* grid = h->getLast();
 
-
-        for(int i=0; i< ui->largeur->value(); i++){
-            for (int j = 0; j < ui->hauteur->value(); j++) {
-                ui->grid->setItem(j, i, new QTableWidgetItem(""));
-                if(grid->getCell(Index2D(j, i))==1){
+	for (int i = 0; i < ui->largeur->value(); i++) {
+		for (int j = 0; j < ui->hauteur->value(); j++) {
+			ui->grid->setItem(j, i, new QTableWidgetItem(""));
+			if (grid->getCell(Index2D(j, i)) == 1) {
                 ui->grid->item(j, i)->setBackgroundColor("black");
-                }
-                else{
+			} else {
 
-                  ui->grid->item(j, i)->setBackgroundColor("white");
-                }
+				ui->grid->item(j, i)->setBackgroundColor("white");
             }
-
-
         }
+	}
 
-
-        incRang();
-   /* }
+	incRang();
+	/* }
     else {
         QMessageBox::warning(
             this,
             tr("Game Of Life"),
             tr("You have already reached the maximum number of states in the simulation") );
     }*/
-
 }
 
 void Automate_2D::menu()
