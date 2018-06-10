@@ -43,7 +43,7 @@ public:
 	{
 		if (this->wrapAround)
 			return values[idx.i % values.size()];
-		else if (idx.i < 0 || idx.i >= values.size())
+		else if (idx.i < 0 || idx.i >= static_cast<int>(values.size()))
 			return T();
 		else
 			return values[idx.i];
@@ -61,12 +61,12 @@ public:
 
 	virtual void iterate_get(const std::function<void(const T)> functor) const
 	{
-		for (Index1D i; i.i < values.size(); ++i.i)
+		for (Index1D i; i.i < static_cast<int>(values.size()); ++i.i)
 			functor(getCell(i));
 	}
 	virtual void iterate_set(const std::function<T(const Index1D)> functor)
 	{
-		for (Index1D i; i.i < values.size(); ++i.i)
+		for (Index1D i; i.i < static_cast<int>(values.size()); ++i.i)
 			setCell(i, functor(i));
 	}
 	virtual void save(const std::string& filePath) const
@@ -105,15 +105,17 @@ public:
 template <typename T>
 class Grid2D : public Grid<T, Index2D> {
 private:
-	std::size_t height = 0, width = 0;
+	int height = 0, width = 0;
 	std::vector<T> values;
 
 public:
-	Grid2D(const std::size_t height, const std::size_t width)
+	Grid2D(const int height, const int width)
 		: height(height)
 		, width(width)
 		, values(height * width, 0)
 	{
+		if (height < 0 || width < 0)
+			throw std::out_of_range("height and width must be >= 0");
 	}
 	virtual ~Grid2D() {}
 

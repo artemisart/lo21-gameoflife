@@ -93,7 +93,7 @@ public:
 			return nullptr;
 		if (i > current) // we can't get the future
 			return nullptr;
-		if (i < current - ring.size()) // too old, we don't have it anymore
+		if (i < current - static_cast<int>(ring.size())) // too old, we don't have it anymore
 			return nullptr;
 
 		return this->ring[i % this->ring.size()];
