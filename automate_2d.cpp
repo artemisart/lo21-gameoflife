@@ -86,8 +86,8 @@ void Automate_2D::setSize()
     int dimRow = ui->largeur->value();
     ui->grid->setMinimumSize(25*dimRow, 25*dimCol);
 
-    ui->grid->setColumnCount(dimRow);
-    ui->grid->setRowCount(dimCol);
+    ui->grid->setColumnCount(dimCol);
+    ui->grid->setRowCount(dimRow);
 
     ui->grid->horizontalHeader()->setVisible(false);
     ui->grid->verticalHeader()->setVisible(false);

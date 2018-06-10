@@ -57,7 +57,7 @@ void Automate_1D::setSize()
 
     ui->grid->horizontalHeader()->setVisible(false);
 	ui->grid->verticalHeader()->setVisible(false);
-    //ui->grid->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+	ui->grid->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	ui->grid->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
     for (int i = 0; i < dimCol; i++) {

@@ -9,7 +9,6 @@
 #include <QString>
 #include <QTableWidget>
 #include <QWidget>
-#include <QScrollArea>
 
 namespace Ui {
 class Automate_2D;
