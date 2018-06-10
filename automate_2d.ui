@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>805</width>
-    <height>616</height>
+    <width>938</width>
+    <height>746</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,8 +16,8 @@
   <widget class="QWidget" name="verticalLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>604</x>
-     <y>10</y>
+     <x>720</x>
+     <y>0</y>
      <width>189</width>
      <height>556</height>
     </rect>
@@ -80,9 +80,9 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>10</y>
-     <width>578</width>
-     <height>556</height>
+     <y>0</y>
+     <width>689</width>
+     <height>941</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -99,7 +99,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QSpinBox" name="hauteur">
+       <widget class="QSpinBox" name="largeur">
         <property name="value">
          <number>20</number>
         </property>
@@ -113,7 +113,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QSpinBox" name="largeur">
+       <widget class="QSpinBox" name="hauteur">
         <property name="value">
          <number>20</number>
         </property>
@@ -161,19 +161,6 @@
           </property>
          </widget>
         </item>
-        <item>
-         <spacer name="verticalSpacer_10">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
        </layout>
       </item>
       <item>
@@ -191,19 +178,6 @@
            <string>0</string>
           </property>
          </widget>
-        </item>
-        <item>
-         <spacer name="verticalSpacer_3">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
         </item>
        </layout>
       </item>
@@ -223,19 +197,6 @@
           </property>
          </widget>
         </item>
-        <item>
-         <spacer name="verticalSpacer_2">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
        </layout>
       </item>
       <item>
@@ -253,19 +214,6 @@
            <string>0</string>
           </property>
          </widget>
-        </item>
-        <item>
-         <spacer name="verticalSpacer_4">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
         </item>
        </layout>
       </item>
@@ -285,19 +233,6 @@
           </property>
          </widget>
         </item>
-        <item>
-         <spacer name="verticalSpacer_5">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
        </layout>
       </item>
       <item>
@@ -315,19 +250,6 @@
            <string>0</string>
           </property>
          </widget>
-        </item>
-        <item>
-         <spacer name="verticalSpacer_6">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
         </item>
        </layout>
       </item>
@@ -347,19 +269,6 @@
           </property>
          </widget>
         </item>
-        <item>
-         <spacer name="verticalSpacer_7">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
        </layout>
       </item>
       <item>
@@ -377,19 +286,6 @@
            <string>0</string>
           </property>
          </widget>
-        </item>
-        <item>
-         <spacer name="verticalSpacer_8">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
         </item>
        </layout>
       </item>
@@ -409,19 +305,6 @@
           </property>
          </widget>
         </item>
-        <item>
-         <spacer name="verticalSpacer_9">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
        </layout>
       </item>
       <item>
@@ -439,19 +322,6 @@
            <string>0</string>
           </property>
          </widget>
-        </item>
-        <item>
-         <spacer name="verticalSpacer_11">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
         </item>
        </layout>
       </item>
@@ -481,19 +351,6 @@
           </property>
          </widget>
         </item>
-        <item>
-         <spacer name="verticalSpacer_12">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
        </layout>
       </item>
       <item>
@@ -511,19 +368,6 @@
            <string>0</string>
           </property>
          </widget>
-        </item>
-        <item>
-         <spacer name="verticalSpacer_13">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
         </item>
        </layout>
       </item>
@@ -543,19 +387,6 @@
           </property>
          </widget>
         </item>
-        <item>
-         <spacer name="verticalSpacer_14">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
        </layout>
       </item>
       <item>
@@ -573,19 +404,6 @@
            <string>0</string>
           </property>
          </widget>
-        </item>
-        <item>
-         <spacer name="verticalSpacer_15">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
         </item>
        </layout>
       </item>
@@ -605,19 +423,6 @@
           </property>
          </widget>
         </item>
-        <item>
-         <spacer name="verticalSpacer_16">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
        </layout>
       </item>
       <item>
@@ -635,19 +440,6 @@
            <string>0</string>
           </property>
          </widget>
-        </item>
-        <item>
-         <spacer name="verticalSpacer_17">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
         </item>
        </layout>
       </item>
@@ -667,19 +459,6 @@
           </property>
          </widget>
         </item>
-        <item>
-         <spacer name="verticalSpacer_18">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
        </layout>
       </item>
       <item>
@@ -697,19 +476,6 @@
            <string>0</string>
           </property>
          </widget>
-        </item>
-        <item>
-         <spacer name="verticalSpacer_19">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
         </item>
        </layout>
       </item>
@@ -729,19 +495,6 @@
           </property>
          </widget>
         </item>
-        <item>
-         <spacer name="verticalSpacer_20">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
        </layout>
       </item>
       <item>
@@ -759,19 +512,6 @@
            <string>0</string>
           </property>
          </widget>
-        </item>
-        <item>
-         <spacer name="verticalSpacer_21">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
         </item>
        </layout>
       </item>
@@ -799,242 +539,279 @@
      </widget>
     </item>
     <item>
-     <layout class="QVBoxLayout" name="simulation">
-      <item>
-       <widget class="QTableWidget" name="grid">
-        <property name="enabled">
-         <bool>true</bool>
+     <widget class="QScrollArea" name="scrollArea">
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="widgetResizable">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="scrollAreaWidgetContents">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>685</width>
+         <height>720</height>
+        </rect>
+       </property>
+       <widget class="QWidget" name="verticalLayoutWidget_3">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>571</width>
+          <height>502</height>
+         </rect>
         </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="verticalScrollBarPolicy">
-         <enum>Qt::ScrollBarAlwaysOff</enum>
-        </property>
-        <property name="horizontalScrollBarPolicy">
-         <enum>Qt::ScrollBarAlwaysOff</enum>
-        </property>
-        <property name="sizeAdjustPolicy">
-         <enum>QAbstractScrollArea::AdjustToContents</enum>
-        </property>
-        <attribute name="horizontalHeaderVisible">
-         <bool>false</bool>
-        </attribute>
-        <attribute name="verticalHeaderVisible">
-         <bool>false</bool>
-        </attribute>
-        <row>
-         <property name="text">
-          <string>Nouvelle ligne</string>
+        <layout class="QVBoxLayout" name="simulation">
+         <property name="sizeConstraint">
+          <enum>QLayout::SetNoConstraint</enum>
          </property>
-        </row>
-        <row>
-         <property name="text">
-          <string>Nouvelle ligne</string>
-         </property>
-        </row>
-        <row>
-         <property name="text">
-          <string>Nouvelle ligne</string>
-         </property>
-        </row>
-        <row>
-         <property name="text">
-          <string>Nouvelle ligne</string>
-         </property>
-        </row>
-        <row>
-         <property name="text">
-          <string>Nouvelle ligne</string>
-         </property>
-        </row>
-        <row>
-         <property name="text">
-          <string>Nouvelle ligne</string>
-         </property>
-        </row>
-        <row>
-         <property name="text">
-          <string>Nouvelle ligne</string>
-         </property>
-        </row>
-        <row>
-         <property name="text">
-          <string>Nouvelle ligne</string>
-         </property>
-        </row>
-        <row>
-         <property name="text">
-          <string>Nouvelle ligne</string>
-         </property>
-        </row>
-        <row>
-         <property name="text">
-          <string>Nouvelle ligne</string>
-         </property>
-        </row>
-        <row>
-         <property name="text">
-          <string>Nouvelle ligne</string>
-         </property>
-        </row>
-        <row>
-         <property name="text">
-          <string>Nouvelle ligne</string>
-         </property>
-        </row>
-        <row>
-         <property name="text">
-          <string>Nouvelle ligne</string>
-         </property>
-        </row>
-        <row>
-         <property name="text">
-          <string>Nouvelle ligne</string>
-         </property>
-        </row>
-        <row>
-         <property name="text">
-          <string>Nouvelle ligne</string>
-         </property>
-        </row>
-        <row>
-         <property name="text">
-          <string>Nouvelle ligne</string>
-         </property>
-        </row>
-        <row>
-         <property name="text">
-          <string>Nouvelle ligne</string>
-         </property>
-        </row>
-        <row>
-         <property name="text">
-          <string>Nouvelle ligne</string>
-         </property>
-        </row>
-        <row>
-         <property name="text">
-          <string>Nouvelle ligne</string>
-         </property>
-        </row>
-        <row>
-         <property name="text">
-          <string>Nouvelle ligne</string>
-         </property>
-        </row>
-        <column>
-         <property name="text">
-          <string>Nouvelle colonne</string>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>Nouvelle colonne</string>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>Nouvelle colonne</string>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>Nouvelle colonne</string>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>Nouvelle colonne</string>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>Nouvelle colonne</string>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>Nouvelle colonne</string>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>Nouvelle colonne</string>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>Nouvelle colonne</string>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>Nouvelle colonne</string>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>Nouvelle colonne</string>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>Nouvelle colonne</string>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>Nouvelle colonne</string>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>Nouvelle colonne</string>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>Nouvelle colonne</string>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>Nouvelle colonne</string>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>Nouvelle colonne</string>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>Nouvelle colonne</string>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>Nouvelle colonne</string>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>Nouvelle colonne</string>
-         </property>
-        </column>
+         <item>
+          <widget class="QTableWidget" name="grid">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>500</width>
+             <height>500</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="verticalScrollBarPolicy">
+            <enum>Qt::ScrollBarAlwaysOff</enum>
+           </property>
+           <property name="horizontalScrollBarPolicy">
+            <enum>Qt::ScrollBarAlwaysOff</enum>
+           </property>
+           <property name="sizeAdjustPolicy">
+            <enum>QAbstractScrollArea::AdjustToContents</enum>
+           </property>
+           <attribute name="horizontalHeaderVisible">
+            <bool>false</bool>
+           </attribute>
+           <attribute name="verticalHeaderVisible">
+            <bool>false</bool>
+           </attribute>
+           <row>
+            <property name="text">
+             <string>Nouvelle ligne</string>
+            </property>
+           </row>
+           <row>
+            <property name="text">
+             <string>Nouvelle ligne</string>
+            </property>
+           </row>
+           <row>
+            <property name="text">
+             <string>Nouvelle ligne</string>
+            </property>
+           </row>
+           <row>
+            <property name="text">
+             <string>Nouvelle ligne</string>
+            </property>
+           </row>
+           <row>
+            <property name="text">
+             <string>Nouvelle ligne</string>
+            </property>
+           </row>
+           <row>
+            <property name="text">
+             <string>Nouvelle ligne</string>
+            </property>
+           </row>
+           <row>
+            <property name="text">
+             <string>Nouvelle ligne</string>
+            </property>
+           </row>
+           <row>
+            <property name="text">
+             <string>Nouvelle ligne</string>
+            </property>
+           </row>
+           <row>
+            <property name="text">
+             <string>Nouvelle ligne</string>
+            </property>
+           </row>
+           <row>
+            <property name="text">
+             <string>Nouvelle ligne</string>
+            </property>
+           </row>
+           <row>
+            <property name="text">
+             <string>Nouvelle ligne</string>
+            </property>
+           </row>
+           <row>
+            <property name="text">
+             <string>Nouvelle ligne</string>
+            </property>
+           </row>
+           <row>
+            <property name="text">
+             <string>Nouvelle ligne</string>
+            </property>
+           </row>
+           <row>
+            <property name="text">
+             <string>Nouvelle ligne</string>
+            </property>
+           </row>
+           <row>
+            <property name="text">
+             <string>Nouvelle ligne</string>
+            </property>
+           </row>
+           <row>
+            <property name="text">
+             <string>Nouvelle ligne</string>
+            </property>
+           </row>
+           <row>
+            <property name="text">
+             <string>Nouvelle ligne</string>
+            </property>
+           </row>
+           <row>
+            <property name="text">
+             <string>Nouvelle ligne</string>
+            </property>
+           </row>
+           <row>
+            <property name="text">
+             <string>Nouvelle ligne</string>
+            </property>
+           </row>
+           <row>
+            <property name="text">
+             <string>Nouvelle ligne</string>
+            </property>
+           </row>
+           <column>
+            <property name="text">
+             <string>Nouvelle colonne</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Nouvelle colonne</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Nouvelle colonne</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Nouvelle colonne</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Nouvelle colonne</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Nouvelle colonne</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Nouvelle colonne</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Nouvelle colonne</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Nouvelle colonne</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Nouvelle colonne</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Nouvelle colonne</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Nouvelle colonne</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Nouvelle colonne</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Nouvelle colonne</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Nouvelle colonne</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Nouvelle colonne</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Nouvelle colonne</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Nouvelle colonne</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Nouvelle colonne</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Nouvelle colonne</string>
+            </property>
+           </column>
+          </widget>
+         </item>
+        </layout>
        </widget>
-      </item>
-     </layout>
+      </widget>
+     </widget>
     </item>
    </layout>
   </widget>

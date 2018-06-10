@@ -35,9 +35,9 @@ private:
     RingHistory<Grid<bool, Index2D>>* h;
     Grid<bool, Index2D>* start;
     int rang;
-    QTableWidget* etats[];
+    QTableWidget* etats;
     bool sim;
-    QLineEdit* survive[8], *born[8];
+    QLineEdit* survive[9], *born[9];
     QScrollArea  *scrollarea;
 
 

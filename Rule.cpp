@@ -2,17 +2,17 @@
 
 /*--------------------------------RULE 1D-------------------------------------*/
 
-Rule1D::Rule1D(const std::uint8_t i)
+Rule1D::Rule1D(const std::uint16_t i)
 	: num(i)
 {
 }
 
-std::uint8_t Rule1D::getNum() const
+std::uint16_t Rule1D::getNum() const
 {
 	return this->num;
 }
 
-void Rule1D::setNum(const std::uint8_t i)
+void Rule1D::setNum(const std::uint16_t i)
 {
 	this->num = i;
 }
@@ -27,28 +27,28 @@ bool Rule1D::calcNextState(const Grid<bool, Index1D>& grid, const Index1D index)
 
 /*--------------------------------RULE 2D-------------------------------------*/
 
-Rule2D::Rule2D(const std::uint8_t b, const std::uint8_t s)
+Rule2D::Rule2D(const std::uint16_t b, const std::uint16_t s)
 	: born(b)
 	, survive(s)
 {
 }
 
-std::uint8_t Rule2D::getBorn() const
+std::uint16_t Rule2D::getBorn() const
 {
 	return this->born;
 }
 
-std::uint8_t Rule2D::getSurvive() const
+std::uint16_t Rule2D::getSurvive() const
 {
 	return this->survive;
 }
 
-void Rule2D::setBorn(const std::uint8_t i)
+void Rule2D::setBorn(const std::uint16_t i)
 {
 	this->born = i;
 }
 
-void Rule2D::setSurvive(const std::uint8_t i)
+void Rule2D::setSurvive(const std::uint16_t i)
 {
 	this->survive = i;
 }
