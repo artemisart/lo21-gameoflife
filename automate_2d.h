@@ -9,6 +9,7 @@
 #include <QString>
 #include <QTableWidget>
 #include <QWidget>
+#include <QScrollArea>
 
 namespace Ui {
 class Automate_2D;
@@ -37,6 +38,7 @@ private:
     QTableWidget* etats[];
     bool sim;
     QLineEdit* survive[8], *born[8];
+    QScrollArea  *scrollarea;
 
 
 private slots:

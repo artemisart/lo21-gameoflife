@@ -2,6 +2,7 @@
 #include "automate_1d.h"
 #include "ui_automate_2d.h"
 #include <QMessageBox>
+#include<QScrollArea>
 
 Automate_2D::Automate_2D(QWidget* parent)
 	: QWidget(parent)
@@ -10,6 +11,10 @@ Automate_2D::Automate_2D(QWidget* parent)
     , sim(false)
 {
     ui->setupUi(this);
+  /*  scrollarea = new QScrollArea(ui->verticalLayout_6);
+    ui->simulation= new QVBoxLayout(scrollarea);*/
+
+
     QLineEdit* _survive[9] = {
         ui->Survive0, ui->Survive1, ui->Survive2, ui->Survive3,
         ui->Survive4, ui->Survive5, ui->Survive6, ui->Survive7,
@@ -73,8 +78,8 @@ void Automate_2D::setSize()
     int dimCol =ui->hauteur->value();
     int dimRow = ui->largeur->value();
 
-    ui->grid->setColumnCount(dimCol);
-    ui->grid->setRowCount(dimRow);
+    ui->grid->setColumnCount(dimRow);
+    ui->grid->setRowCount(dimCol);
 
     ui->grid->horizontalHeader()->setVisible(false);
     ui->grid->verticalHeader()->setVisible(false);
