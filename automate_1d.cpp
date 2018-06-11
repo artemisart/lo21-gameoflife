@@ -5,9 +5,14 @@
 Automate_1D::Automate_1D(QWidget* parent)
 	: QWidget(parent)
 	, ui(new Ui::Automate_1D)
-	, rang(0)
-	, sim(false)
+    , rang(1)
+    , begin(false)
+    , sim(true)
 {
+
+    timer = new QTimer(parent);
+    connect(timer, SIGNAL(timeout()), this, SLOT(run()));
+
     ui->setupUi(this);
 	QLineEdit* _numBits[8] = {
 		ui->numBit1, ui->numBit2, ui->numBit3, ui->numBit4,
@@ -131,9 +136,9 @@ void Automate_1D::synchronizeNumBitToNum(const QString& s)
 
 void Automate_1D::simulation()
 {
-	// init_simulation(ui->nb_etats->value());
-	while (getRang() < ui->nb_etats->value())
-		next();
+        sim=true;
+        run();
+
 }
 
 void Automate_1D::cellActivation(const QModelIndex& index)
@@ -146,30 +151,34 @@ void Automate_1D::cellActivation(const QModelIndex& index)
 
 void Automate_1D::next()
 {
-    if (sim == false) {
-		init_simulation(1);
-    }
-	if (rang < ui->nb_etats->value()) {
+  if(getRang()<ui->nb_etats->value()){
 
         a->next();
 
         auto* grid = h->getLast();
 
-		etats->setRowCount(etats->rowCount() + 1);
+        ui->grid->setRowCount(ui->grid->rowCount() + 1);
+        ui->grid->setFixedSize(ui->size_Box->value() * 25,(( ui->grid->rowCount()+1) * 25));
+
+
 
         for (int j = 0; j < ui->size_Box->value(); j++) {
-            etats->setItem(getRang(), j, new QTableWidgetItem(""));
+            ui->grid->setItem(getRang(), j, new QTableWidgetItem(""));
 			bool val = grid->getCell(j);
-			etats->item(getRang(), j)->setBackgroundColor(val ? "black" : "white");
+            ui->grid->item(getRang(), j)->setBackgroundColor(val ? "black" : "white");
         }
-
         incRang();
-	} else {
-        QMessageBox::warning(
-            this,
-            tr("Game Of Life"),
-			tr("You have already reached the maximum number of states in the simulation"));
-    }
+
+}
+  else {
+      QMessageBox msgBox;
+      msgBox.setText("Le nombres d'états maximal de la simulation à été atteint");
+      msgBox.exec();
+      sim = false;
+
+  }
+
+
 }
 
 void Automate_1D::menu()
@@ -178,22 +187,20 @@ void Automate_1D::menu()
     this->parent->show();
 }
 
+void Automate_1D::run(){
+    if(sim==true){
+      timer->start(ui->timer->value()*1000);
+      next();
+    }
+}
+
 void Automate_1D::init_simulation(int row)
 {
-    etats = new QTableWidget(row, ui->size_Box->value(), this);
-	etats->setFixedSize(ui->size_Box->value() * 25, ui->nb_etats->value() * 25);
-    etats->horizontalHeader()->setVisible(false);
-    etats->verticalHeader()->setVisible(false);
-    etats->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    etats->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-
-	//non editable
-    etats->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     for (int i = 0; i < row; i++) {
 
 		for (int j = 0; j < ui->size_Box->value(); j++) {
-            etats->setColumnWidth(j, 25);
+            ui->grid->setColumnWidth(j, 25);
 			etats->setRowHeight(i, 25);
 			etats->setItem(i, j, new QTableWidgetItem(""));
         }
@@ -206,5 +213,6 @@ void Automate_1D::init_simulation(int row)
     ui->interface_2->addWidget(etats);
     ui->interface_2->removeWidget(ui->grid);
 
-	sim = true;
+    begin = true;
 }
+

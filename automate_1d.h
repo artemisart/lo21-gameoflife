@@ -9,6 +9,7 @@
 #include <QString>
 #include <QTableWidget>
 #include <QWidget>
+#include <QTimer>
 
 namespace Ui {
 class Automate_1D;
@@ -35,8 +36,9 @@ private:
     Grid<bool, Index1D>* start;
     int rang;
     QTableWidget* etats;
-    bool sim;
+    bool sim,begin;
 	QLineEdit* numBits[8];
+    QTimer *timer;
 
 private slots:
 	void setSize();
@@ -46,6 +48,7 @@ private slots:
 	void cellActivation(const QModelIndex& index);
 	void next();
 	void menu();
+    void run();
 };
 
 QString NumToNumBit(short unsigned int num);

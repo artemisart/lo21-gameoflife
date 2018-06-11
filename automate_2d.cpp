@@ -48,18 +48,18 @@ Automate_2D::Automate_2D(QWidget* parent)
         born[i]->setValidator(zeroOneValidator);
 		survive[i]->setValidator(zeroOneValidator);
     }
-	/*
+
 
     for (auto brn : born) {
         brn->setValidator(zeroOneValidator);
         connect(brn, SIGNAL(textChanged(QString)), this, SLOT(synchronizeNumBitToNum_b(QString)));
-    }*/
+    }
 
-	/*   for (auto surv : survive) {
+   for (auto surv : survive) {
         surv->setValidator(zeroOneValidator);
         connect(surv, SIGNAL(textChanged(QString)), this, SLOT(synchronizeNumBitToNum_s(QString)));
     }
-*/
+
     connect(ui->size, SIGNAL(clicked()), this, SLOT(setSize()));
     connect(ui->born, SIGNAL(valueChanged(int)), this, SLOT(synchronizeNumToNumBit_b(int)));
     connect(ui->Survive, SIGNAL(valueChanged(int)), this, SLOT(synchronizeNumToNumBit_s(int)));
@@ -214,7 +214,7 @@ void Automate_2D::simulation()
 
 void Automate_2D::run(){
     if(sim==true){
-        timer->start(2000);
+        timer->start(ui->timer->value()*1000);
 
         next();
     }
@@ -241,7 +241,6 @@ void Automate_2D::cellActivation(const QModelIndex& index)
 void Automate_2D::next()
 {
 
-    //if(rang<ui->nb_etats->value()){
 	ui->grid->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
 	a->next();
@@ -260,13 +259,7 @@ void Automate_2D::next()
 	}
 
 	incRang();
-	/* }
-    else {
-        QMessageBox::warning(
-            this,
-            tr("Game Of Life"),
-            tr("You have already reached the maximum number of states in the simulation") );
-    }*/
+
 }
 
 void Automate_2D::menu()
@@ -274,31 +267,3 @@ void Automate_2D::menu()
     this->hide();
     this->parent->show();
 }
-/*
-void Automate_2D::init_simulation(){
-    etats = new QTableWidget(ui->hauteur->value(), ui->largeur->value(), this);
-    etats->setFixedSize(ui->hauteur->value()*25, ui->largeur->value() * 25);
-    etats->horizontalHeader()->setVisible(false);
-    etats->verticalHeader()->setVisible(false);
-    etats->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    etats->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-
-    for (int i = 0; i < 20; i++) {
-        for(unsigned int j=0; j<20; j++){
-            etats->setColumnWidth(i, 25);
-            etats->setRowHeight(j,25);
-            etats->setItem( i,j, new QTableWidgetItem(""));
-        }
-
-    }
-    //non editable
-    etats->setEditTriggers(QAbstractItemView::NoEditTriggers);
-
-    incRang();
-
-    ui->simulation->addWidget(etats);
-
-
-}
-
-*/

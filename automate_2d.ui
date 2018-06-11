@@ -536,12 +536,12 @@
       <item>
        <widget class="QLabel" name="label_2">
         <property name="text">
-         <string>Nombre d'états de la simulation</string>
+         <string>Durée du timer entre chaque état (en secondes)</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QSpinBox" name="nb_etats"/>
+       <widget class="QSpinBox" name="timer"/>
       </item>
      </layout>
     </item>
