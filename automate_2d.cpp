@@ -25,9 +25,8 @@ Automate_2D::Automate_2D(QWidget* parent)
         ui->Born0, ui->Born1, ui->Born2, ui->Born3,
 		ui->Born4, ui->Born5, ui->Born6, ui->Born7, ui->Born8
     };
-	std::copy_n(_survive, 8, survive); // because numBits is not directly assignable
-
-	std::copy_n(_born, 8, born);
+	std::copy_n(_survive, 9, survive); // because arrays are not directly assignable
+	std::copy_n(_born, 9, born);
 
 	ui->grid->setFixedSize(ui->largeur->value() * 25, ui->hauteur->value() * 25);
     for (int i = 0; i < 20; i++) {
@@ -45,10 +44,11 @@ Automate_2D::Automate_2D(QWidget* parent)
     h->setStart(*start);
 
     zeroOneValidator = new QIntValidator(0, 1, this);
-
-	/*    for(unsigned int i=0; i<9; i++){
+	for (int i = 0; i < 9; i++) {
         born[i]->setValidator(zeroOneValidator);
+		survive[i]->setValidator(zeroOneValidator);
     }
+	/*
 
     for (auto brn : born) {
         brn->setValidator(zeroOneValidator);

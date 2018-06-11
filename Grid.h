@@ -24,6 +24,7 @@ public:
 	virtual void iterate_get(const std::function<void(const T cell)> functor) const = 0;
 	virtual void iterate_set(const std::function<T(const I index)> functor) = 0;
 	virtual void save(const std::string& filePath) const = 0;
+	virtual void load(const std::string& filePath) =0;
 };
 
 template <typename T>
@@ -42,7 +43,7 @@ public:
 	{
 		if (this->wrapAround)
 			return values[idx.i % values.size()];
-		else if (idx.i < 0 || idx.i >= values.size())
+		else if (idx.i < 0 || idx.i >= static_cast<int>(values.size()))
 			return T();
 		else
 			return values[idx.i];
@@ -60,40 +61,61 @@ public:
 
 	virtual void iterate_get(const std::function<void(const T)> functor) const
 	{
-		for (Index1D i; i.i < values.size(); ++i.i)
+		for (Index1D i; i.i < static_cast<int>(values.size()); ++i.i)
 			functor(getCell(i));
 	}
 	virtual void iterate_set(const std::function<T(const Index1D)> functor)
 	{
-		for (Index1D i; i.i < values.size(); ++i.i)
+		for (Index1D i; i.i < static_cast<int>(values.size()); ++i.i)
 			setCell(i, functor(i));
 	}
 	virtual void save(const std::string& filePath) const
 	{
 		try {
 			std::ofstream file(filePath, std::ios::out | std::ios::trunc);
-			file << "1," << values.size() << ",";
-			iterate_get([&](const T cell) { file << cell; });
+			file << "1 " << values.size() << " ";
+			iterate_get([&](const T cell) { file << cell << " "; });
 			file.close();
 		} catch (const std::string& e) {
 			std::cout << "erreur: " << e << "\n";
 		}
 	}
 	virtual Index1D getSize() const { return values.size(); }
+	virtual void load(const std::string& filePath)
+	{
+	  try {
+		  std::ifstream file(filePath, std::ios::in);
+		  T cell;
+		  unsigned int it;
+		  file >> it;
+		  if(it!=1){throw std::string("wrong loading, expected a 1D grid \n");}
+		  file >> it;
+		  for (Index1D i; i.i < it; ++i.i)
+		   {
+		      file >> cell;
+		      setCell(i, cell);
+		   }
+		  file.close();
+	  } catch (const std::string& e) {
+		  std::cout << "erreur: " << e << "\n";
+	  }
+	}
 };
 
 template <typename T>
 class Grid2D : public Grid<T, Index2D> {
 private:
-	std::size_t height = 0, width = 0;
+	int height = 0, width = 0;
 	std::vector<T> values;
 
 public:
-	Grid2D(const std::size_t height, const std::size_t width)
+	Grid2D(const int height, const int width)
 		: height(height)
 		, width(width)
 		, values(height * width, 0)
 	{
+		if (height < 0 || width < 0)
+			throw std::out_of_range("height and width must be >= 0");
 	}
 	virtual ~Grid2D() {}
 
@@ -134,12 +156,34 @@ public:
 	{
 		try {
 			std::ofstream file(filePath, std::ios::out | std::ios::trunc);
-			file << "2," << height << "," << width << ",";
-			iterate_get([&](const T cell) { file << cell; });
+			file << "2 " << height << " " << width << " ";
+			iterate_get([&](const T cell) { file << cell<< " "; });
 			file.close();
 		} catch (const std::string& e) {
 			std::cout << "erreur: " << e << "\n";
 		}
+	}
+	virtual void load(const std::string& filePath)
+	{
+	  try {
+		  std::ifstream file(filePath, std::ios::in);
+		  unsigned int it;
+		  file >> it;
+		  if(it!=2){throw std::string("wrong loading, expected 2D grid \n");}
+		  file >> height; file>> width;
+		  T cell;
+		  for (Index2D i; i.row < height; ++i.row)
+		    {
+			  for (i.col = 0; i.col < width; ++i.col)
+			    {
+				  file >> cell;
+				  setCell(i, cell);
+			    }
+		    }
+		  file.close();
+	  } catch (const std::string& e) {
+		  std::cout << "erreur: " << e << "\n";
+	  }
 	}
 };
 
