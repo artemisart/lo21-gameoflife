@@ -74,6 +74,8 @@ Automate_2D::Automate_2D(QWidget* parent)
     connect(ui->menu, SIGNAL(clicked()), this, SLOT(menu()));
     connect(ui->reset, SIGNAL(clicked()), this, SLOT(reset()));
     connect(ui->stop, SIGNAL(clicked()), this, SLOT(stop()));
+    connect(ui->save, SIGNAL(clicked(bool)), this, SLOT(save()));
+    connect(ui->load, SIGNAL(clicked()), this, SLOT(load()));
 
 }
 
@@ -270,4 +272,12 @@ void Automate_2D::menu()
 {
     this->hide();
     this->parent->show();
+}
+
+void Automate_2D::save(){
+
+}
+
+void Automate_2D::load(){
+
 }

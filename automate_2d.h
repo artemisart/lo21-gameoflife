@@ -55,6 +55,8 @@ private slots:
     void reset();
     void stop();
     void run();
+    void load();
+    void save();
 
 };
 

@@ -49,6 +49,7 @@ Automate_1D::Automate_1D(QWidget* parent)
     connect(ui->next, SIGNAL(clicked()), this, SLOT(next()));
     connect(ui->menu, SIGNAL(clicked()), this, SLOT(menu()));
     connect(ui->save, SIGNAL(clicked(bool)), this, SLOT(save());
+    connect(ui->load, SIGNAL(clicked(bool)), this, SLOT(load());
 }
 
 Automate_1D::~Automate_1D()
@@ -220,5 +221,11 @@ void Automate_1D::init_simulation(int row)
 
 
 void Automate_1D::save(){
+    std::ofstream outfile ("config");
+
+
+}
+
+void Automate_1D::load(){
 
 }
