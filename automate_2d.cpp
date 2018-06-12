@@ -38,7 +38,7 @@ Automate_2D::Automate_2D(QWidget* parent)
     }
     //if(this->getType() == 0)
     h = new RingHistory<Grid<bool, Index2D>>(10);
-   // if(this->getType()== 1) h = new RingHistory<Grid<uint8_t, Index2D>>(10);
+   // if(this->getType()== 1) h = new RingHistory<Grid<uint8_t, Index2D> >(10);
     r = new Rule2D();
     a = new Automaton<bool, Index2D>(h, r);
 

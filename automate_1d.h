@@ -10,6 +10,7 @@
 #include <QTableWidget>
 #include <QWidget>
 #include <QTimer>
+#include <QMenu>
 
 namespace Ui {
 class Automate_1D;
@@ -51,6 +52,8 @@ private slots:
     void run();
     void save();
     void load();
+    void rand();
+    void rand_sym();
 };
 
 QString NumToNumBit(short unsigned int num);
