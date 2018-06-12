@@ -24,7 +24,7 @@ public:
 	virtual void iterate_get(const std::function<void(const T cell)> functor) const = 0;
 	virtual void iterate_set(const std::function<T(const I index)> functor) = 0;
 	virtual void save(const std::string& filePath) const = 0;
-	virtual void load(const std::string& filePath) =0;
+	virtual void load(const std::string& filePath) = 0;
 };
 
 template <typename T>
@@ -90,17 +90,18 @@ public:
 			T cell;
 			size_t it;
 			file >> it;
-		  if(it!=1){throw std::string("wrong loading, expected a 1D grid \n");}
+			if (it != 1) {
+				throw std::string("wrong loading, expected a 1D grid \n");
+			}
 			file >> it;
-		  for (Index1D i; i.i < it; ++i.i)
-		   {
+			for (Index1D i; i.i < it; ++i.i) {
 				file >> cell;
 				setCell(i, cell);
 			}
-		  file.close();
-	  } catch (const std::string& e) {
-		  std::cout << "erreur: " << e << "\n";
-	  }
+			file.close();
+		} catch (const std::string& e) {
+			std::cout << "erreur: " << e << "\n";
+		}
 	}
 };
 
@@ -159,7 +160,7 @@ public:
 		try {
 			std::ofstream file(filePath, std::ios::out | std::ios::trunc);
 			file << "2 " << height << " " << width << " ";
-			iterate_get([&](const T cell) { file << cell<< " "; });
+			iterate_get([&](const T cell) { file << cell << " "; });
 			file.close();
 		} catch (const std::string& e) {
 			std::cout << "erreur: " << e << "\n";
@@ -167,25 +168,26 @@ public:
 	}
 	virtual void load(const std::string& filePath)
 	{
-	  try {
-		  std::ifstream file(filePath, std::ios::in);
-		  unsigned int it;
-		  file >> it;
-		  if(it!=2){throw std::string("wrong loading, expected 2D grid \n");}
-		  file >> height; file>> width;
-		  T cell;
-		  for (Index2D i; i.row < height; ++i.row)
-		    {
-			  for (i.col = 0; i.col < width; ++i.col)
-			    {
-				  file >> cell;
-				  setCell(i, cell);
-			    }
-		    }
-		  file.close();
-	  } catch (const std::string& e) {
-		  std::cout << "erreur: " << e << "\n";
-	  }
+		try {
+			std::ifstream file(filePath, std::ios::in);
+			unsigned int it;
+			file >> it;
+			if (it != 2) {
+				throw std::string("wrong loading, expected 2D grid \n");
+			}
+			file >> height;
+			file >> width;
+			T cell;
+			for (Index2D i; i.row < height; ++i.row) {
+				for (i.col = 0; i.col < width; ++i.col) {
+					file >> cell;
+					setCell(i, cell);
+				}
+			}
+			file.close();
+		} catch (const std::string& e) {
+			std::cout << "erreur: " << e << "\n";
+		}
 	}
 };
 
