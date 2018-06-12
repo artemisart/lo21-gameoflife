@@ -31,8 +31,8 @@ public:
     virtual void save(const std::string& filePath) const
     {
       try {
-              std::ofstream file(filePath, std::ios::out);
-              file << "1 " << num ;
+              std::ofstream file(filePath, std::ios::out | std::ios::app);
+              file << "\n" << "1 " << num ;
               file.close();
       } catch (const std::string& e) {
               std::cout << "erreur: " << e << "\n";
@@ -40,9 +40,11 @@ public:
     };
     virtual void load(const std::string& filePath)
     {
-      try {
-              std::ifstream file(filePath, std::ios::in);
+      try {   std::cout<<"loading";
+              std::ifstream file(filePath, std::ios::in );
               std::uint16_t it;
+              std::string s;
+              if (!getline(file,s)){throw std::string("No rule in this file");};
               file >> it;
               if(it!=1){throw std::string("wrong loading, expected a 1D rule \n");}
               file >> num;
@@ -71,8 +73,8 @@ public:
     virtual void save(const std::string& filePath) const
     {
       try {
-              std::ofstream file(filePath, std::ios::out);
-              file << "2 " << born << " " << survive ;
+              std::ofstream file(filePath, std::ios::out | std::ios::app);
+              file << "\n" <<"2 " << born << " " << survive ;
               file.close();
       } catch (const std::string& e) {
               std::cout << "erreur: " << e << "\n";
@@ -83,6 +85,8 @@ public:
       try {
               std::ifstream file(filePath, std::ios::in);
               std::uint16_t it;
+              std::string s;
+              if (!getline(file,s)){throw std::string("No rule in this file");};
               file >> it;
               if(it!=2){throw std::string("wrong loading, expected a 2D rule \n");}
               file >> born;

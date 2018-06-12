@@ -247,20 +247,27 @@ void Automate_1D::init_simulation(int row)
 
 
 void Automate_1D::save(){
+  try{
     std::string name = ui->name_file->text().toStdString();
     const Grid<bool, Index1D>* g1D= h->getLast();
     g1D->save(name);
     r->save(name);
     std::cout<< "sauvegarde reussie \n";
+  } catch (const std::string& e) {
+         std::cout << "erreur: " << e << "\n";
+  }
 }
 
 void Automate_1D::load(){
-  std::string name = ui->name_file->text().toStdString();
-  Grid1D<bool>* g1D = new Grid1D<bool>(20);
-  g1D->load(name);
-  h->push(g1D);
-  r->load(name);
-
+  try{
+    std::string name = ui->name_file->text().toStdString();
+    Grid1D<bool>* g1D = new Grid1D<bool>(20);
+    g1D->load(name);
+    h->push(g1D);
+    r->load(name);
+  } catch (const std::string& e) {
+    std::cout << "erreur: " << e << "\n";
+  }
 }
 
 void Automate_1D::rand(){

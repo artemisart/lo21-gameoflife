@@ -277,11 +277,27 @@ void Automate_2D::menu()
 }
 
 void Automate_2D::save(){
-
+  try{
+    std::string name = ui->name_file->text().toStdString();
+    const Grid<bool, Index2D>* g2D= h->getLast();
+    g2D->save(name);
+    r->save(name);
+    std::cout<< "sauvegarde reussie \n";
+  } catch (const std::string& e) {
+         std::cout << "erreur: " << e << "\n";
+  }
 }
 
 void Automate_2D::load(){
-
+  try{
+    std::string name = ui->name_file->text().toStdString();
+    Grid2D<bool>* g2D = new Grid2D<bool>(10,10);
+    g2D->load(name);
+    h->push(g2D);
+    r->load(name);
+  } catch (const std::string& e) {
+    std::cout << "erreur: " << e << "\n";
+  }
 }
 
 

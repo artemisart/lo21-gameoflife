@@ -72,6 +72,7 @@ public:
 	virtual void save(const std::string& filePath) const
 	{
 		try {
+			std::cout << "save 1D, "<<filePath << "\n";
 			std::ofstream file(filePath, std::ios::out | std::ios::trunc);
 			file << "1 " << values.size() << " ";
 			iterate_get([&](const T cell) { file << cell << " "; });
@@ -92,6 +93,7 @@ public:
 		  file >> it;
 		  if(it!=1){throw std::string("wrong loading, expected a 1D grid \n");}
 		  file >> it;
+		  values.resize(it,0);
 		  for (Index1D i; i.i < it; ++i.i)
 		   {
 		      file >> cell;
@@ -174,6 +176,7 @@ public:
 		  if(it!=2){throw std::string("wrong loading, expected 2D grid \n");}
 		  file >> height; file>> width;
 		  T cell;
+		  values.resize(height*width,0);
 		  for (Index2D i; i.row < height; ++i.row)
 		    {
 			  for (i.col = 0; i.col < width; ++i.col)
