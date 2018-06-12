@@ -52,11 +52,35 @@ Automate_1D::Automate_1D(QWidget* parent)
     connect(ui->load, SIGNAL(clicked(bool)), this, SLOT(load()));
     connect(ui->random, SIGNAL(clicked(bool)), this, SLOT(rand()));
     connect(ui->random_sym, SIGNAL(clicked(bool)), this, SLOT(rand_sym()));
+    connect(ui->stop, SIGNAL(clicked()), this, SLOT(stop()));
+    connect(ui->reset, SIGNAL(clicked()), this, SLOT(reset()));
+
+
 }
 
 Automate_1D::~Automate_1D()
 {
     delete ui;
+}
+
+void Automate_1D::stop(){
+    sim = false;
+}
+
+void Automate_1D::reset(){
+    ui->grid->setRowCount(1);
+    ui->size_Box->setValue(20);
+    ui->rule->setValue(0);
+    setSize();
+
+    for(int i=0; i<20;i++){
+            start->setCell(i, true);
+
+
+    }
+    ui->grid->setEditTriggers(QAbstractItemView::DoubleClicked);
+
+
 }
 
 void Automate_1D::setSize()

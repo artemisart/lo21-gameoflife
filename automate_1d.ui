@@ -322,7 +322,11 @@
        </widget>
       </item>
       <item>
-       <widget class="QSpinBox" name="nb_etats"/>
+       <widget class="QSpinBox" name="nb_etats">
+        <property name="value">
+         <number>10</number>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>

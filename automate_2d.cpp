@@ -88,14 +88,13 @@ Automate_2D::~Automate_2D()
 
 void Automate_2D::reset(){
     ui->largeur->setValue(20);
-    ui->hauteur->setValue(20);
+    ui->hauteur->setValue(0);
     ui->Survive->setValue(0);
     ui->born->setValue(0);
     setSize();
 
     for(int i=0; i<20;i++){
         for(int j=0; j<20; j++){
-           // ui->grid->item(i,j)->setBackgroundColor("white");
             start->setCell(Index2D(i,j), true);
 
 
