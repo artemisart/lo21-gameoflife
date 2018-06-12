@@ -12,6 +12,8 @@ public:
 	virtual ~Rule() {}
 
 	virtual T calcNextState(const Grid<T, I>& grid, const I index) const = 0;
+	virtual void save(const std::string& filePath) const = 0;
+	virtual void load(const std::string& filePath) =0;
 };
 
 class Rule1D : public Rule<bool, Index1D> {
@@ -26,6 +28,29 @@ public:
     void setNum(const std::uint16_t i);
 
 	virtual bool calcNextState(const Grid<bool, Index1D>& grid, const Index1D index) const;
+    virtual void save(const std::string& filePath) const
+    {
+      try {
+              std::ofstream file(filePath, std::ios::out);
+              file << "1 " << num ;
+              file.close();
+      } catch (const std::string& e) {
+              std::cout << "erreur: " << e << "\n";
+      }
+    };
+    virtual void load(const std::string& filePath)
+    {
+      try {
+              std::ifstream file(filePath, std::ios::in);
+              std::uint16_t it;
+              file >> it;
+              if(it!=1){throw std::string("wrong loading, expected a 1D rule \n");}
+              file >> num;
+              file.close();
+      } catch (const std::string& e) {
+              std::cout << "erreur: " << e << "\n";
+      }
+    };
 };
 
 class Rule2D : public Rule<bool, Index2D> {
@@ -43,6 +68,30 @@ public:
     void setSurvive(const std::uint16_t i);
 
 	virtual bool calcNextState(const Grid<bool, Index2D>& grid, const Index2D index) const;
+    virtual void save(const std::string& filePath) const
+    {
+      try {
+              std::ofstream file(filePath, std::ios::out);
+              file << "2 " << born << " " << survive ;
+              file.close();
+      } catch (const std::string& e) {
+              std::cout << "erreur: " << e << "\n";
+      }
+    };
+    virtual void load(const std::string& filePath)
+    {
+      try {
+              std::ifstream file(filePath, std::ios::in);
+              std::uint16_t it;
+              file >> it;
+              if(it!=2){throw std::string("wrong loading, expected a 2D rule \n");}
+              file >> born;
+              file >> survive;
+              file.close();
+      } catch (const std::string& e) {
+              std::cout << "erreur: " << e << "\n";
+      }
+    };
 };
 
 // TODO fonction de sauvegarde
