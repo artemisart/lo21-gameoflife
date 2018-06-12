@@ -54,6 +54,8 @@ private slots:
     void load();
     void rand();
     void rand_sym();
+    void stop();
+    void reset();
 };
 
 QString NumToNumBit(short unsigned int num);
