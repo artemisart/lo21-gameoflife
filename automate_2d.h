@@ -57,6 +57,8 @@ private slots:
     void run();
     void load();
     void save();
+    void rand();
+    void rand_sym();
 
 };
 
