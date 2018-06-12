@@ -80,7 +80,9 @@ public:
 			std::cout << "erreur: " << e << "\n";
 		}
 	}
+
 	virtual Index1D getSize() const { return values.size(); }
+
 	virtual void load(const std::string& filePath)
 	{
 	  try {
