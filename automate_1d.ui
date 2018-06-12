@@ -41,6 +41,19 @@
      </widget>
     </item>
     <item>
+     <widget class="QLineEdit" name="name_file">
+      <property name="inputMask">
+       <string/>
+      </property>
+      <property name="text">
+       <string>nom_fichier</string>
+      </property>
+      <property name="maxLength">
+       <number>256</number>
+      </property>
+     </widget>
+    </item>
+    <item>
      <widget class="QPushButton" name="run">
       <property name="text">
        <string>Lancer la simulation</string>
@@ -95,7 +108,7 @@
     <rect>
      <x>20</x>
      <y>10</y>
-     <width>578</width>
+     <width>610</width>
      <height>556</height>
     </rect>
    </property>

@@ -48,8 +48,8 @@ Automate_1D::Automate_1D(QWidget* parent)
 
     connect(ui->next, SIGNAL(clicked()), this, SLOT(next()));
     connect(ui->menu, SIGNAL(clicked()), this, SLOT(menu()));
-    connect(ui->save, SIGNAL(clicked(bool)), this, SLOT(save()));
-    connect(ui->load, SIGNAL(clicked(bool)), this, SLOT(load()));
+    connect(ui->save, SIGNAL(clicked()), this, SLOT(save()));
+    connect(ui->load, SIGNAL(clicked()), this, SLOT(load()));
 }
 
 Automate_1D::~Automate_1D()
@@ -221,11 +221,18 @@ void Automate_1D::init_simulation(int row)
 
 
 void Automate_1D::save(){
-    std::ofstream outfile ("config");
-
-
+    std::string name = ui->name_file->text().toStdString();
+    const Grid<bool, Index1D>* g1D= h->getLast();
+    g1D->save(name);
+    r->save(name);
+    std::cout<< "sauvegarde reussie \n";
 }
 
 void Automate_1D::load(){
+  std::string name = ui->name_file->text().toStdString();
+  Grid1D<bool>* g1D = new Grid1D<bool>(20);
+  g1D->load(name);
+  h->push(g1D);
+  r->load(name);
 
 }
