@@ -85,18 +85,18 @@ public:
 
 	virtual void load(const std::string& filePath)
 	{
-	  try {
-		  std::ifstream file(filePath, std::ios::in);
-		  T cell;
-		  unsigned int it;
-		  file >> it;
+		try {
+			std::ifstream file(filePath, std::ios::in);
+			T cell;
+			size_t it;
+			file >> it;
 		  if(it!=1){throw std::string("wrong loading, expected a 1D grid \n");}
-		  file >> it;
+			file >> it;
 		  for (Index1D i; i.i < it; ++i.i)
 		   {
-		      file >> cell;
-		      setCell(i, cell);
-		   }
+				file >> cell;
+				setCell(i, cell);
+			}
 		  file.close();
 	  } catch (const std::string& e) {
 		  std::cout << "erreur: " << e << "\n";
