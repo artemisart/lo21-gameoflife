@@ -100,7 +100,6 @@ void Automate_1D::setSize()
         ui->grid->setItem(0, i, new QTableWidgetItem(""));
     }
     auto* g1 = new Grid1D<bool>(dimCol);
-    //delete h; est-ce necessaire ?
     h->setStart(*g1);
 }
 

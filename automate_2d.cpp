@@ -96,6 +96,7 @@ void Automate_2D::reset(){
     for(int i=0; i<20;i++){
         for(int j=0; j<20; j++){
             start->setCell(Index2D(i,j), true);
+            ui->grid->item(i,j)->setText("");
 
 
         }
