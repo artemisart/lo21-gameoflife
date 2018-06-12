@@ -76,6 +76,8 @@ Automate_2D::Automate_2D(QWidget* parent)
     connect(ui->stop, SIGNAL(clicked()), this, SLOT(stop()));
     connect(ui->save, SIGNAL(clicked(bool)), this, SLOT(save()));
     connect(ui->load, SIGNAL(clicked()), this, SLOT(load()));
+    connect(ui->random, SIGNAL(clicked(bool)), this, SLOT(rand()));
+    connect(ui->random_sym, SIGNAL(clicked(bool)), this, SLOT(rand_sym()));
 
 }
 
@@ -279,5 +281,67 @@ void Automate_2D::save(){
 }
 
 void Automate_2D::load(){
+
+}
+
+
+void Automate_2D::rand(){
+    for(unsigned int j=0; j < ui->hauteur->value() ; j++){
+        for(unsigned int i=0; i<ui->largeur->value(); i++){
+            int a=std::rand()%2;
+            if(a==0){
+                ui->grid->item(j,i)->setBackgroundColor("white");
+                start->setCell(Index2D(j,i), false);
+            }
+            else {
+                ui->grid->item(j,i)->setBackgroundColor("black");
+                start->setCell(Index2D(j,i), true);
+            }
+        }
+
+    }
+
+}
+
+void Automate_2D::rand_sym(){
+
+    for(unsigned int j=0; j<(ui->hauteur->value())/2; j++){
+        for(unsigned int i=0; i<(ui->largeur->value()) ; i++){
+            int a=std::rand()%2;
+            if(a==0){
+                ui->grid->item(j,i)->setBackgroundColor("white");
+                start->setCell(Index2D(j,i), false);
+
+            }
+            else {
+                ui->grid->item(j,i)->setBackgroundColor("black");
+                start->setCell(Index2D(j,i), true);
+            }
+
+    }
+
+
+
+}
+    int half= std::ceil((ui->hauteur->value())/2) -1;
+    int i=0;
+    for(unsigned int j=1; j<= half+1; j++){
+        for(unsigned int k=0; k<ui->largeur->value(); k++){
+
+            if(ui->grid->item(half-i, k)->backgroundColor() == "white"){
+                ui->grid->item( half+j, k)->setBackgroundColor("white");
+                start->setCell(Index2D(half+j,k), false);
+
+            }else{
+                ui->grid->item( half+j, k)->setBackgroundColor("black");
+                start->setCell(Index2D(half+j,k), true);
+
+
+
+            }
+        }
+            i++;
+       }
+
 
 }
