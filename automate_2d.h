@@ -24,6 +24,8 @@ public:
     void incRang() { rang++; }
     int getRang() const { return rang; }
     void init_simulation();
+ /*   void setType(int a){type=a;}
+    const int getType()const { return type; }*/
 
 private:
 	Ui::Automate_2D* ui;
@@ -38,6 +40,7 @@ private:
     bool sim;
     QLineEdit* survive[9], *born[9];
     QTimer *timer;
+    int type; // type=0 => bool, type = 1=>int
 
 private slots:
 	void setSize();

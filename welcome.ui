@@ -74,9 +74,9 @@ vous souhaitez simuler</string>
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="Automate_Hexa">
+     <widget class="QPushButton" name="Automate_Multiple_States">
       <property name="text">
-       <string>Automate Hexagonal</string>
+       <string>Automate à plusieurs états</string>
       </property>
      </widget>
     </item>

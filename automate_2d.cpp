@@ -36,7 +36,9 @@ Automate_2D::Automate_2D(QWidget* parent)
 			ui->grid->setItem(i, j, new QTableWidgetItem(""));
         }
     }
+    //if(this->getType() == 0)
     h = new RingHistory<Grid<bool, Index2D>>(10);
+   // if(this->getType()== 1) h = new RingHistory<Grid<uint8_t, Index2D>>(10);
     r = new Rule2D();
     a = new Automaton<bool, Index2D>(h, r);
 
@@ -89,12 +91,14 @@ void Automate_2D::reset(){
 
     for(int i=0; i<20;i++){
         for(int j=0; j<20; j++){
-            ui->grid->item(i,j)->setBackgroundColor("white");
-            start->setCell(Index2D(i,j), false);
+           // ui->grid->item(i,j)->setBackgroundColor("white");
+            start->setCell(Index2D(i,j), true);
 
 
         }
     }
+    ui->grid->setEditTriggers(QAbstractItemView::DoubleClicked);
+
 
 }
 

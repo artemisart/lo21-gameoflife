@@ -20,7 +20,7 @@ private:
 private slots:
     void Simulation_Automaton1D();
     void Simulation_Automaton2D();
-    void Simulation_AutomatonHexa();
+    void Simulation_Automaton_Multiple_States();
     void Quit();
 };
 

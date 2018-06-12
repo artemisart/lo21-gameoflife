@@ -10,7 +10,7 @@ Welcome::Welcome(QWidget* parent)
     ui->setupUi(this);
     connect(ui->Automate_1D, SIGNAL(clicked()), this, SLOT(Simulation_Automaton1D()));
     connect(ui->Automate_2D, SIGNAL(clicked()), this, SLOT(Simulation_Automaton2D()));
-    connect(ui->Automate_2D, SIGNAL(clicked()), this, SLOT(Simulation_AutomatonHexa()));
+    connect(ui->Automate_Multiple_States, SIGNAL(clicked()), this, SLOT(Simulation_Automaton_Multiple_States()));
 	connect(ui->quit, SIGNAL(clicked()), this, SLOT(Quit()));
 }
 
@@ -31,12 +31,19 @@ void Welcome::Simulation_Automaton2D()
 {
 	Automate_2D* simulator = new Automate_2D;
     simulator->setParent(this);
+   // simulator->setType(0);
     this->hide();
     simulator->show();
 }
 
-void Welcome::Simulation_AutomatonHexa()
+void Welcome::Simulation_Automaton_Multiple_States()
 {
+    Automate_2D* simulator = new Automate_2D;
+    simulator->setParent(this);
+    //simulator->setType(1);
+    this->hide();
+    simulator->show();
+
 }
 
 void Welcome::Quit()

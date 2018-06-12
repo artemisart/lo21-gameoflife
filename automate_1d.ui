@@ -343,7 +343,11 @@
        </widget>
       </item>
       <item>
-       <widget class="QSpinBox" name="timer"/>
+       <widget class="QSpinBox" name="timer">
+        <property name="value">
+         <number>2</number>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>

@@ -48,6 +48,7 @@ Automate_1D::Automate_1D(QWidget* parent)
 
     connect(ui->next, SIGNAL(clicked()), this, SLOT(next()));
     connect(ui->menu, SIGNAL(clicked()), this, SLOT(menu()));
+    connect(ui->save, SIGNAL(clicked(bool)), this, SLOT(save());
 }
 
 Automate_1D::~Automate_1D()
@@ -64,6 +65,7 @@ void Automate_1D::setSize()
 	ui->grid->verticalHeader()->setVisible(false);
 	ui->grid->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	ui->grid->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    ui->grid->setFixedWidth(ui->size_Box->value()*25);
 
     for (int i = 0; i < dimCol; i++) {
 		ui->grid->setColumnWidth(i, 25);
@@ -216,3 +218,7 @@ void Automate_1D::init_simulation(int row)
     begin = true;
 }
 
+
+void Automate_1D::save(){
+
+}

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>938</width>
-    <height>746</height>
+    <width>1003</width>
+    <height>910</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -541,7 +541,11 @@
        </widget>
       </item>
       <item>
-       <widget class="QSpinBox" name="timer"/>
+       <widget class="QSpinBox" name="timer">
+        <property name="value">
+         <number>2</number>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>
@@ -553,278 +557,243 @@
      </widget>
     </item>
     <item>
-     <widget class="QScrollArea" name="scrollArea">
-      <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
-      </property>
-      <property name="widgetResizable">
+     <widget class="QTableWidget" name="grid">
+      <property name="enabled">
        <bool>true</bool>
       </property>
-      <widget class="QWidget" name="scrollAreaWidgetContents">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>0</y>
-         <width>685</width>
-         <height>720</height>
-        </rect>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>500</width>
+        <height>500</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="verticalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOff</enum>
+      </property>
+      <property name="horizontalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOff</enum>
+      </property>
+      <property name="sizeAdjustPolicy">
+       <enum>QAbstractScrollArea::AdjustToContents</enum>
+      </property>
+      <attribute name="horizontalHeaderVisible">
+       <bool>false</bool>
+      </attribute>
+      <attribute name="verticalHeaderVisible">
+       <bool>false</bool>
+      </attribute>
+      <row>
+       <property name="text">
+        <string>Nouvelle ligne</string>
        </property>
-       <widget class="QWidget" name="verticalLayoutWidget_3">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>0</y>
-          <width>571</width>
-          <height>502</height>
-         </rect>
-        </property>
-        <layout class="QVBoxLayout" name="simulation">
-         <property name="sizeConstraint">
-          <enum>QLayout::SetNoConstraint</enum>
-         </property>
-         <item>
-          <widget class="QTableWidget" name="grid">
-           <property name="enabled">
-            <bool>true</bool>
-           </property>
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>500</width>
-             <height>500</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>16777215</width>
-             <height>16777215</height>
-            </size>
-           </property>
-           <property name="verticalScrollBarPolicy">
-            <enum>Qt::ScrollBarAlwaysOff</enum>
-           </property>
-           <property name="horizontalScrollBarPolicy">
-            <enum>Qt::ScrollBarAlwaysOff</enum>
-           </property>
-           <property name="sizeAdjustPolicy">
-            <enum>QAbstractScrollArea::AdjustToContents</enum>
-           </property>
-           <attribute name="horizontalHeaderVisible">
-            <bool>false</bool>
-           </attribute>
-           <attribute name="verticalHeaderVisible">
-            <bool>false</bool>
-           </attribute>
-           <row>
-            <property name="text">
-             <string>Nouvelle ligne</string>
-            </property>
-           </row>
-           <row>
-            <property name="text">
-             <string>Nouvelle ligne</string>
-            </property>
-           </row>
-           <row>
-            <property name="text">
-             <string>Nouvelle ligne</string>
-            </property>
-           </row>
-           <row>
-            <property name="text">
-             <string>Nouvelle ligne</string>
-            </property>
-           </row>
-           <row>
-            <property name="text">
-             <string>Nouvelle ligne</string>
-            </property>
-           </row>
-           <row>
-            <property name="text">
-             <string>Nouvelle ligne</string>
-            </property>
-           </row>
-           <row>
-            <property name="text">
-             <string>Nouvelle ligne</string>
-            </property>
-           </row>
-           <row>
-            <property name="text">
-             <string>Nouvelle ligne</string>
-            </property>
-           </row>
-           <row>
-            <property name="text">
-             <string>Nouvelle ligne</string>
-            </property>
-           </row>
-           <row>
-            <property name="text">
-             <string>Nouvelle ligne</string>
-            </property>
-           </row>
-           <row>
-            <property name="text">
-             <string>Nouvelle ligne</string>
-            </property>
-           </row>
-           <row>
-            <property name="text">
-             <string>Nouvelle ligne</string>
-            </property>
-           </row>
-           <row>
-            <property name="text">
-             <string>Nouvelle ligne</string>
-            </property>
-           </row>
-           <row>
-            <property name="text">
-             <string>Nouvelle ligne</string>
-            </property>
-           </row>
-           <row>
-            <property name="text">
-             <string>Nouvelle ligne</string>
-            </property>
-           </row>
-           <row>
-            <property name="text">
-             <string>Nouvelle ligne</string>
-            </property>
-           </row>
-           <row>
-            <property name="text">
-             <string>Nouvelle ligne</string>
-            </property>
-           </row>
-           <row>
-            <property name="text">
-             <string>Nouvelle ligne</string>
-            </property>
-           </row>
-           <row>
-            <property name="text">
-             <string>Nouvelle ligne</string>
-            </property>
-           </row>
-           <row>
-            <property name="text">
-             <string>Nouvelle ligne</string>
-            </property>
-           </row>
-           <column>
-            <property name="text">
-             <string>Nouvelle colonne</string>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>Nouvelle colonne</string>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>Nouvelle colonne</string>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>Nouvelle colonne</string>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>Nouvelle colonne</string>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>Nouvelle colonne</string>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>Nouvelle colonne</string>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>Nouvelle colonne</string>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>Nouvelle colonne</string>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>Nouvelle colonne</string>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>Nouvelle colonne</string>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>Nouvelle colonne</string>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>Nouvelle colonne</string>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>Nouvelle colonne</string>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>Nouvelle colonne</string>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>Nouvelle colonne</string>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>Nouvelle colonne</string>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>Nouvelle colonne</string>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>Nouvelle colonne</string>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>Nouvelle colonne</string>
-            </property>
-           </column>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </widget>
+      </row>
+      <row>
+       <property name="text">
+        <string>Nouvelle ligne</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>Nouvelle ligne</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>Nouvelle ligne</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>Nouvelle ligne</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>Nouvelle ligne</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>Nouvelle ligne</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>Nouvelle ligne</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>Nouvelle ligne</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>Nouvelle ligne</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>Nouvelle ligne</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>Nouvelle ligne</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>Nouvelle ligne</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>Nouvelle ligne</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>Nouvelle ligne</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>Nouvelle ligne</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>Nouvelle ligne</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>Nouvelle ligne</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>Nouvelle ligne</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>Nouvelle ligne</string>
+       </property>
+      </row>
+      <column>
+       <property name="text">
+        <string>Nouvelle colonne</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Nouvelle colonne</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Nouvelle colonne</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Nouvelle colonne</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Nouvelle colonne</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Nouvelle colonne</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Nouvelle colonne</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Nouvelle colonne</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Nouvelle colonne</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Nouvelle colonne</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Nouvelle colonne</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Nouvelle colonne</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Nouvelle colonne</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Nouvelle colonne</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Nouvelle colonne</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Nouvelle colonne</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Nouvelle colonne</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Nouvelle colonne</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Nouvelle colonne</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Nouvelle colonne</string>
+       </property>
+      </column>
      </widget>
     </item>
    </layout>

@@ -49,6 +49,7 @@ private slots:
 	void next();
 	void menu();
     void run();
+    void save();
 };
 
 QString NumToNumBit(short unsigned int num);
