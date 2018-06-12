@@ -3,6 +3,7 @@
 
 #include "Rule.h"
 #include <Automaton.h>
+#include <QCheckBox>
 #include <QIntValidator>
 #include <QLineEdit>
 #include <QModelIndex>
@@ -38,15 +39,13 @@ private:
     int rang;
     QTableWidget* etats;
     bool sim;
-    QLineEdit* survive[9], *born[9];
-    QTimer *timer;
+	QCheckBox *survive[9], *born[9];
+	QTimer* timer;
     int type; // type=0 => bool, type = 1=>int
 
 private slots:
 	void setSize();
-    void synchronizeNumToNumBit_b(int j);
     void synchronizeNumBitToNum_b(const QString& s);
-    void synchronizeNumToNumBit_s(int j);
     void synchronizeNumBitToNum_s(const QString& s);
 	void simulation();
 	void cellActivation(const QModelIndex& index);
@@ -59,7 +58,9 @@ private slots:
     void save();
     void rand();
     void rand_sym();
-
+	void on_born_textEdited(const QString& rule);
+	void on_survive_textEdited(const QString& rule);
+	void on_born_i_stateChanged();
 };
 
 QString NumToNumBit(short unsigned int num);

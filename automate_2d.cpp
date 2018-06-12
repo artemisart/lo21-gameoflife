@@ -2,8 +2,7 @@
 #include "automate_1d.h"
 #include "ui_automate_2d.h"
 #include <QMessageBox>
-#include<QScrollArea>
-#include <unistd.h>     //for using the function sleep
+#include <QScrollArea>
 #include <QTimer>
 
 Automate_2D::Automate_2D(QWidget* parent)
@@ -17,13 +16,13 @@ Automate_2D::Automate_2D(QWidget* parent)
     timer = new QTimer(parent);
     connect(timer, SIGNAL(timeout()), this, SLOT(run()));
 
-  QLineEdit* _survive[9] = {
-        ui->Survive0, ui->Survive1, ui->Survive2, ui->Survive3,
-        ui->Survive4, ui->Survive5, ui->Survive6, ui->Survive7, ui->Survive8
+	QCheckBox* _survive[9] = {
+		ui->survive0, ui->survive1, ui->survive2, ui->survive3,
+		ui->survive4, ui->survive5, ui->survive6, ui->survive7, ui->survive8
     };
-	QLineEdit* _born[9] = {
-        ui->Born0, ui->Born1, ui->Born2, ui->Born3,
-		ui->Born4, ui->Born5, ui->Born6, ui->Born7, ui->Born8
+	QCheckBox* _born[9] = {
+		ui->born0, ui->born1, ui->born2, ui->born3,
+		ui->born4, ui->born5, ui->born6, ui->born7, ui->born8
     };
 	std::copy_n(_survive, 9, survive); // because arrays are not directly assignable
 	std::copy_n(_born, 9, born);
@@ -47,24 +46,11 @@ Automate_2D::Automate_2D(QWidget* parent)
 
     zeroOneValidator = new QIntValidator(0, 1, this);
 	for (int i = 0; i < 9; i++) {
-        born[i]->setValidator(zeroOneValidator);
-		survive[i]->setValidator(zeroOneValidator);
+		connect(born[i], SIGNAL(textEdited(QString)), this, SLOT(synchronizeNumBitToNum_b(QString)));
+		connect(survive[i], SIGNAL(textEdited(QString)), this, SLOT(synchronizeNumBitToNum_s(QString)));
     }
 
-
-    for (auto brn : born) {
-        brn->setValidator(zeroOneValidator);
-        connect(brn, SIGNAL(textChanged(QString)), this, SLOT(synchronizeNumBitToNum_b(QString)));
-    }
-
-   for (auto surv : survive) {
-        surv->setValidator(zeroOneValidator);
-        connect(surv, SIGNAL(textChanged(QString)), this, SLOT(synchronizeNumBitToNum_s(QString)));
-    }
-
-    connect(ui->size, SIGNAL(clicked()), this, SLOT(setSize()));
-    connect(ui->born, SIGNAL(valueChanged(int)), this, SLOT(synchronizeNumToNumBit_b(int)));
-    connect(ui->Survive, SIGNAL(valueChanged(int)), this, SLOT(synchronizeNumToNumBit_s(int)));
+	connect(ui->size_b, SIGNAL(clicked()), this, SLOT(setSize()));
 
     connect(ui->run, SIGNAL(clicked()), this, SLOT(simulation()));
 
@@ -78,7 +64,6 @@ Automate_2D::Automate_2D(QWidget* parent)
     connect(ui->load, SIGNAL(clicked()), this, SLOT(load()));
     connect(ui->random, SIGNAL(clicked(bool)), this, SLOT(rand()));
     connect(ui->random_sym, SIGNAL(clicked(bool)), this, SLOT(rand_sym()));
-
 }
 
 Automate_2D::~Automate_2D()
@@ -86,27 +71,26 @@ Automate_2D::~Automate_2D()
     delete ui;
 }
 
-void Automate_2D::reset(){
+void Automate_2D::reset()
+{
     ui->largeur->setValue(20);
-    ui->hauteur->setValue(0);
-    ui->Survive->setValue(0);
-    ui->born->setValue(0);
+    ui->hauteur->setValue(20);
+	ui->survive->setText("23");
+	ui->born->setText("2");
     setSize();
 
-    for(int i=0; i<20;i++){
-        for(int j=0; j<20; j++){
+	for (int i = 0; i < 20; i++) {
+		for (int j = 0; j < 20; j++) {
             start->setCell(Index2D(i,j), true);
             ui->grid->item(i,j)->setText("");
-
-
         }
     }
     ui->grid->setEditTriggers(QAbstractItemView::DoubleClicked);
 
-
 }
 
-void Automate_2D::stop(){
+void Automate_2D::stop()
+{
     sim = false;
 }
 
@@ -136,93 +120,50 @@ void Automate_2D::setSize()
     h->setStart(*g1);
 }
 
-void Automate_2D::synchronizeNumToNumBit_s(int j)
-{
-
-    QString numbit = NumToNumBit(j);
-
-    ui->Survive0->setText(QString(numbit[0]));
-    ui->Survive1->setText(QString(numbit[1]));
-    ui->Survive2->setText(QString(numbit[2]));
-    ui->Survive3->setText(QString(numbit[3]));
-    ui->Survive4->setText(QString(numbit[4]));
-    ui->Survive5->setText(QString(numbit[5]));
-    ui->Survive6->setText(QString(numbit[6]));
-    ui->Survive7->setText(QString(numbit[7]));
-
-    r->setSurvive(j);
-}
-
-void Automate_2D::synchronizeNumToNumBit_b(int j)
-{
-
-    QString numbit = NumToNumBit(j);
-
-    ui->Born0->setText(QString(numbit[0]));
-    ui->Born1->setText(QString(numbit[1]));
-    ui->Born2->setText(QString(numbit[2]));
-    ui->Born3->setText(QString(numbit[3]));
-    ui->Born4->setText(QString(numbit[4]));
-    ui->Born5->setText(QString(numbit[5]));
-    ui->Born6->setText(QString(numbit[6]));
-    ui->Born7->setText(QString(numbit[7]));
-
-    r->setSurvive(j);
-}
-
 void Automate_2D::synchronizeNumBitToNum_s(const QString& s)
 {
-
+	// TODO remove this function
     QString str;
 
-	for (unsigned int k = 0; k < 8; k++) {
+	for (int k = 0; k < 9; k++) {
 		if (survive[k]->text() == "")
-            return;
+			return;
+		str += survive[k]->text();
 	}
 
-	for (unsigned int j = 0; j < 8; j++) {
-        str += survive[j]->text();
-    }
-
-	int i = NumBitToNum(str);
-    ui->Survive->setValue(i);
-    r->setSurvive(i);
+	std::uint16_t i = NumBitToNum(str);
+	//	ui->Survive->setValue(i);
+	r->setSurvive(i);
 }
 
 void Automate_2D::synchronizeNumBitToNum_b(const QString& s)
 {
-
+	// TODO remove this function
     QString str;
 
-	for (unsigned int k = 0; k < 8; k++) {
+	for (unsigned int k = 0; k < 9; k++) {
 		if (born[k]->text() == "")
-            return;
-    }
-
-	for (unsigned int j = 0; j < 8; j++) {
-        str += born[j]->text();
+			return;
+		str += born[k]->text();
     }
 
     int i = NumBitToNum(str);
-    ui->born->setValue(i);
+    //ui->born->setValue(i);
+	ui->born->setText(str);
     r->setBorn(i);
 }
 
 void Automate_2D::simulation()
 {
 
-    sim=true;
+	sim = true;
     run();
-
-
-
-
-
 }
 
-void Automate_2D::run(){
-    if(sim==true){
-        timer->start(ui->timer->value()*1000);
+void Automate_2D::run()
+{
+	if (sim == true) {
+		timer->start(ui->timer->value() * 1000);
 
         next();
     }
@@ -267,7 +208,6 @@ void Automate_2D::next()
 	}
 
 	incRang();
-
 }
 
 void Automate_2D::menu()
@@ -344,4 +284,47 @@ void Automate_2D::rand_sym(){
        }
 
 
+}
+void Automate_2D::on_born_textEdited(const QString& str)
+{
+	QString newText;
+	std::uint16_t rule = 0;
+	for (int i = 0; i < 9; ++i) {
+		bool b = str.contains('0' + i);
+		born[i]->setChecked(b);
+		rule += b << i;
+		if (b)
+			newText.append('0' + i);
+	}
+	ui->born->setText(newText);
+	r->setBorn(rule);
+}
+
+void Automate_2D::on_survive_textEdited(const QString& str)
+{
+	QString newText;
+	std::uint16_t rule = 0;
+	for (int i = 0; i < 9; ++i) {
+		bool b = str.contains('0' + i);
+		survive[i]->setChecked(b);
+		rule += b << i;
+		if (b)
+			newText.append('0' + i);
+	}
+	ui->survive->setText(newText);
+	r->setSurvive(rule);
+}
+
+void Automate_2D::on_born_i_stateChanged()
+{
+	QString newText;
+	std::uint16_t rule = 0;
+	for (int i = 0; i < 9; ++i) {
+		bool b = born[i]->isChecked();
+		rule += b << i;
+		if (b)
+			newText.append('0' + i);
+	}
+	ui->born->setText(newText);
+	r->setBorn(rule);
 }
