@@ -48,8 +48,12 @@ Automate_1D::Automate_1D(QWidget* parent)
 
     connect(ui->next, SIGNAL(clicked()), this, SLOT(next()));
     connect(ui->menu, SIGNAL(clicked()), this, SLOT(menu()));
-    connect(ui->save, SIGNAL(clicked()), this, SLOT(save()));
-    connect(ui->load, SIGNAL(clicked()), this, SLOT(load()));
+
+    connect(ui->save, SIGNAL(clicked(bool)), this, SLOT(save()));
+    connect(ui->load, SIGNAL(clicked(bool)), this, SLOT(load()));
+    connect(ui->random, SIGNAL(clicked(bool)), this, SLOT(rand()));
+    connect(ui->random_sym, SIGNAL(clicked(bool)), this, SLOT(rand_sym()));
+
 }
 
 Automate_1D::~Automate_1D()
@@ -234,5 +238,58 @@ void Automate_1D::load(){
   g1D->load(name);
   h->push(g1D);
   r->load(name);
+
+}
+
+void Automate_1D::rand(){
+    for(unsigned int j=0; j < ui->size_Box->value() ; j++){
+        int a=std::rand()%2;
+        if(a==0){
+            ui->grid->item(0,j)->setBackgroundColor("white");
+            start->setCell(j, false);
+        }
+        else {
+            ui->grid->item(0,j)->setBackgroundColor("black");
+            start->setCell(j, true);
+        }
+    }
+
+}
+
+void Automate_1D::rand_sym(){
+    for(unsigned int j=0; j<(ui->size_Box->value())/2; j++){
+        int a=std::rand()%2;
+        if(a==0){
+            ui->grid->item(0,j)->setBackgroundColor("white");
+            start->setCell(j, false);
+            ui->grid->item(0, j)->setText("");
+            ui->grid->item(0, j)->setBackgroundColor("white");
+        }
+        else {
+            ui->grid->item(0,j)->setBackgroundColor("black");
+            start->setCell(j, true);
+            ui->grid->item(0, j)->setText("_");
+            ui->grid->item(0, j)->setBackgroundColor("black");
+        }
+
+
+}
+    int half= std::ceil((ui->size_Box->value())/2) -1;
+    int i=0;
+    for(unsigned int j=1; j<= half+1; j++){
+            if(ui->grid->item(0, half-i)->text() == ""){
+                ui->grid->item(0, half+j)->setBackgroundColor("white");
+                start->setCell(j, false);
+
+            }else{
+                ui->grid->item(0, half+j)->setBackgroundColor("black");
+                start->setCell(j, true);
+
+
+
+            }
+            i++;
+       }
+
 
 }
