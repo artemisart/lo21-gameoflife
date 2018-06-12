@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="Grid1D&lt;T&gt;">
+    <Position X="4.75" Y="1" Width="4" />
+    <TypeIdentifier>
+      <HashCode>IAAAAFAABICAAAAAAAAQAAAAAAAAACAAAAAAAgAAAAA=</HashCode>
+      <FileName>Grid.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Grid2D&lt;T&gt;">
+    <Position X="0.5" Y="4.25" Width="4" />
+    <TypeIdentifier>
+      <HashCode>IAAAAEAABICCAAQAQAAQAAAAAAAAACAAAAAAAgAAAAA=</HashCode>
+      <FileName>Grid.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="History&lt;T&gt;">
+    <Position X="0.5" Y="8.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAgAAAAQAAAAAAAAgAgAAAKAEAAAAA=</HashCode>
+      <FileName>History.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RingHistory&lt;T&gt;">
+    <Position X="3.75" Y="8.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAEAAAAAAAQAAAgAEEAgAAAAAIAAAAAAA=</HashCode>
+      <FileName>History.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rule&lt;T, I&gt;">
+    <Position X="8.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAAAAAAAAAgAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>Rule.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rule1D">
+    <Position X="8" Y="6.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAACAAgAAAAAAAACAAAAACAAAAAAAgAAAAA=</HashCode>
+      <FileName>Rule.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rule2D">
+    <Position X="10.5" Y="5.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEIgAAgAAAAACAQAAAAAAAAAAAAEEgAAAAA=</HashCode>
+      <FileName>Rule.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Grid&lt;T, I&gt;">
+    <Position X="0.5" Y="0.5" Width="4" />
+    <TypeIdentifier>
+      <HashCode>IAEAAkAABICAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAQA=</HashCode>
+      <FileName>Grid.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="Index">
+    <Position X="9.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Index.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="Index1D">
+    <Position X="11.25" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAQAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>Index.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="Index2D">
+    <Position X="10.25" Y="2.75" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAQAAAAAAAAAAAAAQACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Index.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
