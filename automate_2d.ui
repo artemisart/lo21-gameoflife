@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>825</width>
-    <height>455</height>
+    <height>513</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -22,35 +22,35 @@
      <item>
       <layout class="QHBoxLayout" name="hlayout_size">
        <item>
-        <widget class="QLabel" name="size_l">
+        <widget class="QLabel" name="sizeLabel">
          <property name="text">
           <string>Largeur</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QSpinBox" name="largeur">
+        <widget class="QSpinBox" name="widthSpinbox">
          <property name="value">
           <number>20</number>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label">
+        <widget class="QLabel" name="heightLabel">
          <property name="text">
           <string>Hauteur</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QSpinBox" name="hauteur">
+        <widget class="QSpinBox" name="heightSpinbox">
          <property name="value">
           <number>20</number>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="size_b">
+        <widget class="QPushButton" name="sizeButton">
          <property name="autoFillBackground">
           <bool>false</bool>
          </property>
@@ -464,11 +464,14 @@
        <property name="sizeAdjustPolicy">
         <enum>QAbstractScrollArea::AdjustToContents</enum>
        </property>
+       <property name="selectionMode">
+        <enum>QAbstractItemView::NoSelection</enum>
+       </property>
        <property name="rowCount">
         <number>1</number>
        </property>
        <property name="columnCount">
-        <number>8</number>
+        <number>1</number>
        </property>
        <attribute name="horizontalHeaderVisible">
         <bool>false</bool>
@@ -481,41 +484,6 @@
          <string>Nouvelle ligne</string>
         </property>
        </row>
-       <column>
-        <property name="text">
-         <string>Nouvelle colonne</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>Nouvelle colonne</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>Nouvelle colonne</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>Nouvelle colonne</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>Nouvelle colonne</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>Nouvelle colonne</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>Nouvelle colonne</string>
-        </property>
-       </column>
        <column>
         <property name="text">
          <string>Nouvelle colonne</string>
