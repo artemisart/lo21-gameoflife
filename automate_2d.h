@@ -45,8 +45,6 @@ private:
 
 private slots:
 	void setSize();
-    void synchronizeNumBitToNum_b(const QString& s);
-    void synchronizeNumBitToNum_s(const QString& s);
 	void simulation();
 	void cellActivation(const QModelIndex& index);
 	void next();
@@ -60,7 +58,8 @@ private slots:
     void rand_sym();
 	void on_born_textEdited(const QString& rule);
 	void on_survive_textEdited(const QString& rule);
-	void on_born_i_stateChanged();
+	void on_born_i_clicked();
+	void on_survive_i_clicked();
 };
 
 QString NumToNumBit(short unsigned int num);

@@ -44,10 +44,9 @@ Automate_2D::Automate_2D(QWidget* parent)
 	start = new Grid2D<bool>(20, 20);
     h->setStart(*start);
 
-    zeroOneValidator = new QIntValidator(0, 1, this);
 	for (int i = 0; i < 9; i++) {
-		connect(born[i], SIGNAL(textEdited(QString)), this, SLOT(synchronizeNumBitToNum_b(QString)));
-		connect(survive[i], SIGNAL(textEdited(QString)), this, SLOT(synchronizeNumBitToNum_s(QString)));
+		connect(born[i], &QCheckBox::clicked, this, &Automate_2D::on_born_i_clicked);
+		connect(survive[i], &QCheckBox::clicked, this, &Automate_2D::on_survive_i_clicked);
     }
 
 	connect(ui->size_b, SIGNAL(clicked()), this, SLOT(setSize()));
@@ -95,7 +94,6 @@ void Automate_2D::stop()
 
 void Automate_2D::setSize()
 {
-
 	int dimCol = ui->hauteur->value();
     int dimRow = ui->largeur->value();
 	ui->grid->setMinimumSize(25 * dimRow, 25 * dimCol);
@@ -117,39 +115,6 @@ void Automate_2D::setSize()
     }
     auto* g1 = new Grid2D<bool>(dimCol, dimRow);
     h->setStart(*g1);
-}
-
-void Automate_2D::synchronizeNumBitToNum_s(const QString& s)
-{
-	// TODO remove this function
-    QString str;
-
-	for (int k = 0; k < 9; k++) {
-		if (survive[k]->text() == "")
-			return;
-		str += survive[k]->text();
-	}
-
-	std::uint16_t i = NumBitToNum(str);
-	//	ui->Survive->setValue(i);
-	r->setSurvive(i);
-}
-
-void Automate_2D::synchronizeNumBitToNum_b(const QString& s)
-{
-	// TODO remove this function
-    QString str;
-
-	for (unsigned int k = 0; k < 9; k++) {
-		if (born[k]->text() == "")
-			return;
-		str += born[k]->text();
-    }
-
-	std::uint16_t i = NumBitToNum(str);
-    //ui->born->setValue(i);
-	ui->born->setText(str);
-    r->setBorn(i);
 }
 
 void Automate_2D::simulation()
@@ -296,7 +261,7 @@ void Automate_2D::on_survive_textEdited(const QString& str)
 	r->setSurvive(rule);
 }
 
-void Automate_2D::on_born_i_stateChanged()
+void Automate_2D::on_born_i_clicked()
 {
 	QString newText;
 	std::uint16_t rule = 0;
@@ -308,4 +273,18 @@ void Automate_2D::on_born_i_stateChanged()
 	}
 	ui->born->setText(newText);
 	r->setBorn(rule);
+}
+
+void Automate_2D::on_survive_i_clicked()
+{
+	QString newText;
+	std::uint16_t rule = 0;
+	for (int i = 0; i < 9; ++i) {
+		bool b = survive[i]->isChecked();
+		rule += b << i;
+		if (b)
+			newText.append('0' + i);
+	}
+	ui->survive->setText(newText);
+	r->setSurvive(rule);
 }
