@@ -259,7 +259,8 @@ void Automate_2D::rand_sym()
 
 
     }
-    int half= std::ceil((ui->hauteur->value())/2) -1;
+	//	int half = (int)std::ceil(ui->hauteur->value() / 2.) - 1;
+	int half = ui->hauteur->value() / 2; // TODO check if this is sufficient
 	int i = 0;
 	for (int j = 1; j <= half + 1; j++) {
 		for (int k = 0; k < ui->largeur->value(); k++) {
