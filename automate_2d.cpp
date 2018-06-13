@@ -49,6 +49,7 @@ Automate_2D::Automate_2D(QWidget* parent)
 		connect(survive[i], &QCheckBox::clicked, this, &Automate_2D::on_survive_i_clicked);
     }
 
+	this->setSize();
 	connect(ui->size_b, SIGNAL(clicked()), this, SLOT(setSize()));
 
     connect(ui->run, SIGNAL(clicked()), this, SLOT(simulation()));
