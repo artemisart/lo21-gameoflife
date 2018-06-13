@@ -2,7 +2,7 @@
 
 /*--------------------------------RULE 1D-------------------------------------*/
 
-Rule1D::Rule1D(const std::uint16_t i)
+Rule1D::Rule1D(const std::uint8_t i)
 	: num(i)
 {
 }
@@ -12,7 +12,7 @@ std::uint16_t Rule1D::getNum() const
 	return this->num;
 }
 
-void Rule1D::setNum(const std::uint16_t i)
+void Rule1D::setNum(const std::uint8_t i)
 {
 	this->num = i;
 }
