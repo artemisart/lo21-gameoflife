@@ -32,7 +32,7 @@
        <enum>QLayout::SetDefaultConstraint</enum>
       </property>
       <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <layout class="QHBoxLayout" name="hlayout_size">
         <item>
          <widget class="QLabel" name="size_l">
           <property name="text">
@@ -80,7 +80,7 @@
        </layout>
       </item>
       <item>
-       <layout class="QHBoxLayout" name="h_bs">
+       <layout class="QHBoxLayout" name="hlayout_bs">
         <item>
          <layout class="QHBoxLayout" name="h_born">
           <item>
@@ -402,7 +402,7 @@
        </layout>
       </item>
       <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <layout class="QHBoxLayout" name="hlayout_timer">
         <item>
          <widget class="QLabel" name="label_2">
           <property name="text">
@@ -420,14 +420,14 @@
        </layout>
       </item>
       <item>
-       <widget class="QLabel" name="init_l">
-        <property name="text">
-         <string>Définissez la configuration de départ : </string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout">
+       <layout class="QHBoxLayout" name="hl_startconfig">
+        <item>
+         <widget class="QLabel" name="init_l">
+          <property name="text">
+           <string>Définissez la configuration de départ : </string>
+          </property>
+         </widget>
+        </item>
         <item>
          <widget class="QPushButton" name="random">
           <property name="text">
@@ -500,74 +500,74 @@
         </column>
        </widget>
       </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QVBoxLayout" name="vlayout_menuright">
+      <property name="sizeConstraint">
+       <enum>QLayout::SetDefaultConstraint</enum>
+      </property>
       <item>
-       <layout class="QVBoxLayout" name="verticalLayout_5">
-        <property name="sizeConstraint">
-         <enum>QLayout::SetDefaultConstraint</enum>
+       <widget class="QPushButton" name="load">
+        <property name="text">
+         <string>Charger un Automate Existant</string>
         </property>
-        <item>
-         <widget class="QPushButton" name="charge">
-          <property name="text">
-           <string>Charger un Automate Existant</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="save">
-          <property name="text">
-           <string>Sauvegarder la configuration</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="run">
-          <property name="text">
-           <string>Lancer la simulation</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="stop">
-          <property name="text">
-           <string>Arrêter la simulation</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="next">
-          <property name="text">
-           <string>Etat suivant</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="reset">
-          <property name="text">
-           <string>Reset</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="menu">
-          <property name="text">
-           <string>Retour au menu</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <spacer name="verticalSpacer">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-       </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="save">
+        <property name="text">
+         <string>Sauvegarder la configuration</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="run">
+        <property name="text">
+         <string>Lancer la simulation</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="stop">
+        <property name="text">
+         <string>Arrêter la simulation</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="next">
+        <property name="text">
+         <string>Etat suivant</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="reset">
+        <property name="text">
+         <string>Reset</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="menu">
+        <property name="text">
+         <string>Retour au menu</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="verticalSpacer">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
       </item>
      </layout>
     </item>
