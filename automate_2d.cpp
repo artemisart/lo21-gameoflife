@@ -37,7 +37,7 @@ Automate_2D::Automate_2D(QWidget* parent)
     }
     //if(this->getType() == 0)
     h = new RingHistory<Grid<bool, Index2D>>(10);
-   // if(this->getType()== 1) h = new RingHistory<Grid<uint8_t, Index2D> >(10);
+	// if(this->getType()== 1) h = new RingHistory<Grid<uint8_t, Index2D> >(10);
     r = new Rule2D();
     a = new Automaton<bool, Index2D>(h, r);
 
@@ -81,12 +81,11 @@ void Automate_2D::reset()
 
 	for (int i = 0; i < 20; i++) {
 		for (int j = 0; j < 20; j++) {
-            start->setCell(Index2D(i,j), true);
-            ui->grid->item(i,j)->setText("");
+			start->setCell(Index2D(i, j), true);
+			ui->grid->item(i, j)->setText("");
         }
     }
     ui->grid->setEditTriggers(QAbstractItemView::DoubleClicked);
-
 }
 
 void Automate_2D::stop()
@@ -155,7 +154,6 @@ void Automate_2D::synchronizeNumBitToNum_b(const QString& s)
 
 void Automate_2D::simulation()
 {
-
 	sim = true;
     run();
 }
@@ -216,14 +214,13 @@ void Automate_2D::menu()
     this->parent->show();
 }
 
-void Automate_2D::save(){
-
+void Automate_2D::save()
+{
 }
 
-void Automate_2D::load(){
-
+void Automate_2D::load()
+{
 }
-
 
 void Automate_2D::rand()
 {
@@ -233,15 +230,12 @@ void Automate_2D::rand()
 			if (a == 0) {
 				ui->grid->item(j, i)->setBackgroundColor("white");
 				start->setCell(Index2D(j, i), false);
-            }
-            else {
+			} else {
 				ui->grid->item(j, i)->setBackgroundColor("black");
 				start->setCell(Index2D(j, i), true);
             }
         }
-
     }
-
 }
 
 void Automate_2D::rand_sym()
@@ -253,11 +247,6 @@ void Automate_2D::rand_sym()
 			ui->grid->item(j, i)->setBackgroundColor(a ? "black" : "white");
 			start->setCell(Index2D(j, i), a);
 		}
-
-    }
-
-
-
     }
 	//	int half = (int)std::ceil(ui->hauteur->value() / 2.) - 1;
 	int half = ui->hauteur->value() / 2; // TODO check if this is sufficient
@@ -267,20 +256,15 @@ void Automate_2D::rand_sym()
 
 			if (ui->grid->item(half - i, k)->backgroundColor() == "white") {
 				ui->grid->item(half + j, k)->setBackgroundColor("white");
-                start->setCell(Index2D(half+j,k), false);
+				start->setCell(Index2D(half + j, k), false);
 
-            }else{
-                ui->grid->item( half+j, k)->setBackgroundColor("black");
-                start->setCell(Index2D(half+j,k), true);
-
-
-
+			} else {
+				ui->grid->item(half + j, k)->setBackgroundColor("black");
+				start->setCell(Index2D(half + j, k), true);
             }
         }
-            i++;
-       }
-
-
+		i++;
+	}
 }
 void Automate_2D::on_born_textEdited(const QString& str)
 {
