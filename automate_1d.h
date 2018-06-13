@@ -5,12 +5,12 @@
 #include <Automaton.h>
 #include <QIntValidator>
 #include <QLineEdit>
+#include <QMenu>
 #include <QModelIndex>
 #include <QString>
 #include <QTableWidget>
-#include <QWidget>
 #include <QTimer>
-#include <QMenu>
+#include <QWidget>
 
 /**
  * @file automate_1d.h
@@ -40,13 +40,11 @@ private:
     QIntValidator* zeroOneValidator;
     Automaton<bool, Index1D>* a;
     Rule1D* r;
-    RingHistory<Grid<bool, Index1D>>* h;
-    Grid<bool, Index1D>* start;
     int rang;
     QTableWidget* etats;
-    bool sim,begin;
-	QLineEdit* numBits[8];
-    QTimer *timer;
+	bool sim, begin;
+	std::array<QLineEdit*, 8> numBits;
+	QTimer* timer;
 
 private slots:
 	void setSize();

@@ -6,38 +6,28 @@ Automate_1D::Automate_1D(QWidget* parent)
 	: QWidget(parent)
 	, ui(new Ui::Automate_1D)
     , rang(1)
+	, sim(true)
     , begin(false)
-    , sim(true)
 {
-
     timer = new QTimer(parent);
     connect(timer, SIGNAL(timeout()), this, SLOT(run()));
 
-    ui->setupUi(this);
-	QLineEdit* _numBits[8] = {
-		ui->numBit1, ui->numBit2, ui->numBit3, ui->numBit4,
-		ui->numBit5, ui->numBit6, ui->numBit7, ui->numBit8
-	};
-	std::copy_n(_numBits, 8, numBits); // because numBits is not directly assignable
+	ui->setupUi(this);
+	numBits = { { ui->numBit1, ui->numBit2, ui->numBit3, ui->numBit4,
+		ui->numBit5, ui->numBit6, ui->numBit7, ui->numBit8 } };
 
-	ui->grid->setFixedSize(ui->size_Box->value() * 25, 25);
-    for (int i = 0; i < 20; i++) {
-        ui->grid->setColumnWidth(i,25);
-        ui->grid->setItem(0, i, new QTableWidgetItem(""));
-    }
-
-    h = new RingHistory<Grid<bool, Index1D>>(10);
+	auto h = new RingHistory<Grid<bool, Index1D>>(10);
     r = new Rule1D();
     a = new Automaton<bool, Index1D>(h, r);
 
-	start = new Grid1D<bool>(20);
-    h->setStart(*start);
-
+	// TODO checkboxes here
 	zeroOneValidator = new QIntValidator(0, 1, this);
 	for (auto nb : numBits) {
 		nb->setValidator(zeroOneValidator);
 		connect(nb, SIGNAL(textChanged(QString)), this, SLOT(synchronizeNumBitToNum(QString)));
 	}
+
+	setSize();
 
     connect(ui->size, SIGNAL(clicked()), this, SLOT(setSize()));
     connect(ui->rule, SIGNAL(valueChanged(int)), this, SLOT(synchronizeNumToNumBit(int)));
@@ -56,7 +46,6 @@ Automate_1D::Automate_1D(QWidget* parent)
 
     connect(ui->stop, SIGNAL(clicked()), this, SLOT(stop()));
     connect(ui->reset, SIGNAL(clicked()), this, SLOT(reset()));
-
 }
 
 Automate_1D::~Automate_1D()
@@ -64,29 +53,20 @@ Automate_1D::~Automate_1D()
     delete ui;
 }
 
-void Automate_1D::stop(){
+void Automate_1D::stop()
+{
+    stop();
     sim = false;
 }
 
-void Automate_1D::reset(){
-    stop();
+void Automate_1D::reset()
     ui->grid->setRowCount(1);
     ui->size_Box->setValue(20);
     ui->rule->setValue(0);
     setSize();
-    rang=0;
 
-    for(int i=0; i<20;i++){
-            start->setCell(i, true);
-            ui->grid->setColumnWidth(i,25);
-            ui->grid->setItem(0, i, new QTableWidgetItem(""));
-
-
-
-    }
+	a->getHistory()->getStart()->iterate_set([]() { return true; });
     ui->grid->setEditTriggers(QAbstractItemView::DoubleClicked);
-
-
 }
 
 void Automate_1D::setSize()
@@ -98,14 +78,14 @@ void Automate_1D::setSize()
 	ui->grid->verticalHeader()->setVisible(false);
 	ui->grid->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	ui->grid->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    ui->grid->setFixedWidth(ui->size_Box->value()*25);
+	ui->grid->setFixedWidth(ui->size_Box->value() * 25);
 
     for (int i = 0; i < dimCol; i++) {
 		ui->grid->setColumnWidth(i, 25);
         ui->grid->setItem(0, i, new QTableWidgetItem(""));
     }
     auto* g1 = new Grid1D<bool>(dimCol);
-    h->setStart(*g1);
+	a->getHistory()->setStart(g1);
 }
 
 short unsigned int NumBitToNum(const QString& num)
@@ -170,9 +150,8 @@ void Automate_1D::synchronizeNumBitToNum(const QString& s)
 
 void Automate_1D::simulation()
 {
-        sim=true;
-        run();
-
+	sim = true;
+	run();
 }
 
 void Automate_1D::cellActivation(const QModelIndex& index)
@@ -185,16 +164,14 @@ void Automate_1D::cellActivation(const QModelIndex& index)
 
 void Automate_1D::next()
 {
-  if(getRang()<ui->nb_etats->value()){
+	if (getRang() < ui->nb_etats->value()) {
 
         a->next();
 
         auto* grid = h->getLast();
 
         ui->grid->setRowCount(ui->grid->rowCount() + 1);
-        ui->grid->setFixedSize(ui->size_Box->value() * 25,(( ui->grid->rowCount()+1) * 25));
-
-
+		ui->grid->setFixedSize(ui->size_Box->value() * 25, ((ui->grid->rowCount() + 1) * 25));
 
         for (int j = 0; j < ui->size_Box->value(); j++) {
             ui->grid->setItem(getRang(), j, new QTableWidgetItem(""));
@@ -203,16 +180,12 @@ void Automate_1D::next()
         }
         incRang();
 
-}
-  else {
-      QMessageBox msgBox;
-      msgBox.setText("Le nombres d'états maximal de la simulation à été atteint");
-      msgBox.exec();
-      sim = false;
-
-  }
-
-
+	} else {
+		QMessageBox msgBox;
+		msgBox.setText("Le nombres d'états maximal de la simulation à été atteint");
+		msgBox.exec();
+		sim = false;
+	}
 }
 
 void Automate_1D::menu()
@@ -221,10 +194,11 @@ void Automate_1D::menu()
     this->parent->show();
 }
 
-void Automate_1D::run(){
-    if(sim==true){
-      timer->start(ui->timer->value()*1000);
-      next();
+void Automate_1D::run()
+{
+	if (sim == true) {
+		timer->start(ui->timer->value() * 1000);
+		next();
     }
 }
 
@@ -250,73 +224,65 @@ void Automate_1D::init_simulation(int row)
     begin = true;
 }
 
-
-void Automate_1D::save(){
+void Automate_1D::save()
+{
     std::string name = ui->name_file->text().toStdString();
-    const Grid<bool, Index1D>* g1D= h->getLast();
+	const Grid<bool, Index1D>* g1D = h->getLast();
     g1D->save(name);
     r->save(name);
-    std::cout<< "sauvegarde reussie \n";
+	std::cout << "sauvegarde reussie \n";
 }
 
-void Automate_1D::load(){
-  std::string name = ui->name_file->text().toStdString();
-  Grid1D<bool>* g1D = new Grid1D<bool>(20);
-  g1D->load(name);
-  h->push(g1D);
-  r->load(name);
-
+void Automate_1D::load()
+{
+	std::string name = ui->name_file->text().toStdString();
+	Grid1D<bool>* g1D = new Grid1D<bool>(20);
+	g1D->load(name);
+	h->push(g1D);
+	r->load(name);
 }
 
-void Automate_1D::rand(){
-    for(unsigned int j=0; j < ui->size_Box->value() ; j++){
-        int a=std::rand()%2;
-        if(a==0){
-            ui->grid->item(0,j)->setBackgroundColor("white");
+void Automate_1D::rand()
+{
+	for (unsigned int j = 0; j < ui->size_Box->value(); j++) {
+		int a = std::rand() % 2;
+		if (a == 0) {
+			ui->grid->item(0, j)->setBackgroundColor("white");
             start->setCell(j, false);
-        }
-        else {
-            ui->grid->item(0,j)->setBackgroundColor("black");
+		} else {
+			ui->grid->item(0, j)->setBackgroundColor("black");
             start->setCell(j, true);
         }
     }
-
 }
 
-void Automate_1D::rand_sym(){
-    for(unsigned int j=0; j<(ui->size_Box->value())/2; j++){
-        int a=std::rand()%2;
-        if(a==0){
-            ui->grid->item(0,j)->setBackgroundColor("white");
+void Automate_1D::rand_sym()
+{
+	for (unsigned int j = 0; j < (ui->size_Box->value()) / 2; j++) {
+		int a = std::rand() % 2;
+		if (a == 0) {
+			ui->grid->item(0, j)->setBackgroundColor("white");
             start->setCell(j, false);
             ui->grid->item(0, j)->setText("");
             ui->grid->item(0, j)->setBackgroundColor("white");
-        }
-        else {
-            ui->grid->item(0,j)->setBackgroundColor("black");
+		} else {
+			ui->grid->item(0, j)->setBackgroundColor("black");
             start->setCell(j, true);
             ui->grid->item(0, j)->setText("_");
             ui->grid->item(0, j)->setBackgroundColor("black");
         }
+	}
+	int half = std::ceil((ui->size_Box->value()) / 2) - 1;
+	int i = 0;
+	for (unsigned int j = 1; j <= half + 1; j++) {
+		if (ui->grid->item(0, half - i)->text() == "") {
+			ui->grid->item(0, half + j)->setBackgroundColor("white");
+			start->setCell(j, false);
 
-
-}
-    int half= std::ceil((ui->size_Box->value())/2) -1;
-    int i=0;
-    for(unsigned int j=1; j<= half+1; j++){
-            if(ui->grid->item(0, half-i)->text() == ""){
-                ui->grid->item(0, half+j)->setBackgroundColor("white");
-                start->setCell(j, false);
-
-            }else{
-                ui->grid->item(0, half+j)->setBackgroundColor("black");
-                start->setCell(j, true);
-
-
-
-            }
-            i++;
-       }
-
-
+		} else {
+			ui->grid->item(0, half + j)->setBackgroundColor("black");
+			start->setCell(j, true);
+		}
+		i++;
+	}
 }
