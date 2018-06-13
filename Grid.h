@@ -26,6 +26,9 @@ public:
 	bool wrapAround = false;
 
 	Grid() {}
+	Grid(const Grid& grid) = delete;
+	void operator=(const Grid& grid) = delete;
+
 	virtual ~Grid() {}
 
     /**
