@@ -13,527 +13,526 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QWidget" name="verticalLayoutWidget">
-   <property name="geometry">
-    <rect>
-     <x>600</x>
-     <y>10</y>
-     <width>189</width>
-     <height>556</height>
-    </rect>
-   </property>
-   <layout class="QVBoxLayout" name="verticalLayout_5">
-    <property name="sizeConstraint">
-     <enum>QLayout::SetDefaultConstraint</enum>
-    </property>
-    <item>
-     <widget class="QPushButton" name="load">
-      <property name="text">
-       <string>Charger un Automate</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="save">
-      <property name="text">
-       <string>Sauvegarder la configuration</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLineEdit" name="name_file">
-      <property name="inputMask">
-       <string/>
-      </property>
-      <property name="text">
-       <string>nom_fichier</string>
-      </property>
-      <property name="maxLength">
-       <number>256</number>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="run">
-      <property name="text">
-       <string>Lancer la simulation</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="stop">
-      <property name="text">
-       <string>Arrêter la simulation</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="next">
-      <property name="text">
-       <string>Etat suivant</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="reset">
-      <property name="text">
-       <string>Reset</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="menu">
-      <property name="text">
-       <string>Retour au menu</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <spacer name="verticalSpacer">
-      <property name="orientation">
-       <enum>Qt::Vertical</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>20</width>
-        <height>40</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
-   </layout>
-  </widget>
-  <widget class="QWidget" name="verticalLayoutWidget_2">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>10</y>
-     <width>610</width>
-     <height>556</height>
-    </rect>
-   </property>
-   <layout class="QVBoxLayout" name="interface_2">
-    <property name="sizeConstraint">
-     <enum>QLayout::SetDefaultConstraint</enum>
-    </property>
-    <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_3">
-      <item>
-       <widget class="QLabel" name="size_2">
+  <layout class="QHBoxLayout" name="horizontalLayout_7">
+   <item>
+    <layout class="QVBoxLayout" name="interface_2">
+     <property name="sizeConstraint">
+      <enum>QLayout::SetDefaultConstraint</enum>
+     </property>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <item>
+        <widget class="QLabel" name="size_2">
+         <property name="text">
+          <string>Taille</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QSpinBox" name="size_Box">
+         <property name="value">
+          <number>20</number>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="size">
+         <property name="autoFillBackground">
+          <bool>false</bool>
+         </property>
+         <property name="text">
+          <string>Créer un Automate de cette taille</string>
+         </property>
+         <property name="checkable">
+          <bool>false</bool>
+         </property>
+         <property name="flat">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_5">
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_17">
+         <item>
+          <widget class="QLabel" name="rule_l">
+           <property name="text">
+            <string>Règles</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="rule">
+           <property name="minimumSize">
+            <size>
+             <width>100</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximum">
+            <number>256</number>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout"/>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_7">
+         <item>
+          <widget class="QLabel" name="Bitl0">
+           <property name="text">
+            <string>000</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="numBit1">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_10">
+         <item>
+          <widget class="QLabel" name="Bitl1">
+           <property name="text">
+            <string>001</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="numBit2">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_11">
+         <item>
+          <widget class="QLabel" name="Bitl2">
+           <property name="text">
+            <string>010</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="numBit3">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_12">
+         <item>
+          <widget class="QLabel" name="Bitl3">
+           <property name="text">
+            <string>011</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="numBit4">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_13">
+         <item>
+          <widget class="QLabel" name="Bitl4">
+           <property name="text">
+            <string>100</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="numBit5">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_8">
+         <item>
+          <widget class="QLabel" name="Bitl5">
+           <property name="text">
+            <string>101</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="numBit6">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_15">
+         <item>
+          <widget class="QLabel" name="Bitl6">
+           <property name="text">
+            <string>110</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="numBit7">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_14">
+         <item>
+          <widget class="QLabel" name="Bitl7">
+           <property name="text">
+            <string>111</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="numBit8">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <item>
+        <widget class="QLabel" name="label_2">
+         <property name="text">
+          <string>Nombre d'états de la simulation</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QSpinBox" name="nb_etats">
+         <property name="value">
+          <number>10</number>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_4">
+       <item>
+        <widget class="QLabel" name="label_3">
+         <property name="text">
+          <string>Durée du timer entre chaque états</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QSpinBox" name="timer">
+         <property name="value">
+          <number>2</number>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QLabel" name="init_l">
+       <property name="text">
+        <string>Définissez la configuration de départ : </string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_6">
+       <item>
+        <widget class="QPushButton" name="random">
+         <property name="text">
+          <string>Génération Aléatoire</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="random_sym">
+         <property name="text">
+          <string>Génération Aléatoire Symétrique</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QTableWidget" name="grid">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="verticalScrollBarPolicy">
+        <enum>Qt::ScrollBarAlwaysOff</enum>
+       </property>
+       <property name="horizontalScrollBarPolicy">
+        <enum>Qt::ScrollBarAlwaysOff</enum>
+       </property>
+       <property name="sizeAdjustPolicy">
+        <enum>QAbstractScrollArea::AdjustToContents</enum>
+       </property>
+       <attribute name="horizontalHeaderVisible">
+        <bool>false</bool>
+       </attribute>
+       <attribute name="verticalHeaderVisible">
+        <bool>false</bool>
+       </attribute>
+       <row>
         <property name="text">
-         <string>Taille</string>
+         <string>Nouvelle ligne</string>
         </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QSpinBox" name="size_Box">
-        <property name="value">
-         <number>20</number>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="size">
-        <property name="autoFillBackground">
-         <bool>false</bool>
-        </property>
+       </row>
+       <column>
         <property name="text">
-         <string>Créer un Automate de cette taille</string>
+         <string>Nouvelle colonne</string>
         </property>
-        <property name="checkable">
-         <bool>false</bool>
-        </property>
-        <property name="flat">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </item>
-    <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_5">
-      <item>
-       <layout class="QVBoxLayout" name="verticalLayout_17">
-        <item>
-         <widget class="QLabel" name="rule_l">
-          <property name="text">
-           <string>Règles</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QSpinBox" name="rule">
-          <property name="minimumSize">
-           <size>
-            <width>100</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="maximum">
-           <number>256</number>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout"/>
-      </item>
-      <item>
-       <layout class="QVBoxLayout" name="verticalLayout_7">
-        <item>
-         <widget class="QLabel" name="Bitl0">
-          <property name="text">
-           <string>000</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLineEdit" name="numBit1">
-          <property name="text">
-           <string>0</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-      <item>
-       <layout class="QVBoxLayout" name="verticalLayout_10">
-        <item>
-         <widget class="QLabel" name="Bitl1">
-          <property name="text">
-           <string>001</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLineEdit" name="numBit2">
-          <property name="text">
-           <string>0</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-      <item>
-       <layout class="QVBoxLayout" name="verticalLayout_11">
-        <item>
-         <widget class="QLabel" name="Bitl2">
-          <property name="text">
-           <string>010</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLineEdit" name="numBit3">
-          <property name="text">
-           <string>0</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-      <item>
-       <layout class="QVBoxLayout" name="verticalLayout_12">
-        <item>
-         <widget class="QLabel" name="Bitl3">
-          <property name="text">
-           <string>011</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLineEdit" name="numBit4">
-          <property name="text">
-           <string>0</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-      <item>
-       <layout class="QVBoxLayout" name="verticalLayout_13">
-        <item>
-         <widget class="QLabel" name="Bitl4">
-          <property name="text">
-           <string>100</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLineEdit" name="numBit5">
-          <property name="text">
-           <string>0</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-      <item>
-       <layout class="QVBoxLayout" name="verticalLayout_8">
-        <item>
-         <widget class="QLabel" name="Bitl5">
-          <property name="text">
-           <string>101</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLineEdit" name="numBit6">
-          <property name="text">
-           <string>0</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-      <item>
-       <layout class="QVBoxLayout" name="verticalLayout_15">
-        <item>
-         <widget class="QLabel" name="Bitl6">
-          <property name="text">
-           <string>110</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLineEdit" name="numBit7">
-          <property name="text">
-           <string>0</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-      <item>
-       <layout class="QVBoxLayout" name="verticalLayout_14">
-        <item>
-         <widget class="QLabel" name="Bitl7">
-          <property name="text">
-           <string>111</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLineEdit" name="numBit8">
-          <property name="text">
-           <string>0</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-     </layout>
-    </item>
-    <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_2">
-      <item>
-       <widget class="QLabel" name="label_2">
+       </column>
+       <column>
         <property name="text">
-         <string>Nombre d'états de la simulation</string>
+         <string>Nouvelle colonne</string>
         </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QSpinBox" name="nb_etats">
-        <property name="value">
-         <number>10</number>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </item>
-    <item>
-     <widget class="QLabel" name="label">
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_4">
-      <item>
-       <widget class="QLabel" name="label_3">
+       </column>
+       <column>
         <property name="text">
-         <string>Durée du timer entre chaque états</string>
+         <string>Nouvelle colonne</string>
         </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QSpinBox" name="timer">
-        <property name="value">
-         <number>2</number>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </item>
-    <item>
-     <widget class="QLabel" name="init_l">
-      <property name="text">
-       <string>Définissez la configuration de départ : </string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_6">
-      <item>
-       <widget class="QPushButton" name="random">
+       </column>
+       <column>
         <property name="text">
-         <string>Génération Aléatoire</string>
+         <string>Nouvelle colonne</string>
         </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="random_sym">
+       </column>
+       <column>
         <property name="text">
-         <string>Génération Aléatoire Symétrique</string>
+         <string>Nouvelle colonne</string>
         </property>
-       </widget>
-      </item>
-     </layout>
-    </item>
-    <item>
-     <widget class="QTableWidget" name="grid">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>16777215</width>
-        <height>16777215</height>
-       </size>
-      </property>
-      <property name="verticalScrollBarPolicy">
-       <enum>Qt::ScrollBarAlwaysOff</enum>
-      </property>
-      <property name="horizontalScrollBarPolicy">
-       <enum>Qt::ScrollBarAlwaysOff</enum>
-      </property>
-      <property name="sizeAdjustPolicy">
-       <enum>QAbstractScrollArea::AdjustToContents</enum>
-      </property>
-      <attribute name="horizontalHeaderVisible">
-       <bool>false</bool>
-      </attribute>
-      <attribute name="verticalHeaderVisible">
-       <bool>false</bool>
-      </attribute>
-      <row>
-       <property name="text">
-        <string>Nouvelle ligne</string>
+       </column>
+       <column>
+        <property name="text">
+         <string>Nouvelle colonne</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Nouvelle colonne</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Nouvelle colonne</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Nouvelle colonne</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Nouvelle colonne</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Nouvelle colonne</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Nouvelle colonne</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Nouvelle colonne</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Nouvelle colonne</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Nouvelle colonne</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Nouvelle colonne</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Nouvelle colonne</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Nouvelle colonne</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Nouvelle colonne</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Nouvelle colonne</string>
+        </property>
+       </column>
+      </widget>
+     </item>
+     <item>
+      <spacer name="verticalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
        </property>
-      </row>
-      <column>
-       <property name="text">
-        <string>Nouvelle colonne</string>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>40</height>
+        </size>
        </property>
-      </column>
-      <column>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QVBoxLayout" name="verticalLayout_5">
+     <property name="sizeConstraint">
+      <enum>QLayout::SetDefaultConstraint</enum>
+     </property>
+     <item>
+      <widget class="QPushButton" name="load">
        <property name="text">
-        <string>Nouvelle colonne</string>
+        <string>Charger un Automate</string>
        </property>
-      </column>
-      <column>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="save">
        <property name="text">
-        <string>Nouvelle colonne</string>
+        <string>Sauvegarder la configuration</string>
        </property>
-      </column>
-      <column>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="name_file">
+       <property name="inputMask">
+        <string/>
+       </property>
        <property name="text">
-        <string>Nouvelle colonne</string>
+        <string>nom_fichier</string>
        </property>
-      </column>
-      <column>
+       <property name="maxLength">
+        <number>256</number>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="run">
        <property name="text">
-        <string>Nouvelle colonne</string>
+        <string>Lancer la simulation</string>
        </property>
-      </column>
-      <column>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="stop">
        <property name="text">
-        <string>Nouvelle colonne</string>
+        <string>Arrêter la simulation</string>
        </property>
-      </column>
-      <column>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="next">
        <property name="text">
-        <string>Nouvelle colonne</string>
+        <string>Etat suivant</string>
        </property>
-      </column>
-      <column>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="reset">
        <property name="text">
-        <string>Nouvelle colonne</string>
+        <string>Reset</string>
        </property>
-      </column>
-      <column>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="menu">
        <property name="text">
-        <string>Nouvelle colonne</string>
+        <string>Retour au menu</string>
        </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Nouvelle colonne</string>
+      </widget>
+     </item>
+     <item>
+      <spacer name="verticalSpacer">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
        </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Nouvelle colonne</string>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>40</height>
+        </size>
        </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Nouvelle colonne</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Nouvelle colonne</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Nouvelle colonne</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Nouvelle colonne</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Nouvelle colonne</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Nouvelle colonne</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Nouvelle colonne</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Nouvelle colonne</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Nouvelle colonne</string>
-       </property>
-      </column>
-     </widget>
-    </item>
-   </layout>
-  </widget>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+  </layout>
  </widget>
  <resources/>
  <connections/>

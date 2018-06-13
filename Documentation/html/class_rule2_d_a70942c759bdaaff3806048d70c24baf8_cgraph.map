@@ -1,0 +1,4 @@
+<map id="Rule2D::calcNextState" name="Rule2D::calcNextState">
+<area shape="rect" id="node2" href="$class_grid.html#a4ecd5e265f529317af2045609143b917" title="Access a cell thanks to its index. " alt="" coords="219,5,314,32"/>
+<area shape="rect" id="node3" href="$struct_index2_d.html#a5aed44d79a44a116c26f0a5a8e0c6620" title="Returns a new Index2D with a given offset from the current one. " alt="" coords="211,56,323,83"/>
+</map>

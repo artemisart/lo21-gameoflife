@@ -45,8 +45,8 @@ Automate_2D::Automate_2D(QWidget* parent)
     h->setStart(*start);
 
 	for (int i = 0; i < 9; i++) {
-		connect(born[i], &QCheckBox::clicked, this, &Automate_2D::on_born_i_clicked);
-		connect(survive[i], &QCheckBox::clicked, this, &Automate_2D::on_survive_i_clicked);
+        connect(born[i], &QCheckBox::clicked, this, &Automate_2D::on_born_i_clicked);
+        connect(survive[i], &QCheckBox::clicked, this, &Automate_2D::on_survive_i_clicked);
     }
 
 	this->setSize();
@@ -73,10 +73,11 @@ Automate_2D::~Automate_2D()
 
 void Automate_2D::reset()
 {
+    stop();
     ui->largeur->setValue(20);
     ui->hauteur->setValue(20);
-    ui->survive->setValue(0);
-    ui->born->setValue(0);
+    ui->survive->setText("0");
+    ui->born->setText("0");
     setSize();
 
 	for (int i = 0; i < 20; i++) {
@@ -162,8 +163,8 @@ void Automate_2D::next()
 	for (int i = 0; i < ui->largeur->value(); i++) {
 		for (int j = 0; j < ui->hauteur->value(); j++) {
 			ui->grid->setItem(j, i, new QTableWidgetItem(""));
-			bool val = grid->getCell(Index2D(j, i));
-			ui->grid->item(j, i)->setBackgroundColor(val ? "black" : "white");
+            bool val = grid->getCell(Index2D(j, i));
+            ui->grid->item(j, i)->setBackgroundColor(val ? "black" : "white");
         }
 	}
 
@@ -210,9 +211,8 @@ void Automate_2D::rand_sym()
 			start->setCell(Index2D(j, i), a);
 		}
     }
-	//	int half = (int)std::ceil(ui->hauteur->value() / 2.) - 1;
-	int half = ui->hauteur->value() / 2; // TODO check if this is sufficient
-	int i = 0;
+    int half = (int)std::ceil(ui->hauteur->value() / 2.) - 1;
+    int i = 0;
 	for (int j = 1; j <= half + 1; j++) {
 		for (int k = 0; k < ui->largeur->value(); k++) {
 

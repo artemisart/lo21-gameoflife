@@ -2,9 +2,7 @@
 
 #include "Automaton.h"
 #include "History.h"
-#include "autocell.h"
 #include "automate_1d.h"
-#include "gameoflife.h"
 #include "welcome.h"
 
 int main(int argc, char* argv[])

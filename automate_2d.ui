@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>810</width>
+    <width>825</width>
     <height>455</height>
    </rect>
   </property>
@@ -468,7 +468,7 @@
         <number>1</number>
        </property>
        <property name="columnCount">
-        <number>1</number>
+        <number>8</number>
        </property>
        <attribute name="horizontalHeaderVisible">
         <bool>false</bool>
@@ -481,6 +481,41 @@
          <string>Nouvelle ligne</string>
         </property>
        </row>
+       <column>
+        <property name="text">
+         <string>Nouvelle colonne</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Nouvelle colonne</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Nouvelle colonne</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Nouvelle colonne</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Nouvelle colonne</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Nouvelle colonne</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Nouvelle colonne</string>
+        </property>
+       </column>
        <column>
         <property name="text">
          <string>Nouvelle colonne</string>

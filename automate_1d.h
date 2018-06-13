@@ -12,6 +12,13 @@
 #include <QTimer>
 #include <QMenu>
 
+/**
+ * @file automate_1d.h
+ * @brief Interface for a 1 dimensional automaton
+ * This class helps to visualize a 1 dimentional automaton
+ *
+ */
+
 namespace Ui {
 class Automate_1D;
 }

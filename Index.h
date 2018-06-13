@@ -1,5 +1,9 @@
 #ifndef INDEX_H
 #define INDEX_H
+/**
+ * @file Index.h
+ * @brief Structure for Index for 1 or 2 dimentional grids
+ */
 
 /**
  * @brief The Index struct is used to represent a position (index) in

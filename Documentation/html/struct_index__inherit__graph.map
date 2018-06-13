@@ -1,0 +1,4 @@
+<map id="Index" name="Index">
+<area shape="rect" id="node2" href="$struct_index1_d.html" title="The Index1D struct is used to represent a position (index) in 1 dimensional space, such as an array of values. " alt="" coords="5,80,76,107"/>
+<area shape="rect" id="node3" href="$struct_index2_d.html" title="The Index2D struct is used to represent a position (index) in 2 dimensional space, such as an 2d&#45;grid of values. " alt="" coords="100,80,171,107"/>
+</map>

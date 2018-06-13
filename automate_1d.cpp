@@ -22,7 +22,7 @@ Automate_1D::Automate_1D(QWidget* parent)
 
 	ui->grid->setFixedSize(ui->size_Box->value() * 25, 25);
     for (int i = 0; i < 20; i++) {
-		ui->grid->setColumnWidth(i, 25);
+        ui->grid->setColumnWidth(i,25);
         ui->grid->setItem(0, i, new QTableWidgetItem(""));
     }
 
@@ -69,13 +69,18 @@ void Automate_1D::stop(){
 }
 
 void Automate_1D::reset(){
+    stop();
     ui->grid->setRowCount(1);
     ui->size_Box->setValue(20);
     ui->rule->setValue(0);
     setSize();
+    rang=0;
 
     for(int i=0; i<20;i++){
             start->setCell(i, true);
+            ui->grid->setColumnWidth(i,25);
+            ui->grid->setItem(0, i, new QTableWidgetItem(""));
+
 
 
     }
@@ -105,7 +110,7 @@ void Automate_1D::setSize()
 
 short unsigned int NumBitToNum(const QString& num)
 {
-	if (num.size() != 8)
+    if (num.size() != 8 )
 		// FIXME cette condition va pas du tout, dès qu'on a 00 ou 01 dans un champ ça fait tout crasher
 		throw("Numero d'automate indefini");
     int puissance = 1;
@@ -155,7 +160,7 @@ void Automate_1D::synchronizeNumBitToNum(const QString& s)
 	for (auto nb : numBits) {
 		if (nb->text().size() == 0)
 			return;
-		str += nb->text();
+        str += nb->text();
 	}
 
 	int i = NumBitToNum(str);

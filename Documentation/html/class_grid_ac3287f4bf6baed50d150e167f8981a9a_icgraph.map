@@ -1,0 +1,5 @@
+<map id="Grid::iterate_get" name="Grid::iterate_get">
+<area shape="rect" id="node2" href="$class_grid.html#ad3304a35b29360a7cbf7d1c0c1142d1c" title="Grid\&lt; bool, Index1D\l \&gt;::~Grid" alt="" coords="168,5,307,47"/>
+<area shape="rect" id="node3" href="$class_grid1_d.html#abf35a91250783169904d1bd12955b3b5" title="save the current grid into a file " alt="" coords="188,71,287,98"/>
+<area shape="rect" id="node4" href="$class_grid2_d.html#a8ef600635742eb4db9ec8fe498a14cab" title="Save the grid attributes in a file. " alt="" coords="188,122,287,149"/>
+</map>

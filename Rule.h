@@ -4,6 +4,12 @@
 #include "Grid.h"
 #include "Index.h"
 #include <cstdint> // pour std::uint16_t
+
+/**
+ * @file Rule.h
+ * @brief Rules for an Automaton to change state
+ */
+
 /**
  * @brief Rule is a class that stores the rules to apply on a Grid1D or Grid2D, it can take a cell and calculte the next stat of every value.
  */

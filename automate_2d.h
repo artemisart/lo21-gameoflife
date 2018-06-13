@@ -11,6 +11,12 @@
 #include <QTableWidget>
 #include <QWidget>
 
+/**
+ * @file automate_2d.h
+ * @brief Interface for a 2 dimensional automaton
+ * This class helps to visualize a two dimensional automaton
+ */
+
 namespace Ui {
 class Automate_2D;
 }

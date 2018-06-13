@@ -3,6 +3,11 @@
 
 #include <QWidget>
 
+/**
+ * @file welcome.h
+ * @brief Interface for the first window of the application
+ */
+
 namespace Ui {
 class Welcome;
 }

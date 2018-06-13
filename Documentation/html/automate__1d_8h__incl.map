@@ -1,0 +1,7 @@
+<map id="automate_1d.h" name="automate_1d.h">
+<area shape="rect" id="node2" href="$_rule_8h.html" title="Rules for an Automaton to change state. " alt="" coords="74,155,134,181"/>
+<area shape="rect" id="node11" href="$_automaton_8h.html" title="Automaton. " alt="" coords="141,80,237,107"/>
+<area shape="rect" id="node3" href="$_grid_8h.html" title="Grid for 1 or 2 dimentional Automaton. " alt="" coords="210,229,267,256"/>
+<area shape="rect" id="node9" href="$_index_8h.html" title="Structure for Index for 1 or 2 dimentional grids. " alt="" coords="18,304,83,331"/>
+<area shape="rect" id="node12" href="$_history_8h.html" title="History made of the n last states of an Automaton. " alt="" coords="319,155,393,181"/>
+</map>

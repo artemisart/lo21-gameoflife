@@ -10,8 +10,14 @@
 #include "Index.h"
 
 /**
+ * @file Grid.h
+ * @brief Grid for 1 or 2 dimentional Automaton
+ */
+
+/**
  * @brief The Grid abstract class is used to create a Grid which can be subclassed to have 1 dimension or more.
  * A function can also be applied on each cell.
+ * A Grid can store any type (int, bool ....)
  */
 
 template <typename T, typename I>

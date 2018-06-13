@@ -1,0 +1,6 @@
+<map id="Automaton::next" name="Automaton::next">
+<area shape="rect" id="node2" href="$class_history.html#acc36b94738384593b0834c972f9f7570" title="Returns the last element stored in the history. " alt="" coords="187,5,302,32"/>
+<area shape="rect" id="node3" href="$class_automaton.html#a18c4b648deb5a737af20775d6ac47039" title="Automaton::calculate" alt="" coords="172,56,317,83"/>
+<area shape="rect" id="node5" href="$class_history.html#a15c49cfbee877ed7275c0c820ddc4c90" title="Add a new element to be stored in the history. " alt="" coords="195,107,295,133"/>
+<area shape="rect" id="node4" href="$class_grid.html#a19a2471ad75538bdf46b209248288b3a" title="iterate_set " alt="" coords="365,56,480,83"/>
+</map>

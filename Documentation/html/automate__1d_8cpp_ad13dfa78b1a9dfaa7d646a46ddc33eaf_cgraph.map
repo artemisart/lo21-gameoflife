@@ -1,0 +1,16 @@
+<map id="NumToNumBit" name="NumToNumBit">
+<area shape="rect" id="node2" href="$class_rule1_d.html#a7d0c9105c8282ba7bebf9c5a8bd0165e" title="Rule1D::setNum" alt="" coords="182,5,302,32"/>
+<area shape="rect" id="node3" href="$automate__1d_8cpp.html#adb39f8505cb83fcc9340cadd2c6951e8" title="NumBitToNum" alt="" coords="187,56,297,83"/>
+<area shape="rect" id="node4" href="$class_grid.html#a4ecd5e265f529317af2045609143b917" title="Access a cell thanks to its index. " alt="" coords="195,107,289,133"/>
+<area shape="rect" id="node5" href="$class_grid.html#ade45b288cdfb03d28653d42f2bc87023" title="Write a value into the cell. " alt="" coords="195,157,289,184"/>
+<area shape="rect" id="node6" href="$class_automate__1_d.html#a41f5e04b6cb27eb881a5a64b43d4e0f3" title="Automate_1D::getRang" alt="" coords="163,208,321,235"/>
+<area shape="rect" id="node9" href="$class_automaton.html#a2c328a07dac7fcb7e42bcae294cb62bf" title="Automaton::next" alt="" coords="183,259,301,285"/>
+<area shape="rect" id="node14" href="$class_ring_history.html#a0647750982479c786b1bec1aa7b9c682" title="Returns the last element stored in the history. " alt="" coords="171,309,313,336"/>
+<area shape="rect" id="node15" href="$class_automate__1_d.html#a0133f38b1d9bd1d82dfcc65bb9e923d4" title="Automate_1D::incRang" alt="" coords="163,360,321,387"/>
+<area shape="rect" id="node7" href="$automate__1d_8h.html#ad13dfa78b1a9dfaa7d646a46ddc33eaf" title="NumToNumBit" alt="" coords="387,157,497,184"/>
+<area shape="rect" id="node8" href="$automate__1d_8h.html#adb39f8505cb83fcc9340cadd2c6951e8" title="NumBitToNum" alt="" coords="387,208,497,235"/>
+<area shape="rect" id="node10" href="$class_history.html#acc36b94738384593b0834c972f9f7570" title="Returns the last element stored in the history. " alt="" coords="385,259,499,285"/>
+<area shape="rect" id="node11" href="$class_automaton.html#a18c4b648deb5a737af20775d6ac47039" title="Automaton::calculate" alt="" coords="369,309,515,336"/>
+<area shape="rect" id="node13" href="$class_history.html#a15c49cfbee877ed7275c0c820ddc4c90" title="Add a new element to be stored in the history. " alt="" coords="392,360,492,387"/>
+<area shape="rect" id="node12" href="$class_grid.html#a19a2471ad75538bdf46b209248288b3a" title="iterate_set " alt="" coords="563,309,677,336"/>
+</map>

@@ -1,0 +1,11 @@
+<map id="Rule.h" name="Rule.h">
+<area shape="rect" id="node2" href="$automate__1d_8h.html" title="Interface for a 1 dimensional automaton. " alt="" coords="111,155,219,181"/>
+<area shape="rect" id="node7" href="$_automaton_8h.html" title="Automaton. " alt="" coords="239,80,335,107"/>
+<area shape="rect" id="node8" href="$automate__2d_8h.html" title="Interface for a 2 dimensional automaton. " alt="" coords="378,155,486,181"/>
+<area shape="rect" id="node10" href="$_rule_8cpp.html" title="Rule.cpp" alt="" coords="409,80,484,107"/>
+<area shape="rect" id="node3" href="$automate__1d_8cpp.html" title="automate_1d.cpp" alt="" coords="104,229,227,256"/>
+<area shape="rect" id="node4" href="$automate__2d_8cpp.html" title="automate_2d.cpp" alt="" coords="373,229,496,256"/>
+<area shape="rect" id="node5" href="$main_8cpp.html" title="main.cpp" alt="" coords="5,229,80,256"/>
+<area shape="rect" id="node6" href="$welcome_8cpp.html" title="welcome.cpp" alt="" coords="251,229,349,256"/>
+<area shape="rect" id="node9" href="$_automaton_8cpp.html" title="Automaton.cpp" alt="" coords="243,155,354,181"/>
+</map>

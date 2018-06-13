@@ -2,6 +2,10 @@
 #define HISTORY_H
 
 #include <vector>
+/**
+ * @file History.h
+ * @brief History made of the n last states of an Automaton
+ */
 
 /**
  * @brief The History abstract class stores a history of elements (usually
