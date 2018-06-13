@@ -27,30 +27,21 @@ Automate_2D::Automate_2D(QWidget* parent)
 	std::copy_n(_survive, 9, survive); // because arrays are not directly assignable
 	std::copy_n(_born, 9, born);
 
-	ui->grid->setFixedSize(ui->largeur->value() * 25, ui->hauteur->value() * 25);
-    for (int i = 0; i < 20; i++) {
-		for (int j = 0; j < 20; j++) {
-            ui->grid->setColumnWidth(i, 25);
-			ui->grid->setRowHeight(j, 25);
-			ui->grid->setItem(i, j, new QTableWidgetItem(""));
-        }
-    }
     //if(this->getType() == 0)
-    h = new RingHistory<Grid<bool, Index2D>>(10);
+	auto h = new RingHistory<Grid<bool, Index2D>>(10);
 	// if(this->getType()== 1) h = new RingHistory<Grid<uint8_t, Index2D> >(10);
-    r = new Rule2D();
+	r = new Rule2D();
     a = new Automaton<bool, Index2D>(h, r);
 
-	start = new Grid2D<bool>(20, 20);
-    h->setStart(*start);
+	setSize();
+	refreshGrid();
 
 	for (int i = 0; i < 9; i++) {
-        connect(born[i], &QCheckBox::clicked, this, &Automate_2D::on_born_i_clicked);
-        connect(survive[i], &QCheckBox::clicked, this, &Automate_2D::on_survive_i_clicked);
+		connect(born[i], &QCheckBox::clicked, this, &Automate_2D::check_born_i_clicked);
+		connect(survive[i], &QCheckBox::clicked, this, &Automate_2D::check_survive_i_clicked);
     }
 
-	this->setSize();
-	connect(ui->size_b, SIGNAL(clicked()), this, SLOT(setSize()));
+	connect(ui->sizeButton, SIGNAL(clicked()), this, SLOT(setSize()));
 
     connect(ui->run, SIGNAL(clicked()), this, SLOT(simulation()));
 
@@ -74,18 +65,14 @@ Automate_2D::~Automate_2D()
 void Automate_2D::reset()
 {
     stop();
-    ui->largeur->setValue(20);
-    ui->hauteur->setValue(20);
-    ui->survive->setText("0");
-    ui->born->setText("0");
+	ui->widthSpinbox->setValue(20);
+	ui->heightSpinbox->setValue(20);
+	ui->survive->setText("23");
+	ui->born->setText("2");
     setSize();
 
-	for (int i = 0; i < 20; i++) {
-		for (int j = 0; j < 20; j++) {
-			start->setCell(Index2D(i, j), true);
-			ui->grid->item(i, j)->setText("");
-        }
-    }
+	this->a->getHistory()->getStart()->iterate_set([]() { return false; });
+	refreshGrid();
     ui->grid->setEditTriggers(QAbstractItemView::DoubleClicked);
 }
 
@@ -96,8 +83,8 @@ void Automate_2D::stop()
 
 void Automate_2D::setSize()
 {
-	int dimCol = ui->hauteur->value();
-    int dimRow = ui->largeur->value();
+	int dimCol = ui->heightSpinbox->value();
+	int dimRow = ui->widthSpinbox->value();
 	ui->grid->setMinimumSize(25 * dimRow, 25 * dimCol);
 
     ui->grid->setColumnCount(dimCol);
@@ -116,7 +103,7 @@ void Automate_2D::setSize()
         }
     }
     auto* g1 = new Grid2D<bool>(dimCol, dimRow);
-    h->setStart(*g1);
+	a->getHistory()->setStart(g1);
 }
 
 void Automate_2D::simulation()
@@ -127,47 +114,26 @@ void Automate_2D::simulation()
 
 void Automate_2D::run()
 {
-	if (sim == true) {
+	if (sim) {
 		timer->start(ui->timer->value() * 1000);
-
         next();
     }
 }
 
 void Automate_2D::cellActivation(const QModelIndex& index)
 {
-	int col = index.column();
-	int row = index.row();
-	if (ui->grid->item(row, col)->text() == "") {
-		ui->grid->item(row, col)->setText("_");
-		ui->grid->item(index.row(), index.column())->setBackgroundColor("black");
-		ui->grid->item(row, col)->setTextColor("black");
-		start->setCell(Index2D(index.row(), index.column()), true);
-
-	} else {
-		ui->grid->item(index.row(), index.column())->setText("");
-		ui->grid->item(index.row(), index.column())->setBackgroundColor("white");
-		ui->grid->item(index.row(), index.column())->setTextColor("white");
-		start->setCell(Index2D(index.row(), index.column()), false);
-    }
+	Index2D i(index.row(), index.column());
+	auto start = a->getHistory()->getStart();
+	start->setCell(i, !start->getCell(i));
+	refreshGrid();
 }
 
 void Automate_2D::next()
 {
-
 	ui->grid->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
 	a->next();
-	auto* grid = h->getLast();
-
-	for (int i = 0; i < ui->largeur->value(); i++) {
-		for (int j = 0; j < ui->hauteur->value(); j++) {
-			ui->grid->setItem(j, i, new QTableWidgetItem(""));
-            bool val = grid->getCell(Index2D(j, i));
-            ui->grid->item(j, i)->setBackgroundColor(val ? "black" : "white");
-        }
-	}
-
+	refreshGrid();
 	incRang();
 }
 
@@ -187,34 +153,38 @@ void Automate_2D::load()
 
 void Automate_2D::rand()
 {
-	for (int j = 0; j < ui->hauteur->value(); j++) {
-		for (int i = 0; i < ui->largeur->value(); i++) {
-			int a = std::rand() % 2;
-			if (a == 0) {
-				ui->grid->item(j, i)->setBackgroundColor("white");
-				start->setCell(Index2D(j, i), false);
-			} else {
-				ui->grid->item(j, i)->setBackgroundColor("black");
-				start->setCell(Index2D(j, i), true);
-            }
-        }
-    }
+	a->getHistory()->getStart()->iterate_set([]() {
+		return std::rand() % 2;
+	});
+	refreshGrid();
 }
 
+void Automate_2D::refreshGrid() const
+{
+	auto grid = this->ui->grid;
+	a->getHistory()->getLast()->iterate_get([&grid](const Index2D i, const bool val) {
+		grid->item(i.row, i.col)->setBackgroundColor(val ? "black" : "white");
+	});
+}
+
+// TODO refactor this
 void Automate_2D::rand_sym()
 {
-	int h = ui->hauteur->value();
+	int h = ui->heightSpinbox->value();
+	auto start = a->getHistory()->getStart();
+
 	for (int j = 0; j < h / 2; j++) {
-		for (int i = 0; i < ui->largeur->value(); i++) {
-			int a = std::rand() % 2;
-			ui->grid->item(j, i)->setBackgroundColor(a ? "black" : "white");
-			start->setCell(Index2D(j, i), a);
+		for (int i = 0; i < ui->widthSpinbox->value(); i++) {
+			int val = std::rand() % 2;
+			ui->grid->item(j, i)->setBackgroundColor(val ? "black" : "white");
+			start->setCell(Index2D(j, i), val);
 		}
     }
-    int half = (int)std::ceil(ui->hauteur->value() / 2.) - 1;
+    int half = (int)std::ceil(ui->heightSpinbox->value() / 2.) - 1;
+	//int half = ui->heightSpinbox->value() / 2; // TODO check if this is sufficient
     int i = 0;
 	for (int j = 1; j <= half + 1; j++) {
-		for (int k = 0; k < ui->largeur->value(); k++) {
+		for (int k = 0; k < ui->widthSpinbox->value(); k++) {
 
 			if (ui->grid->item(half - i, k)->backgroundColor() == "white") {
 				ui->grid->item(half + j, k)->setBackgroundColor("white");
@@ -258,7 +228,7 @@ void Automate_2D::on_survive_textEdited(const QString& str)
 	r->setSurvive(rule);
 }
 
-void Automate_2D::on_born_i_clicked()
+void Automate_2D::check_born_i_clicked()
 {
 	QString newText;
 	std::uint16_t rule = 0;
@@ -272,7 +242,7 @@ void Automate_2D::on_born_i_clicked()
 	r->setBorn(rule);
 }
 
-void Automate_2D::on_survive_i_clicked()
+void Automate_2D::check_survive_i_clicked()
 {
 	QString newText;
 	std::uint16_t rule = 0;

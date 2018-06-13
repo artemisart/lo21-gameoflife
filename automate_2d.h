@@ -39,10 +39,8 @@ private:
     QWidget* parent;
     QIntValidator* zeroOneValidator;
     Automaton<bool, Index2D>* a;
-    Rule2D* r;
-    RingHistory<Grid<bool, Index2D>>* h;
-    Grid<bool, Index2D>* start;
-    int rang;
+	Rule2D* r;
+	int rang;
     QTableWidget* etats;
     bool sim;
 	QCheckBox *survive[9], *born[9];
@@ -53,6 +51,7 @@ private slots:
 	void setSize();
 	void simulation();
 	void cellActivation(const QModelIndex& index);
+	void refreshGrid() const;
 	void next();
 	void menu();
     void reset();
@@ -64,8 +63,8 @@ private slots:
     void rand_sym();
 	void on_born_textEdited(const QString& rule);
 	void on_survive_textEdited(const QString& rule);
-	void on_born_i_clicked();
-	void on_survive_i_clicked();
+	void check_born_i_clicked();
+	void check_survive_i_clicked();
 };
 
 QString NumToNumBit(short unsigned int num);

@@ -19,7 +19,7 @@
 template <typename T>
 class History {
 private:
-	const T* start = nullptr;
+	T* start = nullptr;
 
 public:
 	History() {}
@@ -31,12 +31,12 @@ public:
 	 * calling this method.
 	 * @param start The first element to be stored
 	 */
-	virtual void setStart(const T& start) { this->start = &start; }
+	virtual void setStart(T* start) { this->start = start; }
 	/**
 	 * @brief Returns the first element stored in the history.
 	 * @return
 	 */
-	virtual const T* getStart() const { return this->start; }
+	virtual T* getStart() const { return this->start; }
 	/**
 	 * @brief Returns the last element stored in the history.
 	 * @return
@@ -48,7 +48,7 @@ public:
 	 * @param i index of the element to retrieve
 	 * @return
 	 */
-	virtual const T* get(const int i) const = 0; // TODO peut-être tout passer en pointeur du coup ?
+	virtual const T* get(const int i) const = 0;
 	/**
 	 * @brief Add a new element to be stored in the history.
 	 * @param newElement
@@ -78,13 +78,17 @@ public:
 		ring.clear();
 	}
 
-	virtual void setStart(const T& start)
+	virtual std::size_t size() const
+	{
+		return ring.size();
+	}
+	virtual void setStart(T* start)
 	{
 		this->History<T>::setStart(start);
 
 		for (auto& elem : this->ring)
 			elem = nullptr;
-		this->ring[0] = &start;
+		this->ring[0] = start;
 		this->current = 0;
 	}
 	virtual const T* getLast() const
