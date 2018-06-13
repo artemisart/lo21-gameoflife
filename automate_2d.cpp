@@ -250,14 +250,8 @@ void Automate_2D::rand_sym()
 	for (int j = 0; j < h / 2; j++) {
 		for (int i = 0; i < ui->largeur->value(); i++) {
 			int a = std::rand() % 2;
-            if(a==0){
-                ui->grid->item(j,i)->setBackgroundColor("white");
-                start->setCell(Index2D(j,i), false);
-
-		}
-            else {
-                ui->grid->item(j,i)->setBackgroundColor("black");
-                start->setCell(Index2D(j,i), true);
+			ui->grid->item(j, i)->setBackgroundColor(a ? "black" : "white");
+			start->setCell(Index2D(j, i), a);
 		}
 
     }
