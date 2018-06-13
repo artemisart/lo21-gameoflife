@@ -162,12 +162,8 @@ void Automate_2D::next()
 	for (int i = 0; i < ui->largeur->value(); i++) {
 		for (int j = 0; j < ui->hauteur->value(); j++) {
 			ui->grid->setItem(j, i, new QTableWidgetItem(""));
-			if (grid->getCell(Index2D(j, i)) == 1) {
-                ui->grid->item(j, i)->setBackgroundColor("black");
-			} else {
-
-				ui->grid->item(j, i)->setBackgroundColor("white");
-            }
+			bool val = grid->getCell(Index2D(j, i));
+			ui->grid->item(j, i)->setBackgroundColor(val ? "black" : "white");
         }
 	}
 
