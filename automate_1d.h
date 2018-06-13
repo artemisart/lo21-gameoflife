@@ -64,6 +64,6 @@ private slots:
 };
 
 QString NumToNumBit(short unsigned int num);
-short unsigned int NumBitToNum(const QString& num);
+std::uint8_t NumBitToNum(const QString& num);
 
 #endif // AUTOMATE_1D_H

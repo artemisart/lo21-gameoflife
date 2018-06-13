@@ -88,13 +88,13 @@ void Automate_1D::setSize()
 	a->getHistory()->setStart(g1);
 }
 
-short unsigned int NumBitToNum(const QString& num)
+std::uint8_t NumBitToNum(const QString& num)
 {
     if (num.size() != 8 )
 		// FIXME cette condition va pas du tout, dès qu'on a 00 ou 01 dans un champ ça fait tout crasher
 		throw("Numero d'automate indefini");
     int puissance = 1;
-    short unsigned int numero = 0;
+	std::uint8_t numero = 0;
     for (int i = 7; i >= 0; i--) {
 		if (num[i] == '1')
 			numero += puissance;
@@ -143,7 +143,7 @@ void Automate_1D::synchronizeNumBitToNum(const QString& s)
         str += nb->text();
 	}
 
-	int i = NumBitToNum(str);
+	std::uint8_t i = NumBitToNum(str);
     ui->rule->setValue(i);
     r->setNum(i);
 }
@@ -156,7 +156,12 @@ void Automate_1D::simulation()
 
 void Automate_1D::cellActivation(const QModelIndex& index)
 {
+	if (index.row() > 0) // this is not the initial state
+		return;
 	int col = index.column();
+	auto start = a->getHistory()->getStart();
+	start->setCell(col, start->getCell(col));
+	// TODO refreshGrid();
 	bool newVal = !start->getCell(col);
 	ui->grid->item(0, col)->setBackgroundColor(newVal ? "black" : "white");
 	start->setCell(col, newVal);
@@ -168,7 +173,7 @@ void Automate_1D::next()
 
         a->next();
 
-        auto* grid = h->getLast();
+		auto* grid = a->getHistory()->getLast();
 
         ui->grid->setRowCount(ui->grid->rowCount() + 1);
 		ui->grid->setFixedSize(ui->size_Box->value() * 25, ((ui->grid->rowCount() + 1) * 25));
@@ -213,7 +218,7 @@ void Automate_1D::init_simulation(int row)
 			etats->setItem(i, j, new QTableWidgetItem(""));
         }
     }
-
+	auto start = a->getHistory()->getStart();
 	for (int k = 0; k < ui->size_Box->value(); k++)
 		etats->item(0, k)->setBackgroundColor(start->getCell(k) ? "black" : "white");
     incRang();
@@ -227,7 +232,7 @@ void Automate_1D::init_simulation(int row)
 void Automate_1D::save()
 {
     std::string name = ui->name_file->text().toStdString();
-	const Grid<bool, Index1D>* g1D = h->getLast();
+	const Grid<bool, Index1D>* g1D = a->getHistory()->getLast();
     g1D->save(name);
     r->save(name);
 	std::cout << "sauvegarde reussie \n";
@@ -238,13 +243,14 @@ void Automate_1D::load()
 	std::string name = ui->name_file->text().toStdString();
 	Grid1D<bool>* g1D = new Grid1D<bool>(20);
 	g1D->load(name);
-	h->push(g1D);
+	a->getHistory()->push(g1D);
 	r->load(name);
 }
 
 void Automate_1D::rand()
 {
-	for (unsigned int j = 0; j < ui->size_Box->value(); j++) {
+	auto start = a->getHistory()->getStart();
+	for (int j = 0; j < ui->size_Box->value(); j++) {
 		int a = std::rand() % 2;
 		if (a == 0) {
 			ui->grid->item(0, j)->setBackgroundColor("white");
@@ -258,7 +264,8 @@ void Automate_1D::rand()
 
 void Automate_1D::rand_sym()
 {
-	for (unsigned int j = 0; j < (ui->size_Box->value()) / 2; j++) {
+	auto start = a->getHistory()->getStart();
+	for (int j = 0; j < (ui->size_Box->value()) / 2; j++) {
 		int a = std::rand() % 2;
 		if (a == 0) {
 			ui->grid->item(0, j)->setBackgroundColor("white");
@@ -272,9 +279,10 @@ void Automate_1D::rand_sym()
             ui->grid->item(0, j)->setBackgroundColor("black");
         }
 	}
-	int half = std::ceil((ui->size_Box->value()) / 2) - 1;
+	//	int half = std::ceil((ui->size_Box->value()) / 2) - 1;
+	int half = ui->size_Box->value() / 2;
 	int i = 0;
-	for (unsigned int j = 1; j <= half + 1; j++) {
+	for (int j = 1; j <= half + 1; j++) {
 		if (ui->grid->item(0, half - i)->text() == "") {
 			ui->grid->item(0, half + j)->setBackgroundColor("white");
 			start->setCell(j, false);
