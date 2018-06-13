@@ -4,6 +4,9 @@
 #include "Grid.h"
 #include "Index.h"
 #include <cstdint> // pour std::uint16_t
+/**
+ * @brief Rule is a class that stores the rules to apply on a Grid1D or Grid2D, it can take a cell and calculte the next stat of every value.
+ */
 
 template <typename T, typename I>
 class Rule {
@@ -11,8 +14,25 @@ public:
 	Rule() {}
 	virtual ~Rule() {}
 
+    /**
+     * @brief calulate the next stat of a cell
+     * @param grid : the type a grid which is used
+     * @param index : the index of the cell into the grid
+     * @return returns the value of the cell
+     */
+
 	virtual T calcNextState(const Grid<T, I>& grid, const I index) const = 0;
-	virtual void save(const std::string& filePath) const = 0;
+
+    /**
+     * @brief save the rules inside a file
+     * @param filePath : the name of the file where to store the rules
+     */
+    virtual void save(const std::string& filePath) const = 0;
+
+    /**
+     * @brief load rules from a file
+     * @param filePath : the name of the file where to search the rules
+     */
 	virtual void load(const std::string& filePath) =0;
 };
 

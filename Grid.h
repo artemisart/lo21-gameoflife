@@ -9,6 +9,11 @@
 
 #include "Index.h"
 
+/**
+ * @brief The Grid abstract class is used to create a Grid which can be subclassed to have 1 dimension or more.
+ * A function can also be applied on each cell.
+ */
+
 template <typename T, typename I>
 class Grid {
 public:
@@ -16,16 +21,65 @@ public:
 
 	Grid() {}
 	virtual ~Grid() {}
+
+    /**
+     * @brief Access a cell thanks to its index
+     * @param idx : an index structure that stores the place of the cell
+     * @return return the value of the cell
+     */
 	virtual T getCell(const I idx) const = 0;
+
+    /**
+     * @brief Write a value into the cell
+     * @param idx : an index structure
+     * @param value : a value to write into the cell
+     */
+
 	virtual void setCell(const I idx, const T value) = 0;
+
+    /**
+     * @brief return the Size of the grid
+     */
+
 	virtual I getSize() const = 0;
 
+    /**
+     * @brief Create a new Grid with the 2 template values passed
+     * @return Return a pointer on the grid created
+     */
+
 	virtual Grid<T, I>* createNew() const = 0;
+
+    /**
+     * @brief iterate_get
+     * @param functor
+     */
 	virtual void iterate_get(const std::function<void(const T cell)> functor) const = 0;
+
+    /**
+     * @brief iterate_set
+     * @param functor
+     */
+
 	virtual void iterate_set(const std::function<T(const I index)> functor) = 0;
+
+    /**
+     * @brief Save the grid attributes in a file
+     * @param filePath : a string that refers to a file, where to write
+     */
 	virtual void save(const std::string& filePath) const = 0;
+
+    /**
+     * @brief load a Grid attributs from a file
+     * @param filePath : the name of the file from which to take values for the attributs
+     */
 	virtual void load(const std::string& filePath) = 0;
 };
+
+
+/**
+ * @brief The Grid1D stores a 1 dimensional grid
+ */
 
 template <typename T>
 class Grid1D : public Grid<T, Index1D> {
@@ -37,7 +91,14 @@ public:
 		: values(size, 0)
 	{
 	}
+
 	virtual ~Grid1D() {}
+
+    /**
+     * @brief Get the value of a cell with a one dimensional index
+     * @param idx : a one dimensional index (i.e : a structure with one interger)
+     * @return the value stored in the cell
+     */
 
 	virtual T getCell(const Index1D idx) const
 	{
@@ -48,10 +109,22 @@ public:
 		else
 			return values[idx.i];
 	}
+
+    /**
+     * @brief set the value given in parameters in the cell
+     * @param idx : index of a cell for a 1 dimensional grid
+     * @param value : the value to set in the cell
+     */
 	virtual void setCell(const Index1D idx, const T value)
 	{
 		values.at(idx.i) = value;
 	}
+
+
+    /**
+     * @brief create a new Grid1D with the same size as the current object
+     * @return return a pointer on the new grid
+     */
 
 	Grid1D<T>* createNew() const
 	{
@@ -59,16 +132,32 @@ public:
 		return newGrid;
 	}
 
+    /**
+     * @brief iterate_get
+     * @param functor
+     */
+
 	virtual void iterate_get(const std::function<void(const T)> functor) const
 	{
 		for (Index1D i; i.i < static_cast<int>(values.size()); ++i.i)
 			functor(getCell(i));
 	}
+
+    /**
+     * @brief iterate_set
+     * @param functor
+     */
+
 	virtual void iterate_set(const std::function<T(const Index1D)> functor)
 	{
 		for (Index1D i; i.i < static_cast<int>(values.size()); ++i.i)
 			setCell(i, functor(i));
 	}
+
+    /**
+     * @brief save the current grid into a file
+     * @param filePath : the name of the file where to save the grid
+     */
 	virtual void save(const std::string& filePath) const
 	{
 		try {
@@ -81,7 +170,17 @@ public:
 		}
 	}
 
+    /**
+     * @brief return the size of the grid
+     * @return
+     */
+
 	virtual Index1D getSize() const { return values.size(); }
+
+    /**
+     * @brief load a grid configuration from a file
+     * @param filePath : the name of the file where is stored the grid
+     */
 
 	virtual void load(const std::string& filePath)
 	{
