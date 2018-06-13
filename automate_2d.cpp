@@ -75,8 +75,8 @@ void Automate_2D::reset()
 {
     ui->largeur->setValue(20);
     ui->hauteur->setValue(20);
-	ui->survive->setText("23");
-	ui->born->setText("2");
+    ui->Survive->setValue(0);
+    ui->born->setValue(0);
     setSize();
 
 	for (int i = 0; i < 20; i++) {
