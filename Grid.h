@@ -60,13 +60,13 @@ public:
      * @brief iterate_get
      * @param functor
      */
-	virtual void iterate_get(const std::function<void(const T cell)> functor) const = 0;
-
+	virtual void iterate_get(const std::function<void(const T value)> functor) const = 0;
+	virtual void iterate_get(const std::function<void(const I index, const T value)> functor) const = 0;
     /**
      * @brief iterate_set
      * @param functor
      */
-
+	virtual void iterate_set(const std::function<T()> functor) = 0;
 	virtual void iterate_set(const std::function<T(const I index)> functor) = 0;
 
     /**
@@ -143,18 +143,22 @@ public:
      * @param functor
      */
 
-	virtual void iterate_get(const std::function<void(const T)> functor) const
+	virtual void iterate_get(const std::function<void(const T value)> functor) const
 	{
 		for (Index1D i; i.i < static_cast<int>(values.size()); ++i.i)
 			functor(getCell(i));
 	}
-
-    /**
-     * @brief iterate_set
-     * @param functor
-     */
-
-	virtual void iterate_set(const std::function<T(const Index1D)> functor)
+	virtual void iterate_get(const std::function<void(const Index1D index, const T value)> functor) const
+	{
+		for (Index1D i; i.i < static_cast<int>(values.size()); ++i.i)
+			functor(i, getCell(i));
+	}
+	virtual void iterate_set(const std::function<T()> functor)
+	{
+		for (Index1D i; i.i < static_cast<int>(values.size()); ++i.i)
+			setCell(i, functor());
+	}
+	virtual void iterate_set(const std::function<T(const Index1D index)> functor)
 	{
 		for (Index1D i; i.i < static_cast<int>(values.size()); ++i.i)
 			setCell(i, functor(i));
@@ -248,11 +252,23 @@ public:
 		return newGrid;
 	}
 
-	virtual void iterate_get(const std::function<void(const T)> functor) const
+	virtual void iterate_get(const std::function<void(const T value)> functor) const
 	{
 		for (Index2D i; i.row < height; ++i.row)
 			for (i.col = 0; i.col < width; ++i.col)
 				functor(getCell(i));
+	}
+	virtual void iterate_get(const std::function<void(const Index2D, const T value)> functor) const
+	{
+		for (Index2D i; i.row < height; ++i.row)
+			for (i.col = 0; i.col < width; ++i.col)
+				functor(i, getCell(i));
+	}
+	virtual void iterate_set(const std::function<T()> functor)
+	{
+		for (Index2D i; i.row < height; ++i.row)
+			for (i.col = 0; i.col < width; ++i.col)
+				setCell(i, functor());
 	}
 	virtual void iterate_set(const std::function<T(const Index2D)> functor)
 	{
