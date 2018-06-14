@@ -95,7 +95,7 @@ private:
 	std::vector<T> values;
 
 public:
-	Grid1D(const std::size_t size)
+	Grid1D(const int size)
 		: values(size, 0)
 	{
 	}
