@@ -328,11 +328,6 @@
        <attribute name="verticalHeaderVisible">
         <bool>false</bool>
        </attribute>
-       <row>
-        <property name="text">
-         <string>Nouvelle ligne</string>
-        </property>
-       </row>
       </widget>
      </item>
      <item>
