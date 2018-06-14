@@ -41,7 +41,6 @@ private:
     Automaton<bool, Index2D>* a;
     Rule2D* r;
     int rang;
-    QTableWidget* etats;
     bool sim;
     QCheckBox *survive[9], *born[9];
     QTimer* timer;
