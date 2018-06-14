@@ -55,18 +55,19 @@ Automate_1D::~Automate_1D()
 
 void Automate_1D::stop()
 {
-    stop();
     sim = false;
 }
 
 void Automate_1D::reset()
-    ui->grid->setRowCount(1);
-    ui->size_Box->setValue(20);
-    ui->rule->setValue(0);
-    setSize();
+{
+	stop();
+	ui->grid->setRowCount(1);
+	ui->size_Box->setValue(20);
+	ui->rule->setValue(0);
+	setSize();
 
 	a->getHistory()->getStart()->iterate_set([]() { return true; });
-    ui->grid->setEditTriggers(QAbstractItemView::DoubleClicked);
+	ui->grid->setEditTriggers(QAbstractItemView::DoubleClicked);
 }
 
 void Automate_1D::setSize()
@@ -90,7 +91,7 @@ void Automate_1D::setSize()
 
 std::uint8_t NumBitToNum(const QString& num)
 {
-    if (num.size() != 8 )
+	if (num.size() != 8)
 		// FIXME cette condition va pas du tout, dès qu'on a 00 ou 01 dans un champ ça fait tout crasher
 		throw("Numero d'automate indefini");
     int puissance = 1;
