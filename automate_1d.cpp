@@ -76,12 +76,7 @@ void Automate_1D::setSize()
     int dimCol = ui->size_Box->value();
     ui->grid->setColumnCount(dimCol);
 
-    ui->grid->horizontalHeader()->setVisible(false);
-    ui->grid->verticalHeader()->setVisible(false);
-    ui->grid->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    ui->grid->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->grid->setFixedWidth(ui->size_Box->value() * 25);
-
     for (int i = 0; i < dimCol; i++) {
         ui->grid->setColumnWidth(i, 25);
         ui->grid->setItem(0, i, new QTableWidgetItem(""));
@@ -211,9 +206,7 @@ void Automate_1D::run()
 
 void Automate_1D::init_simulation(int row)
 {
-
     for (int i = 0; i < row; i++) {
-
         for (int j = 0; j < ui->size_Box->value(); j++) {
             ui->grid->setColumnWidth(j, 25);
             etats->setRowHeight(i, 25);
@@ -243,7 +236,7 @@ void Automate_1D::save()
         const Grid<bool, Index1D>* g1D = a->getHistory()->getLast();
         g1D->save(name);
         r->save(name);
-    std::cout<< "sauvegarde reussie \n";
+        std::cout << "sauvegarde reussie \n";
     } catch (const std::string& e) {
         std::cout << "erreur: " << e << "\n";
     }
@@ -278,7 +271,7 @@ void Automate_1D::load()
             }
         }
 
-  r->load(name);
+        r->load(name);
         ui->rule->setValue(r->getNum()); //met les regles a jour
         this->synchronizeNumToNumBit(r->getNum());
     } catch (const std::string& e) {

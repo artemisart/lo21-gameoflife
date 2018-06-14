@@ -91,11 +91,6 @@ void Automate_2D::setSize()
     ui->grid->setColumnCount(dimCol);
     ui->grid->setRowCount(dimRow);
 
-    ui->grid->horizontalHeader()->setVisible(false);
-    ui->grid->verticalHeader()->setVisible(false);
-    ui->grid->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    ui->grid->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-
     for (int i = 0; i < dimCol; i++) {
         for (int j = 0; j < dimRow; j++) {
             ui->grid->setColumnWidth(j, 25);
@@ -132,7 +127,6 @@ void Automate_2D::cellActivation(const QModelIndex& index)
 void Automate_2D::next()
 {
     ui->grid->setEditTriggers(QAbstractItemView::NoEditTriggers);
-
     a->next();
     refreshGrid();
     incRang();
@@ -224,7 +218,6 @@ void Automate_2D::refreshGrid() const
 // TODO refactor this
 void Automate_2D::rand_sym()
 {
-
     int h = ui->heightSpinbox->value();
     auto start = a->getHistory()->getStart();
 
