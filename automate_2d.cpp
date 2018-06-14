@@ -5,6 +5,7 @@
 #include<QScrollArea>
 #include <unistd.h>     //for using the function sleep
 #include <QTimer>
+#include <QFileDialog>
 
 Automate_2D::Automate_2D(QWidget* parent)
 	: QWidget(parent)
@@ -278,7 +279,12 @@ void Automate_2D::menu()
 
 void Automate_2D::save(){
   try{
-    std::string name = ui->name_file->text().toStdString();
+    QString fileName = QFileDialog::getSaveFileName(this,
+           tr("save grid"), "",
+           tr("lo21 (*.2Dlo21)"));
+    if (fileName.isEmpty())
+            return;
+    std::string name = fileName.toStdString();
     const Grid<bool, Index2D>* g2D= h->getLast();
     g2D->save(name);
     r->save(name);
@@ -290,11 +296,42 @@ void Automate_2D::save(){
 
 void Automate_2D::load(){
   try{
-    std::string name = ui->name_file->text().toStdString();
+    QString fileName = QFileDialog::getOpenFileName(this,
+           tr("load grid"), "",
+           tr("lo21 (*.2Dlo21)"));
+    if (fileName.isEmpty())
+            return;
+    std::string name = fileName.toStdString();
     Grid2D<bool>* g2D = new Grid2D<bool>(10,10);
     g2D->load(name);
     h->push(g2D);
+    Index2D i = g2D->getSize();
+    ui->largeur->setValue(i.col);
+    ui->hauteur->setValue(i.row);  //met la taille a jour
+    this->setSize();
+
+    for(Index2D i; i.row < g2D->getSize().row; ++i.row){
+        for(i.col=0; i.col < g2D->getSize().col; ++i.col){
+                bool a=g2D->getCell(i);
+                if(a==0){
+                    ui->grid->item(i.row,i.col)->setBackgroundColor("white");
+                    ui->grid->item(i.row, i.col)->setText("");
+                    ui->grid->item(i.row, i.col)->setBackgroundColor("white");
+                }
+                else {
+                    ui->grid->item(i.row,i.col)->setBackgroundColor("black");
+                    ui->grid->item(i.row, i.col)->setText("_");
+                    ui->grid->item(i.row, i.col)->setBackgroundColor("black");
+                }
+       }
+    }
+
     r->load(name);
+    ui->Survive->setValue(r->getSurvive()); //met les regles a jour
+    ui->born->setValue(r->getBorn());
+    this->synchronizeNumToNumBit_b(r->getBorn());
+    this->synchronizeNumToNumBit_s(r->getSurvive());
+    std::cout<< "loading reussi";
   } catch (const std::string& e) {
     std::cout << "erreur: " << e << "\n";
   }

@@ -161,6 +161,7 @@ public:
 		try {
 			std::ofstream file(filePath, std::ios::out | std::ios::trunc);
 			file << "2 " << height << " " << width << " ";
+			std::cout<< "saving grid height "<< height << " width "<<width<<"\n";
 			iterate_get([&](const T cell) { file << cell<< " "; });
 			file.close();
 		} catch (const std::string& e) {
@@ -175,6 +176,7 @@ public:
 		  file >> it;
 		  if(it!=2){throw std::string("wrong loading, expected 2D grid \n");}
 		  file >> height; file>> width;
+		  std::cout<< "loading grid height "<< height << " width "<<width<<"\n";
 		  T cell;
 		  values.resize(height*width,0);
 		  for (Index2D i; i.row < height; ++i.row)

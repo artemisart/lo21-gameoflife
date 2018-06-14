@@ -74,7 +74,9 @@ public:
     {
       try {
               std::ofstream file(filePath, std::ios::out | std::ios::app);
-              file << "\n" <<"2 " << born << " " << survive ;
+              file << "\n" <<"2 " << born ;
+              file << " " << survive ;
+              std::cout<< "saving born = " << born<< "  survive = "<<survive << "\n";
               file.close();
       } catch (const std::string& e) {
               std::cout << "erreur: " << e << "\n";
@@ -91,6 +93,7 @@ public:
               if(it!=2){throw std::string("wrong loading, expected a 2D rule \n");}
               file >> born;
               file >> survive;
+              std::cout<< "loading born = "<< born<< "  survive = "<<survive << "\n";
               file.close();
       } catch (const std::string& e) {
               std::cout << "erreur: " << e << "\n";

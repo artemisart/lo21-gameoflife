@@ -1,6 +1,7 @@
 #include "automate_1d.h"
 #include "ui_automate_1d.h"
 #include <QMessageBox>
+#include <QFileDialog>
 
 Automate_1D::Automate_1D(QWidget* parent)
 	: QWidget(parent)
@@ -248,7 +249,12 @@ void Automate_1D::init_simulation(int row)
 
 void Automate_1D::save(){
   try{
-    std::string name = ui->name_file->text().toStdString();
+    QString fileName = QFileDialog::getSaveFileName(this,
+           tr("Save grid"), "",
+           tr("lo21 (*.1Dlo21)"));
+    if (fileName.isEmpty())
+            return;
+    std::string name = fileName.toStdString();
     const Grid<bool, Index1D>* g1D= h->getLast();
     g1D->save(name);
     r->save(name);
@@ -260,11 +266,36 @@ void Automate_1D::save(){
 
 void Automate_1D::load(){
   try{
-    std::string name = ui->name_file->text().toStdString();
+    QString fileName = QFileDialog::getOpenFileName(this,
+           tr("load grid"), "",
+           tr("lo21 (*.1Dlo21)"));
+    if (fileName.isEmpty())
+            return;
+    std::string name = fileName.toStdString();
     Grid1D<bool>* g1D = new Grid1D<bool>(20);
     g1D->load(name);
     h->push(g1D);
+    Index1D i = g1D->getSize();
+    ui->size_Box->setValue(i.i); //met la taille a jour
+    this->setSize();
+
+    for(Index1D i; i.i < g1D->getSize().i; ++i.i){
+        bool a=g1D->getCell(i);
+        if(a==0){
+            ui->grid->item(0,i.i)->setBackgroundColor("white");
+            ui->grid->item(0, i.i)->setText("");
+            ui->grid->item(0, i.i)->setBackgroundColor("white");
+        }
+        else {
+            ui->grid->item(0,i.i)->setBackgroundColor("black");
+            ui->grid->item(0, i.i)->setText("_");
+            ui->grid->item(0, i.i)->setBackgroundColor("black");
+        }
+    }
+
     r->load(name);
+    ui->rule->setValue(r->getNum());  //met les regles a jour
+    this->synchronizeNumToNumBit(r->getNum());
   } catch (const std::string& e) {
     std::cout << "erreur: " << e << "\n";
   }

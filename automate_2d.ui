@@ -41,13 +41,6 @@
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="name_file">
-      <property name="text">
-       <string>nom_fichier</string>
-      </property>
-     </widget>
-    </item>
-    <item>
      <widget class="QPushButton" name="run">
       <property name="text">
        <string>Lancer la simulation</string>
