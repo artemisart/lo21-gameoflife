@@ -11,10 +11,9 @@
  */
 
 /**
- *Class Automaton is composed of an History and some Rules, both can be accessed and written.
+ * @brief Automaton is composed of an History and some Rules, both can be accessed and written.
  * This entity is used to make Rules and History work together, and run a simulation.
  * It can be specified 1 dimensional or 2 dimensional thanks to the specification of templates.
- *
  */
 template <typename T, typename I>
 class Automaton {

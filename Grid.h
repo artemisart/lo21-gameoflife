@@ -85,7 +85,6 @@ public:
 	virtual void load(const std::string& filePath) = 0;
 };
 
-
 /**
  * @brief The Grid1D stores a 1 dimensional grid
  */
@@ -128,7 +127,6 @@ public:
 	{
 		values.at(idx.i) = value;
 	}
-
 
     /**
      * @brief create a new Grid1D with the same size as the current object
