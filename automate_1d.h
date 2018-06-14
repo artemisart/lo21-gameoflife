@@ -27,33 +27,33 @@ class Automate_1D : public QWidget {
     Q_OBJECT
 
 public:
-	explicit Automate_1D(QWidget* parent = nullptr);
+    explicit Automate_1D(QWidget* parent = nullptr);
     ~Automate_1D();
-	void setParent(QWidget* par) { parent = par; }
-	void incRang() { rang++; }
-	int getRang() const { return rang; }
+    void setParent(QWidget* par) { parent = par; }
+    void incRang() { rang++; }
+    int getRang() const { return rang; }
     void init_simulation(int row);
 
 private:
-	Ui::Automate_1D* ui;
+    Ui::Automate_1D* ui;
     QWidget* parent;
     QIntValidator* zeroOneValidator;
     Automaton<bool, Index1D>* a;
     Rule1D* r;
     int rang;
     QTableWidget* etats;
-	bool sim, begin;
-	std::array<QLineEdit*, 8> numBits;
-	QTimer* timer;
+    bool sim, begin;
+    std::array<QLineEdit*, 8> numBits;
+    QTimer* timer;
 
 private slots:
-	void setSize();
-	void synchronizeNumToNumBit(int j);
-	void synchronizeNumBitToNum(const QString& s);
-	void simulation();
-	void cellActivation(const QModelIndex& index);
-	void next();
-	void menu();
+    void setSize();
+    void synchronizeNumToNumBit(int j);
+    void synchronizeNumBitToNum(const QString& s);
+    void simulation();
+    void cellActivation(const QModelIndex& index);
+    void next();
+    void menu();
     void run();
     void save();
     void load();

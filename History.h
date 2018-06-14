@@ -19,41 +19,41 @@
 template <typename T>
 class History {
 private:
-	T* start = nullptr;
+    T* start = nullptr;
 
 public:
-	History() {}
-	virtual ~History() { delete this->start; }
+    History() {}
+    virtual ~History() { delete this->start; }
 
-	/**
-	 * @brief Stores the first element, and resets the history.
-	 * @attention Subclasses should clean/reset their internal history when
-	 * calling this method.
-	 * @param start The first element to be stored
-	 */
-	virtual void setStart(T* start) { this->start = start; }
-	/**
-	 * @brief Returns the first element stored in the history.
-	 * @return
-	 */
-	virtual T* getStart() const { return this->start; }
-	/**
-	 * @brief Returns the last element stored in the history.
-	 * @return
-	 */
-	virtual const T* getLast() const = 0;
-	/**
-	 * @brief Returns the i-th element stored in the history or a nullptr if
-	 * this element isn't available.
-	 * @param i index of the element to retrieve
-	 * @return
-	 */
-	virtual const T* get(const int i) const = 0;
-	/**
-	 * @brief Add a new element to be stored in the history.
-	 * @param newElement
-	 */
-	virtual void push(const T* newElement) = 0;
+    /**
+     * @brief Stores the first element, and resets the history.
+     * @attention Subclasses should clean/reset their internal history when
+     * calling this method.
+     * @param start The first element to be stored
+     */
+    virtual void setStart(T* start) { this->start = start; }
+    /**
+     * @brief Returns the first element stored in the history.
+     * @return
+     */
+    virtual T* getStart() const { return this->start; }
+    /**
+     * @brief Returns the last element stored in the history.
+     * @return
+     */
+    virtual const T* getLast() const = 0;
+    /**
+     * @brief Returns the i-th element stored in the history or a nullptr if
+     * this element isn't available.
+     * @param i index of the element to retrieve
+     * @return
+     */
+    virtual const T* get(const int i) const = 0;
+    /**
+     * @brief Add a new element to be stored in the history.
+     * @param newElement
+     */
+    virtual void push(const T* newElement) = 0;
 };
 
 /**
@@ -63,56 +63,56 @@ public:
 template <typename T>
 class RingHistory : public History<T> {
 private:
-	std::vector<const T*> ring;
-	int current = 0;
+    std::vector<const T*> ring;
+    int current = 0;
 
 public:
-	RingHistory(const int size)
-		: ring(size, nullptr)
-	{
-	}
-	~RingHistory()
-	{
-		for (auto e : ring)
-			delete e;
-		ring.clear();
-	}
+    RingHistory(const int size)
+        : ring(size, nullptr)
+    {
+    }
+    ~RingHistory()
+    {
+        for (auto e : ring)
+            delete e;
+        ring.clear();
+    }
 
-	virtual std::size_t size() const
-	{
-		return ring.size();
-	}
-	virtual void setStart(T* start)
-	{
-		this->History<T>::setStart(start);
+    virtual std::size_t size() const
+    {
+        return ring.size();
+    }
+    virtual void setStart(T* start)
+    {
+        this->History<T>::setStart(start);
 
-		for (auto& elem : this->ring)
-			elem = nullptr;
-		this->ring[0] = start;
-		this->current = 0;
-	}
-	virtual const T* getLast() const
-	{
-		return this->ring[this->current % this->ring.size()];
-	}
-	virtual const T* get(const int i) const
-	{
-		if (i < 0)
-			return nullptr;
-		if (i > current) // we can't get the future
-			return nullptr;
-		if (i < current - static_cast<int>(ring.size())) // too old, we don't have it anymore
-			return nullptr;
+        for (auto& elem : this->ring)
+            elem = nullptr;
+        this->ring[0] = start;
+        this->current = 0;
+    }
+    virtual const T* getLast() const
+    {
+        return this->ring[this->current % this->ring.size()];
+    }
+    virtual const T* get(const int i) const
+    {
+        if (i < 0)
+            return nullptr;
+        if (i > current) // we can't get the future
+            return nullptr;
+        if (i < current - static_cast<int>(ring.size())) // too old, we don't have it anymore
+            return nullptr;
 
-		return this->ring[i % this->ring.size()];
-	}
-	virtual void push(const T* newElement)
-	{
-		auto& elem = ring[++current % ring.size()];
-		if (elem != nullptr)
-			delete elem;
-		elem = newElement;
-	}
+        return this->ring[i % this->ring.size()];
+    }
+    virtual void push(const T* newElement)
+    {
+        auto& elem = ring[++current % ring.size()];
+        if (elem != nullptr)
+            delete elem;
+        elem = newElement;
+    }
 };
 
 #endif // HISTORY_H

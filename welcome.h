@@ -16,11 +16,11 @@ class Welcome : public QWidget {
     Q_OBJECT
 
 public:
-	explicit Welcome(QWidget* parent = 0);
+    explicit Welcome(QWidget* parent = 0);
     ~Welcome();
 
 private:
-	Ui::Welcome* ui;
+    Ui::Welcome* ui;
 
 private slots:
     void Simulation_Automaton1D();

@@ -25,35 +25,35 @@ class Automate_2D : public QWidget {
     Q_OBJECT
 
 public:
-	explicit Automate_2D(QWidget* parent = nullptr);
-	~Automate_2D();
-	void setParent(QWidget* par) { parent = par; }
+    explicit Automate_2D(QWidget* parent = nullptr);
+    ~Automate_2D();
+    void setParent(QWidget* par) { parent = par; }
     void incRang() { rang++; }
     int getRang() const { return rang; }
     void init_simulation();
- /*   void setType(int a){type=a;}
+    /*   void setType(int a){type=a;}
     const int getType()const { return type; }*/
 
 private:
-	Ui::Automate_2D* ui;
+    Ui::Automate_2D* ui;
     QWidget* parent;
     QIntValidator* zeroOneValidator;
     Automaton<bool, Index2D>* a;
-	Rule2D* r;
-	int rang;
+    Rule2D* r;
+    int rang;
     QTableWidget* etats;
     bool sim;
-	QCheckBox *survive[9], *born[9];
-	QTimer* timer;
+    QCheckBox *survive[9], *born[9];
+    QTimer* timer;
     int type; // type=0 => bool, type = 1=>int
 
 private slots:
-	void setSize();
-	void simulation();
-	void cellActivation(const QModelIndex& index);
-	void refreshGrid() const;
-	void next();
-	void menu();
+    void setSize();
+    void simulation();
+    void cellActivation(const QModelIndex& index);
+    void refreshGrid() const;
+    void next();
+    void menu();
     void reset();
     void stop();
     void run();
@@ -61,10 +61,10 @@ private slots:
     void save();
     void rand();
     void rand_sym();
-	void on_born_textEdited(const QString& rule);
-	void on_survive_textEdited(const QString& rule);
-	void check_born_i_clicked();
-	void check_survive_i_clicked();
+    void on_born_textEdited(const QString& rule);
+    void on_survive_textEdited(const QString& rule);
+    void check_born_i_clicked();
+    void check_survive_i_clicked();
 };
 
 QString NumToNumBit(short unsigned int num);
