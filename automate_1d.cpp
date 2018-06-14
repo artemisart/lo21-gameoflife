@@ -1,7 +1,7 @@
 #include "automate_1d.h"
 #include "ui_automate_1d.h"
-#include <QMessageBox>
 #include <QFileDialog>
+#include <QMessageBox>
 
 Automate_1D::Automate_1D(QWidget* parent)
 	: QWidget(parent)
@@ -57,7 +57,6 @@ Automate_1D::Automate_1D(QWidget* parent)
 
     connect(ui->stop, SIGNAL(clicked()), this, SLOT(stop()));
     connect(ui->reset, SIGNAL(clicked()), this, SLOT(reset()));
-
 }
 
 Automate_1D::~Automate_1D()
@@ -65,24 +64,22 @@ Automate_1D::~Automate_1D()
     delete ui;
 }
 
-void Automate_1D::stop(){
+void Automate_1D::stop()
+{
     sim = false;
 }
 
-void Automate_1D::reset(){
+void Automate_1D::reset()
+{
     ui->grid->setRowCount(1);
     ui->size_Box->setValue(20);
     ui->rule->setValue(0);
     setSize();
 
-    for(int i=0; i<20;i++){
-            start->setCell(i, true);
-
-
+	for (int i = 0; i < 20; i++) {
+		start->setCell(i, true);
     }
     ui->grid->setEditTriggers(QAbstractItemView::DoubleClicked);
-
-
 }
 
 void Automate_1D::setSize()
@@ -94,7 +91,7 @@ void Automate_1D::setSize()
 	ui->grid->verticalHeader()->setVisible(false);
 	ui->grid->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	ui->grid->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    ui->grid->setFixedWidth(ui->size_Box->value()*25);
+	ui->grid->setFixedWidth(ui->size_Box->value() * 25);
 
     for (int i = 0; i < dimCol; i++) {
 		ui->grid->setColumnWidth(i, 25);
@@ -166,9 +163,8 @@ void Automate_1D::synchronizeNumBitToNum(const QString& s)
 
 void Automate_1D::simulation()
 {
-        sim=true;
-        run();
-
+	sim = true;
+	run();
 }
 
 void Automate_1D::cellActivation(const QModelIndex& index)
@@ -181,16 +177,14 @@ void Automate_1D::cellActivation(const QModelIndex& index)
 
 void Automate_1D::next()
 {
-  if(getRang()<ui->nb_etats->value()){
+	if (getRang() < ui->nb_etats->value()) {
 
         a->next();
 
         auto* grid = h->getLast();
 
         ui->grid->setRowCount(ui->grid->rowCount() + 1);
-        ui->grid->setFixedSize(ui->size_Box->value() * 25,(( ui->grid->rowCount()+1) * 25));
-
-
+		ui->grid->setFixedSize(ui->size_Box->value() * 25, ((ui->grid->rowCount() + 1) * 25));
 
         for (int j = 0; j < ui->size_Box->value(); j++) {
             ui->grid->setItem(getRang(), j, new QTableWidgetItem(""));
@@ -199,16 +193,12 @@ void Automate_1D::next()
         }
         incRang();
 
-}
-  else {
-      QMessageBox msgBox;
-      msgBox.setText("Le nombres d'états maximal de la simulation à été atteint");
-      msgBox.exec();
-      sim = false;
-
-  }
-
-
+	} else {
+		QMessageBox msgBox;
+		msgBox.setText("Le nombres d'états maximal de la simulation à été atteint");
+		msgBox.exec();
+		sim = false;
+	}
 }
 
 void Automate_1D::menu()
@@ -217,10 +207,11 @@ void Automate_1D::menu()
     this->parent->show();
 }
 
-void Automate_1D::run(){
-    if(sim==true){
-      timer->start(ui->timer->value()*1000);
-      next();
+void Automate_1D::run()
+{
+	if (sim == true) {
+		timer->start(ui->timer->value() * 1000);
+		next();
     }
 }
 
@@ -246,110 +237,102 @@ void Automate_1D::init_simulation(int row)
     begin = true;
 }
 
-
-void Automate_1D::save(){
-  try{
-    QString fileName = QFileDialog::getSaveFileName(this,
-           tr("Save grid"), "",
-           tr("lo21 (*.1Dlo21)"));
-    if (fileName.isEmpty())
+void Automate_1D::save()
+{
+	try {
+		QString fileName = QFileDialog::getSaveFileName(this,
+			tr("Save grid"), "",
+			tr("lo21 (*.1Dlo21)"));
+		if (fileName.isEmpty())
             return;
-    std::string name = fileName.toStdString();
-    const Grid<bool, Index1D>* g1D= h->getLast();
-    g1D->save(name);
-    r->save(name);
-    std::cout<< "sauvegarde reussie \n";
-  } catch (const std::string& e) {
-         std::cout << "erreur: " << e << "\n";
-  }
+		std::string name = fileName.toStdString();
+		const Grid<bool, Index1D>* g1D = h->getLast();
+		g1D->save(name);
+		r->save(name);
+		std::cout << "sauvegarde reussie \n";
+	} catch (const std::string& e) {
+		std::cout << "erreur: " << e << "\n";
+	}
 }
 
-void Automate_1D::load(){
-  try{
-    QString fileName = QFileDialog::getOpenFileName(this,
-           tr("load grid"), "",
-           tr("lo21 (*.1Dlo21)"));
-    if (fileName.isEmpty())
+void Automate_1D::load()
+{
+	try {
+		QString fileName = QFileDialog::getOpenFileName(this,
+			tr("load grid"), "",
+			tr("lo21 (*.1Dlo21)"));
+		if (fileName.isEmpty())
             return;
-    std::string name = fileName.toStdString();
-    Grid1D<bool>* g1D = new Grid1D<bool>(20);
-    g1D->load(name);
-    h->push(g1D);
-    Index1D i = g1D->getSize();
-    ui->size_Box->setValue(i.i); //met la taille a jour
-    this->setSize();
+		std::string name = fileName.toStdString();
+		Grid1D<bool>* g1D = new Grid1D<bool>(20);
+		g1D->load(name);
+		h->push(g1D);
+		Index1D i = g1D->getSize();
+		ui->size_Box->setValue(i.i); //met la taille a jour
+		this->setSize();
 
-    for(Index1D i; i.i < g1D->getSize().i; ++i.i){
-        bool a=g1D->getCell(i);
-        if(a==0){
-            ui->grid->item(0,i.i)->setBackgroundColor("white");
-            ui->grid->item(0, i.i)->setText("");
-            ui->grid->item(0, i.i)->setBackgroundColor("white");
+		for (Index1D i; i.i < g1D->getSize().i; ++i.i) {
+			bool a = g1D->getCell(i);
+			if (a == 0) {
+				ui->grid->item(0, i.i)->setBackgroundColor("white");
+				ui->grid->item(0, i.i)->setText("");
+				ui->grid->item(0, i.i)->setBackgroundColor("white");
+			} else {
+				ui->grid->item(0, i.i)->setBackgroundColor("black");
+				ui->grid->item(0, i.i)->setText("_");
+				ui->grid->item(0, i.i)->setBackgroundColor("black");
+			}
         }
-        else {
-            ui->grid->item(0,i.i)->setBackgroundColor("black");
-            ui->grid->item(0, i.i)->setText("_");
-            ui->grid->item(0, i.i)->setBackgroundColor("black");
-        }
-    }
 
-    r->load(name);
-    ui->rule->setValue(r->getNum());  //met les regles a jour
-    this->synchronizeNumToNumBit(r->getNum());
-  } catch (const std::string& e) {
-    std::cout << "erreur: " << e << "\n";
-  }
+		r->load(name);
+		ui->rule->setValue(r->getNum()); //met les regles a jour
+		this->synchronizeNumToNumBit(r->getNum());
+	} catch (const std::string& e) {
+		std::cout << "erreur: " << e << "\n";
+	}
 }
 
-void Automate_1D::rand(){
-    for(unsigned int j=0; j < ui->size_Box->value() ; j++){
-        int a=std::rand()%2;
-        if(a==0){
-            ui->grid->item(0,j)->setBackgroundColor("white");
+void Automate_1D::rand()
+{
+	for (int j = 0; j < ui->size_Box->value(); j++) {
+		int a = std::rand() % 2;
+		if (a == 0) {
+			ui->grid->item(0, j)->setBackgroundColor("white");
             start->setCell(j, false);
-        }
-        else {
-            ui->grid->item(0,j)->setBackgroundColor("black");
+		} else {
+			ui->grid->item(0, j)->setBackgroundColor("black");
             start->setCell(j, true);
         }
     }
-
 }
 
-void Automate_1D::rand_sym(){
-    for(unsigned int j=0; j<(ui->size_Box->value())/2; j++){
-        int a=std::rand()%2;
-        if(a==0){
-            ui->grid->item(0,j)->setBackgroundColor("white");
+void Automate_1D::rand_sym()
+{
+	for (int j = 0; j < (ui->size_Box->value()) / 2; j++) {
+		int a = std::rand() % 2;
+		if (a == 0) {
+			ui->grid->item(0, j)->setBackgroundColor("white");
             start->setCell(j, false);
             ui->grid->item(0, j)->setText("");
             ui->grid->item(0, j)->setBackgroundColor("white");
-        }
-        else {
-            ui->grid->item(0,j)->setBackgroundColor("black");
+		} else {
+			ui->grid->item(0, j)->setBackgroundColor("black");
             start->setCell(j, true);
             ui->grid->item(0, j)->setText("_");
             ui->grid->item(0, j)->setBackgroundColor("black");
         }
+	}
+	int half = std::ceil((ui->size_Box->value()) / 2) - 1;
+	int i = 0;
+	for (int j = 1; j <= half + 1; j++) {
+		if (ui->grid->item(0, half - i)->text() == "") {
+			ui->grid->item(0, half + j)->setBackgroundColor("white");
+			start->setCell(j, false);
 
-
-}
-    int half= std::ceil((ui->size_Box->value())/2) -1;
-    int i=0;
-    for(unsigned int j=1; j<= half+1; j++){
-            if(ui->grid->item(0, half-i)->text() == ""){
-                ui->grid->item(0, half+j)->setBackgroundColor("white");
-                start->setCell(j, false);
-
-            }else{
-                ui->grid->item(0, half+j)->setBackgroundColor("black");
-                start->setCell(j, true);
-
-
-
-            }
-            i++;
-       }
-
-
+		} else {
+			ui->grid->item(0, half + j)->setBackgroundColor("black");
+			start->setCell(j, true);
+		}
+		i++;
+	}
 }
