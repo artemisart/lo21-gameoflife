@@ -153,7 +153,7 @@ void Automate_2D::save()
         if (fileName.isEmpty())
             return;
         std::string name = fileName.toStdString();
-        const Grid<bool, Index2D>* g2D = h->getLast();
+        const Grid<bool, Index2D>* g2D = a->getHistory()->getLast();
         g2D->save(name);
         r->save(name);
         std::cout << "sauvegarde reussie \n";
@@ -173,10 +173,10 @@ void Automate_2D::load()
         std::string name = fileName.toStdString();
         Grid2D<bool>* g2D = new Grid2D<bool>(10, 10);
         g2D->load(name);
-        h->push(g2D);
+        a->getHistory()->push(g2D);
         Index2D i = g2D->getSize();
-        ui->largeur->setValue(i.col);
-        ui->hauteur->setValue(i.row); //met la taille a jour
+        ui->widthSpinbox->setValue(i.col);
+        ui->heightSpinbox->setValue(i.row);
         this->setSize();
 
         for (Index2D i; i.row < g2D->getSize().row; ++i.row) {
@@ -195,10 +195,11 @@ void Automate_2D::load()
         }
 
         r->load(name);
-        ui->Survive->setValue(r->getSurvive()); //met les regles a jour
-        ui->born->setValue(r->getBorn());
-        this->synchronizeNumToNumBit_b(r->getBorn());
-        this->synchronizeNumToNumBit_s(r->getSurvive());
+        // TODO update rules
+        //        ui->survive->setValue(r->getSurvive());
+        //        ui->born->setValue(r->getBorn());
+        //        this->synchronizeNumToNumBit_b(r->getBorn());
+        //        this->synchronizeNumToNumBit_s(r->getSurvive());
         std::cout << "loading reussi";
     } catch (const std::string& e) {
         std::cout << "erreur: " << e << "\n";
@@ -233,7 +234,7 @@ void Automate_2D::rand_sym()
             ui->grid->item(j, i)->setBackgroundColor(val ? "black" : "white");
             start->setCell(Index2D(j, i), val);
         }
-        }
+    }
     int half = (int)std::ceil(ui->heightSpinbox->value() / 2.) - 1;
 
     int i = 0;
