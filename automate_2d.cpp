@@ -71,6 +71,7 @@ void Automate_2D::reset()
     ui->survive->setText("23");
     ui->born->setText("2");
     setSize();
+    rang=1;
 
     this->a->getHistory()->getStart()->iterate_set([]() { return false; });
     refreshGrid();
@@ -84,8 +85,23 @@ void Automate_2D::stop()
 
 void Automate_2D::setSize()
 {
-    int dimCol = ui->heightSpinbox->value();
-    int dimRow = ui->widthSpinbox->value();
+    if(rang >1 ){
+        QMessageBox msgBox;
+        msgBox.setText("Un automate est déjà en cours de simulation, en continiant vous allez arrêter l'automate en cours'");
+        msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
+        int ret = msgBox.exec();
+
+        switch (ret) {
+        case QMessageBox::Cancel :
+            return;
+            break;
+        default:
+            break;
+        }
+
+    }
+    int dimRow = ui->heightSpinbox->value();
+    int dimCol = ui->widthSpinbox->value();
     ui->grid->setMinimumSize(25 * dimRow, 25 * dimCol);
 
     ui->grid->setColumnCount(dimCol);
@@ -93,12 +109,13 @@ void Automate_2D::setSize()
 
     for (int i = 0; i < dimCol; i++) {
         for (int j = 0; j < dimRow; j++) {
-            ui->grid->setColumnWidth(j, 25);
-            ui->grid->setRowHeight(i, 25);
-            ui->grid->setItem(i, j, new QTableWidgetItem(""));
+            ui->grid->setColumnWidth(i, 25);
+            ui->grid->setRowHeight(j, 25);
+            ui->grid->setItem(j, i, new QTableWidgetItem(""));
+          //  ui->grid->item(j, i)->setBackgroundColor("white");
         }
     }
-    auto* g1 = new Grid2D<bool>(dimCol, dimRow);
+    auto* g1 = new Grid2D<bool>(dimRow, dimCol);
     a->getHistory()->setStart(g1);
 }
 
@@ -140,6 +157,7 @@ void Automate_2D::menu()
 
 void Automate_2D::save()
 {
+
     try {
         QString fileName = QFileDialog::getSaveFileName(this,
             tr("save grid"), "",
@@ -158,6 +176,14 @@ void Automate_2D::save()
 
 void Automate_2D::load()
 {
+    if(rang >1 ){
+        QMessageBox msgBox;
+        msgBox.setText("Un automate est déjà en cours de simulation, si vous souhaitez réellement en créer un nouveau, appuyez sur reset, pour continuer la simulation de celui ci, appuyez de nouveau sur 'lancer la simulation'");
+        msgBox.exec();
+        sim = false;
+        return;
+
+    }
     try {
         QString fileName = QFileDialog::getOpenFileName(this,
             tr("load grid"), "",
@@ -201,6 +227,13 @@ void Automate_2D::load()
 }
 void Automate_2D::rand()
 {
+    if(rang >1 ){
+        QMessageBox msgBox;
+        msgBox.setText("Un automate est déjà en cours de simulation, si vous souhaitez réellement en créer un nouveau, appuyez sur reset, pour continuer la simulation de celui ci, appuyez de nouveau sur 'lancer la simulation'");
+        msgBox.exec();
+        sim = false;
+
+    }
     a->getHistory()->getStart()->iterate_set([]() {
         return std::rand() % 2;
     });
@@ -218,6 +251,13 @@ void Automate_2D::refreshGrid() const
 // TODO refactor this
 void Automate_2D::rand_sym()
 {
+    if(rang >1 ){
+        QMessageBox msgBox;
+        msgBox.setText("Un automate est déjà en cours de simulation, si vous souhaitez réellement en créer un nouveau, appuyez sur reset, pour continuer la simulation de celui ci, appuyez de nouveau sur 'lancer la simulation'");
+        msgBox.exec();
+        sim = false;
+
+    }
     int h = ui->heightSpinbox->value();
     auto start = a->getHistory()->getStart();
 

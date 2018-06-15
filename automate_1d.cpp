@@ -249,6 +249,14 @@ void Automate_1D::save()
 
 void Automate_1D::load()
 {
+
+    if(rang >1 ){
+        QMessageBox msgBox;
+        msgBox.setText("Un automate est déjà en cours de simulation, si vous souhaitez réellement en créer un nouveau, appuyez sur reset, pour continuer la simulation de celui ci, appuyez de nouveau sur 'lancer la simulation'");
+        msgBox.exec();
+        sim = false;
+
+    }
     try {
         QString fileName = QFileDialog::getOpenFileName(this,
             tr("load grid"), "",
