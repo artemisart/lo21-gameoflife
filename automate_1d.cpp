@@ -23,7 +23,24 @@ Automate_1D::Automate_1D(QWidget* parent)
 
     connect(ui->sizeButton, SIGNAL(clicked()), this, SLOT(setSize()));
 
-    for (size_t i = 0; i < 8; i++) {
+    setSize();
+    Grid1D<bool>* g1D = new Grid1D<bool>(20);
+    g1D->load("config.1Dlo21");
+    a->getHistory()->push(g1D);
+    Index1D i = g1D->getSize();
+    ui->size_Box->setValue(i.i); //met la taille a jour
+    this->setSize();
+
+    for (Index1D i; i.i < g1D->getSize().i; ++i.i) {
+        bool a = g1D->getCell(i);
+        ui->grid->item(0, i.i)->setBackgroundColor(a ? "black" : "white");
+    }
+
+    r->load("config.1Dlo21");
+    ui->rule->setText(QString::number(r->getNum())); //met les regles a jour
+    //this->synchronizeNumToNumBit(r->getNum());
+
+    for(int i=0;i<8;i++){
         connect(rules[i], &QCheckBox::clicked, this, &Automate_1D::check_rules_i_clicked);
     }
 
@@ -124,6 +141,14 @@ void Automate_1D::next()
 
 void Automate_1D::menu()
 {
+   Grid1D<bool>* g1D = new Grid1D<bool>(ui->size_Box->value());
+   for(int i=0; i<ui->size_Box->value(); i++){
+        if(ui->grid->item(0,i)->backgroundColor()=="white") g1D->setCell(i,false);
+        else {g1D->setCell(i, true);}
+    }
+    g1D->save("config.1Dlo21");
+    r->save("config.1Dlo21");
+
     this->hide();
     this->parent->show();
 }
