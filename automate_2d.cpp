@@ -164,7 +164,7 @@ void Automate_2D::save()
             tr("lo21 (*.2Dlo21)"));
         if (fileName.isEmpty())
             return;
-        std::string name = fileName.toStdString();
+        std::string name = fileName.toStdString() +".2Dlo21";
         const Grid<bool, Index2D>* g2D = a->getHistory()->getLast();
         g2D->save(name);
         r->save(name);
