@@ -134,8 +134,8 @@ void Automate_2D::run()
 void Automate_2D::cellActivation(const QModelIndex& index)
 {
     Index2D i(index.row(), index.column());
-    auto start = a->getHistory()->getStart();
-    start->setCell(i, !start->getCell(i));
+    auto grid = const_cast<Grid<bool, Index2D>*>(a->getHistory()->getLast());
+    grid->setCell(i, !grid->getCell(i));
     refreshGrid();
 }
 
