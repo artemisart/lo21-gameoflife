@@ -10,28 +10,32 @@ Automate_1D::Automate_1D(QWidget* parent)
     , sim(true)
     , begin(false)
 {
+    ui->setupUi(this);
     timer = new QTimer(parent);
     connect(timer, SIGNAL(timeout()), this, SLOT(run()));
 
-    ui->setupUi(this);
-    numBits = { { ui->numBit1, ui->numBit2, ui->numBit3, ui->numBit4,
-        ui->numBit5, ui->numBit6, ui->numBit7, ui->numBit8 } };
+    QCheckBox* _rules[8] = {
+        ui->rule0, ui->rule1, ui->rule2, ui->rule3,
+        ui->rule4, ui->rule5, ui->rule6, ui->rule7
+    };
+
+    std::copy_n(_rules, 8, rules);
+    ui->rule->setText(QString::fromStdString("0"));
+
+
 
     auto h = new RingHistory<Grid<bool, Index1D>>(10);
     r = new Rule1D();
     a = new Automaton<bool, Index1D>(h, r);
 
-    // TODO checkboxes here
-    zeroOneValidator = new QIntValidator(0, 1, this);
-    for (auto nb : numBits) {
-        nb->setValidator(zeroOneValidator);
-        connect(nb, SIGNAL(textChanged(QString)), this, SLOT(synchronizeNumBitToNum(QString)));
-    }
 
     setSize();
 
+    for(int i=0;i<8;i++){
+        connect(rules[i], &QCheckBox::clicked, this, &Automate_1D::check_rules_i_clicked);
+    }
+
     connect(ui->size, SIGNAL(clicked()), this, SLOT(setSize()));
-    connect(ui->rule, SIGNAL(valueChanged(int)), this, SLOT(synchronizeNumToNumBit(int)));
 
     connect(ui->run, SIGNAL(clicked()), this, SLOT(simulation()));
 
@@ -63,9 +67,13 @@ void Automate_1D::reset()
 {
     stop();
     ui->size_Box->setValue(20);
-    ui->rule->setValue(0);
+    ui->rule->setText(QString::fromStdString("0"));
     ui->nb_etats->setValue(10);
     rang = 1;
+
+    for(int i=0; i<8; i++){
+        rules[i]->setChecked(false);
+    }
 
     a->getHistory()->getStart()->iterate_set([]() { return true; });
 
@@ -89,65 +97,6 @@ void Automate_1D::setSize()
     a->getHistory()->setStart(g1);
 }
 
-std::uint8_t NumBitToNum(const QString& num)
-{
-    if (num.size() != 8)
-        // FIXME cette condition va pas du tout, dès qu'on a 00 ou 01 dans un champ ça fait tout crasher
-        throw("Numero d'automate indefini");
-    int puissance = 1;
-    std::uint8_t numero = 0;
-    for (int i = 7; i >= 0; i--) {
-        if (num[i] == '1')
-            numero += puissance;
-        else if (num[i] != '0')
-            throw("Numero d'automate indefini");
-        puissance *= 2;
-    }
-    return numero;
-}
-
-QString NumToNumBit(short unsigned int num)
-{
-    QString numeroBit;
-    if (num > 256)
-        throw("Numero d'automate indefini");
-    unsigned short int p = 128;
-    int i = 7;
-    while (i >= 0) {
-        if (num >= p) {
-            numeroBit.push_back('1');
-            num -= p;
-        } else {
-            numeroBit.push_back('0');
-        }
-        i--;
-        p = p / 2;
-    }
-    return numeroBit;
-}
-
-void Automate_1D::synchronizeNumToNumBit(int j)
-{
-    QString numbit = NumToNumBit(j);
-    for (int i = 0; i < 8; ++i)
-        numBits[i]->setText(QString(numbit[i]));
-    r->setNum(j);
-}
-
-void Automate_1D::synchronizeNumBitToNum(const QString& s)
-{
-    QString str;
-
-    for (auto nb : numBits) {
-        if (nb->text().size() == 0)
-            return;
-        str += nb->text();
-    }
-
-    std::uint8_t i = NumBitToNum(str);
-    ui->rule->setValue(i);
-    r->setNum(i);
-}
 
 void Automate_1D::simulation()
 {
@@ -268,8 +217,8 @@ void Automate_1D::load()
         }
 
         r->load(name);
-        ui->rule->setValue(r->getNum()); //met les regles a jour
-        this->synchronizeNumToNumBit(r->getNum());
+        ui->rule->setText(QString::number(r->getNum())); //met les regles a jour
+        //this->synchronizeNumToNumBit(r->getNum());
     } catch (const std::string& e) {
         std::cout << "erreur: " << e << "\n";
     }
@@ -308,4 +257,85 @@ void Automate_1D::rand_sym()
         ui->grid->item(0, j)->setBackgroundColor(a ? "black" : "white");
         ui->grid->item(0, last - j)->setBackgroundColor(a ? "black" : "white");
     }
+}
+
+
+void Automate_1D::check_rules_i_clicked()
+{
+
+    QString newText;
+   for(int i=0;i<8;++i){
+        bool b = rules[i]->isChecked();
+        int a=(int)b;
+        newText+=QString::number(a);
+       // ui->rule->setText(newText);
+
+    }
+    std::uint8_t a = NumBitToNum(newText);
+    ui->rule->setText(QString::number(a));
+    r->setNum(a);
+
+}
+
+
+void Automate_1D::synchronizeNumBitToNum(const QString& s)
+{
+    try {
+    QString str;
+
+    for (auto nb : numBits) {
+        if (nb->text().size() == 0)
+            return;
+        str += nb->text();
+    }
+
+    std::uint8_t i = NumBitToNum(str);
+    ui->rule->setText(QString::number(i));
+    r->setNum(i);
+} catch (const std::string& e) {
+    std::cout << "erreur: " << e << "\n";
+}
+}
+
+std::uint8_t NumBitToNum(const QString& num)
+{
+
+    int puissance = 1;
+    std::uint8_t numero = 0;
+   for (int i = 7; i >= 0; i--) {
+        if (num[i] == '1')
+            numero += puissance;
+        else if (num[i] != '0')
+            throw("Numero d'automate indefini");
+        puissance *= 2;
+    }
+    return numero;
+}
+
+QString NumToNumBit(short unsigned int num)
+{
+    QString numeroBit;
+    if (num > 256)
+        throw("Numero d'automate indefini");
+    unsigned short int p = 128;
+    int i = 7;
+    while (i >= 0) {
+        if (num >= p) {
+            numeroBit.push_back('1');
+            num -= p;
+        } else {
+            numeroBit.push_back('0');
+        }
+        i--;
+        p = p / 2;
+    }
+    return numeroBit;
+}
+
+void Automate_1D::synchronizeNumToNumBit(int j)
+{
+    QString numbit = NumToNumBit(j);
+    for (int i = 0; i < 8; ++i)
+        numBits[i]->setText(QString(numbit[i]));
+    r->setNum(j);
 }

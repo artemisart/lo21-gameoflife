@@ -12,6 +12,7 @@
 #include <QTimer>
 #include <QWidget>
 #include <array>
+#include<QCheckBox>
 
 /**
  * @file automate_1d.h
@@ -45,6 +46,7 @@ private:
     bool sim, begin;
     std::array<QLineEdit*, 8> numBits;
     QTimer* timer;
+    QCheckBox *rules[8];
 
 private slots:
     void setSize();
@@ -61,6 +63,7 @@ private slots:
     void rand_sym();
     void stop();
     void reset();
+    void check_rules_i_clicked();
 };
 
 QString NumToNumBit(short unsigned int num);
