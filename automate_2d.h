@@ -37,7 +37,6 @@ public:
 private:
     Ui::Automate_2D* ui;
     QWidget* parent;
-    QIntValidator* zeroOneValidator;
     Automaton<bool, Index2D>* a;
     Rule2D* r;
     int rang;
