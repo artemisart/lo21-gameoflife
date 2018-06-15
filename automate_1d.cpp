@@ -64,9 +64,13 @@ void Automate_1D::reset()
     ui->grid->setRowCount(1);
     ui->size_Box->setValue(20);
     ui->rule->setValue(0);
-    setSize();
+    ui->nb_etats->setValue(10);
+    rang=1;
 
     a->getHistory()->getStart()->iterate_set([]() { return true; });
+
+    setSize();
+
     ui->grid->setEditTriggers(QAbstractItemView::DoubleClicked);
 }
 
@@ -151,6 +155,7 @@ void Automate_1D::synchronizeNumBitToNum(const QString& s)
 
 void Automate_1D::simulation()
 {
+    ui->grid->setEditTriggers(QAbstractItemView::NoEditTriggers);
     sim = true;
     run();
 }
@@ -241,6 +246,13 @@ void Automate_1D::save()
 
 void Automate_1D::load()
 {
+    if(rang >1 ){
+        QMessageBox msgBox;
+        msgBox.setText("Un automate est déjà en cours de simulation, si vous souhaitez réellement en créer un nouveau, appuyez sur reset, pour continuer la simulation de celui ci, appuyez de nouveau sur 'lancer la simulation'");
+        msgBox.exec();
+        sim = false;
+
+    }
     std::string name = ui->name_file->text().toStdString();
     Grid1D<bool>* g1D = new Grid1D<bool>(20);
     g1D->load(name);
@@ -250,6 +262,13 @@ void Automate_1D::load()
 
 void Automate_1D::rand()
 {
+    if(rang >1 ){
+        QMessageBox msgBox;
+        msgBox.setText("Un automate est déjà en cours de simulation, si vous souhaitez réellement en créer un nouveau, appuyez sur reset, pour continuer la simulation de celui ci, appuyez de nouveau sur 'lancer la simulation'");
+        msgBox.exec();
+        sim = false;
+
+    }
     auto start = a->getHistory()->getStart();
     for (int j = 0; j < ui->size_Box->value(); j++) {
         int a = std::rand() % 2;
@@ -265,6 +284,13 @@ void Automate_1D::rand()
 
 void Automate_1D::rand_sym()
 {
+    if(rang >1 ){
+        QMessageBox msgBox;
+        msgBox.setText("Un automate est déjà en cours de simulation, si vous souhaitez réellement en créer un nouveau, appuyez sur reset, pour continuer la simulation de celui ci, appuyez de nouveau sur 'lancer la simulation'");
+        msgBox.exec();
+        sim = false;
+
+    }
     auto start = a->getHistory()->getStart();
     for (int j = 0; j < (ui->size_Box->value()) / 2; j++) {
         int a = std::rand() % 2;
@@ -280,8 +306,8 @@ void Automate_1D::rand_sym()
             ui->grid->item(0, j)->setBackgroundColor("black");
         }
     }
-    // int half = std::ceil((ui->size_Box->value()) / 2) - 1;
-    int half = ui->size_Box->value() / 2;
+    int half = std::ceil((ui->size_Box->value()) / 2) - 1;
+    //int half = ui->size_Box->value() / 2;
     int i = 0;
     for (int j = 1; j <= half + 1; j++) {
         if (ui->grid->item(0, half - i)->text() == "") {
