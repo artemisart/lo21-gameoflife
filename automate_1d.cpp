@@ -62,7 +62,6 @@ void Automate_1D::stop()
 void Automate_1D::reset()
 {
     stop();
-    ui->grid->setRowCount(1);
     ui->size_Box->setValue(20);
     ui->rule->setValue(0);
     ui->nb_etats->setValue(10);
@@ -78,6 +77,7 @@ void Automate_1D::reset()
 void Automate_1D::setSize()
 {
     int dimCol = ui->size_Box->value();
+    ui->grid->setRowCount(1);
     ui->grid->setColumnCount(dimCol);
 
     ui->grid->setFixedWidth(ui->size_Box->value() * 25);
