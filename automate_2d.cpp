@@ -52,6 +52,8 @@ Automate_2D::Automate_2D(QWidget* parent)
     connect(ui->load, SIGNAL(clicked()), this, SLOT(load()));
     connect(ui->random, SIGNAL(clicked()), this, SLOT(rand()));
     connect(ui->random_sym, SIGNAL(clicked()), this, SLOT(rand_sym()));
+
+    reset();
 }
 
 Automate_2D::~Automate_2D()
@@ -73,7 +75,6 @@ void Automate_2D::reset()
 
     setSize();
 
-    this->a->getHistory()->getStart()->iterate_set([]() { return false; });
     refreshGrid();
     ui->grid->setEditTriggers(QAbstractItemView::DoubleClicked);
 }
