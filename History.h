@@ -109,7 +109,7 @@ public:
     virtual void push(const T* newElement)
     {
         auto& elem = ring[++current % ring.size()];
-        if (elem != nullptr)
+        if (elem != nullptr && elem != this->getStart())
             delete elem;
         elem = newElement;
     }
