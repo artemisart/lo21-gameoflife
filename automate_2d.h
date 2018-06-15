@@ -65,7 +65,4 @@ private slots:
     void check_survive_i_clicked();
 };
 
-QString NumToNumBit(short unsigned int num);
-short unsigned int NumBitToNum(const std::string& num);
-
 #endif // AUTOMATE_2D_H

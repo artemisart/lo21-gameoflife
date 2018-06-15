@@ -14,24 +14,16 @@ Automate_1D::Automate_1D(QWidget* parent)
     timer = new QTimer(parent);
     connect(timer, SIGNAL(timeout()), this, SLOT(run()));
 
-    QCheckBox* _rules[8] = {
-        ui->rule0, ui->rule1, ui->rule2, ui->rule3,
-        ui->rule4, ui->rule5, ui->rule6, ui->rule7
-    };
-
-    std::copy_n(_rules, 8, rules);
-    ui->rule->setText(QString::fromStdString("0"));
-
-
+    rules = { { ui->rule0, ui->rule1, ui->rule2, ui->rule3,
+        ui->rule4, ui->rule5, ui->rule6, ui->rule7 } };
 
     auto h = new RingHistory<Grid<bool, Index1D>>(10);
     r = new Rule1D();
     a = new Automaton<bool, Index1D>(h, r);
 
     connect(ui->sizeButton, SIGNAL(clicked()), this, SLOT(setSize()));
-    connect(ui->rule, SIGNAL(valueChanged(int)), this, SLOT(synchronizeNumToNumBit(int)));
 
-    for(int i=0;i<8;i++){
+    for (size_t i = 0; i < 8; i++) {
         connect(rules[i], &QCheckBox::clicked, this, &Automate_1D::check_rules_i_clicked);
     }
 
@@ -72,12 +64,6 @@ void Automate_1D::reset()
     ui->nb_etats->setValue(100);
     rang = 1;
 
-    for(int i=0; i<8; i++){
-        rules[i]->setChecked(false);
-    }
-
-    a->getHistory()->getStart()->iterate_set([]() { return false; });
-
     setSize();
 
     ui->grid->setEditTriggers(QAbstractItemView::DoubleClicked);
@@ -96,7 +82,6 @@ void Automate_1D::setSize()
     a->getHistory()->setStart(g1);
     resizeEvent(nullptr);
 }
-
 
 void Automate_1D::simulation()
 {
@@ -137,7 +122,6 @@ void Automate_1D::next()
         resizeEvent(nullptr);
         incRang();
     }
-
 }
 
 void Automate_1D::menu()
@@ -180,7 +164,7 @@ void Automate_1D::save()
             tr("lo21 (*.1Dlo21)"));
         if (fileName.isEmpty())
             return;
-        std::string name = fileName.toStdString()+".1Dlo21";
+        std::string name = fileName.toStdString() + ".1Dlo21";
         const Grid<bool, Index1D>* g1D = a->getHistory()->getLast();
         g1D->save(name);
         r->save(name);
@@ -218,8 +202,7 @@ void Automate_1D::load()
         }
 
         r->load(name);
-        ui->rule->setText(QString::number(r->getNum())); //met les regles a jour
-        //this->synchronizeNumToNumBit(r->getNum());
+        ui->rule->setValue(r->getNum());
     } catch (const std::string& e) {
         std::cout << "erreur: " << e << "\n";
     }
@@ -270,83 +253,21 @@ void Automate_1D::resizeEvent(QResizeEvent* event)
     for (int i = 0; i < ui->grid->rowCount(); ++i) {
         ui->grid->setRowHeight(i, size);
     }
+}
 
 void Automate_1D::check_rules_i_clicked()
 {
-
-    QString newText;
-   for(int i=0;i<8;++i){
-        bool b = rules[i]->isChecked();
-        int a=(int)b;
-        newText+=QString::number(a);
-       // ui->rule->setText(newText);
-
+    std::uint8_t n = 0;
+    for (size_t i = 0; i < 8; ++i) {
+        n += rules[i]->isChecked() << i;
     }
-    std::uint8_t a = NumBitToNum(newText);
-    ui->rule->setText(QString::number(a));
-    r->setNum(a);
-
+    ui->rule->setValue(n);
+    r->setNum(n);
 }
 
-
-void Automate_1D::synchronizeNumBitToNum(const QString& s)
+void Automate_1D::on_rule_valueChanged(int n)
 {
-    try {
-    QString str;
-
-    for (auto nb : numBits) {
-        if (nb->text().size() == 0)
-            return;
-        str += nb->text();
-    }
-
-    std::uint8_t i = NumBitToNum(str);
-    ui->rule->setText(QString::number(i));
-    r->setNum(i);
-} catch (const std::string& e) {
-    std::cout << "erreur: " << e << "\n";
-}
-}
-
-std::uint8_t NumBitToNum(const QString& num)
-{
-
-    int puissance = 1;
-    std::uint8_t numero = 0;
-   for (int i = 7; i >= 0; i--) {
-        if (num[i] == '1')
-            numero += puissance;
-        else if (num[i] != '0')
-            throw("Numero d'automate indefini");
-        puissance *= 2;
-    }
-    return numero;
-}
-
-QString NumToNumBit(short unsigned int num)
-{
-    QString numeroBit;
-    if (num > 256)
-        throw("Numero d'automate indefini");
-    unsigned short int p = 128;
-    int i = 7;
-    while (i >= 0) {
-        if (num >= p) {
-            numeroBit.push_back('1');
-            num -= p;
-        } else {
-            numeroBit.push_back('0');
-        }
-        i--;
-        p = p / 2;
-    }
-    return numeroBit;
-}
-
-void Automate_1D::synchronizeNumToNumBit(int j)
-{
-    QString numbit = NumToNumBit(j);
-    for (int i = 0; i < 8; ++i)
-        numBits[i]->setText(QString(numbit[i]));
-    r->setNum(j);
+    for (size_t i = 0; i < 8; ++i)
+        rules[i]->setChecked((n >> i) & 1);
+    r->setNum(static_cast<std::uint8_t>(n));
 }

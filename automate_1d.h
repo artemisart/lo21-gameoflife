@@ -3,16 +3,17 @@
 
 #include "Rule.h"
 #include <Automaton.h>
+#include <QCheckBox>
 #include <QIntValidator>
 #include <QLineEdit>
 #include <QMenu>
 #include <QModelIndex>
+#include <QSpinBox>
 #include <QString>
 #include <QTableWidget>
 #include <QTimer>
 #include <QWidget>
 #include <array>
-#include<QCheckBox>
 
 /**
  * @file automate_1d.h
@@ -44,16 +45,13 @@ private:
     Rule1D* r;
     int rang;
     bool sim, begin;
-    std::array<QLineEdit*, 8> numBits;
     QTimer* timer;
-    QCheckBox *rules[8];
+    std::array<QCheckBox*, 8> rules;
 
     void resizeEvent(QResizeEvent* event);
 
 private slots:
     void setSize();
-    void synchronizeNumToNumBit(int j);
-    void synchronizeNumBitToNum(const QString& s);
     void simulation();
     void cellActivation(const QModelIndex& index);
     void next();
@@ -66,9 +64,7 @@ private slots:
     void stop();
     void reset();
     void check_rules_i_clicked();
+    void on_rule_valueChanged(int n);
 };
-
-QString NumToNumBit(short unsigned int num);
-std::uint8_t NumBitToNum(const QString& num);
 
 #endif // AUTOMATE_1D_H
