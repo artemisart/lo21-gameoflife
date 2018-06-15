@@ -62,12 +62,16 @@ Automate_2D::~Automate_2D()
 void Automate_2D::reset()
 {
     stop();
+
     ui->widthSpinbox->setValue(20);
     ui->heightSpinbox->setValue(20);
     ui->survive->setText("23");
-    ui->born->setText("2");
+    on_survive_textEdited("23");
+    ui->born->setText("3");
+    on_born_textEdited("3");
+    rang = 1;
+
     setSize();
-    rang=1;
 
     this->a->getHistory()->getStart()->iterate_set([]() { return false; });
     refreshGrid();

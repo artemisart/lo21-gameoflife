@@ -88,9 +88,6 @@
                <verstretch>0</verstretch>
               </sizepolicy>
              </property>
-             <property name="text">
-              <string>2</string>
-             </property>
              <property name="maxLength">
               <number>10</number>
              </property>
@@ -136,11 +133,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QCheckBox" name="born2">
-             <property name="checked">
-              <bool>true</bool>
-             </property>
-            </widget>
+            <widget class="QCheckBox" name="born2"/>
            </item>
           </layout>
          </item>
@@ -248,9 +241,6 @@
                <horstretch>0</horstretch>
                <verstretch>0</verstretch>
               </sizepolicy>
-             </property>
-             <property name="text">
-              <string>23</string>
              </property>
              <property name="maxLength">
               <number>10</number>
