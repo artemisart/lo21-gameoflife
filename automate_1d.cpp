@@ -30,7 +30,7 @@ Automate_1D::Automate_1D(QWidget* parent)
 
     setSize();
 
-    connect(ui->size, SIGNAL(clicked()), this, SLOT(setSize()));
+    connect(ui->sizeButton, SIGNAL(clicked()), this, SLOT(setSize()));
     connect(ui->rule, SIGNAL(valueChanged(int)), this, SLOT(synchronizeNumToNumBit(int)));
 
     connect(ui->run, SIGNAL(clicked()), this, SLOT(simulation()));
@@ -62,9 +62,9 @@ void Automate_1D::stop()
 void Automate_1D::reset()
 {
     stop();
-    ui->size_Box->setValue(20);
-    ui->rule->setValue(0);
-    ui->nb_etats->setValue(10);
+    ui->sizeSpinbox->setValue(20);
+    ui->rule->setValue(30);
+    ui->nb_etats->setValue(100);
     rang = 1;
 
     a->getHistory()->getStart()->iterate_set([]() { return true; });
@@ -76,7 +76,7 @@ void Automate_1D::reset()
 
 void Automate_1D::setSize()
 {
-    int dimCol = ui->size_Box->value();
+    int dimCol = ui->sizeSpinbox->value();
     ui->grid->setRowCount(1);
     ui->grid->setColumnCount(dimCol);
 
@@ -180,7 +180,7 @@ void Automate_1D::next()
         ui->grid->setRowCount(ui->grid->rowCount() + 1);
         ui->grid->setFixedSize(ui->size_Box->value() * 25, ((ui->grid->rowCount() + 1) * 25));
 
-        for (int j = 0; j < ui->size_Box->value(); j++) {
+        for (int j = 0; j < ui->sizeSpinbox->value(); j++) {
             ui->grid->setItem(getRang(), j, new QTableWidgetItem(""));
             bool val = grid->getCell(j);
             ui->grid->item(getRang(), j)->setBackgroundColor(val ? "black" : "white");
@@ -212,14 +212,14 @@ void Automate_1D::run()
 void Automate_1D::init_simulation(int row)
 {
     for (int i = 0; i < row; i++) {
-        for (int j = 0; j < ui->size_Box->value(); j++) {
+        for (int j = 0; j < ui->sizeSpinbox->value(); j++) {
             ui->grid->setColumnWidth(j, 25);
             ui->grid->setRowHeight(i, 25);
             ui->grid->setItem(i, j, new QTableWidgetItem(""));
         }
     }
     auto start = a->getHistory()->getStart();
-    for (int k = 0; k < ui->size_Box->value(); k++)
+    for (int k = 0; k < ui->sizeSpinbox->value(); k++)
         ui->grid->item(0, k)->setBackgroundColor(start->getCell(k) ? "black" : "white");
     incRang();
 
@@ -246,7 +246,6 @@ void Automate_1D::save()
 
 void Automate_1D::load()
 {
-
     if (rang > 1) {
         QMessageBox msgBox;
         msgBox.setText("Un automate est déjà en cours de simulation, si vous souhaitez réellement en créer un nouveau, appuyez sur reset, pour continuer la simulation de celui ci, appuyez de nouveau sur 'lancer la simulation'");
@@ -264,7 +263,7 @@ void Automate_1D::load()
         g1D->load(name);
         a->getHistory()->push(g1D);
         Index1D i = g1D->getSize();
-        ui->size_Box->setValue(i.i); //met la taille a jour
+        ui->sizeSpinbox->setValue(i.i); //met la taille a jour
         this->setSize();
 
         for (Index1D i; i.i < g1D->getSize().i; ++i.i) {
@@ -289,7 +288,7 @@ void Automate_1D::rand()
         sim = false;
     }
     auto start = a->getHistory()->getStart();
-    for (int j = 0; j < ui->size_Box->value(); j++) {
+    for (int j = 0; j < ui->sizeSpinbox->value(); j++) {
         int a = std::rand() % 2;
         start->setCell(j, a);
         ui->grid->item(0, j)->setBackgroundColor(a ? "black" : "white");
