@@ -66,7 +66,7 @@ void Automate_1D::reset()
     ui->size_Box->setValue(20);
     ui->rule->setValue(0);
     ui->nb_etats->setValue(10);
-    rang=1;
+    rang = 1;
 
     a->getHistory()->getStart()->iterate_set([]() { return true; });
 
@@ -214,17 +214,14 @@ void Automate_1D::init_simulation(int row)
     for (int i = 0; i < row; i++) {
         for (int j = 0; j < ui->size_Box->value(); j++) {
             ui->grid->setColumnWidth(j, 25);
-            etats->setRowHeight(i, 25);
-            etats->setItem(i, j, new QTableWidgetItem(""));
+            ui->grid->setRowHeight(i, 25);
+            ui->grid->setItem(i, j, new QTableWidgetItem(""));
         }
     }
     auto start = a->getHistory()->getStart();
     for (int k = 0; k < ui->size_Box->value(); k++)
-        etats->item(0, k)->setBackgroundColor(start->getCell(k) ? "black" : "white");
+        ui->grid->item(0, k)->setBackgroundColor(start->getCell(k) ? "black" : "white");
     incRang();
-
-    ui->interface_2->addWidget(etats);
-    ui->interface_2->removeWidget(ui->grid);
 
     begin = true;
 }

@@ -1,7 +1,6 @@
 #ifndef AUTOMATE_1D_H
 #define AUTOMATE_1D_H
 
-#include <array>
 #include "Rule.h"
 #include <Automaton.h>
 #include <QIntValidator>
@@ -12,6 +11,7 @@
 #include <QTableWidget>
 #include <QTimer>
 #include <QWidget>
+#include <array>
 
 /**
  * @file automate_1d.h
@@ -42,7 +42,6 @@ private:
     Automaton<bool, Index1D>* a;
     Rule1D* r;
     int rang;
-    QTableWidget* etats;
     bool sim, begin;
     std::array<QLineEdit*, 8> numBits;
     QTimer* timer;
