@@ -41,7 +41,7 @@ private:
     Rule2D* r;
     int rang;
     bool sim;
-    QCheckBox *survive[9], *born[9];
+    std::array<QCheckBox*, 9> survive, born;
     QTimer* timer;
     int type; // type=0 => bool, type = 1=>int
 

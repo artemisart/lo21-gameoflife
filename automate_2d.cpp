@@ -17,16 +17,12 @@ Automate_2D::Automate_2D(QWidget* parent)
     timer = new QTimer(parent);
     connect(timer, SIGNAL(timeout()), this, SLOT(run()));
 
-    QCheckBox* _survive[9] = {
-        ui->survive0, ui->survive1, ui->survive2, ui->survive3,
-        ui->survive4, ui->survive5, ui->survive6, ui->survive7, ui->survive8
-    };
-    QCheckBox* _born[9] = {
-        ui->born0, ui->born1, ui->born2, ui->born3,
-        ui->born4, ui->born5, ui->born6, ui->born7, ui->born8
-    };
-    std::copy_n(_survive, 9, survive); // because arrays are not directly assignable
-    std::copy_n(_born, 9, born);
+    survive = { { ui->survive0, ui->survive1, ui->survive2,
+        ui->survive3, ui->survive4, ui->survive5,
+        ui->survive6, ui->survive7, ui->survive8 } };
+    born = { { ui->born0, ui->born1, ui->born2,
+        ui->born3, ui->born4, ui->born5,
+        ui->born6, ui->born7, ui->born8 } };
 
     //if(this->getType() == 0)
     auto h = new RingHistory<Grid<bool, Index2D>>(10);
@@ -37,7 +33,7 @@ Automate_2D::Automate_2D(QWidget* parent)
     setSize();
     refreshGrid();
 
-    for (int i = 0; i < 9; i++) {
+    for (size_t i = 0; i < 9; i++) {
         connect(born[i], &QCheckBox::clicked, this, &Automate_2D::check_born_i_clicked);
         connect(survive[i], &QCheckBox::clicked, this, &Automate_2D::check_survive_i_clicked);
     }
@@ -290,7 +286,7 @@ void Automate_2D::on_born_textEdited(const QString& str)
 {
     QString newText;
     std::uint16_t rule = 0;
-    for (int i = 0; i < 9; ++i) {
+    for (size_t i = 0; i < 9; ++i) {
         bool b = str.contains('0' + i);
         born[i]->setChecked(b);
         rule += b << i;
@@ -304,7 +300,7 @@ void Automate_2D::on_survive_textEdited(const QString& str)
 {
     QString newText;
     std::uint16_t rule = 0;
-    for (int i = 0; i < 9; ++i) {
+    for (size_t i = 0; i < 9; ++i) {
         bool b = str.contains('0' + i);
         survive[i]->setChecked(b);
         rule += b << i;
@@ -318,7 +314,7 @@ void Automate_2D::check_born_i_clicked()
 {
     QString newText;
     std::uint16_t rule = 0;
-    for (int i = 0; i < 9; ++i) {
+    for (size_t i = 0; i < 9; ++i) {
         bool b = born[i]->isChecked();
         rule += b << i;
         if (b)
@@ -332,7 +328,7 @@ void Automate_2D::check_survive_i_clicked()
 {
     QString newText;
     std::uint16_t rule = 0;
-    for (int i = 0; i < 9; ++i) {
+    for (size_t i = 0; i < 9; ++i) {
         bool b = survive[i]->isChecked();
         rule += b << i;
         if (b)
