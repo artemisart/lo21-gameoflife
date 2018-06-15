@@ -42,16 +42,16 @@ Automate_2D::Automate_2D(QWidget* parent)
 
     connect(ui->run, SIGNAL(clicked()), this, SLOT(simulation()));
 
-    connect(ui->grid, SIGNAL(clicked(QModelIndex)), this, SLOT(cellActivation(const QModelIndex&)));
+    connect(ui->grid, SIGNAL(clicked(QModelIndex)), this, SLOT(cellActivation(QModelIndex)));
 
     connect(ui->next, SIGNAL(clicked()), this, SLOT(next()));
     connect(ui->menu, SIGNAL(clicked()), this, SLOT(menu()));
     connect(ui->reset, SIGNAL(clicked()), this, SLOT(reset()));
     connect(ui->stop, SIGNAL(clicked()), this, SLOT(stop()));
-    connect(ui->save, SIGNAL(clicked(bool)), this, SLOT(save()));
+    connect(ui->save, SIGNAL(clicked()), this, SLOT(save()));
     connect(ui->load, SIGNAL(clicked()), this, SLOT(load()));
-    connect(ui->random, SIGNAL(clicked(bool)), this, SLOT(rand()));
-    connect(ui->random_sym, SIGNAL(clicked(bool)), this, SLOT(rand_sym()));
+    connect(ui->random, SIGNAL(clicked()), this, SLOT(rand()));
+    connect(ui->random_sym, SIGNAL(clicked()), this, SLOT(rand_sym()));
 }
 
 Automate_2D::~Automate_2D()
