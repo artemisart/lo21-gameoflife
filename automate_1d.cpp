@@ -67,7 +67,7 @@ void Automate_1D::reset()
     ui->nb_etats->setValue(100);
     rang = 1;
 
-    a->getHistory()->getStart()->iterate_set([]() { return true; });
+    a->getHistory()->getStart()->iterate_set([]() { return false; });
 
     setSize();
 
