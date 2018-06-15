@@ -186,13 +186,8 @@ void Automate_1D::next()
             ui->grid->item(getRang(), j)->setBackgroundColor(val ? "black" : "white");
         }
         incRang();
-
-    } else {
-        QMessageBox msgBox;
-        msgBox.setText("Le nombres d'états maximal de la simulation à été atteint");
-        msgBox.exec();
-        sim = false;
     }
+
 }
 
 void Automate_1D::menu()
