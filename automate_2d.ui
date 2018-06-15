@@ -30,6 +30,12 @@
        </item>
        <item>
         <widget class="QSpinBox" name="widthSpinbox">
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <number>500</number>
+         </property>
          <property name="value">
           <number>20</number>
          </property>
@@ -44,6 +50,12 @@
        </item>
        <item>
         <widget class="QSpinBox" name="heightSpinbox">
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <number>500</number>
+         </property>
          <property name="value">
           <number>20</number>
          </property>
@@ -76,7 +88,7 @@
            <item>
             <widget class="QLabel" name="born_l">
              <property name="text">
-              <string>Born</string>
+              <string>Naissance</string>
              </property>
             </widget>
            </item>
@@ -230,7 +242,7 @@
            <item>
             <widget class="QLabel" name="rule_l_2">
              <property name="text">
-              <string>Survive</string>
+              <string>Survie</string>
              </property>
             </widget>
            </item>
