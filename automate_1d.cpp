@@ -234,7 +234,7 @@ void Automate_1D::save()
             tr("lo21 (*.1Dlo21)"));
         if (fileName.isEmpty())
             return;
-        std::string name = fileName.toStdString();
+        std::string name = fileName.toStdString()+".1Dlo21";
         const Grid<bool, Index1D>* g1D = a->getHistory()->getLast();
         g1D->save(name);
         r->save(name);
