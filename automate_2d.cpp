@@ -86,20 +86,18 @@ void Automate_2D::stop()
 
 void Automate_2D::setSize()
 {
-    if(rang >1 ){
+    if (rang > 1) {
         QMessageBox msgBox;
         msgBox.setText("Un automate est déjà en cours de simulation, en continiant vous allez arrêter l'automate en cours'");
         msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
         int ret = msgBox.exec();
 
         switch (ret) {
-        case QMessageBox::Cancel :
+        case QMessageBox::Cancel:
             return;
-            break;
         default:
             break;
         }
-
     }
     int dimRow = ui->heightSpinbox->value();
     int dimCol = ui->widthSpinbox->value();
@@ -109,11 +107,10 @@ void Automate_2D::setSize()
     ui->grid->setRowCount(dimRow);
 
     for (int i = 0; i < dimCol; i++) {
+        ui->grid->setColumnWidth(i, 25);
         for (int j = 0; j < dimRow; j++) {
-            ui->grid->setColumnWidth(i, 25);
             ui->grid->setRowHeight(j, 25);
             ui->grid->setItem(j, i, new QTableWidgetItem(""));
-          //  ui->grid->item(j, i)->setBackgroundColor("white");
         }
     }
     auto* g1 = new Grid2D<bool>(dimRow, dimCol);
@@ -158,14 +155,13 @@ void Automate_2D::menu()
 
 void Automate_2D::save()
 {
-
     try {
         QString fileName = QFileDialog::getSaveFileName(this,
             tr("save grid"), "",
             tr("lo21 (*.2Dlo21)"));
         if (fileName.isEmpty())
             return;
-        std::string name = fileName.toStdString() +".2Dlo21";
+        std::string name = fileName.toStdString() + ".2Dlo21";
         const Grid<bool, Index2D>* g2D = a->getHistory()->getLast();
         g2D->save(name);
         r->save(name);
@@ -177,13 +173,12 @@ void Automate_2D::save()
 
 void Automate_2D::load()
 {
-    if(rang >1 ){
+    if (rang > 1) {
         QMessageBox msgBox;
         msgBox.setText("Un automate est déjà en cours de simulation, si vous souhaitez réellement en créer un nouveau, appuyez sur reset, pour continuer la simulation de celui ci, appuyez de nouveau sur 'lancer la simulation'");
         msgBox.exec();
         sim = false;
         return;
-
     }
     try {
         QString fileName = QFileDialog::getOpenFileName(this,
@@ -228,12 +223,11 @@ void Automate_2D::load()
 }
 void Automate_2D::rand()
 {
-    if(rang >1 ){
+    if (rang > 1) {
         QMessageBox msgBox;
         msgBox.setText("Un automate est déjà en cours de simulation, si vous souhaitez réellement en créer un nouveau, appuyez sur reset, pour continuer la simulation de celui ci, appuyez de nouveau sur 'lancer la simulation'");
         msgBox.exec();
         sim = false;
-
     }
     a->getHistory()->getStart()->iterate_set([]() {
         return std::rand() % 2;
@@ -252,12 +246,11 @@ void Automate_2D::refreshGrid() const
 // TODO refactor this
 void Automate_2D::rand_sym()
 {
-    if(rang >1 ){
+    if (rang > 1) {
         QMessageBox msgBox;
         msgBox.setText("Un automate est déjà en cours de simulation, si vous souhaitez réellement en créer un nouveau, appuyez sur reset, pour continuer la simulation de celui ci, appuyez de nouveau sur 'lancer la simulation'");
         msgBox.exec();
         sim = false;
-
     }
     int h = ui->heightSpinbox->value();
     auto start = a->getHistory()->getStart();
@@ -287,6 +280,7 @@ void Automate_2D::rand_sym()
         i++;
     }
 }
+
 void Automate_2D::on_born_textEdited(const QString& str)
 {
     QString newText;
@@ -294,13 +288,15 @@ void Automate_2D::on_born_textEdited(const QString& str)
     for (size_t i = 0; i < 9; ++i) {
         bool b = str.contains('0' + i);
         born[i]->setChecked(b);
-        rule += b << i;
-        if (b)
+        if (b) {
+            rule += 1 << i;
             newText.append('0' + i);
+        }
     }
     ui->born->setText(newText);
     r->setBorn(rule);
 }
+
 void Automate_2D::on_survive_textEdited(const QString& str)
 {
     QString newText;
@@ -308,22 +304,25 @@ void Automate_2D::on_survive_textEdited(const QString& str)
     for (size_t i = 0; i < 9; ++i) {
         bool b = str.contains('0' + i);
         survive[i]->setChecked(b);
-        rule += b << i;
-        if (b)
+        if (b) {
+            rule += 1 << i;
             newText.append('0' + i);
+        }
     }
     ui->survive->setText(newText);
     r->setSurvive(rule);
 }
+
 void Automate_2D::check_born_i_clicked()
 {
     QString newText;
     std::uint16_t rule = 0;
     for (size_t i = 0; i < 9; ++i) {
         bool b = born[i]->isChecked();
-        rule += b << i;
-        if (b)
+        if (b) {
+            rule += 1 << i;
             newText.append('0' + i);
+        }
     }
     ui->born->setText(newText);
     r->setBorn(rule);
@@ -335,9 +334,10 @@ void Automate_2D::check_survive_i_clicked()
     std::uint16_t rule = 0;
     for (size_t i = 0; i < 9; ++i) {
         bool b = survive[i]->isChecked();
-        rule += b << i;
-        if (b)
+        if (b) {
+            rule += 1 << i;
             newText.append('0' + i);
+        }
     }
     ui->survive->setText(newText);
     r->setSurvive(rule);
