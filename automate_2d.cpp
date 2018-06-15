@@ -1,6 +1,7 @@
 #include "automate_2d.h"
 #include "automate_1d.h"
 #include "ui_automate_2d.h"
+#include <QFileDialog>
 #include <QMessageBox>
 #include <QScrollArea>
 #include <QTimer>
@@ -90,11 +91,6 @@ void Automate_2D::setSize()
     ui->grid->setColumnCount(dimCol);
     ui->grid->setRowCount(dimRow);
 
-    ui->grid->horizontalHeader()->setVisible(false);
-    ui->grid->verticalHeader()->setVisible(false);
-    ui->grid->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    ui->grid->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-
     for (int i = 0; i < dimCol; i++) {
         for (int j = 0; j < dimRow; j++) {
             ui->grid->setColumnWidth(j, 25);
@@ -131,7 +127,6 @@ void Automate_2D::cellActivation(const QModelIndex& index)
 void Automate_2D::next()
 {
     ui->grid->setEditTriggers(QAbstractItemView::NoEditTriggers);
-
     a->next();
     refreshGrid();
     incRang();
@@ -145,12 +140,65 @@ void Automate_2D::menu()
 
 void Automate_2D::save()
 {
+    try {
+        QString fileName = QFileDialog::getSaveFileName(this,
+            tr("save grid"), "",
+            tr("lo21 (*.2Dlo21)"));
+        if (fileName.isEmpty())
+            return;
+        std::string name = fileName.toStdString();
+        const Grid<bool, Index2D>* g2D = a->getHistory()->getLast();
+        g2D->save(name);
+        r->save(name);
+        std::cout << "sauvegarde reussie \n";
+    } catch (const std::string& e) {
+        std::cout << "erreur: " << e << "\n";
+    }
 }
 
 void Automate_2D::load()
 {
-}
+    try {
+        QString fileName = QFileDialog::getOpenFileName(this,
+            tr("load grid"), "",
+            tr("lo21 (*.2Dlo21)"));
+        if (fileName.isEmpty())
+            return;
+        std::string name = fileName.toStdString();
+        Grid2D<bool>* g2D = new Grid2D<bool>(10, 10);
+        g2D->load(name);
+        a->getHistory()->push(g2D);
+        Index2D i = g2D->getSize();
+        ui->widthSpinbox->setValue(i.col);
+        ui->heightSpinbox->setValue(i.row);
+        this->setSize();
 
+        for (Index2D i; i.row < g2D->getSize().row; ++i.row) {
+            for (i.col = 0; i.col < g2D->getSize().col; ++i.col) {
+                bool a = g2D->getCell(i);
+                if (a == 0) {
+                    ui->grid->item(i.row, i.col)->setBackgroundColor("white");
+                    ui->grid->item(i.row, i.col)->setText("");
+                    ui->grid->item(i.row, i.col)->setBackgroundColor("white");
+                } else {
+                    ui->grid->item(i.row, i.col)->setBackgroundColor("black");
+                    ui->grid->item(i.row, i.col)->setText("_");
+                    ui->grid->item(i.row, i.col)->setBackgroundColor("black");
+                }
+            }
+        }
+
+        r->load(name);
+        // TODO update rules
+        //        ui->survive->setValue(r->getSurvive());
+        //        ui->born->setValue(r->getBorn());
+        //        this->synchronizeNumToNumBit_b(r->getBorn());
+        //        this->synchronizeNumToNumBit_s(r->getSurvive());
+        std::cout << "loading reussi";
+    } catch (const std::string& e) {
+        std::cout << "erreur: " << e << "\n";
+    }
+}
 void Automate_2D::rand()
 {
     a->getHistory()->getStart()->iterate_set([]() {
@@ -181,7 +229,7 @@ void Automate_2D::rand_sym()
         }
     }
     int half = (int)std::ceil(ui->heightSpinbox->value() / 2.) - 1;
-    //int half = ui->heightSpinbox->value() / 2; // TODO check if this is sufficient
+
     int i = 0;
     for (int j = 1; j <= half + 1; j++) {
         for (int k = 0; k < ui->widthSpinbox->value(); k++) {
@@ -212,7 +260,6 @@ void Automate_2D::on_born_textEdited(const QString& str)
     ui->born->setText(newText);
     r->setBorn(rule);
 }
-
 void Automate_2D::on_survive_textEdited(const QString& str)
 {
     QString newText;
@@ -227,7 +274,6 @@ void Automate_2D::on_survive_textEdited(const QString& str)
     ui->survive->setText(newText);
     r->setSurvive(rule);
 }
-
 void Automate_2D::check_born_i_clicked()
 {
     QString newText;

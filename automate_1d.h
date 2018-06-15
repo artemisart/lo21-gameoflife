@@ -1,6 +1,7 @@
 #ifndef AUTOMATE_1D_H
 #define AUTOMATE_1D_H
 
+#include <array>
 #include "Rule.h"
 #include <Automaton.h>
 #include <QIntValidator>

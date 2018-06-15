@@ -48,7 +48,7 @@ public:
      * @param i index of the element to retrieve
      * @return
      */
-    virtual const T* get(const int i) const = 0;
+    virtual const T* get(const int i) const = 0; // TODO peut-être tout passer en pointeur du coup ?
     /**
      * @brief Add a new element to be stored in the history.
      * @param newElement

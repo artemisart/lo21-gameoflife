@@ -1,5 +1,6 @@
 #include "automate_1d.h"
 #include "ui_automate_1d.h"
+#include <QFileDialog>
 #include <QMessageBox>
 
 Automate_1D::Automate_1D(QWidget* parent)
@@ -79,12 +80,7 @@ void Automate_1D::setSize()
     int dimCol = ui->size_Box->value();
     ui->grid->setColumnCount(dimCol);
 
-    ui->grid->horizontalHeader()->setVisible(false);
-    ui->grid->verticalHeader()->setVisible(false);
-    ui->grid->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    ui->grid->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->grid->setFixedWidth(ui->size_Box->value() * 25);
-
     for (int i = 0; i < dimCol; i++) {
         ui->grid->setColumnWidth(i, 25);
         ui->grid->setItem(0, i, new QTableWidgetItem(""));
@@ -215,9 +211,7 @@ void Automate_1D::run()
 
 void Automate_1D::init_simulation(int row)
 {
-
     for (int i = 0; i < row; i++) {
-
         for (int j = 0; j < ui->size_Box->value(); j++) {
             ui->grid->setColumnWidth(j, 25);
             etats->setRowHeight(i, 25);
@@ -237,27 +231,57 @@ void Automate_1D::init_simulation(int row)
 
 void Automate_1D::save()
 {
-    std::string name = ui->name_file->text().toStdString();
-    const Grid<bool, Index1D>* g1D = a->getHistory()->getLast();
-    g1D->save(name);
-    r->save(name);
-    std::cout << "sauvegarde reussie \n";
+    try {
+        QString fileName = QFileDialog::getSaveFileName(this,
+            tr("Save grid"), "",
+            tr("lo21 (*.1Dlo21)"));
+        if (fileName.isEmpty())
+            return;
+        std::string name = fileName.toStdString();
+        const Grid<bool, Index1D>* g1D = a->getHistory()->getLast();
+        g1D->save(name);
+        r->save(name);
+        std::cout << "sauvegarde reussie \n";
+    } catch (const std::string& e) {
+        std::cout << "erreur: " << e << "\n";
+    }
 }
 
 void Automate_1D::load()
 {
-    if(rang >1 ){
-        QMessageBox msgBox;
-        msgBox.setText("Un automate est déjà en cours de simulation, si vous souhaitez réellement en créer un nouveau, appuyez sur reset, pour continuer la simulation de celui ci, appuyez de nouveau sur 'lancer la simulation'");
-        msgBox.exec();
-        sim = false;
+    try {
+        QString fileName = QFileDialog::getOpenFileName(this,
+            tr("load grid"), "",
+            tr("lo21 (*.1Dlo21)"));
+        if (fileName.isEmpty())
+            return;
+        std::string name = fileName.toStdString();
+        Grid1D<bool>* g1D = new Grid1D<bool>(20);
+        g1D->load(name);
+        a->getHistory()->push(g1D);
+        Index1D i = g1D->getSize();
+        ui->size_Box->setValue(i.i); //met la taille a jour
+        this->setSize();
 
+        for (Index1D i; i.i < g1D->getSize().i; ++i.i) {
+            bool a = g1D->getCell(i);
+            if (a == 0) {
+                ui->grid->item(0, i.i)->setBackgroundColor("white");
+                ui->grid->item(0, i.i)->setText("");
+                ui->grid->item(0, i.i)->setBackgroundColor("white");
+            } else {
+                ui->grid->item(0, i.i)->setBackgroundColor("black");
+                ui->grid->item(0, i.i)->setText("_");
+                ui->grid->item(0, i.i)->setBackgroundColor("black");
+            }
+        }
+
+        r->load(name);
+        ui->rule->setValue(r->getNum()); //met les regles a jour
+        this->synchronizeNumToNumBit(r->getNum());
+    } catch (const std::string& e) {
+        std::cout << "erreur: " << e << "\n";
     }
-    std::string name = ui->name_file->text().toStdString();
-    Grid1D<bool>* g1D = new Grid1D<bool>(20);
-    g1D->load(name);
-    a->getHistory()->push(g1D);
-    r->load(name);
 }
 
 void Automate_1D::rand()
