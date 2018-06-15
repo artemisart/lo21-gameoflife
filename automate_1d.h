@@ -46,6 +46,8 @@ private:
     std::array<QLineEdit*, 8> numBits;
     QTimer* timer;
 
+    void resizeEvent(QResizeEvent* event);
+
 private slots:
     void setSize();
     void synchronizeNumToNumBit(int j);

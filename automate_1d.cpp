@@ -25,10 +25,8 @@ Automate_1D::Automate_1D(QWidget* parent)
     zeroOneValidator = new QIntValidator(0, 1, this);
     for (auto nb : numBits) {
         nb->setValidator(zeroOneValidator);
-        connect(nb, SIGNAL(textChanged(QString)), this, SLOT(synchronizeNumBitToNum(QString)));
+        connect(nb, &QLineEdit::textChanged, this, &Automate_1D::synchronizeNumBitToNum);
     }
-
-    setSize();
 
     connect(ui->sizeButton, SIGNAL(clicked()), this, SLOT(setSize()));
     connect(ui->rule, SIGNAL(valueChanged(int)), this, SLOT(synchronizeNumToNumBit(int)));
@@ -47,6 +45,8 @@ Automate_1D::Automate_1D(QWidget* parent)
 
     connect(ui->stop, SIGNAL(clicked()), this, SLOT(stop()));
     connect(ui->reset, SIGNAL(clicked()), this, SLOT(reset()));
+
+    reset();
 }
 
 Automate_1D::~Automate_1D()
@@ -80,13 +80,12 @@ void Automate_1D::setSize()
     ui->grid->setRowCount(1);
     ui->grid->setColumnCount(dimCol);
 
-    ui->grid->setFixedWidth(ui->size_Box->value() * 25);
     for (int i = 0; i < dimCol; i++) {
-        ui->grid->setColumnWidth(i, 25);
         ui->grid->setItem(0, i, new QTableWidgetItem(""));
     }
     auto* g1 = new Grid1D<bool>(dimCol);
     a->getHistory()->setStart(g1);
+    resizeEvent(nullptr);
 }
 
 std::uint8_t NumBitToNum(const QString& num)
@@ -177,21 +176,22 @@ void Automate_1D::next()
 
         auto* grid = a->getHistory()->getLast();
 
-        ui->grid->setRowCount(ui->grid->rowCount() + 1);
-        ui->grid->setFixedSize(ui->size_Box->value() * 25, ((ui->grid->rowCount() + 1) * 25));
+        ui->grid->insertRow(ui->grid->rowCount());
+        //        ui->grid->setRowCount(ui->grid->rowCount() + 1);
 
         for (int j = 0; j < ui->sizeSpinbox->value(); j++) {
             ui->grid->setItem(getRang(), j, new QTableWidgetItem(""));
             bool val = grid->getCell(j);
             ui->grid->item(getRang(), j)->setBackgroundColor(val ? "black" : "white");
         }
+        resizeEvent(nullptr);
         incRang();
 
     } else {
+        sim = false;
         QMessageBox msgBox;
         msgBox.setText("Le nombres d'états maximal de la simulation à été atteint");
         msgBox.exec();
-        sim = false;
     }
 }
 
@@ -209,6 +209,7 @@ void Automate_1D::run()
     }
 }
 
+// TODO remove this function (it appears to be unused ?)
 void Automate_1D::init_simulation(int row)
 {
     for (int i = 0; i < row; i++) {
@@ -311,5 +312,17 @@ void Automate_1D::rand_sym()
         start->setCell(last - j, a);
         ui->grid->item(0, j)->setBackgroundColor(a ? "black" : "white");
         ui->grid->item(0, last - j)->setBackgroundColor(a ? "black" : "white");
+    }
+}
+
+void Automate_1D::resizeEvent(QResizeEvent* event)
+{
+    auto size = ui->grid->width() / ui->grid->columnCount();
+    size = std::max(size, 5);
+    for (int i = 0; i < ui->grid->columnCount(); i++) {
+        ui->grid->setColumnWidth(i, size);
+    }
+    for (int i = 0; i < ui->grid->rowCount(); ++i) {
+        ui->grid->setRowHeight(i, size);
     }
 }
