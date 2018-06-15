@@ -247,12 +247,11 @@ void Automate_1D::save()
 void Automate_1D::load()
 {
 
-    if(rang >1 ){
+    if (rang > 1) {
         QMessageBox msgBox;
         msgBox.setText("Un automate est déjà en cours de simulation, si vous souhaitez réellement en créer un nouveau, appuyez sur reset, pour continuer la simulation de celui ci, appuyez de nouveau sur 'lancer la simulation'");
         msgBox.exec();
         sim = false;
-
     }
     try {
         QString fileName = QFileDialog::getOpenFileName(this,
@@ -270,15 +269,7 @@ void Automate_1D::load()
 
         for (Index1D i; i.i < g1D->getSize().i; ++i.i) {
             bool a = g1D->getCell(i);
-            if (a == 0) {
-                ui->grid->item(0, i.i)->setBackgroundColor("white");
-                ui->grid->item(0, i.i)->setText("");
-                ui->grid->item(0, i.i)->setBackgroundColor("white");
-            } else {
-                ui->grid->item(0, i.i)->setBackgroundColor("black");
-                ui->grid->item(0, i.i)->setText("_");
-                ui->grid->item(0, i.i)->setBackgroundColor("black");
-            }
+            ui->grid->item(0, i.i)->setBackgroundColor(a ? "black" : "white");
         }
 
         r->load(name);
@@ -291,62 +282,35 @@ void Automate_1D::load()
 
 void Automate_1D::rand()
 {
-    if(rang >1 ){
+    if (rang > 1) {
         QMessageBox msgBox;
         msgBox.setText("Un automate est déjà en cours de simulation, si vous souhaitez réellement en créer un nouveau, appuyez sur reset, pour continuer la simulation de celui ci, appuyez de nouveau sur 'lancer la simulation'");
         msgBox.exec();
         sim = false;
-
     }
     auto start = a->getHistory()->getStart();
     for (int j = 0; j < ui->size_Box->value(); j++) {
         int a = std::rand() % 2;
-        if (a == 0) {
-            ui->grid->item(0, j)->setBackgroundColor("white");
-            start->setCell(j, false);
-        } else {
-            ui->grid->item(0, j)->setBackgroundColor("black");
-            start->setCell(j, true);
-        }
+        start->setCell(j, a);
+        ui->grid->item(0, j)->setBackgroundColor(a ? "black" : "white");
     }
 }
 
 void Automate_1D::rand_sym()
 {
-    if(rang >1 ){
+    if (rang > 1) {
         QMessageBox msgBox;
         msgBox.setText("Un automate est déjà en cours de simulation, si vous souhaitez réellement en créer un nouveau, appuyez sur reset, pour continuer la simulation de celui ci, appuyez de nouveau sur 'lancer la simulation'");
         msgBox.exec();
         sim = false;
-
     }
     auto start = a->getHistory()->getStart();
-    for (int j = 0; j < (ui->size_Box->value()) / 2; j++) {
+    auto last = start->getSize().i - 1;
+    for (int j = 0; j < last / 2; j++) {
         int a = std::rand() % 2;
-        if (a == 0) {
-            ui->grid->item(0, j)->setBackgroundColor("white");
-            start->setCell(j, false);
-            ui->grid->item(0, j)->setText("");
-            ui->grid->item(0, j)->setBackgroundColor("white");
-        } else {
-            ui->grid->item(0, j)->setBackgroundColor("black");
-            start->setCell(j, true);
-            ui->grid->item(0, j)->setText("_");
-            ui->grid->item(0, j)->setBackgroundColor("black");
-        }
-    }
-    int half = std::ceil((ui->size_Box->value()) / 2) - 1;
-    //int half = ui->size_Box->value() / 2;
-    int i = 0;
-    for (int j = 1; j <= half + 1; j++) {
-        if (ui->grid->item(0, half - i)->text() == "") {
-            ui->grid->item(0, half + j)->setBackgroundColor("white");
-            start->setCell(j, false);
-
-        } else {
-            ui->grid->item(0, half + j)->setBackgroundColor("black");
-            start->setCell(j, true);
-        }
-        i++;
+        start->setCell(j, a);
+        start->setCell(last - j, a);
+        ui->grid->item(0, j)->setBackgroundColor(a ? "black" : "white");
+        ui->grid->item(0, last - j)->setBackgroundColor(a ? "black" : "white");
     }
 }
