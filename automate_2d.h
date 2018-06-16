@@ -26,7 +26,7 @@ class Automate_2D : public QWidget {
     Q_OBJECT
 
 public:
-    explicit Automate_2D(QWidget* parent = nullptr);
+    explicit Automate_2D(QWidget* parent, int type);
     ~Automate_2D();
     void setParent(QWidget* par) { parent = par; }
     void incRang() { rang++; }

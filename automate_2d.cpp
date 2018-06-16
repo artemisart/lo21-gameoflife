@@ -6,11 +6,12 @@
 #include <QScrollArea>
 #include <QTimer>
 
-Automate_2D::Automate_2D(QWidget* parent)
+Automate_2D::Automate_2D(QWidget* parent, int type)
     : QWidget(parent)
     , ui(new Ui::Automate_2D)
     , rang(0)
     , sim(true)
+    , type(type)
 {
     ui->setupUi(this);
 
