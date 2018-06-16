@@ -18,7 +18,6 @@ Automate_2D::Automate_2D(QWidget* parent)
     timer = new QTimer(parent);
     connect(timer, SIGNAL(timeout()), this, SLOT(run()));
 
-
     survive = { { ui->survive0, ui->survive1, ui->survive2,
         ui->survive3, ui->survive4, ui->survive5,
         ui->survive6, ui->survive7, ui->survive8 } };
@@ -31,7 +30,6 @@ Automate_2D::Automate_2D(QWidget* parent)
     // if(this->getType()== 1) h = new RingHistory<Grid<uint8_t, Index2D> >(10);
     r = new OuterTotalisticRule2D();
     a = new Automaton<bool, Index2D>(h, r);
-
 
     //connect all differents slots
 
@@ -151,15 +149,18 @@ void Automate_2D::next()
 void Automate_2D::menu()
 {
     Grid2D<bool>* g2D = new Grid2D<bool>(ui->heightSpinbox->value(), ui->widthSpinbox->value());
-     for(int i=0; i<ui->heightSpinbox->value(); i++){
-      for(int j=0; j<ui->widthSpinbox->value(); j++){
+    for (int i = 0; i < ui->heightSpinbox->value(); i++) {
+        for (int j = 0; j < ui->widthSpinbox->value(); j++) {
 
-              if(ui->grid->item(i,j)->backgroundColor()=="white") g2D->setCell(Index2D(i,j),false);
-              else {g2D->setCell(Index2D(i,j), true);}
+            if (ui->grid->item(i, j)->backgroundColor() == "white")
+                g2D->setCell(Index2D(i, j), false);
+            else {
+                g2D->setCell(Index2D(i, j), true);
+            }
         }
-     }
-     g2D->save("config.2Dlo21");
-     r->save("config.2Dlo21");
+    }
+    g2D->save("config.2Dlo21");
+    r->save("config.2Dlo21");
 
     this->hide();
     this->parent->show();
@@ -363,7 +364,8 @@ void Automate_2D::resizeEvent(QResizeEvent* event)
     }
 }
 
-void Automate_2D::auto_load(){
+void Automate_2D::auto_load()
+{
     Grid2D<bool>* g2D = new Grid2D<bool>(10, 10);
     g2D->load("config.2Dlo21");
 
