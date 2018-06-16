@@ -205,7 +205,6 @@ void Automate_2D::load()
         this->setSize();
         a->getHistory()->setStart(g2D);
         refreshGrid();
-
         r->load(name);
         refreshRules();
     } catch (const std::exception& err) {
