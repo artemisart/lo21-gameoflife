@@ -61,8 +61,8 @@ public:
             file << "\n"
                  << "1 " << num;
             file.close();
-        } catch (const std::string& e) {
-            std::cout << "erreur: " << e << "\n";
+        } catch (const std::exception& e) {
+            std::cout << "erreur: " << e.what() << std::endl;
         }
     }
     virtual void load(const std::string& filePath)
@@ -73,16 +73,16 @@ public:
             std::uint16_t it;
             std::string s;
             if (!getline(file, s)) {
-                throw std::string("No rule in this file");
+                throw std::invalid_argument("No rule in this file");
             }
             file >> it;
             if (it != 1) {
-                throw std::string("wrong loading, expected a 1D rule \n");
+                throw std::invalid_argument("wrong loading, expected a 1D rule \n");
             }
             file >> num;
             file.close();
-        } catch (const std::string& e) {
-            std::cout << "erreur: " << e << "\n";
+        } catch (const std::exception& e) {
+            std::cout << "erreur: " << e.what() << std::endl;
         }
     }
 };
@@ -111,8 +111,8 @@ public:
             file << " " << survive;
             std::cout << "saving born = " << born << "  survive = " << survive << "\n";
             file.close();
-        } catch (const std::string& e) {
-            std::cout << "erreur: " << e << "\n";
+        } catch (const std::exception& e) {
+            std::cerr << "erreur: " << e.what() << std::endl;
         }
     }
     virtual void load(const std::string& filePath)
@@ -122,18 +122,18 @@ public:
             std::uint16_t it;
             std::string s;
             if (!getline(file, s)) {
-                throw std::string("No rule in this file");
+                throw std::invalid_argument("No rule in this file");
             }
             file >> it;
             if (it != 2) {
-                throw std::string("wrong loading, expected a 2D rule \n");
+                throw std::invalid_argument("wrong loading, expected a 2D rule \n");
             }
             file >> born;
             file >> survive;
-            std::cout << "loading born = " << born << "  survive = " << survive << "\n";
+            std::cerr << "loading born = " << born << "  survive = " << survive << "\n";
             file.close();
-        } catch (const std::string& e) {
-            std::cout << "erreur: " << e << "\n";
+        } catch (const std::exception& e) {
+            std::cerr << "erreur: " << e.what() << std::endl;
         }
     }
 };
@@ -160,10 +160,10 @@ public:
             file << "\n"
                  << "2 " << born;
             file << " " << survive;
-            std::cout << "saving born = " << born << "  survive = " << survive << "\n";
+            std::cerr << "saving born = " << born << "  survive = " << survive << "\n";
             file.close();
-        } catch (const std::string& e) {
-            std::cout << "erreur: " << e << "\n";
+        } catch (const std::exception& e) {
+            std::cerr << "erreur: " << e.what() << std::endl;
         }
     }
     virtual void load(const std::string& filePath)
@@ -173,18 +173,18 @@ public:
             std::uint16_t it;
             std::string s;
             if (!getline(file, s)) {
-                throw std::string("No rule in this file");
+                throw std::invalid_argument("No rule in this file");
             }
             file >> it;
             if (it != 2) {
-                throw std::string("wrong loading, expected a 2D rule \n");
+                throw std::invalid_argument("wrong loading, expected a 2D rule \n");
             }
             file >> born;
             file >> survive;
-            std::cout << "loading born = " << born << "  survive = " << survive << "\n";
+            std::cerr << "loading born = " << born << "  survive = " << survive << "\n";
             file.close();
-        } catch (const std::string& e) {
-            std::cout << "erreur: " << e << "\n";
+        } catch (const std::exception& e) {
+            std::cerr << "erreur: " << e.what() << std::endl;
         }
     }
 };
