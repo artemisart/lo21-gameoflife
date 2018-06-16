@@ -244,33 +244,17 @@ void Automate_2D::rand_sym()
         msgBox.exec();
         sim = false;
     }
-    int h = ui->heightSpinbox->value();
     auto start = a->getHistory()->getStart();
-
-    for (int j = 0; j < h / 2; j++) {
-        for (int i = 0; i < ui->widthSpinbox->value(); i++) {
+    auto height = start->getSize().row;
+    auto width = start->getSize().col;
+    for (int j = 0; j < height / 2; j++) {
+        for (int i = 0; i < width; i++) {
             int val = std::rand() % 2;
-            ui->grid->item(j, i)->setBackgroundColor(val ? "black" : "white");
             start->setCell(Index2D(j, i), val);
+            start->setCell(Index2D(height - 1 - j, i), val);
         }
     }
-    int half = (int)std::ceil(ui->heightSpinbox->value() / 2.) - 1;
-
-    int i = 0;
-    for (int j = 1; j <= half + 1; j++) {
-        for (int k = 0; k < ui->widthSpinbox->value(); k++) {
-
-            if (ui->grid->item(half - i, k)->backgroundColor() == "white") {
-                ui->grid->item(half + j, k)->setBackgroundColor("white");
-                start->setCell(Index2D(half + j, k), false);
-
-            } else {
-                ui->grid->item(half + j, k)->setBackgroundColor("black");
-                start->setCell(Index2D(half + j, k), true);
-            }
-        }
-        i++;
-    }
+    refreshGrid();
 }
 
 void Automate_2D::on_born_textEdited(const QString& str)
