@@ -6,11 +6,12 @@
 #include <QScrollArea>
 #include <QTimer>
 
-Automate_2D::Automate_2D(QWidget* parent)
+Automate_2D::Automate_2D(QWidget* parent, int type)
     : QWidget(parent)
     , ui(new Ui::Automate_2D)
     , rang(0)
     , sim(true)
+    , type(type)
 {
     ui->setupUi(this);
 
@@ -25,11 +26,15 @@ Automate_2D::Automate_2D(QWidget* parent)
         ui->born3, ui->born4, ui->born5,
         ui->born6, ui->born7, ui->born8 } };
 
-    //initialize parameters to make interface work with the application
-    auto h = new RingHistory<Grid<bool, Index2D>>(10);
-    // if(this->getType()== 1) h = new RingHistory<Grid<uint8_t, Index2D> >(10);
     r = new OuterTotalisticRule2D();
-    a = new Automaton<bool, Index2D>(h, r);
+    rm = new OuterTotalisticMultiRule2D();
+    if (type == 0) {
+        auto h = new RingHistory<Grid<bool, Index2D>>(10);
+        a = new Automaton<bool, Index2D>(h, r);
+    } else if (type == 1) {
+        auto h = new RingHistory<Grid<uint8_t, Index2D>>(10);
+        multi = new Automaton<uint8_t, Index2D>(h, rm);
+    }
 
     //connect all differents slots
 
@@ -54,7 +59,11 @@ Automate_2D::Automate_2D(QWidget* parent)
     connect(ui->random_sym, SIGNAL(clicked()), this, SLOT(rand_sym()));
 
     reset();
-    auto_load();
+    try {
+        auto_load();
+    } catch (const std::exception& err) {
+        std::cerr << err.what();
+    }
 }
 
 Automate_2D::~Automate_2D()
@@ -111,8 +120,13 @@ void Automate_2D::setSize()
             ui->grid->setItem(j, i, new QTableWidgetItem(""));
         }
     }
-    auto* g1 = new Grid2D<bool>(dimRow, dimCol);
-    a->getHistory()->setStart(g1);
+    if (type == 0) {
+        auto g1 = new Grid2D<bool>(dimRow, dimCol);
+        a->getHistory()->setStart(g1);
+    } else if (type == 1) {
+        auto g1 = new Grid2D<uint8_t>(dimRow, dimCol);
+        multi->getHistory()->setStart(g1);
+    }
     resizeEvent(nullptr);
 }
 
@@ -133,34 +147,44 @@ void Automate_2D::run()
 void Automate_2D::cellActivation(const QModelIndex& index)
 {
     Index2D i(index.row(), index.column());
-    auto grid = const_cast<Grid<bool, Index2D>*>(a->getHistory()->getLast());
-    grid->setCell(i, !grid->getCell(i));
+    if (type == 0) {
+        auto grid = const_cast<Grid<bool, Index2D>*>(a->getHistory()->getLast());
+        grid->setCell(i, !grid->getCell(i));
+    } else if (type == 1) {
+        auto grid = const_cast<Grid<uint8_t, Index2D>*>(multi->getHistory()->getLast());
+        grid->setCell(i, !grid->getCell(i));
+    }
     refreshGrid();
 }
 
 void Automate_2D::next()
 {
     ui->grid->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    a->next();
+    if (type == 0)
+        a->next();
+    else if (type == 1)
+        multi->next();
     refreshGrid();
     incRang();
 }
 
 void Automate_2D::menu()
 {
-    Grid2D<bool>* g2D = new Grid2D<bool>(ui->heightSpinbox->value(), ui->widthSpinbox->value());
-    for (int i = 0; i < ui->heightSpinbox->value(); i++) {
-        for (int j = 0; j < ui->widthSpinbox->value(); j++) {
+    if (type == 0) {
+        Grid2D<bool>* g2D = new Grid2D<bool>(ui->heightSpinbox->value(), ui->widthSpinbox->value());
+        for (int i = 0; i < ui->heightSpinbox->value(); i++) {
+            for (int j = 0; j < ui->widthSpinbox->value(); j++) {
 
-            if (ui->grid->item(i, j)->backgroundColor() == "white")
-                g2D->setCell(Index2D(i, j), false);
-            else {
-                g2D->setCell(Index2D(i, j), true);
+                if (ui->grid->item(i, j)->backgroundColor() == "white")
+                    g2D->setCell(Index2D(i, j), false);
+                else {
+                    g2D->setCell(Index2D(i, j), true);
+                }
             }
         }
-    }
-    g2D->save("config.2Dlo21");
-    r->save("config.2Dlo21");
+        g2D->save("config.2Dlo21");
+        r->save("config.2Dlo21");
+    } // TODO type 1
 
     this->hide();
     this->parent->show();
@@ -178,9 +202,15 @@ void Automate_2D::save()
             return;
 
         std::string name = fileName.toStdString();
-        auto* g2D = a->getHistory()->getLast();
-        g2D->save(name);
-        r->save(name);
+        if (type == 0) {
+            auto* g2D = a->getHistory()->getLast();
+            g2D->save(name);
+            r->save(name);
+        } else if (type == 1) {
+            auto g = multi->getHistory()->getLast();
+            g->save(name);
+            rm->save(name);
+        }
     } catch (const std::exception& err) {
         std::cerr << "erreur: " << err.what() << "\n";
         QMessageBox::critical(
@@ -209,16 +239,27 @@ void Automate_2D::load()
             return;
 
         std::string name = fileName.toStdString();
-        Grid2D<bool>* g2D = new Grid2D<bool>(10, 10);
-        g2D->load(name);
+        if (type == 0) {
+            Grid2D<bool>* g2D = new Grid2D<bool>(10, 10);
+            g2D->load(name);
 
-        Index2D i = g2D->getSize();
-        ui->widthSpinbox->setValue(i.col);
-        ui->heightSpinbox->setValue(i.row);
-        this->setSize();
-        a->getHistory()->setStart(g2D);
+            Index2D i = g2D->getSize();
+            ui->widthSpinbox->setValue(i.col);
+            ui->heightSpinbox->setValue(i.row);
+            this->setSize();
+            a->getHistory()->setStart(g2D);
+            r->load(name);
+        } else if (type == 1) {
+            auto g = new Grid2D<uint8_t>(10, 10);
+            g->load(name);
+            Index2D i = g->getSize();
+            ui->widthSpinbox->setValue(i.col);
+            ui->heightSpinbox->setValue(i.row);
+            this->setSize();
+            multi->getHistory()->setStart(g);
+            rm->load(name);
+        }
         refreshGrid();
-        r->load(name);
         refreshRules();
     } catch (const std::exception& err) {
         std::cerr << "erreur: " << err.what() << "\n";
@@ -236,21 +277,40 @@ void Automate_2D::rand()
         msgBox.exec();
         sim = false;
     }
-    a->getHistory()->getStart()->iterate_set([]() {
-        return std::rand() % 2;
-    });
+    if (type == 0) {
+        a->getHistory()->getStart()->iterate_set([]() {
+            return std::rand() % 2;
+        });
+    } else if (type == 1) {
+        multi->getHistory()->getStart()->iterate_set([]() {
+            return std::rand() % 2;
+        });
+    }
     refreshGrid();
 }
 
 void Automate_2D::refreshGrid() const
 {
+    static QBrush colors[2]{
+        Qt::white, Qt::black
+    };
+    static QBrush colors_multi[5]{
+        Qt::white, Qt::lightGray, Qt::gray, Qt::darkGray, Qt::black
+    };
+
     auto grid = this->ui->grid;
-    a->getHistory()->getLast()->iterate_get([&grid](const Index2D i, const bool val) {
-        grid->item(i.row, i.col)->setBackgroundColor(val ? "black" : "white");
-    });
+    if (type == 0) {
+        a->getHistory()->getLast()->iterate_get([&grid](const Index2D i, const bool val) {
+            grid->item(i.row, i.col)->setBackground(colors[val]);
+        });
+    } else if (type == 1) {
+        multi->getHistory()->getLast()->iterate_get([&grid](const Index2D i, const uint8_t val) {
+            auto color = colors_multi[val < 4 ? val : 4];
+            grid->item(i.row, i.col)->setBackground(color);
+        });
+    }
 }
 
-// TODO refactor this
 void Automate_2D::rand_sym()
 {
     if (rang > 1) {
@@ -259,14 +319,27 @@ void Automate_2D::rand_sym()
         msgBox.exec();
         sim = false;
     }
-    auto start = a->getHistory()->getStart();
-    auto height = start->getSize().row;
-    auto width = start->getSize().col;
-    for (int j = 0; j < height / 2; j++) {
-        for (int i = 0; i < width; i++) {
-            int val = std::rand() % 2;
-            start->setCell(Index2D(j, i), val);
-            start->setCell(Index2D(height - 1 - j, i), val);
+    if (type == 0) {
+        auto start = a->getHistory()->getStart();
+        auto height = start->getSize().row;
+        auto width = start->getSize().col;
+        for (int j = 0; j < height / 2; j++) {
+            for (int i = 0; i < width; i++) {
+                int val = std::rand() % 2;
+                start->setCell(Index2D(j, i), val);
+                start->setCell(Index2D(height - 1 - j, i), val);
+            }
+        }
+    } else if (type == 1) {
+        auto start = multi->getHistory()->getStart();
+        auto height = start->getSize().row;
+        auto width = start->getSize().col;
+        for (int j = 0; j < height / 2; j++) {
+            for (int i = 0; i < width; i++) {
+                uint8_t val = std::rand() % 2;
+                start->setCell(Index2D(j, i), val);
+                start->setCell(Index2D(height - 1 - j, i), val);
+            }
         }
     }
     refreshGrid();
@@ -274,71 +347,52 @@ void Automate_2D::rand_sym()
 
 void Automate_2D::on_born_textEdited(const QString& str)
 {
-    QString newText;
     std::uint16_t rule = 0;
     for (size_t i = 0; i < 9; ++i) {
-        bool b = str.contains(static_cast<char>('0' + i));
-
-        born[i]->setChecked(b);
-        if (b) {
-            rule += 1 << i;
-            newText.append(static_cast<char>('0' + i));
-        }
+        rule += str.contains(static_cast<char>('0' + i)) << i;
     }
-    ui->born->setText(newText);
     r->setBorn(rule);
+    rm->setBorn(rule);
+    refreshRules();
 }
 
 void Automate_2D::on_survive_textEdited(const QString& str)
 {
-    QString newText;
     std::uint16_t rule = 0;
     for (size_t i = 0; i < 9; ++i) {
-        bool b = str.contains(static_cast<char>('0' + i));
-        survive[i]->setChecked(b);
-        if (b) {
-            rule += 1 << i;
-            newText.append(static_cast<char>('0' + i));
-        }
+        rule += str.contains(static_cast<char>('0' + i)) << i;
     }
-    ui->survive->setText(newText);
     r->setSurvive(rule);
+    rm->setSurvive(rule);
+    refreshRules();
 }
 
 void Automate_2D::check_born_i_clicked()
 {
-    QString newText;
     std::uint16_t rule = 0;
     for (size_t i = 0; i < 9; ++i) {
-        bool b = born[i]->isChecked();
-        if (b) {
-            rule += 1 << i;
-            newText.append(static_cast<char>('0' + i));
-        }
+        rule += born[i]->isChecked() << i;
     }
-    ui->born->setText(newText);
     r->setBorn(rule);
+    rm->setBorn(rule);
+    refreshRules();
 }
 
 void Automate_2D::check_survive_i_clicked()
 {
-    QString newText;
     std::uint16_t rule = 0;
     for (size_t i = 0; i < 9; ++i) {
-        bool b = survive[i]->isChecked();
-        if (b) {
-            rule += 1 << i;
-            newText.append(static_cast<char>('0' + i));
-        }
+        rule += survive[i]->isChecked() << i;
     }
-    ui->survive->setText(newText);
     r->setSurvive(rule);
+    rm->setSurvive(rule);
+    refreshRules();
 }
 
 void Automate_2D::refreshRules() const
 {
     QString bt, st;
-    auto b = r->getBorn(), s = r->getSurvive();
+    auto b = r->getBorn(), s = r->getSurvive(); // i think it's ok because r and rm are synchronised (well they should be at least)
     for (size_t i = 0; i < 9; ++i) {
         born[i]->setChecked(b >> i & 1);
         if (b >> i & 1)
@@ -367,15 +421,19 @@ void Automate_2D::resizeEvent(QResizeEvent* event)
 
 void Automate_2D::auto_load()
 {
-    Grid2D<bool>* g2D = new Grid2D<bool>(10, 10);
-    g2D->load("config.2Dlo21");
+    if (type == 0) {
+        Grid2D<bool>* g2D = new Grid2D<bool>(10, 10);
+        g2D->load("config.2Dlo21");
 
-    Index2D i = g2D->getSize();
-    ui->widthSpinbox->setValue(i.col);
-    ui->heightSpinbox->setValue(i.row);
-    this->setSize();
-    a->getHistory()->setStart(g2D);
-    refreshGrid();
-    r->load("config.2Dlo21");
-    refreshRules();
+        Index2D i = g2D->getSize();
+        ui->widthSpinbox->setValue(i.col);
+        ui->heightSpinbox->setValue(i.row);
+        this->setSize();
+        a->getHistory()->setStart(g2D);
+        refreshGrid();
+        r->load("config.2Dlo21");
+        refreshRules();
+    } else if (type == 1) {
+        // TODO type 1
+    }
 }

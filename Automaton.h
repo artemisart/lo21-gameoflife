@@ -5,6 +5,8 @@
 #include "History.h"
 #include "Index.h"
 #include "Rule.h"
+#include <stdexcept>
+
 /**
  * @file Automaton.h
  * @brief Automaton
@@ -61,7 +63,5 @@ void Automaton<T, I>::calculate(const Grid<T, I>& old, Grid<T, I>& next) const
 {
     next.iterate_set([&](I idx) { return rule->calcNextState(old, idx); });
 }
-
-// TODO fonctions de sauvegarde
 
 #endif // AUTOMATON_H

@@ -43,7 +43,11 @@ Automate_1D::Automate_1D(QWidget* parent)
     connect(ui->reset, SIGNAL(clicked()), this, SLOT(reset()));
 
     reset();
-    auto_load();
+    try {
+        auto_load();
+    } catch (const std::exception& err) {
+        std::cerr << err.what() << std::endl;
+    }
 }
 
 Automate_1D::~Automate_1D()
@@ -159,9 +163,9 @@ void Automate_1D::save()
         const Grid<bool, Index1D>* g1D = a->getHistory()->getLast();
         g1D->save(name);
         r->save(name);
-        std::cout << "sauvegarde reussie \n";
-    } catch (const std::string& e) {
-        std::cout << "erreur: " << e << "\n";
+        std::cerr << "sauvegarde reussie \n";
+    } catch (const std::exception& e) {
+        std::cerr << e.what() << std::endl;
     }
 }
 
@@ -194,8 +198,8 @@ void Automate_1D::load()
 
         r->load(name);
         ui->rule->setValue(r->getNum());
-    } catch (const std::string& e) {
-        std::cout << "erreur: " << e << "\n";
+    } catch (const std::exception& e) {
+        std::cerr << e.what() << std::endl;
     }
 }
 

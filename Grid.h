@@ -4,6 +4,7 @@
 #include <fstream>
 #include <functional>
 #include <iostream>
+#include <stdexcept>
 #include <string>
 #include <vector>
 
@@ -164,14 +165,14 @@ public:
     virtual void save(const std::string& filePath) const
     {
         try {
-            std::cout << "save 1D, " << filePath << "\n";
+            std::cerr << "save 1D, " << filePath << std::endl;
             std::ofstream file(filePath, std::ios::out | std::ios::trunc);
             file << "1 " << values.size() << "\n";
             iterate_get([&](const T cell) { file << cell << " "; });
             file << "\n";
             file.close();
-        } catch (const std::string& e) {
-            std::cout << "erreur: " << e << "\n";
+        } catch (const std::exception& e) {
+            std::cerr << e.what() << std::endl;
         }
     }
 
@@ -193,7 +194,7 @@ public:
             size_t it;
             file >> it;
             if (it != 1) {
-                throw "wrong loading, expected a 1D grid";
+                throw std::invalid_argument("wrong loading, expected a 1D grid");
             }
             file >> it;
             values.resize(it, 0);
@@ -202,8 +203,9 @@ public:
                 setCell(i, cell);
             }
             file.close();
-        } catch (const std::string& e) {
-            std::cout << "erreur: " << e << "\n";
+        } catch (const std::exception& e) {
+            std::cerr << e.what() << std::endl;
+            throw;
         }
     }
 };
@@ -275,12 +277,12 @@ public:
         try {
             std::ofstream file(filePath, std::ios::out | std::ios::trunc);
             file << "2 " << height << " " << width << "\n";
-            std::cout << "saving grid height " << height << " width " << width << "\n";
+            std::cerr << "saving grid height " << height << " width " << width << "\n";
             iterate_get([&](const T cell) { file << cell << " "; });
             file << "\n";
             file.close();
-        } catch (const std::string& e) {
-            std::cout << "erreur: " << e << "\n";
+        } catch (const std::exception& e) {
+            std::cerr << "erreur: " << e.what() << std::endl;
         }
     }
     virtual void load(const std::string& filePath)
@@ -290,11 +292,11 @@ public:
             unsigned int it;
             file >> it;
             if (it != 2) {
-                throw std::string("wrong loading, expected 2D grid \n");
+                throw std::invalid_argument("wrong loading, expected 2D grid");
             }
             file >> height;
             file >> width;
-            std::cout << "loading grid height " << height << " width " << width << "\n";
+            std::cerr << "loading grid height " << height << " width " << width << "\n";
             T cell;
             values.resize(height * width, 0);
             for (Index2D i; i.row < height; ++i.row) {
@@ -304,12 +306,11 @@ public:
                 }
             }
             file.close();
-        } catch (const std::string& e) {
-            std::cout << "erreur: " << e << "\n";
+        } catch (const std::exception& e) {
+            std::cerr << "erreur: " << e.what() << std::endl;
+            throw;
         }
     }
 };
-
-// TODO fonctions de sauvegarde
 
 #endif // GRID_H

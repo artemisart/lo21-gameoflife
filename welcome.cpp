@@ -21,27 +21,24 @@ Welcome::~Welcome()
 
 void Welcome::Simulation_Automaton1D()
 {
-    Automate_1D* simulator = new Automate_1D;
+    Automate_1D* simulator = new Automate_1D(nullptr);
     simulator->setParent(this);
     this->hide();
     simulator->show();
-    simulator->auto_load();
 }
 
 void Welcome::Simulation_Automaton2D()
 {
-    Automate_2D* simulator = new Automate_2D;
+    Automate_2D* simulator = new Automate_2D(nullptr, 0);
     simulator->setParent(this);
-    // simulator->setType(0);
     this->hide();
     simulator->show();
 }
 
 void Welcome::Simulation_Automaton_Multiple_States()
 {
-    Automate_2D* simulator = new Automate_2D;
+    Automate_2D* simulator = new Automate_2D(nullptr, 1);
     simulator->setParent(this);
-    //simulator->setType(1);
     this->hide();
     simulator->show();
 }
