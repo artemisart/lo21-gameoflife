@@ -32,20 +32,22 @@ public:
     void incRang() { rang++; }
     int getRang() const { return rang; }
     void init_simulation();
-    /*   void setType(int a){type=a;}
-    const int getType()const { return type; }*/
+    void setType(int a) { type = a; }
+    //const int getType()const { return type; }
     void auto_load();
 
 private:
     Ui::Automate_2D* ui;
     QWidget* parent;
-    Automaton<bool, Index2D>* a;
-    OuterTotalisticRule2D* r;
+    Automaton<bool, Index2D>* a = nullptr;
+    Automaton<uint8_t, Index2D>* multi = nullptr;
+    OuterTotalisticRule2D* r = nullptr;
+    OuterTotalisticMultiRule2D* rm = nullptr;
     int rang;
     bool sim;
     std::array<QCheckBox*, 9> survive, born;
     QTimer* timer;
-    int type; // type=0 => bool, type = 1=>int
+    int type = 0; // type=0 => bool, type = 1=>int
 
     void resizeEvent(QResizeEvent* event);
 

@@ -32,7 +32,7 @@ void Welcome::Simulation_Automaton2D()
 {
     Automate_2D* simulator = new Automate_2D;
     simulator->setParent(this);
-    // simulator->setType(0);
+    simulator->setType(0);
     this->hide();
     simulator->show();
 }
@@ -41,7 +41,7 @@ void Welcome::Simulation_Automaton_Multiple_States()
 {
     Automate_2D* simulator = new Automate_2D;
     simulator->setParent(this);
-    //simulator->setType(1);
+    simulator->setType(1);
     this->hide();
     simulator->show();
 }

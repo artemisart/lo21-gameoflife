@@ -25,11 +25,15 @@ Automate_2D::Automate_2D(QWidget* parent)
         ui->born3, ui->born4, ui->born5,
         ui->born6, ui->born7, ui->born8 } };
 
-    //initialize parameters to make interface work with the application
-    auto h = new RingHistory<Grid<bool, Index2D>>(10);
-    // if(this->getType()== 1) h = new RingHistory<Grid<uint8_t, Index2D> >(10);
-    r = new OuterTotalisticRule2D();
-    a = new Automaton<bool, Index2D>(h, r);
+    if (type == 0) {
+        auto h = new RingHistory<Grid<bool, Index2D>>(10);
+        r = new OuterTotalisticRule2D();
+        a = new Automaton<bool, Index2D>(h, r);
+    } else if (type == 1) {
+        auto h = new RingHistory<Grid<uint8_t, Index2D>>(10);
+        rm = new OuterTotalisticMultiRule2D();
+        multi = new Automaton<uint8_t, Index2D>(h, rm);
+    }
 
     //connect all differents slots
 
