@@ -156,18 +156,24 @@ void Automate_2D::menu()
 void Automate_2D::save()
 {
     try {
-        QString fileName = QFileDialog::getSaveFileName(this,
-            tr("save grid"), "",
-            tr("lo21 (*.2Dlo21)"));
+        QString fileName = QFileDialog::getSaveFileName(
+            this,
+            tr("Sauvegarder la configuration actuelle"),
+            "",
+            tr("Grille LO21 (*.2Dlo21)"));
         if (fileName.isEmpty())
             return;
-        std::string name = fileName.toStdString() + ".2Dlo21";
-        const Grid<bool, Index2D>* g2D = a->getHistory()->getLast();
+
+        std::string name = fileName.toStdString();
+        auto* g2D = a->getHistory()->getLast();
         g2D->save(name);
         r->save(name);
-        std::cout << "sauvegarde reussie \n";
-    } catch (const std::string& e) {
-        std::cout << "erreur: " << e << "\n";
+    } catch (const std::exception& err) {
+        std::cerr << "erreur: " << err.what() << "\n";
+        QMessageBox::critical(
+            this,
+            tr("Erreur lors de l'enregistrement"),
+            err.what());
     }
 }
 
@@ -181,11 +187,14 @@ void Automate_2D::load()
         return;
     }
     try {
-        QString fileName = QFileDialog::getOpenFileName(this,
-            tr("load grid"), "",
-            tr("lo21 (*.2Dlo21)"));
+        QString fileName = QFileDialog::getOpenFileName(
+            this,
+            tr("Charger une configuration"),
+            "",
+            tr("Grille LO21 (*.2Dlo21)"));
         if (fileName.isEmpty())
             return;
+
         std::string name = fileName.toStdString();
         Grid2D<bool>* g2D = new Grid2D<bool>(10, 10);
         g2D->load(name);
@@ -217,8 +226,12 @@ void Automate_2D::load()
         //        this->synchronizeNumToNumBit_b(r->getBorn());
         //        this->synchronizeNumToNumBit_s(r->getSurvive());
         std::cout << "loading reussi";
-    } catch (const std::string& e) {
-        std::cout << "erreur: " << e << "\n";
+    } catch (const std::exception& err) {
+        std::cerr << "erreur: " << err.what() << "\n";
+        QMessageBox::critical(
+            this,
+            tr("Erreur lors du chargement"),
+            err.what());
     }
 }
 void Automate_2D::rand()
