@@ -43,7 +43,6 @@ void Automaton<T, I>::next()
     if (!this->history)
         throw std::logic_error("history is null");
 
-    // TODO check this
     auto* lastGrid = this->history->getLast();
     auto* newGrid = lastGrid->createNew();
     this->calculate(*lastGrid, *newGrid);
