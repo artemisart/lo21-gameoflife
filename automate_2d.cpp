@@ -377,5 +377,4 @@ void Automate_2D::auto_load()
     refreshGrid();
     r->load("config.2Dlo21");
     refreshRules();
-
 }
