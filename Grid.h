@@ -19,7 +19,6 @@
  * A function can also be applied on each cell.
  * A Grid can store any type (int, bool ....)
  */
-
 template <typename T, typename I>
 class Grid {
 public:
@@ -43,20 +42,17 @@ public:
      * @param idx : an index structure
      * @param value : a value to write into the cell
      */
-
     virtual void setCell(const I idx, const T value) = 0;
 
     /**
      * @brief return the Size of the grid
      */
-
     virtual I getSize() const = 0;
 
     /**
      * @brief Create a new Grid with the 2 template values passed
      * @return Return a pointer on the grid created
      */
-
     virtual Grid<T, I>* createNew() const = 0;
 
     /**
@@ -88,7 +84,6 @@ public:
 /**
  * @brief The Grid1D stores a 1 dimensional grid
  */
-
 template <typename T>
 class Grid1D : public Grid<T, Index1D> {
 private:
@@ -107,7 +102,6 @@ public:
      * @param idx : a one dimensional index (i.e : a structure with one interger)
      * @return the value stored in the cell
      */
-
     virtual T getCell(const Index1D idx) const
     {
         if (this->wrapAround)
@@ -132,7 +126,6 @@ public:
      * @brief create a new Grid1D with the same size as the current object
      * @return return a pointer on the new grid
      */
-
     Grid1D<T>* createNew() const
     {
         auto* newGrid = new Grid1D(values.size());
@@ -143,7 +136,6 @@ public:
      * @brief iterate_get
      * @param functor
      */
-
     virtual void iterate_get(const std::function<void(const T value)> functor) const
     {
         for (Index1D i; i.i < static_cast<int>(values.size()); ++i.i)
@@ -174,8 +166,9 @@ public:
         try {
             std::cout << "save 1D, " << filePath << "\n";
             std::ofstream file(filePath, std::ios::out | std::ios::trunc);
-            file << "1 " << values.size() << " ";
+            file << "1 " << values.size() << "\n";
             iterate_get([&](const T cell) { file << cell << " "; });
+            file << "\n";
             file.close();
         } catch (const std::string& e) {
             std::cout << "erreur: " << e << "\n";
@@ -186,14 +179,12 @@ public:
      * @brief return the size of the grid
      * @return
      */
-
     virtual Index1D getSize() const { return values.size(); }
 
     /**
      * @brief load a grid configuration from a file
      * @param filePath : the name of the file where is stored the grid
      */
-
     virtual void load(const std::string& filePath)
     {
         try {
@@ -202,7 +193,7 @@ public:
             size_t it;
             file >> it;
             if (it != 1) {
-                throw std::string("wrong loading, expected a 1D grid \n");
+                throw "wrong loading, expected a 1D grid";
             }
             file >> it;
             values.resize(it, 0);
@@ -283,9 +274,10 @@ public:
     {
         try {
             std::ofstream file(filePath, std::ios::out | std::ios::trunc);
-            file << "2 " << height << " " << width << " ";
+            file << "2 " << height << " " << width << "\n";
             std::cout << "saving grid height " << height << " width " << width << "\n";
             iterate_get([&](const T cell) { file << cell << " "; });
+            file << "\n";
             file.close();
         } catch (const std::string& e) {
             std::cout << "erreur: " << e << "\n";
