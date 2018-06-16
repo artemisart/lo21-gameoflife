@@ -232,7 +232,7 @@ void Automate_1D::rand_sym()
     }
     auto start = a->getHistory()->getStart();
     auto last = start->getSize().i - 1;
-    for (int j = 0; j < last / 2; j++) {
+    for (int j = 0; j < last / 2 + 1; j++) {
         int a = std::rand() % 2;
         start->setCell(j, a);
         start->setCell(last - j, a);
