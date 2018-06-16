@@ -5,8 +5,6 @@
 #include <QMessageBox>
 #include <QScrollArea>
 #include <QTimer>
-#include<stdio.h>
-#include<stdlib.h>
 
 Automate_2D::Automate_2D(QWidget* parent)
     : QWidget(parent)
@@ -279,8 +277,7 @@ void Automate_2D::on_born_textEdited(const QString& str)
     QString newText;
     std::uint16_t rule = 0;
     for (size_t i = 0; i < 9; ++i) {
-       // bool b = str.contains('0' +QString::number(i));
-        bool b = str.contains(static_cast<char>('0' +i));
+        bool b = str.contains(static_cast<char>('0' + i));
 
         born[i]->setChecked(b);
         if (b) {
