@@ -23,9 +23,7 @@ Automate_1D::Automate_1D(QWidget* parent)
 
     connect(ui->sizeButton, SIGNAL(clicked()), this, SLOT(setSize()));
 
-
-
-    for(int i=0;i<8;i++){
+    for (size_t i = 0; i < 8; i++) {
         connect(rules[i], &QCheckBox::clicked, this, &Automate_1D::check_rules_i_clicked);
     }
 
@@ -113,7 +111,6 @@ void Automate_1D::next()
         auto* grid = a->getHistory()->getLast();
 
         ui->grid->insertRow(ui->grid->rowCount());
-        //        ui->grid->setRowCount(ui->grid->rowCount() + 1);
 
         for (int j = 0; j < ui->sizeSpinbox->value(); j++) {
             ui->grid->setItem(getRang(), j, new QTableWidgetItem(""));
@@ -128,10 +125,13 @@ void Automate_1D::next()
 void Automate_1D::menu()
 {
     Grid<bool, Index1D>* g1D = new Grid1D<bool>(ui->sizeSpinbox->value());
-    for(int i=0; i<ui->sizeSpinbox->value(); i++){
-            if(ui->grid->item(0,i)->backgroundColor()=="white") g1D->setCell(i,false);
-            else {g1D->setCell(i, true);}
+    for (int i = 0; i < ui->sizeSpinbox->value(); i++) {
+        if (ui->grid->item(0, i)->backgroundColor() == "white")
+            g1D->setCell(i, false);
+        else {
+            g1D->setCell(i, true);
         }
+    }
     g1D->save("config.1Dlo21");
     r->save("config.1Dlo21");
 
@@ -263,7 +263,8 @@ void Automate_1D::on_rule_valueChanged(int n)
     r->setNum(static_cast<std::uint8_t>(n));
 }
 
-void Automate_1D::auto_load(){
+void Automate_1D::auto_load()
+{
     Grid1D<bool>* g1D = new Grid1D<bool>(20);
     g1D->load("config.1Dlo21");
     a->getHistory()->push(g1D);

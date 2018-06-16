@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="RingHistory&lt;T&gt;">
+    <Position X="4.5" Y="2" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAEAAAAIAAQAAAgAEEAgAAAAAIAAAAAAA=</HashCode>
+      <FileName>History.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="History&lt;T&gt;">
+    <Position X="1.25" Y="2" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAgAAAAQAAAAAAAAgAgAAAKAEAAAAA=</HashCode>
+      <FileName>History.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

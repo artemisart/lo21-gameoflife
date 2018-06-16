@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="Rule&lt;T, I&gt;">
+    <Position X="4.75" Y="1.75" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAMCAAAAAAAAAAAAAAgAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>Rule.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rule1D">
+    <Position X="7" Y="4.25" Width="5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAICCAAgAAAAAAAACAAAAACAAAAAAAgAAAAA=</HashCode>
+      <FileName>Rule.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OuterTotalisticRule2D">
+    <Position X="1.25" Y="4.25" Width="5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAMKgAAAAACAACAQAAAAAAAAAAAAEAgAAAAA=</HashCode>
+      <FileName>Rule.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
