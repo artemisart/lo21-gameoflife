@@ -43,7 +43,11 @@ Automate_1D::Automate_1D(QWidget* parent)
     connect(ui->reset, SIGNAL(clicked()), this, SLOT(reset()));
 
     reset();
-    auto_load();
+    try {
+        auto_load();
+    } catch (const std::exception& err) {
+        std::cerr << err.what() << std::endl;
+    }
 }
 
 Automate_1D::~Automate_1D()
