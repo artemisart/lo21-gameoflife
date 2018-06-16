@@ -35,7 +35,6 @@ public:
     void setParent(QWidget* par) { parent = par; }
     void incRang() { rang++; }
     int getRang() const { return rang; }
-    void init_simulation(int row);
 
 private:
     Ui::Automate_1D* ui;

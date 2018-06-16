@@ -136,24 +136,6 @@ void Automate_1D::run()
     }
 }
 
-// TODO remove this function (it appears to be unused ?)
-void Automate_1D::init_simulation(int row)
-{
-    for (int i = 0; i < row; i++) {
-        for (int j = 0; j < ui->sizeSpinbox->value(); j++) {
-            ui->grid->setColumnWidth(j, 25);
-            ui->grid->setRowHeight(i, 25);
-            ui->grid->setItem(i, j, new QTableWidgetItem(""));
-        }
-    }
-    auto start = a->getHistory()->getStart();
-    for (int k = 0; k < ui->sizeSpinbox->value(); k++)
-        ui->grid->item(0, k)->setBackgroundColor(start->getCell(k) ? "black" : "white");
-    incRang();
-
-    begin = true;
-}
-
 void Automate_1D::save()
 {
     try {
