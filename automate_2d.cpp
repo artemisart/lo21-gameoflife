@@ -5,6 +5,8 @@
 #include <QMessageBox>
 #include <QScrollArea>
 #include <QTimer>
+#include<stdio.h>
+#include<stdlib.h>
 
 Automate_2D::Automate_2D(QWidget* parent)
     : QWidget(parent)
@@ -294,11 +296,13 @@ void Automate_2D::on_born_textEdited(const QString& str)
     QString newText;
     std::uint16_t rule = 0;
     for (size_t i = 0; i < 9; ++i) {
-        bool b = str.contains("0" + i);
+       // bool b = str.contains('0' +QString::number(i));
+        bool b = str.contains(static_cast<char>('0' +i));
+
         born[i]->setChecked(b);
         if (b) {
             rule += 1 << i;
-            newText.append("0" + i);
+            newText.append(static_cast<char>('0' + i));
         }
     }
     ui->born->setText(newText);
@@ -310,11 +314,11 @@ void Automate_2D::on_survive_textEdited(const QString& str)
     QString newText;
     std::uint16_t rule = 0;
     for (size_t i = 0; i < 9; ++i) {
-        bool b = str.contains("0" + i);
+        bool b = str.contains(static_cast<char>('0' + i));
         survive[i]->setChecked(b);
         if (b) {
             rule += 1 << i;
-            newText.append("0" + i);
+            newText.append(static_cast<char>('0' + i));
         }
     }
     ui->survive->setText(newText);
@@ -329,7 +333,7 @@ void Automate_2D::check_born_i_clicked()
         bool b = born[i]->isChecked();
         if (b) {
             rule += 1 << i;
-            newText.append("0" + i);
+            newText.append(static_cast<char>('0' + i));
         }
     }
     ui->born->setText(newText);
@@ -344,7 +348,7 @@ void Automate_2D::check_survive_i_clicked()
         bool b = survive[i]->isChecked();
         if (b) {
             rule += 1 << i;
-            newText.append("0" + i);
+            newText.append(static_cast<char>('0' + i));
         }
     }
     ui->survive->setText(newText);
@@ -358,10 +362,10 @@ void Automate_2D::refreshRules() const
     for (size_t i = 0; i < 9; ++i) {
         born[i]->setChecked(b >> i & 1);
         if (b >> i & 1)
-            bt.append("0" + i);
+            bt.append(static_cast<char>('0' + i));
         survive[i]->setChecked(s >> i & 1);
         if (s >> i & 1)
-            st.append("0" + i);
+            st.append(static_cast<char>('0' + i));
     }
     ui->born->setText(bt);
     ui->survive->setText(st);
