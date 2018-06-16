@@ -25,6 +25,7 @@ void Welcome::Simulation_Automaton1D()
     simulator->setParent(this);
     this->hide();
     simulator->show();
+    simulator->auto_load();
 }
 
 void Welcome::Simulation_Automaton2D()

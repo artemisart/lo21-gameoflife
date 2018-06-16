@@ -34,6 +34,7 @@ public:
     void init_simulation();
     /*   void setType(int a){type=a;}
     const int getType()const { return type; }*/
+    void auto_load();
 
 private:
     Ui::Automate_2D* ui;

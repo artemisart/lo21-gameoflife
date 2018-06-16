@@ -520,7 +520,7 @@
      <item>
       <widget class="QPushButton" name="stop">
        <property name="text">
-        <string>Arrêter la simulation</string>
+        <string>Pause</string>
        </property>
       </widget>
      </item>
