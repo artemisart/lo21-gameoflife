@@ -27,33 +27,33 @@ bool Rule1D::calcNextState(const Grid<bool, Index1D>& grid, const Index1D index)
 
 /*--------------------------------RULE 2D-------------------------------------*/
 
-Rule2D::Rule2D(const std::uint16_t b, const std::uint16_t s)
+OuterTotalisticRule2D::OuterTotalisticRule2D(const std::uint16_t b, const std::uint16_t s)
     : born(b)
     , survive(s)
 {
 }
 
-std::uint16_t Rule2D::getBorn() const
+std::uint16_t OuterTotalisticRule2D::getBorn() const
 {
     return this->born;
 }
 
-std::uint16_t Rule2D::getSurvive() const
+std::uint16_t OuterTotalisticRule2D::getSurvive() const
 {
     return this->survive;
 }
 
-void Rule2D::setBorn(const std::uint16_t i)
+void OuterTotalisticRule2D::setBorn(const std::uint16_t i)
 {
     this->born = i;
 }
 
-void Rule2D::setSurvive(const std::uint16_t i)
+void OuterTotalisticRule2D::setSurvive(const std::uint16_t i)
 {
     this->survive = i;
 }
 
-bool Rule2D::calcNextState(const Grid<bool, Index2D>& grid, const Index2D index) const
+bool OuterTotalisticRule2D::calcNextState(const Grid<bool, Index2D>& grid, const Index2D index) const
 {
     int neighbourCount = +grid.getCell(index.offset(-1, -1))
         + grid.getCell(index.offset(-1, 0))

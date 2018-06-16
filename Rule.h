@@ -87,14 +87,14 @@ public:
     }
 };
 
-class Rule2D : public Rule<bool, Index2D> {
+class OuterTotalisticRule2D : public Rule<bool, Index2D> {
 private:
     std::uint16_t born = 255, survive = 0;
     // born represent regles quand cell dead, survive quand cell lives
 
 public:
-    Rule2D(const std::uint16_t i = 255, const std::uint16_t j = 0);
-    ~Rule2D() {}
+    OuterTotalisticRule2D(const std::uint16_t i = 255, const std::uint16_t j = 0);
+    ~OuterTotalisticRule2D() {}
 
     std::uint16_t getBorn() const;
     std::uint16_t getSurvive() const;

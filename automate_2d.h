@@ -38,7 +38,7 @@ private:
     Ui::Automate_2D* ui;
     QWidget* parent;
     Automaton<bool, Index2D>* a;
-    Rule2D* r;
+    OuterTotalisticRule2D* r;
     int rang;
     bool sim;
     std::array<QCheckBox*, 9> survive, born;
