@@ -147,10 +147,10 @@ public:
     OuterTotalisticMultiRule2D(const std::uint16_t i = 255, const std::uint16_t j = 0);
     ~OuterTotalisticMultiRule2D() {}
 
-    std::uint16_t getBorn() const;
-    std::uint16_t getSurvive() const;
-    void setBorn(const std::uint16_t i);
-    void setSurvive(const std::uint16_t i);
+    std::uint16_t getBorn() const { return born; }
+    std::uint16_t getSurvive() const { return survive; }
+    void setBorn(const std::uint16_t b) { born = b; }
+    void setSurvive(const std::uint16_t s) { survive = s; }
 
     virtual uint8_t calcNextState(const Grid<uint8_t, Index2D>& grid, const Index2D index) const;
     virtual void save(const std::string& filePath) const
