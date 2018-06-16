@@ -310,6 +310,4 @@ public:
     }
 };
 
-// TODO fonctions de sauvegarde
-
 #endif // GRID_H

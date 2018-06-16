@@ -62,6 +62,4 @@ void Automaton<T, I>::calculate(const Grid<T, I>& old, Grid<T, I>& next) const
     next.iterate_set([&](I idx) { return rule->calcNextState(old, idx); });
 }
 
-// TODO fonctions de sauvegarde
-
 #endif // AUTOMATON_H
