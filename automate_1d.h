@@ -35,7 +35,6 @@ public:
     void setParent(QWidget* par) { parent = par; }
     void incRang() { rang++; }
     int getRang() const { return rang; }
-    void init_simulation(int row);
     void auto_load();
 
 private:

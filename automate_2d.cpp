@@ -106,20 +106,18 @@ void Automate_2D::setSize()
     }
     int dimRow = ui->heightSpinbox->value();
     int dimCol = ui->widthSpinbox->value();
-    ui->grid->setMinimumSize(25 * dimRow, 25 * dimCol);
 
     ui->grid->setColumnCount(dimCol);
     ui->grid->setRowCount(dimRow);
 
     for (int i = 0; i < dimCol; i++) {
-        ui->grid->setColumnWidth(i, 25);
         for (int j = 0; j < dimRow; j++) {
-            ui->grid->setRowHeight(j, 25);
             ui->grid->setItem(j, i, new QTableWidgetItem(""));
         }
     }
     auto* g1 = new Grid2D<bool>(dimRow, dimCol);
     a->getHistory()->setStart(g1);
+    resizeEvent(nullptr);
 }
 
 void Automate_2D::simulation()
@@ -262,33 +260,17 @@ void Automate_2D::rand_sym()
         msgBox.exec();
         sim = false;
     }
-    int h = ui->heightSpinbox->value();
     auto start = a->getHistory()->getStart();
-
-    for (int j = 0; j < h / 2; j++) {
-        for (int i = 0; i < ui->widthSpinbox->value(); i++) {
+    auto height = start->getSize().row;
+    auto width = start->getSize().col;
+    for (int j = 0; j < height / 2; j++) {
+        for (int i = 0; i < width; i++) {
             int val = std::rand() % 2;
-            ui->grid->item(j, i)->setBackgroundColor(val ? "black" : "white");
             start->setCell(Index2D(j, i), val);
+            start->setCell(Index2D(height - 1 - j, i), val);
         }
     }
-    int half = (int)std::ceil(ui->heightSpinbox->value() / 2.) - 1;
-
-    int i = 0;
-    for (int j = 1; j <= half + 1; j++) {
-        for (int k = 0; k < ui->widthSpinbox->value(); k++) {
-
-            if (ui->grid->item(half - i, k)->backgroundColor() == "white") {
-                ui->grid->item(half + j, k)->setBackgroundColor("white");
-                start->setCell(Index2D(half + j, k), false);
-
-            } else {
-                ui->grid->item(half + j, k)->setBackgroundColor("black");
-                start->setCell(Index2D(half + j, k), true);
-            }
-        }
-        i++;
-    }
+    refreshGrid();
 }
 
 void Automate_2D::on_born_textEdited(const QString& str)
@@ -371,6 +353,19 @@ void Automate_2D::refreshRules() const
     ui->survive->setText(st);
 }
 
+void Automate_2D::resizeEvent(QResizeEvent* event)
+{
+    auto sizeW = (ui->grid->width() - ui->grid->verticalScrollBar()->width()) / ui->grid->columnCount();
+    auto sizeH = (ui->grid->height() - ui->grid->horizontalScrollBar()->height()) / ui->grid->rowCount();
+    auto size = std::max(std::min(sizeW, sizeH), 5);
+
+    for (int i = 0; i < ui->grid->columnCount(); ++i) {
+        ui->grid->setColumnWidth(i, size);
+    }
+    for (int i = 0; i < ui->grid->rowCount(); ++i) {
+        ui->grid->setRowHeight(i, size);
+    }
+}
 
 void Automate_2D::auto_load(){
     Grid2D<bool>* g2D = new Grid2D<bool>(10, 10);
