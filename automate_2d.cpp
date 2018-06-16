@@ -198,34 +198,16 @@ void Automate_2D::load()
         std::string name = fileName.toStdString();
         Grid2D<bool>* g2D = new Grid2D<bool>(10, 10);
         g2D->load(name);
-        a->getHistory()->push(g2D);
+
         Index2D i = g2D->getSize();
         ui->widthSpinbox->setValue(i.col);
         ui->heightSpinbox->setValue(i.row);
         this->setSize();
-
-        for (Index2D i; i.row < g2D->getSize().row; ++i.row) {
-            for (i.col = 0; i.col < g2D->getSize().col; ++i.col) {
-                bool a = g2D->getCell(i);
-                if (a == 0) {
-                    ui->grid->item(i.row, i.col)->setBackgroundColor("white");
-                    ui->grid->item(i.row, i.col)->setText("");
-                    ui->grid->item(i.row, i.col)->setBackgroundColor("white");
-                } else {
-                    ui->grid->item(i.row, i.col)->setBackgroundColor("black");
-                    ui->grid->item(i.row, i.col)->setText("_");
-                    ui->grid->item(i.row, i.col)->setBackgroundColor("black");
-                }
-            }
-        }
+        a->getHistory()->setStart(g2D);
+        refreshGrid();
 
         r->load(name);
-        // TODO update rules
-        //        ui->survive->setValue(r->getSurvive());
-        //        ui->born->setValue(r->getBorn());
-        //        this->synchronizeNumToNumBit_b(r->getBorn());
-        //        this->synchronizeNumToNumBit_s(r->getSurvive());
-        std::cout << "loading reussi";
+        refreshRules();
     } catch (const std::exception& err) {
         std::cerr << "erreur: " << err.what() << "\n";
         QMessageBox::critical(
