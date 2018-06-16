@@ -199,7 +199,7 @@ void Automate_1D::load()
         r->load(name);
         ui->rule->setValue(r->getNum());
     } catch (const std::exception& e) {
-        std::cout << e.what() << std::endl;
+        std::cerr << e.what() << std::endl;
     }
 }
 

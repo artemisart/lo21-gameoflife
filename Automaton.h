@@ -5,6 +5,8 @@
 #include "History.h"
 #include "Index.h"
 #include "Rule.h"
+#include <stdexcept>
+
 /**
  * @file Automaton.h
  * @brief Automaton

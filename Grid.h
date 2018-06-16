@@ -4,6 +4,7 @@
 #include <fstream>
 #include <functional>
 #include <iostream>
+#include <stdexcept>
 #include <string>
 #include <vector>
 
@@ -171,7 +172,7 @@ public:
             file << "\n";
             file.close();
         } catch (const std::exception& e) {
-            std::cerr << "erreur: " << e.what() << std::endl;
+            std::cerr << e.what() << std::endl;
         }
     }
 
@@ -203,7 +204,8 @@ public:
             }
             file.close();
         } catch (const std::exception& e) {
-            std::cerr << "erreur: " << e.what() << std::endl;
+            std::cerr << e.what() << std::endl;
+            throw;
         }
     }
 };
@@ -306,6 +308,7 @@ public:
             file.close();
         } catch (const std::exception& e) {
             std::cerr << "erreur: " << e.what() << std::endl;
+            throw;
         }
     }
 };

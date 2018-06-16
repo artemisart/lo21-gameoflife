@@ -3,7 +3,7 @@
 
 #include "Grid.h"
 #include "Index.h"
-#include <cstdint> // pour std::uint16_t
+#include <stdexcept>
 
 /**
  * @file Rule.h
@@ -62,13 +62,13 @@ public:
                  << "1 " << num;
             file.close();
         } catch (const std::exception& e) {
-            std::cout << "erreur: " << e.what() << std::endl;
+            std::cerr << e.what() << std::endl;
         }
     }
     virtual void load(const std::string& filePath)
     {
         try {
-            std::cout << "loading";
+            std::cerr << "loading";
             std::ifstream file(filePath, std::ios::in);
             std::uint16_t it;
             std::string s;
@@ -82,7 +82,8 @@ public:
             file >> num;
             file.close();
         } catch (const std::exception& e) {
-            std::cout << "erreur: " << e.what() << std::endl;
+            std::cerr << e.what() << std::endl;
+            throw;
         }
     }
 };
@@ -109,7 +110,7 @@ public:
             file << "\n"
                  << "2 " << born;
             file << " " << survive;
-            std::cout << "saving born = " << born << "  survive = " << survive << "\n";
+            std::cerr << "saving born = " << born << "  survive = " << survive << "\n";
             file.close();
         } catch (const std::exception& e) {
             std::cerr << "erreur: " << e.what() << std::endl;
@@ -134,6 +135,7 @@ public:
             file.close();
         } catch (const std::exception& e) {
             std::cerr << "erreur: " << e.what() << std::endl;
+            throw;
         }
     }
 };
@@ -185,6 +187,7 @@ public:
             file.close();
         } catch (const std::exception& e) {
             std::cerr << "erreur: " << e.what() << std::endl;
+            throw;
         }
     }
 };

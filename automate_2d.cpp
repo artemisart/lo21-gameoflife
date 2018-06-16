@@ -59,7 +59,11 @@ Automate_2D::Automate_2D(QWidget* parent, int type)
     connect(ui->random_sym, SIGNAL(clicked()), this, SLOT(rand_sym()));
 
     reset();
-    auto_load();
+    try {
+        auto_load();
+    } catch (const std::exception& err) {
+        std::cerr << err.what();
+    }
 }
 
 Automate_2D::~Automate_2D()
