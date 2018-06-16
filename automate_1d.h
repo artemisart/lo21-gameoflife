@@ -36,6 +36,7 @@ public:
     void incRang() { rang++; }
     int getRang() const { return rang; }
     void init_simulation(int row);
+    void auto_load();
 
 private:
     Ui::Automate_1D* ui;

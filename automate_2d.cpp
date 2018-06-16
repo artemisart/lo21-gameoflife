@@ -14,8 +14,10 @@ Automate_2D::Automate_2D(QWidget* parent)
 {
     ui->setupUi(this);
 
+    //initialize timer
     timer = new QTimer(parent);
     connect(timer, SIGNAL(timeout()), this, SLOT(run()));
+
 
     survive = { { ui->survive0, ui->survive1, ui->survive2,
         ui->survive3, ui->survive4, ui->survive5,
@@ -24,35 +26,14 @@ Automate_2D::Automate_2D(QWidget* parent)
         ui->born3, ui->born4, ui->born5,
         ui->born6, ui->born7, ui->born8 } };
 
-    //if(this->getType() == 0)
+    //initialize parameters to make interface work with the application
     auto h = new RingHistory<Grid<bool, Index2D>>(10);
     // if(this->getType()== 1) h = new RingHistory<Grid<uint8_t, Index2D> >(10);
     r = new OuterTotalisticRule2D();
     a = new Automaton<bool, Index2D>(h, r);
 
 
-    Grid2D<bool>* g2D = new Grid2D<bool>(10, 10);
-    g2D->load("config.2Dlo21");
-    a->getHistory()->push(g2D);
-    Index2D i = g2D->getSize();
-    ui->widthSpinbox->setValue(i.col);
-    ui->heightSpinbox->setValue(i.row);
-    this->setSize();
-
-    for (Index2D i; i.row < g2D->getSize().row; ++i.row) {
-        for (i.col = 0; i.col < g2D->getSize().col; ++i.col) {
-            bool a = g2D->getCell(i);
-            if (a == 0) {
-                ui->grid->item(i.row, i.col)->setBackgroundColor("white");
-                ui->grid->item(i.row, i.col)->setBackgroundColor("white");
-            } else {
-                ui->grid->item(i.row, i.col)->setBackgroundColor("black");
-                ui->grid->item(i.row, i.col)->setBackgroundColor("black");
-            }
-        }
-    }
-
-    r->load("config.2Dlo21");
+    //connect all differents slots
 
     for (size_t i = 0; i < 9; i++) {
         connect(born[i], &QCheckBox::clicked, this, &Automate_2D::check_born_i_clicked);
@@ -75,6 +56,7 @@ Automate_2D::Automate_2D(QWidget* parent)
     connect(ui->random_sym, SIGNAL(clicked()), this, SLOT(rand_sym()));
 
     reset();
+    auto_load();
 }
 
 Automate_2D::~Automate_2D()
@@ -171,8 +153,8 @@ void Automate_2D::next()
 void Automate_2D::menu()
 {
     Grid2D<bool>* g2D = new Grid2D<bool>(ui->heightSpinbox->value(), ui->widthSpinbox->value());
-    for(int i=0; i<ui->heightSpinbox->value(); i++){
-        for(int j=0; j<ui->widthSpinbox->value(); j++){
+     for(int i=0; i<ui->heightSpinbox->value(); i++){
+      for(int j=0; j<ui->widthSpinbox->value(); j++){
 
               if(ui->grid->item(i,j)->backgroundColor()=="white") g2D->setCell(Index2D(i,j),false);
               else {g2D->setCell(Index2D(i,j), true);}
@@ -383,4 +365,52 @@ void Automate_2D::refreshRules() const
     }
     ui->born->setText(bt);
     ui->survive->setText(st);
+}
+
+
+void Automate_2D::auto_load(){
+    Grid2D<bool>* g2D = new Grid2D<bool>(10, 10);
+    g2D->load("config.2Dlo21");
+    a->getHistory()->push(g2D);
+    Index2D i = g2D->getSize();
+    ui->widthSpinbox->setValue(i.col);
+    ui->heightSpinbox->setValue(i.row);
+    this->setSize();
+    for (Index2D i; i.row < g2D->getSize().row; ++i.row) {
+        for (i.col = 0; i.col < g2D->getSize().col; ++i.col) {
+            bool a = g2D->getCell(i);
+            if (a == 0) {
+                ui->grid->item(i.row, i.col)->setBackgroundColor("white");
+            } else {
+                ui->grid->item(i.row, i.col)->setBackgroundColor("black");
+            }
+        }
+    }
+
+    r->load("config.2Dlo21");
+            std::uint16_t temp = r->getSurvive();
+            QString qsur = "";
+            for( int e=8;e>=0;e--){
+                if(temp >= pow(2,e)){
+                    temp = temp - pow(2,e);
+                    QString tempchar = QString::fromStdString(std::to_string((int)floor(e)));
+                    qsur.append(tempchar);
+                    std::cout<< temp << "/"<< qsur.toStdString() << "/";
+                  };
+              }
+            temp = r->getBorn();
+            QString qbor = "";
+            for( int e=8;e>=0;e--){
+                if(temp >= pow(2,e)){
+                    temp = temp - pow(2,e);
+                    QString tempchar = QString::fromStdString(std::to_string((int)floor(e)));
+                    qbor.append(tempchar);
+                  };
+            }
+            ui->survive->setText(qsur);
+            ui->born->setText(qbor);
+            this->on_born_textEdited(qbor);
+            this->on_survive_textEdited(qsur);
+            a->getHistory()->setStart(g2D);
+
 }
