@@ -358,10 +358,10 @@ void Automate_2D::refreshRules() const
     for (size_t i = 0; i < 9; ++i) {
         born[i]->setChecked(b >> i & 1);
         if (b >> i & 1)
-            bt.append('0' + i);
+            bt.append("0" + i);
         survive[i]->setChecked(s >> i & 1);
         if (s >> i & 1)
-            st.append('0' + i);
+            st.append("0" + i);
     }
     ui->born->setText(bt);
     ui->survive->setText(st);
@@ -371,46 +371,14 @@ void Automate_2D::refreshRules() const
 void Automate_2D::auto_load(){
     Grid2D<bool>* g2D = new Grid2D<bool>(10, 10);
     g2D->load("config.2Dlo21");
-    a->getHistory()->push(g2D);
+
     Index2D i = g2D->getSize();
     ui->widthSpinbox->setValue(i.col);
     ui->heightSpinbox->setValue(i.row);
     this->setSize();
-    for (Index2D i; i.row < g2D->getSize().row; ++i.row) {
-        for (i.col = 0; i.col < g2D->getSize().col; ++i.col) {
-            bool a = g2D->getCell(i);
-            if (a == 0) {
-                ui->grid->item(i.row, i.col)->setBackgroundColor("white");
-            } else {
-                ui->grid->item(i.row, i.col)->setBackgroundColor("black");
-            }
-        }
-    }
-
+    a->getHistory()->setStart(g2D);
+    refreshGrid();
     r->load("config.2Dlo21");
-            std::uint16_t temp = r->getSurvive();
-            QString qsur = "";
-            for( int e=8;e>=0;e--){
-                if(temp >= pow(2,e)){
-                    temp = temp - pow(2,e);
-                    QString tempchar = QString::fromStdString(std::to_string((int)floor(e)));
-                    qsur.append(tempchar);
-                    std::cout<< temp << "/"<< qsur.toStdString() << "/";
-                  };
-              }
-            temp = r->getBorn();
-            QString qbor = "";
-            for( int e=8;e>=0;e--){
-                if(temp >= pow(2,e)){
-                    temp = temp - pow(2,e);
-                    QString tempchar = QString::fromStdString(std::to_string((int)floor(e)));
-                    qbor.append(tempchar);
-                  };
-            }
-            ui->survive->setText(qsur);
-            ui->born->setText(qbor);
-            this->on_born_textEdited(qbor);
-            this->on_survive_textEdited(qsur);
-            a->getHistory()->setStart(g2D);
+    refreshRules();
 
 }
