@@ -30,8 +30,29 @@ Automate_2D::Automate_2D(QWidget* parent)
     r = new OuterTotalisticRule2D();
     a = new Automaton<bool, Index2D>(h, r);
 
-    setSize();
-    refreshGrid();
+
+    Grid2D<bool>* g2D = new Grid2D<bool>(10, 10);
+    g2D->load("config.2Dlo21");
+    a->getHistory()->push(g2D);
+    Index2D i = g2D->getSize();
+    ui->widthSpinbox->setValue(i.col);
+    ui->heightSpinbox->setValue(i.row);
+    this->setSize();
+
+    for (Index2D i; i.row < g2D->getSize().row; ++i.row) {
+        for (i.col = 0; i.col < g2D->getSize().col; ++i.col) {
+            bool a = g2D->getCell(i);
+            if (a == 0) {
+                ui->grid->item(i.row, i.col)->setBackgroundColor("white");
+                ui->grid->item(i.row, i.col)->setBackgroundColor("white");
+            } else {
+                ui->grid->item(i.row, i.col)->setBackgroundColor("black");
+                ui->grid->item(i.row, i.col)->setBackgroundColor("black");
+            }
+        }
+    }
+
+    r->load("config.2Dlo21");
 
     for (size_t i = 0; i < 9; i++) {
         connect(born[i], &QCheckBox::clicked, this, &Automate_2D::check_born_i_clicked);
@@ -149,6 +170,17 @@ void Automate_2D::next()
 
 void Automate_2D::menu()
 {
+    Grid2D<bool>* g2D = new Grid2D<bool>(ui->heightSpinbox->value(), ui->widthSpinbox->value());
+    for(int i=0; i<ui->heightSpinbox->value(); i++){
+        for(int j=0; j<ui->widthSpinbox->value(); j++){
+
+              if(ui->grid->item(i,j)->backgroundColor()=="white") g2D->setCell(Index2D(i,j),false);
+              else {g2D->setCell(Index2D(i,j), true);}
+        }
+     }
+     g2D->save("config.2Dlo21");
+     r->save("config.2Dlo21");
+
     this->hide();
     this->parent->show();
 }
@@ -280,11 +312,11 @@ void Automate_2D::on_born_textEdited(const QString& str)
     QString newText;
     std::uint16_t rule = 0;
     for (size_t i = 0; i < 9; ++i) {
-        bool b = str.contains('0' + i);
+        bool b = str.contains("0" + i);
         born[i]->setChecked(b);
         if (b) {
             rule += 1 << i;
-            newText.append('0' + i);
+            newText.append("0" + i);
         }
     }
     ui->born->setText(newText);
@@ -296,11 +328,11 @@ void Automate_2D::on_survive_textEdited(const QString& str)
     QString newText;
     std::uint16_t rule = 0;
     for (size_t i = 0; i < 9; ++i) {
-        bool b = str.contains('0' + i);
+        bool b = str.contains("0" + i);
         survive[i]->setChecked(b);
         if (b) {
             rule += 1 << i;
-            newText.append('0' + i);
+            newText.append("0" + i);
         }
     }
     ui->survive->setText(newText);
@@ -315,7 +347,7 @@ void Automate_2D::check_born_i_clicked()
         bool b = born[i]->isChecked();
         if (b) {
             rule += 1 << i;
-            newText.append('0' + i);
+            newText.append("0" + i);
         }
     }
     ui->born->setText(newText);
@@ -330,7 +362,7 @@ void Automate_2D::check_survive_i_clicked()
         bool b = survive[i]->isChecked();
         if (b) {
             rule += 1 << i;
-            newText.append('0' + i);
+            newText.append("0" + i);
         }
     }
     ui->survive->setText(newText);

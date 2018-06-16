@@ -23,12 +23,11 @@ Automate_1D::Automate_1D(QWidget* parent)
 
     connect(ui->sizeButton, SIGNAL(clicked()), this, SLOT(setSize()));
 
-    setSize();
     Grid1D<bool>* g1D = new Grid1D<bool>(20);
     g1D->load("config.1Dlo21");
     a->getHistory()->push(g1D);
     Index1D i = g1D->getSize();
-    ui->size_Box->setValue(i.i); //met la taille a jour
+    ui->sizeSpinbox->setValue(i.i); //met la taille a jour
     this->setSize();
 
     for (Index1D i; i.i < g1D->getSize().i; ++i.i) {
@@ -37,7 +36,7 @@ Automate_1D::Automate_1D(QWidget* parent)
     }
 
     r->load("config.1Dlo21");
-    ui->rule->setText(QString::number(r->getNum())); //met les regles a jour
+    ui->rule->setValue(r->getNum()); //met les regles a jour
     //this->synchronizeNumToNumBit(r->getNum());
 
     for(int i=0;i<8;i++){
@@ -141,8 +140,8 @@ void Automate_1D::next()
 
 void Automate_1D::menu()
 {
-   Grid1D<bool>* g1D = new Grid1D<bool>(ui->size_Box->value());
-   for(int i=0; i<ui->size_Box->value(); i++){
+   Grid1D<bool>* g1D = new Grid1D<bool>(ui->sizeSpinbox->value());
+   for(int i=0; i<ui->sizeSpinbox->value(); i++){
         if(ui->grid->item(0,i)->backgroundColor()=="white") g1D->setCell(i,false);
         else {g1D->setCell(i, true);}
     }
