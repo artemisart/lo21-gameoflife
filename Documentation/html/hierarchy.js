@@ -3,6 +3,7 @@ var hierarchy =
     [ "Automaton< T, I >", "class_automaton.html", null ],
     [ "Automaton< bool, Index1D >", "class_automaton.html", null ],
     [ "Automaton< bool, Index2D >", "class_automaton.html", null ],
+    [ "Automaton< uint8_t, Index2D >", "class_automaton.html", null ],
     [ "Grid< T, I >", "class_grid.html", null ],
     [ "Grid< bool, Index1D >", "class_grid.html", null ],
     [ "Grid< bool, Index2D >", "class_grid.html", null ],
@@ -12,16 +13,14 @@ var hierarchy =
     [ "Grid< T, Index2D >", "class_grid.html", [
       [ "Grid2D< T >", "class_grid2_d.html", null ]
     ] ],
+    [ "Grid< uint8_t, Index2D >", "class_grid.html", null ],
     [ "History< T >", "class_history.html", [
       [ "RingHistory< T >", "class_ring_history.html", null ]
     ] ],
-    [ "History< Grid< bool, Index1D > >", "class_history.html", [
-      [ "RingHistory< Grid< bool, Index1D > >", "class_ring_history.html", null ]
-    ] ],
-    [ "History< Grid< bool, Index2D > >", "class_history.html", [
-      [ "RingHistory< Grid< bool, Index2D > >", "class_ring_history.html", null ]
-    ] ],
+    [ "History< Grid< bool, Index1D > >", "class_history.html", null ],
+    [ "History< Grid< bool, Index2D > >", "class_history.html", null ],
     [ "History< Grid< T, I > >", "class_history.html", null ],
+    [ "History< Grid< uint8_t, Index2D > >", "class_history.html", null ],
     [ "Index", "struct_index.html", [
       [ "Index1D", "struct_index1_d.html", null ],
       [ "Index2D", "struct_index2_d.html", null ]
@@ -36,6 +35,9 @@ var hierarchy =
       [ "Rule1D", "class_rule1_d.html", null ]
     ] ],
     [ "Rule< bool, Index2D >", "class_rule.html", [
-      [ "Rule2D", "class_rule2_d.html", null ]
+      [ "OuterTotalisticRule2D", "class_outer_totalistic_rule2_d.html", null ]
+    ] ],
+    [ "Rule< uint8_t, Index2D >", "class_rule.html", [
+      [ "OuterTotalisticMultiRule2D", "class_outer_totalistic_multi_rule2_d.html", null ]
     ] ]
 ];

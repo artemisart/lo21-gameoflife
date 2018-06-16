@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>Game of Life: Member List</title>
+<title>Autocell: Member List</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -31,8 +31,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Game of Life
-   &#160;<span id="projectnumber">0.1</span>
+   <div id="projectname">Autocell
    </div>
   </td>
  </tr>
@@ -48,7 +47,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
-      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -117,18 +115,22 @@ $(document).ready(function(){initNavTree('class_grid2_d.html','');});
   <tr class="even"><td class="entry"><a class="el" href="class_grid2_d.html#a8df69985a4e12cb54dc972ba8da96eb5">createNew</a>() const </td><td class="entry"><a class="el" href="class_grid2_d.html">Grid2D&lt; T &gt;</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">virtual</span></td></tr>
   <tr><td class="entry"><a class="el" href="class_grid2_d.html#a2f4a81b1d7db50b9c670e9ce62734a71">getCell</a>(const Index2D idx) const </td><td class="entry"><a class="el" href="class_grid2_d.html">Grid2D&lt; T &gt;</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">virtual</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_grid2_d.html#a3dfc49ba7a22941b5f665d8c08dab5ab">getSize</a>() const </td><td class="entry"><a class="el" href="class_grid2_d.html">Grid2D&lt; T &gt;</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">virtual</span></td></tr>
-  <tr><td class="entry"><a class="el" href="class_grid.html#ae18ffd1ccf0c7daa6223a0b74d11a542">Grid</a>()</td><td class="entry"><a class="el" href="class_grid.html">Grid&lt; T, Index2D &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_grid2_d.html#a0e69b32d3327c41bda5dc4bde3d67144">Grid2D</a>(const int height, const int width)</td><td class="entry"><a class="el" href="class_grid2_d.html">Grid2D&lt; T &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr><td class="entry"><a class="el" href="class_grid2_d.html#ab82813e94147d2ec4a898172ddd517c3">iterate_get</a>(const std::function&lt; void(const T)&gt; functor) const </td><td class="entry"><a class="el" href="class_grid2_d.html">Grid2D&lt; T &gt;</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">virtual</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_grid.html#ac3287f4bf6baed50d150e167f8981a9a">Grid&lt; T, Index2D &gt;::iterate_get</a>(const std::function&lt; void(const T cell)&gt; functor) const =0</td><td class="entry"><a class="el" href="class_grid.html">Grid&lt; T, Index2D &gt;</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
-  <tr><td class="entry"><a class="el" href="class_grid2_d.html#a4d88242ee722ba0691429ddc0933479b">iterate_set</a>(const std::function&lt; T(const Index2D)&gt; functor)</td><td class="entry"><a class="el" href="class_grid2_d.html">Grid2D&lt; T &gt;</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">virtual</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_grid.html#a19a2471ad75538bdf46b209248288b3a">Grid&lt; T, Index2D &gt;::iterate_set</a>(const std::function&lt; T(const Index2Dindex)&gt; functor)=0</td><td class="entry"><a class="el" href="class_grid.html">Grid&lt; T, Index2D &gt;</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
-  <tr><td class="entry"><a class="el" href="class_grid2_d.html#a747f96f7a4e1a789e18614ccd929f4db">load</a>(const std::string &amp;filePath)</td><td class="entry"><a class="el" href="class_grid2_d.html">Grid2D&lt; T &gt;</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">virtual</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>Grid</b>() (defined in <a class="el" href="class_grid.html">Grid&lt; T, Index2D &gt;</a>)</td><td class="entry"><a class="el" href="class_grid.html">Grid&lt; T, Index2D &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>Grid</b>(const Grid &amp;grid)=delete (defined in <a class="el" href="class_grid.html">Grid&lt; T, Index2D &gt;</a>)</td><td class="entry"><a class="el" href="class_grid.html">Grid&lt; T, Index2D &gt;</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>Grid2D</b>(const int height, const int width) (defined in <a class="el" href="class_grid2_d.html">Grid2D&lt; T &gt;</a>)</td><td class="entry"><a class="el" href="class_grid2_d.html">Grid2D&lt; T &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_grid2_d.html#a3d445a91e722aad901011db922b6a4dd">iterate_get</a>(const std::function&lt; void(const T value)&gt; functor) const </td><td class="entry"><a class="el" href="class_grid2_d.html">Grid2D&lt; T &gt;</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">virtual</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>iterate_get</b>(const std::function&lt; void(const Index2D, const T value)&gt; functor) const  (defined in <a class="el" href="class_grid2_d.html">Grid2D&lt; T &gt;</a>)</td><td class="entry"><a class="el" href="class_grid2_d.html">Grid2D&lt; T &gt;</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">virtual</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>iterate_get</b>(const std::function&lt; void(const Index2Dindex, const T value)&gt; functor) const =0 (defined in <a class="el" href="class_grid.html">Grid&lt; T, Index2D &gt;</a>)</td><td class="entry"><a class="el" href="class_grid.html">Grid&lt; T, Index2D &gt;</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_grid2_d.html#a3758fa203028cdaa575878b7e7f9b113">iterate_set</a>(const std::function&lt; T()&gt; functor)</td><td class="entry"><a class="el" href="class_grid2_d.html">Grid2D&lt; T &gt;</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">virtual</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>iterate_set</b>(const std::function&lt; T(const Index2D)&gt; functor) (defined in <a class="el" href="class_grid2_d.html">Grid2D&lt; T &gt;</a>)</td><td class="entry"><a class="el" href="class_grid2_d.html">Grid2D&lt; T &gt;</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">virtual</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>iterate_set</b>(const std::function&lt; T(const Index2Dindex)&gt; functor)=0 (defined in <a class="el" href="class_grid.html">Grid&lt; T, Index2D &gt;</a>)</td><td class="entry"><a class="el" href="class_grid.html">Grid&lt; T, Index2D &gt;</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_grid2_d.html#a747f96f7a4e1a789e18614ccd929f4db">load</a>(const std::string &amp;filePath)</td><td class="entry"><a class="el" href="class_grid2_d.html">Grid2D&lt; T &gt;</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">virtual</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>operator=</b>(const Grid &amp;grid)=delete (defined in <a class="el" href="class_grid.html">Grid&lt; T, Index2D &gt;</a>)</td><td class="entry"><a class="el" href="class_grid.html">Grid&lt; T, Index2D &gt;</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_grid2_d.html#a8ef600635742eb4db9ec8fe498a14cab">save</a>(const std::string &amp;filePath) const </td><td class="entry"><a class="el" href="class_grid2_d.html">Grid2D&lt; T &gt;</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">virtual</span></td></tr>
   <tr><td class="entry"><a class="el" href="class_grid2_d.html#ab60e9f6ce3fe108d41ac54d75de64ccd">setCell</a>(const Index2D idx, const T value)</td><td class="entry"><a class="el" href="class_grid2_d.html">Grid2D&lt; T &gt;</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">virtual</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_grid.html#a326b80bbf8b17aaa3c0df4eea8f219bd">wrapAround</a></td><td class="entry"><a class="el" href="class_grid.html">Grid&lt; T, Index2D &gt;</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_grid.html#ad3304a35b29360a7cbf7d1c0c1142d1c">~Grid</a>()</td><td class="entry"><a class="el" href="class_grid.html">Grid&lt; T, Index2D &gt;</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">virtual</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_grid2_d.html#af52b9883b025c0bd58a0ba954cb1627c">~Grid2D</a>()</td><td class="entry"><a class="el" href="class_grid2_d.html">Grid2D&lt; T &gt;</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">virtual</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>wrapAround</b> (defined in <a class="el" href="class_grid.html">Grid&lt; T, Index2D &gt;</a>)</td><td class="entry"><a class="el" href="class_grid.html">Grid&lt; T, Index2D &gt;</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>~Grid</b>() (defined in <a class="el" href="class_grid.html">Grid&lt; T, Index2D &gt;</a>)</td><td class="entry"><a class="el" href="class_grid.html">Grid&lt; T, Index2D &gt;</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">virtual</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>~Grid2D</b>() (defined in <a class="el" href="class_grid2_d.html">Grid2D&lt; T &gt;</a>)</td><td class="entry"><a class="el" href="class_grid2_d.html">Grid2D&lt; T &gt;</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">virtual</span></td></tr>
 </table></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

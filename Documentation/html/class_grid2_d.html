@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>Game of Life: Grid2D&lt; T &gt; Class Template Reference</title>
+<title>Autocell: Grid2D&lt; T &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -31,8 +31,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Game of Life
-   &#160;<span id="projectnumber">0.1</span>
+   <div id="projectname">Autocell
    </div>
   </td>
  </tr>
@@ -48,7 +47,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
-      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -114,8 +112,6 @@ $(document).ready(function(){initNavTree('class_grid2_d.html','');});
 <div class="title">Grid2D&lt; T &gt; Class Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p><code>#include &lt;<a class="el" href="_grid_8h_source.html">Grid.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for Grid2D&lt; T &gt;:</div>
 <div class="dyncontent">
@@ -135,25 +131,33 @@ Collaboration diagram for Grid2D&lt; T &gt;:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a0e69b32d3327c41bda5dc4bde3d67144"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_grid2_d.html#a0e69b32d3327c41bda5dc4bde3d67144">Grid2D</a> (const int height, const int width)</td></tr>
+<tr class="memitem:a0e69b32d3327c41bda5dc4bde3d67144"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0e69b32d3327c41bda5dc4bde3d67144"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Grid2D</b> (const int height, const int width)</td></tr>
 <tr class="separator:a0e69b32d3327c41bda5dc4bde3d67144"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af52b9883b025c0bd58a0ba954cb1627c"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_grid2_d.html#af52b9883b025c0bd58a0ba954cb1627c">~Grid2D</a> ()</td></tr>
-<tr class="separator:af52b9883b025c0bd58a0ba954cb1627c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2f4a81b1d7db50b9c670e9ce62734a71"><td class="memItemLeft" align="right" valign="top">virtual T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_grid2_d.html#a2f4a81b1d7db50b9c670e9ce62734a71">getCell</a> (const <a class="el" href="struct_index2_d.html">Index2D</a> idx) const </td></tr>
 <tr class="memdesc:a2f4a81b1d7db50b9c670e9ce62734a71"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access a cell thanks to its index.  <a href="#a2f4a81b1d7db50b9c670e9ce62734a71">More...</a><br /></td></tr>
 <tr class="separator:a2f4a81b1d7db50b9c670e9ce62734a71"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab60e9f6ce3fe108d41ac54d75de64ccd"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_grid2_d.html#ab60e9f6ce3fe108d41ac54d75de64ccd">setCell</a> (const <a class="el" href="struct_index2_d.html">Index2D</a> idx, const T value)</td></tr>
 <tr class="memdesc:ab60e9f6ce3fe108d41ac54d75de64ccd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write a value into the cell.  <a href="#ab60e9f6ce3fe108d41ac54d75de64ccd">More...</a><br /></td></tr>
 <tr class="separator:ab60e9f6ce3fe108d41ac54d75de64ccd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3dfc49ba7a22941b5f665d8c08dab5ab"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="struct_index2_d.html">Index2D</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_grid2_d.html#a3dfc49ba7a22941b5f665d8c08dab5ab">getSize</a> () const </td></tr>
-<tr class="memdesc:a3dfc49ba7a22941b5f665d8c08dab5ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">return the Size of the grid  <a href="#a3dfc49ba7a22941b5f665d8c08dab5ab">More...</a><br /></td></tr>
+<tr class="memitem:a3dfc49ba7a22941b5f665d8c08dab5ab"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3dfc49ba7a22941b5f665d8c08dab5ab"></a>
+virtual <a class="el" href="struct_index2_d.html">Index2D</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_grid2_d.html#a3dfc49ba7a22941b5f665d8c08dab5ab">getSize</a> () const </td></tr>
+<tr class="memdesc:a3dfc49ba7a22941b5f665d8c08dab5ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">return the Size of the grid <br /></td></tr>
 <tr class="separator:a3dfc49ba7a22941b5f665d8c08dab5ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8df69985a4e12cb54dc972ba8da96eb5"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="class_grid2_d.html">Grid2D</a>&lt; T &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_grid2_d.html#a8df69985a4e12cb54dc972ba8da96eb5">createNew</a> () const </td></tr>
 <tr class="memdesc:a8df69985a4e12cb54dc972ba8da96eb5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new <a class="el" href="class_grid.html" title="The Grid abstract class is used to create a Grid which can be subclassed to have 1 dimension or more...">Grid</a> with the 2 template values passed.  <a href="#a8df69985a4e12cb54dc972ba8da96eb5">More...</a><br /></td></tr>
 <tr class="separator:a8df69985a4e12cb54dc972ba8da96eb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab82813e94147d2ec4a898172ddd517c3"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_grid2_d.html#ab82813e94147d2ec4a898172ddd517c3">iterate_get</a> (const std::function&lt; void(const T)&gt; functor) const </td></tr>
-<tr class="separator:ab82813e94147d2ec4a898172ddd517c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4d88242ee722ba0691429ddc0933479b"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_grid2_d.html#a4d88242ee722ba0691429ddc0933479b">iterate_set</a> (const std::function&lt; T(const <a class="el" href="struct_index2_d.html">Index2D</a>)&gt; functor)</td></tr>
+<tr class="memitem:a3d445a91e722aad901011db922b6a4dd"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_grid2_d.html#a3d445a91e722aad901011db922b6a4dd">iterate_get</a> (const std::function&lt; void(const T value)&gt; functor) const </td></tr>
+<tr class="memdesc:a3d445a91e722aad901011db922b6a4dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">iterate_get  <a href="#a3d445a91e722aad901011db922b6a4dd">More...</a><br /></td></tr>
+<tr class="separator:a3d445a91e722aad901011db922b6a4dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e24f2376b7527b4bb64f550aac570ca"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4e24f2376b7527b4bb64f550aac570ca"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>iterate_get</b> (const std::function&lt; void(const <a class="el" href="struct_index2_d.html">Index2D</a>, const T value)&gt; functor) const </td></tr>
+<tr class="separator:a4e24f2376b7527b4bb64f550aac570ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3758fa203028cdaa575878b7e7f9b113"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_grid2_d.html#a3758fa203028cdaa575878b7e7f9b113">iterate_set</a> (const std::function&lt; T()&gt; functor)</td></tr>
+<tr class="memdesc:a3758fa203028cdaa575878b7e7f9b113"><td class="mdescLeft">&#160;</td><td class="mdescRight">iterate_set  <a href="#a3758fa203028cdaa575878b7e7f9b113">More...</a><br /></td></tr>
+<tr class="separator:a3758fa203028cdaa575878b7e7f9b113"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d88242ee722ba0691429ddc0933479b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4d88242ee722ba0691429ddc0933479b"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>iterate_set</b> (const std::function&lt; T(const <a class="el" href="struct_index2_d.html">Index2D</a>)&gt; functor)</td></tr>
 <tr class="separator:a4d88242ee722ba0691429ddc0933479b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8ef600635742eb4db9ec8fe498a14cab"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_grid2_d.html#a8ef600635742eb4db9ec8fe498a14cab">save</a> (const std::string &amp;filePath) const </td></tr>
 <tr class="memdesc:a8ef600635742eb4db9ec8fe498a14cab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save the grid attributes in a file.  <a href="#a8ef600635742eb4db9ec8fe498a14cab">More...</a><br /></td></tr>
@@ -162,95 +166,26 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a747f96f7a4e1a789e18614ccd929f4db"><td class="mdescLeft">&#160;</td><td class="mdescRight">load a <a class="el" href="class_grid.html" title="The Grid abstract class is used to create a Grid which can be subclassed to have 1 dimension or more...">Grid</a> attributs from a file  <a href="#a747f96f7a4e1a789e18614ccd929f4db">More...</a><br /></td></tr>
 <tr class="separator:a747f96f7a4e1a789e18614ccd929f4db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_grid"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_grid')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_grid.html">Grid&lt; T, Index2D &gt;</a></td></tr>
-<tr class="memitem:ae18ffd1ccf0c7daa6223a0b74d11a542 inherit pub_methods_class_grid"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_grid.html#ae18ffd1ccf0c7daa6223a0b74d11a542">Grid</a> ()</td></tr>
-<tr class="separator:ae18ffd1ccf0c7daa6223a0b74d11a542 inherit pub_methods_class_grid"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad3304a35b29360a7cbf7d1c0c1142d1c inherit pub_methods_class_grid"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_grid.html#ad3304a35b29360a7cbf7d1c0c1142d1c">~Grid</a> ()</td></tr>
-<tr class="separator:ad3304a35b29360a7cbf7d1c0c1142d1c inherit pub_methods_class_grid"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac3287f4bf6baed50d150e167f8981a9a inherit pub_methods_class_grid"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_grid.html#ac3287f4bf6baed50d150e167f8981a9a">iterate_get</a> (const std::function&lt; void(const T cell)&gt; functor) const =0</td></tr>
-<tr class="memdesc:ac3287f4bf6baed50d150e167f8981a9a inherit pub_methods_class_grid"><td class="mdescLeft">&#160;</td><td class="mdescRight">iterate_get  <a href="#ac3287f4bf6baed50d150e167f8981a9a">More...</a><br /></td></tr>
-<tr class="separator:ac3287f4bf6baed50d150e167f8981a9a inherit pub_methods_class_grid"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a19a2471ad75538bdf46b209248288b3a inherit pub_methods_class_grid"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_grid.html#a19a2471ad75538bdf46b209248288b3a">iterate_set</a> (const std::function&lt; T(const Index2Dindex)&gt; functor)=0</td></tr>
-<tr class="memdesc:a19a2471ad75538bdf46b209248288b3a inherit pub_methods_class_grid"><td class="mdescLeft">&#160;</td><td class="mdescRight">iterate_set  <a href="#a19a2471ad75538bdf46b209248288b3a">More...</a><br /></td></tr>
+<tr class="memitem:ae5932e7bea7b58021f5164d50ea506d7 inherit pub_methods_class_grid"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae5932e7bea7b58021f5164d50ea506d7"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Grid</b> (const <a class="el" href="class_grid.html">Grid</a> &amp;grid)=delete</td></tr>
+<tr class="separator:ae5932e7bea7b58021f5164d50ea506d7 inherit pub_methods_class_grid"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2811042565f692520d1a96aa22a2f7d4 inherit pub_methods_class_grid"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2811042565f692520d1a96aa22a2f7d4"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="class_grid.html">Grid</a> &amp;grid)=delete</td></tr>
+<tr class="separator:a2811042565f692520d1a96aa22a2f7d4 inherit pub_methods_class_grid"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a563557f1fa4b3fef58ae30b9e5731af0 inherit pub_methods_class_grid"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a563557f1fa4b3fef58ae30b9e5731af0"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>iterate_get</b> (const std::function&lt; void(const Index2Dindex, const T value)&gt; functor) const =0</td></tr>
+<tr class="separator:a563557f1fa4b3fef58ae30b9e5731af0 inherit pub_methods_class_grid"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19a2471ad75538bdf46b209248288b3a inherit pub_methods_class_grid"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a19a2471ad75538bdf46b209248288b3a"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>iterate_set</b> (const std::function&lt; T(const Index2Dindex)&gt; functor)=0</td></tr>
 <tr class="separator:a19a2471ad75538bdf46b209248288b3a inherit pub_methods_class_grid"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pub_attribs_class_grid"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_class_grid')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="class_grid.html">Grid&lt; T, Index2D &gt;</a></td></tr>
-<tr class="memitem:a326b80bbf8b17aaa3c0df4eea8f219bd inherit pub_attribs_class_grid"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_grid.html#a326b80bbf8b17aaa3c0df4eea8f219bd">wrapAround</a></td></tr>
+<tr class="memitem:a326b80bbf8b17aaa3c0df4eea8f219bd inherit pub_attribs_class_grid"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a326b80bbf8b17aaa3c0df4eea8f219bd"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>wrapAround</b></td></tr>
 <tr class="separator:a326b80bbf8b17aaa3c0df4eea8f219bd inherit pub_attribs_class_grid"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><h3>template&lt;typename T&gt;<br />
-class Grid2D&lt; T &gt;</h3>
-
-
-<p>Definition at line <a class="el" href="_grid_8h_source.html#l00214">214</a> of file <a class="el" href="_grid_8h_source.html">Grid.h</a>.</p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a0e69b32d3327c41bda5dc4bde3d67144"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_grid2_d.html">Grid2D</a>&lt; T &gt;::<a class="el" href="class_grid2_d.html">Grid2D</a> </td>
-          <td>(</td>
-          <td class="paramtype">const int&#160;</td>
-          <td class="paramname"><em>height</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int&#160;</td>
-          <td class="paramname"><em>width</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_grid_8h_source.html#l00220">220</a> of file <a class="el" href="_grid_8h_source.html">Grid.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="af52b9883b025c0bd58a0ba954cb1627c"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual <a class="el" href="class_grid2_d.html">Grid2D</a>&lt; T &gt;::~<a class="el" href="class_grid2_d.html">Grid2D</a> </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_grid_8h_source.html#l00228">228</a> of file <a class="el" href="_grid_8h_source.html">Grid.h</a>.</p>
-
-</div>
-</div>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="a8df69985a4e12cb54dc972ba8da96eb5"></a>
 <div class="memitem">
@@ -279,8 +214,6 @@ template&lt;typename T&gt; </div>
 <dl class="section return"><dt>Returns</dt><dd>Return a pointer on the grid created </dd></dl>
 
 <p>Implements <a class="el" href="class_grid.html#a9820ac06f9bfdb40a48314821b2b1187">Grid&lt; T, Index2D &gt;</a>.</p>
-
-<p>Definition at line <a class="el" href="_grid_8h_source.html#l00245">245</a> of file <a class="el" href="_grid_8h_source.html">Grid.h</a>.</p>
 
 </div>
 </div>
@@ -319,42 +252,9 @@ template&lt;typename T&gt; </div>
 
 <p>Implements <a class="el" href="class_grid.html#a4ecd5e265f529317af2045609143b917">Grid&lt; T, Index2D &gt;</a>.</p>
 
-<p>Definition at line <a class="el" href="_grid_8h_source.html#l00230">230</a> of file <a class="el" href="_grid_8h_source.html">Grid.h</a>.</p>
-
 </div>
 </div>
-<a class="anchor" id="a3dfc49ba7a22941b5f665d8c08dab5ab"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual <a class="el" href="struct_index2_d.html">Index2D</a> <a class="el" href="class_grid2_d.html">Grid2D</a>&lt; T &gt;::getSize </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>return the Size of the grid </p>
-
-<p>Implements <a class="el" href="class_grid.html#a5749e9c8fb1ed4ae4b84720373e414bd">Grid&lt; T, Index2D &gt;</a>.</p>
-
-<p>Definition at line <a class="el" href="_grid_8h_source.html#l00243">243</a> of file <a class="el" href="_grid_8h_source.html">Grid.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ab82813e94147d2ec4a898172ddd517c3"></a>
+<a class="anchor" id="a3d445a91e722aad901011db922b6a4dd"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -366,7 +266,7 @@ template&lt;typename T&gt; </div>
         <tr>
           <td class="memname">virtual void <a class="el" href="class_grid2_d.html">Grid2D</a>&lt; T &gt;::iterate_get </td>
           <td>(</td>
-          <td class="paramtype">const std::function&lt; void(const T)&gt;&#160;</td>
+          <td class="paramtype">const std::function&lt; void(const T value)&gt;&#160;</td>
           <td class="paramname"><em>functor</em></td><td>)</td>
           <td> const</td>
         </tr>
@@ -378,21 +278,30 @@ template&lt;typename T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_grid_8h_source.html#l00251">251</a> of file <a class="el" href="_grid_8h_source.html">Grid.h</a>.</p>
+<p>iterate_get </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">functor</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implements <a class="el" href="class_grid.html#a6a5d828220a7c38abaabc908f5909b9b">Grid&lt; T, Index2D &gt;</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="class_grid2_d_ab82813e94147d2ec4a898172ddd517c3_cgraph.png" border="0" usemap="#class_grid2_d_ab82813e94147d2ec4a898172ddd517c3_cgraph" alt=""/></div>
-<map name="class_grid2_d_ab82813e94147d2ec4a898172ddd517c3_cgraph" id="class_grid2_d_ab82813e94147d2ec4a898172ddd517c3_cgraph">
-<area shape="rect" id="node2" href="class_grid.html#a4ecd5e265f529317af2045609143b917" title="Access a cell thanks to its index. " alt="" coords="185,5,280,32"/>
+<div class="center"><img src="class_grid2_d_a3d445a91e722aad901011db922b6a4dd_cgraph.png" border="0" usemap="#class_grid2_d_a3d445a91e722aad901011db922b6a4dd_cgraph" alt=""/></div>
+<map name="class_grid2_d_a3d445a91e722aad901011db922b6a4dd_cgraph" id="class_grid2_d_a3d445a91e722aad901011db922b6a4dd_cgraph">
+<area shape="rect" id="node2" href="class_grid.html#a4ecd5e265f529317af2045609143b917" title="Access a cell thanks to its index. " alt="" coords="195,5,290,32"/>
+<area shape="rect" id="node3" href="class_grid.html#a6a5d828220a7c38abaabc908f5909b9b" title="iterate_get " alt="" coords="185,56,300,83"/>
 </map>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="a4d88242ee722ba0691429ddc0933479b"></a>
+<a class="anchor" id="a3758fa203028cdaa575878b7e7f9b113"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -404,7 +313,7 @@ template&lt;typename T&gt; </div>
         <tr>
           <td class="memname">virtual void <a class="el" href="class_grid2_d.html">Grid2D</a>&lt; T &gt;::iterate_set </td>
           <td>(</td>
-          <td class="paramtype">const std::function&lt; T(const <a class="el" href="struct_index2_d.html">Index2D</a>)&gt;&#160;</td>
+          <td class="paramtype">const std::function&lt; T()&gt;&#160;</td>
           <td class="paramname"><em>functor</em></td><td>)</td>
           <td></td>
         </tr>
@@ -416,14 +325,23 @@ template&lt;typename T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_grid_8h_source.html#l00257">257</a> of file <a class="el" href="_grid_8h_source.html">Grid.h</a>.</p>
+<p>iterate_set </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">functor</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implements <a class="el" href="class_grid.html#a5ac5237742706fc29c0d34f1afcc1a1e">Grid&lt; T, Index2D &gt;</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="class_grid2_d_a4d88242ee722ba0691429ddc0933479b_cgraph.png" border="0" usemap="#class_grid2_d_a4d88242ee722ba0691429ddc0933479b_cgraph" alt=""/></div>
-<map name="class_grid2_d_a4d88242ee722ba0691429ddc0933479b_cgraph" id="class_grid2_d_a4d88242ee722ba0691429ddc0933479b_cgraph">
-<area shape="rect" id="node2" href="class_grid.html#ade45b288cdfb03d28653d42f2bc87023" title="Write a value into the cell. " alt="" coords="185,5,280,32"/>
+<div class="center"><img src="class_grid2_d_a3758fa203028cdaa575878b7e7f9b113_cgraph.png" border="0" usemap="#class_grid2_d_a3758fa203028cdaa575878b7e7f9b113_cgraph" alt=""/></div>
+<map name="class_grid2_d_a3758fa203028cdaa575878b7e7f9b113_cgraph" id="class_grid2_d_a3758fa203028cdaa575878b7e7f9b113_cgraph">
+<area shape="rect" id="node2" href="class_grid.html#ade45b288cdfb03d28653d42f2bc87023" title="Write a value into the cell. " alt="" coords="195,5,290,32"/>
+<area shape="rect" id="node3" href="class_grid.html#a5ac5237742706fc29c0d34f1afcc1a1e" title="iterate_set " alt="" coords="185,56,300,83"/>
 </map>
 </div>
 </p>
@@ -463,8 +381,6 @@ template&lt;typename T&gt; </div>
 </dl>
 
 <p>Implements <a class="el" href="class_grid.html#a9f885d11a81be7b8327b0fffc8cd2d84">Grid&lt; T, Index2D &gt;</a>.</p>
-
-<p>Definition at line <a class="el" href="_grid_8h_source.html#l00274">274</a> of file <a class="el" href="_grid_8h_source.html">Grid.h</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -512,14 +428,12 @@ template&lt;typename T&gt; </div>
 
 <p>Implements <a class="el" href="class_grid.html#afd7034bebc657b3ce43d4b9b46890c39">Grid&lt; T, Index2D &gt;</a>.</p>
 
-<p>Definition at line <a class="el" href="_grid_8h_source.html#l00263">263</a> of file <a class="el" href="_grid_8h_source.html">Grid.h</a>.</p>
-
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_grid2_d_a8ef600635742eb4db9ec8fe498a14cab_cgraph.png" border="0" usemap="#class_grid2_d_a8ef600635742eb4db9ec8fe498a14cab_cgraph" alt=""/></div>
 <map name="class_grid2_d_a8ef600635742eb4db9ec8fe498a14cab_cgraph" id="class_grid2_d_a8ef600635742eb4db9ec8fe498a14cab_cgraph">
-<area shape="rect" id="node2" href="class_grid.html#ac3287f4bf6baed50d150e167f8981a9a" title="iterate_get " alt="" coords="152,5,267,32"/>
+<area shape="rect" id="node2" href="class_grid.html#a6a5d828220a7c38abaabc908f5909b9b" title="iterate_get " alt="" coords="152,5,267,32"/>
 </map>
 </div>
 </p>
@@ -570,8 +484,6 @@ template&lt;typename T&gt; </div>
 </dl>
 
 <p>Implements <a class="el" href="class_grid.html#ade45b288cdfb03d28653d42f2bc87023">Grid&lt; T, Index2D &gt;</a>.</p>
-
-<p>Definition at line <a class="el" href="_grid_8h_source.html#l00239">239</a> of file <a class="el" href="_grid_8h_source.html">Grid.h</a>.</p>
 
 </div>
 </div>

@@ -1,4 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$class_rule.html" title="Rule\&lt; bool, Index2D \&gt;" alt="" coords="5,5,160,32"/>
-<area shape="rect" id="node2" href="$class_rule2_d.html" title="Rule2D" alt="" coords="208,5,275,32"/>
+<area shape="rect" id="node1" href="$class_history.html" title="The History abstract class stores a history of elements (usually grids, i.e. the state of an Automato..." alt="" coords="5,5,101,32"/>
+<area shape="rect" id="node2" href="$class_ring_history.html" title="The RingHistory stores the last n elements. It implements a ring buffer for memory efficiency..." alt="" coords="149,5,272,32"/>
 </map>

@@ -1,4 +1,10 @@
 var searchData=
 [
-  ['offset',['offset',['../struct_index1_d.html#aa97548dd5cfca361e1a1d1fc737df7f7',1,'Index1D::offset()'],['../struct_index2_d.html#a5aed44d79a44a116c26f0a5a8e0c6620',1,'Index2D::offset()']]]
+  ['ringhistory',['RingHistory',['../class_ring_history.html',1,'']]],
+  ['rule',['Rule',['../class_rule.html',1,'']]],
+  ['rule_2eh',['Rule.h',['../_rule_8h.html',1,'']]],
+  ['rule1d',['Rule1D',['../class_rule1_d.html',1,'']]],
+  ['rule_3c_20bool_2c_20index1d_20_3e',['Rule&lt; bool, Index1D &gt;',['../class_rule.html',1,'']]],
+  ['rule_3c_20bool_2c_20index2d_20_3e',['Rule&lt; bool, Index2D &gt;',['../class_rule.html',1,'']]],
+  ['rule_3c_20uint8_5ft_2c_20index2d_20_3e',['Rule&lt; uint8_t, Index2D &gt;',['../class_rule.html',1,'']]]
 ];

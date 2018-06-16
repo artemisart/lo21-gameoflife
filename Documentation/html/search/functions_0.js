@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['automate_5f1d',['Automate_1D',['../class_automate__1_d.html#aef0d29f97b3cd7e671cebfbe27dc2162',1,'Automate_1D']]],
-  ['automate_5f2d',['Automate_2D',['../class_automate__2_d.html#a101d8486c627e027a40da9ec32bb7b53',1,'Automate_2D']]],
-  ['automaton',['Automaton',['../class_automaton.html#acfe331dd02b841fa33b01c465946c6dc',1,'Automaton']]]
+  ['calcnextstate',['calcNextState',['../class_rule.html#a328ccb6ad9da813368b958fcf260d44d',1,'Rule::calcNextState()'],['../class_rule1_d.html#ad84e464d6bf25294df54beba25b7b6c1',1,'Rule1D::calcNextState()'],['../class_outer_totalistic_rule2_d.html#aafe92d1fac6a6708ad24a596a2c7d670',1,'OuterTotalisticRule2D::calcNextState()'],['../class_outer_totalistic_multi_rule2_d.html#a3d5d2c2f80f6b83e57e80395ab6556d0',1,'OuterTotalisticMultiRule2D::calcNextState()']]],
+  ['createnew',['createNew',['../class_grid.html#a9820ac06f9bfdb40a48314821b2b1187',1,'Grid::createNew()'],['../class_grid1_d.html#aefb745557facdf6716b5a97db12e4092',1,'Grid1D::createNew()'],['../class_grid2_d.html#a8df69985a4e12cb54dc972ba8da96eb5',1,'Grid2D::createNew()']]]
 ];

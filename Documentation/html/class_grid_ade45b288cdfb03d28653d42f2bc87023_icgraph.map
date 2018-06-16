@@ -1,12 +1,6 @@
 <map id="Grid::setCell" name="Grid::setCell">
-<area shape="rect" id="node2" href="$class_automate__1_d.html#ad6b190e967e2dd5017fdd776c5658eb6" title="Automate_1D::~Automate_1D" alt="" coords="148,5,347,32"/>
-<area shape="rect" id="node3" href="$automate__2d_8h.html#ad13dfa78b1a9dfaa7d646a46ddc33eaf" title="NumToNumBit" alt="" coords="193,80,302,107"/>
-<area shape="rect" id="node5" href="$class_automate__1_d.html#aec13189e71ea315d80433573bce9e6bd" title="Automate_1D::init_simulation" alt="" coords="395,240,588,267"/>
-<area shape="rect" id="node6" href="$class_automate__2_d.html#a05e046b64f38afdee8f862fa91056393" title="Automate_2D::~Automate_2D" alt="" coords="148,181,347,208"/>
-<area shape="rect" id="node7" href="$class_grid.html#ad3304a35b29360a7cbf7d1c0c1142d1c" title="Grid\&lt; bool, Index1D\l \&gt;::~Grid" alt="" coords="178,233,317,274"/>
-<area shape="rect" id="node8" href="$class_grid1_d.html#ae7c5cee77cd866b55b74b1a34db6710d" title="iterate_set " alt="" coords="181,299,313,325"/>
-<area shape="rect" id="node9" href="$class_grid1_d.html#af696b19b9cf840793ac23f4236af9e49" title="load a grid configuration from a file " alt="" coords="200,349,295,376"/>
-<area shape="rect" id="node10" href="$class_grid2_d.html#a4d88242ee722ba0691429ddc0933479b" title="Grid2D::iterate_set" alt="" coords="181,400,313,427"/>
-<area shape="rect" id="node11" href="$class_grid2_d.html#a747f96f7a4e1a789e18614ccd929f4db" title="load a Grid attributs from a file " alt="" coords="200,451,295,477"/>
-<area shape="rect" id="node4" href="$class_automate__2_d.html#aaa36e125e2342eb68e8899f3532488c8" title="Automate_2D::getRang" alt="" coords="412,80,571,107"/>
+<area shape="rect" id="node2" href="$class_grid1_d.html#a20cd1b78b7bf2817897e8d08ba03cd37" title="iterate_set " alt="" coords="148,5,280,32"/>
+<area shape="rect" id="node3" href="$class_grid1_d.html#af696b19b9cf840793ac23f4236af9e49" title="load a grid configuration from a file " alt="" coords="167,56,261,83"/>
+<area shape="rect" id="node4" href="$class_grid2_d.html#a3758fa203028cdaa575878b7e7f9b113" title="iterate_set " alt="" coords="148,107,280,133"/>
+<area shape="rect" id="node5" href="$class_grid2_d.html#a747f96f7a4e1a789e18614ccd929f4db" title="load a Grid attributs from a file " alt="" coords="167,157,261,184"/>
 </map>

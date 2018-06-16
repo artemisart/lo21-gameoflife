@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>Game of Life: Grid.h File Reference</title>
+<title>Autocell: Grid.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -31,8 +31,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Game of Life
-   &#160;<span id="projectnumber">0.1</span>
+   <div id="projectname">Autocell
    </div>
   </td>
  </tr>
@@ -48,7 +47,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
-      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -72,7 +70,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
-      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -112,11 +109,12 @@ $(document).ready(function(){initNavTree('_grid_8h.html','');});
 </div><!--header-->
 <div class="contents">
 
-<p><a class="el" href="class_grid.html" title="The Grid abstract class is used to create a Grid which can be subclassed to have 1 dimension or more...">Grid</a> for 1 or 2 dimentional <a class="el" href="class_automaton.html">Automaton</a>.  
+<p><a class="el" href="class_grid.html" title="The Grid abstract class is used to create a Grid which can be subclassed to have 1 dimension or more...">Grid</a> for 1 or 2 dimentional <a class="el" href="class_automaton.html" title="Automaton is composed of an History and some Rules, both can be accessed and written. This entity is used to make Rules and History work together, and run a simulation. It can be specified 1 dimensional or 2 dimensional thanks to the specification of templates. ">Automaton</a>.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;fstream&gt;</code><br />
 <code>#include &lt;functional&gt;</code><br />
 <code>#include &lt;iostream&gt;</code><br />
+<code>#include &lt;stdexcept&gt;</code><br />
 <code>#include &lt;string&gt;</code><br />
 <code>#include &lt;vector&gt;</code><br />
 <code>#include &quot;<a class="el" href="_index_8h_source.html">Index.h</a>&quot;</code><br />
@@ -125,7 +123,7 @@ Include dependency graph for Grid.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="_grid_8h__incl.png" border="0" usemap="#_grid_8h" alt=""/></div>
 <map name="_grid_8h" id="_grid_8h">
-<area shape="rect" id="node7" href="_index_8h.html" title="Structure for Index for 1 or 2 dimentional grids. " alt="" coords="459,80,525,107"/>
+<area shape="rect" id="node8" href="_index_8h.html" title="Structure for Index for 1 or 2 dimentional grids. " alt="" coords="562,80,627,107"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -133,16 +131,10 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="_grid_8h__dep__incl.png" border="0" usemap="#_grid_8hdep" alt=""/></div>
 <map name="_grid_8hdep" id="_grid_8hdep">
-<area shape="rect" id="node2" href="_rule_8h.html" title="Rules for an Automaton to change state. " alt="" coords="279,80,339,107"/>
-<area shape="rect" id="node8" href="_automaton_8h.html" title="Automaton. " alt="" coords="176,155,272,181"/>
-<area shape="rect" id="node3" href="automate__1d_8h.html" title="Interface for a 1 dimensional automaton. " alt="" coords="215,229,323,256"/>
-<area shape="rect" id="node9" href="automate__2d_8h.html" title="Interface for a 2 dimensional automaton. " alt="" coords="347,229,455,256"/>
-<area shape="rect" id="node11" href="_rule_8cpp.html" title="Rule.cpp" alt="" coords="397,155,472,181"/>
-<area shape="rect" id="node4" href="automate__1d_8cpp.html" title="automate_1d.cpp" alt="" coords="104,304,227,331"/>
-<area shape="rect" id="node5" href="automate__2d_8cpp.html" title="automate_2d.cpp" alt="" coords="373,304,496,331"/>
-<area shape="rect" id="node6" href="main_8cpp.html" title="main.cpp" alt="" coords="5,304,80,331"/>
-<area shape="rect" id="node7" href="welcome_8cpp.html" title="welcome.cpp" alt="" coords="251,304,349,331"/>
-<area shape="rect" id="node10" href="_automaton_8cpp.html" title="Automaton.cpp" alt="" coords="81,229,191,256"/>
+<area shape="rect" id="node2" href="_rule_8h.html" title="Rules for an Automaton to change state. " alt="" coords="108,80,168,107"/>
+<area shape="rect" id="node4" href="_automaton_8h.html" title="Automaton. " alt="" coords="10,155,106,181"/>
+<area shape="rect" id="node3" href="automate__1d_8h.html" title="Interface for a 1 dimensional automaton This class helps to visualize a 1 dimentional automaton..." alt="" coords="5,229,113,256"/>
+<area shape="rect" id="node5" href="automate__2d_8h.html" title="Interface for a 2 dimensional automaton This class helps to visualize a two dimensional automaton..." alt="" coords="139,229,247,256"/>
 </map>
 </div>
 </div>
@@ -160,9 +152,7 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p><a class="el" href="class_grid.html" title="The Grid abstract class is used to create a Grid which can be subclassed to have 1 dimension or more...">Grid</a> for 1 or 2 dimentional <a class="el" href="class_automaton.html">Automaton</a>. </p>
-
-<p>Definition in file <a class="el" href="_grid_8h_source.html">Grid.h</a>.</p>
+<div class="textblock"><p><a class="el" href="class_grid.html" title="The Grid abstract class is used to create a Grid which can be subclassed to have 1 dimension or more...">Grid</a> for 1 or 2 dimentional <a class="el" href="class_automaton.html" title="Automaton is composed of an History and some Rules, both can be accessed and written. This entity is used to make Rules and History work together, and run a simulation. It can be specified 1 dimensional or 2 dimensional thanks to the specification of templates. ">Automaton</a>. </p>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
