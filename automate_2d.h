@@ -7,6 +7,7 @@
 #include <QIntValidator>
 #include <QLineEdit>
 #include <QModelIndex>
+#include <QScrollBar>
 #include <QString>
 #include <QTableWidget>
 #include <QWidget>
@@ -44,6 +45,8 @@ private:
     std::array<QCheckBox*, 9> survive, born;
     QTimer* timer;
     int type; // type=0 => bool, type = 1=>int
+
+    void resizeEvent(QResizeEvent* event);
 
 private slots:
     void setSize();
