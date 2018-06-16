@@ -184,7 +184,7 @@ void Automate_1D::load()
         if (fileName.isEmpty())
             return;
         std::string name = fileName.toStdString();
-        Grid1D<bool>* g1D = new Grid1D<bool>(20);
+        auto* g1D = new Grid1D<bool>(20);
         g1D->load(name);
         a->getHistory()->push(g1D);
         Index1D i = g1D->getSize();
@@ -195,9 +195,11 @@ void Automate_1D::load()
             bool a = g1D->getCell(i);
             ui->grid->item(0, i.i)->setBackgroundColor(a ? "black" : "white");
         }
-
+        a->getHistory()->setStart(g1D);
         r->load(name);
+        std::cout<<"num is "<< r->getNum() <<"\n";
         ui->rule->setValue(r->getNum());
+        this->on_rule_valueChanged(r->getNum());
     } catch (const std::exception& e) {
         std::cerr << e.what() << std::endl;
     }
