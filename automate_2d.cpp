@@ -194,28 +194,45 @@ void Automate_2D::load()
         ui->widthSpinbox->setValue(i.col);
         ui->heightSpinbox->setValue(i.row);
         this->setSize();
-
+        //load of size working
+        //load of cells and grid ok!
         for (Index2D i; i.row < g2D->getSize().row; ++i.row) {
             for (i.col = 0; i.col < g2D->getSize().col; ++i.col) {
                 bool a = g2D->getCell(i);
                 if (a == 0) {
                     ui->grid->item(i.row, i.col)->setBackgroundColor("white");
-                    ui->grid->item(i.row, i.col)->setText("");
-                    ui->grid->item(i.row, i.col)->setBackgroundColor("white");
                 } else {
-                    ui->grid->item(i.row, i.col)->setBackgroundColor("black");
-                    ui->grid->item(i.row, i.col)->setText("_");
                     ui->grid->item(i.row, i.col)->setBackgroundColor("black");
                 }
             }
         }
-
         r->load(name);
-        // TODO update rules
-        //        ui->survive->setValue(r->getSurvive());
-        //        ui->born->setValue(r->getBorn());
-        //        this->synchronizeNumToNumBit_b(r->getBorn());
-        //        this->synchronizeNumToNumBit_s(r->getSurvive());
+        //update rules working
+                std::uint16_t temp = r->getSurvive();
+                QString qsur = "";
+                for( int e=8;e>=0;e--){
+                    if(temp >= pow(2,e)){
+                        temp = temp - pow(2,e);
+                        QString tempchar = QString::fromStdString(std::to_string((int)floor(e)));
+                        qsur.append(tempchar);
+                        std::cout<< temp << "/"<< qsur.toStdString() << "/";
+                      };
+                  }
+                temp = r->getBorn();
+                QString qbor = "";
+                for( int e=8;e>=0;e--){
+                    if(temp >= pow(2,e)){
+                        temp = temp - pow(2,e);
+                        QString tempchar = QString::fromStdString(std::to_string((int)floor(e)));
+                        qbor.append(tempchar);
+                      };
+                }
+                std::cout<< "qsur est "<<qsur.toStdString()<<"\n";
+                ui->survive->setText(qsur);
+                ui->born->setText(qbor);
+                this->on_born_textEdited(qbor);
+                this->on_survive_textEdited(qsur);
+                a->getHistory()->setStart(g2D);
         std::cout << "loading reussi";
     } catch (const std::string& e) {
         std::cout << "erreur: " << e << "\n";
