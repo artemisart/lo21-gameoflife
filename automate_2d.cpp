@@ -201,7 +201,7 @@ void Automate_2D::save()
         if (fileName.isEmpty())
             return;
 
-        std::string name = fileName.toStdString();
+        std::string name = fileName.toStdString()+".2Dlo21";
         if (type == 0) {
             auto* g2D = a->getHistory()->getLast();
             g2D->save(name);
