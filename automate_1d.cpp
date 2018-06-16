@@ -96,11 +96,9 @@ void Automate_1D::cellActivation(const QModelIndex& index)
         return;
     int col = index.column();
     auto start = a->getHistory()->getStart();
-    start->setCell(col, start->getCell(col));
-    // TODO refreshGrid();
     bool newVal = !start->getCell(col);
-    ui->grid->item(0, col)->setBackgroundColor(newVal ? "black" : "white");
     start->setCell(col, newVal);
+    ui->grid->item(0, col)->setBackgroundColor(newVal ? "black" : "white");
 }
 
 void Automate_1D::next()
