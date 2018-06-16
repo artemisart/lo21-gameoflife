@@ -23,7 +23,7 @@ Automate_1D::Automate_1D(QWidget* parent)
 
     connect(ui->sizeButton, SIGNAL(clicked()), this, SLOT(setSize()));
 
-    for (int i = 0; i < 8; i++) {
+    for (size_t i = 0; i < 8; i++) {
         connect(rules[i], &QCheckBox::clicked, this, &Automate_1D::check_rules_i_clicked);
     }
 
