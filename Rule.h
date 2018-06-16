@@ -50,8 +50,8 @@ public:
     Rule1D(const std::uint8_t i = 0);
     ~Rule1D() {}
 
-    std::uint16_t getNum() const;
-    void setNum(const std::uint8_t i);
+    std::uint16_t getNum() const { return num; }
+    void setNum(const std::uint8_t i) { num = i; }
 
     virtual bool calcNextState(const Grid<bool, Index1D>& grid, const Index1D index) const;
     virtual void save(const std::string& filePath) const
@@ -93,13 +93,13 @@ private:
     // born represent regles quand cell dead, survive quand cell lives
 
 public:
-    OuterTotalisticRule2D(const std::uint16_t i = 255, const std::uint16_t j = 0);
+    OuterTotalisticRule2D(const std::uint16_t b = 255, const std::uint16_t s = 0);
     ~OuterTotalisticRule2D() {}
 
-    std::uint16_t getBorn() const;
-    std::uint16_t getSurvive() const;
-    void setBorn(const std::uint16_t i);
-    void setSurvive(const std::uint16_t i);
+    std::uint16_t getBorn() const { return born; }
+    std::uint16_t getSurvive() const { return survive; }
+    void setBorn(const std::uint16_t b) { born = b; }
+    void setSurvive(const std::uint16_t s) { survive = s; }
 
     virtual bool calcNextState(const Grid<bool, Index2D>& grid, const Index2D index) const;
     virtual void save(const std::string& filePath) const
