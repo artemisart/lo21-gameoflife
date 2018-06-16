@@ -50,6 +50,7 @@ private slots:
     void simulation();
     void cellActivation(const QModelIndex& index);
     void refreshGrid() const;
+    void refreshRules() const;
     void next();
     void menu();
     void reset();

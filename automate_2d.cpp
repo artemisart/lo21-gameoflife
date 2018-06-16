@@ -342,3 +342,19 @@ void Automate_2D::check_survive_i_clicked()
     ui->survive->setText(newText);
     r->setSurvive(rule);
 }
+
+void Automate_2D::refreshRules() const
+{
+    QString bt, st;
+    auto b = r->getBorn(), s = r->getSurvive();
+    for (size_t i = 0; i < 9; ++i) {
+        born[i]->setChecked(b >> i & 1);
+        if (b >> i & 1)
+            bt.append('0' + i);
+        survive[i]->setChecked(s >> i & 1);
+        if (s >> i & 1)
+            st.append('0' + i);
+    }
+    ui->born->setText(bt);
+    ui->survive->setText(st);
+}
