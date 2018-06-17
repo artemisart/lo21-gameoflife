@@ -11,6 +11,7 @@
 #include <QString>
 #include <QTableWidget>
 #include <QWidget>
+#include <array>
 
 /**
  * @file automate_2d.h
