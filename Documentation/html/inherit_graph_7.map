@@ -1,4 +1,3 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$class_grid.html" title="Grid\&lt; T, Index1D \&gt;" alt="" coords="5,5,140,32"/>
-<area shape="rect" id="node2" href="$class_grid1_d.html" title="The Grid1D stores a 1 dimensional grid. " alt="" coords="188,5,283,32"/>
+<area shape="rect" id="node1" href="$class_grid.html" title="The Grid abstract class is used to create a Grid which can be subclassed to have 1 dimension or more..." alt="" coords="5,5,96,32"/>
 </map>

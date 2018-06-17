@@ -184,20 +184,22 @@ void Automate_1D::load()
         if (fileName.isEmpty())
             return;
         std::string name = fileName.toStdString();
-        Grid1D<bool>* g1D = new Grid1D<bool>(20);
+        auto* g1D = new Grid1D<bool>(20);
         g1D->load(name);
-        a->getHistory()->push(g1D);
         Index1D i = g1D->getSize();
         ui->sizeSpinbox->setValue(i.i); //met la taille a jour
         this->setSize();
+        a->getHistory()->setStart(g1D);
 
         for (Index1D i; i.i < g1D->getSize().i; ++i.i) {
             bool a = g1D->getCell(i);
             ui->grid->item(0, i.i)->setBackgroundColor(a ? "black" : "white");
         }
-
+        a->getHistory()->setStart(g1D);
         r->load(name);
+        std::cout<<"num is "<< r->getNum() <<"\n";
         ui->rule->setValue(r->getNum());
+        this->on_rule_valueChanged(r->getNum());
     } catch (const std::exception& e) {
         std::cerr << e.what() << std::endl;
     }
@@ -269,16 +271,19 @@ void Automate_1D::on_rule_valueChanged(int n)
 
 void Automate_1D::auto_load()
 {
+
     Grid1D<bool>* g1D = new Grid1D<bool>(20);
     g1D->load("config.1Dlo21");
-    a->getHistory()->push(g1D);
     Index1D i = g1D->getSize();
     ui->sizeSpinbox->setValue(i.i); //met la taille a jour
     this->setSize();
+    a->getHistory()->setStart(g1D);
+
 
     for (Index1D i; i.i < g1D->getSize().i; ++i.i) {
-        bool a = g1D->getCell(i);
-        ui->grid->item(0, i.i)->setBackgroundColor(a ? "black" : "white");
+        bool b = g1D->getCell(i);
+        ui->grid->item(0, i.i)->setBackgroundColor(b ? "black" : "white");
+
     }
 
     r->load("config.1Dlo21");

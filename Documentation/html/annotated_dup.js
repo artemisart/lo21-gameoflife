@@ -10,9 +10,10 @@ var annotated_dup =
     [ "Index", "struct_index.html", "struct_index" ],
     [ "Index1D", "struct_index1_d.html", "struct_index1_d" ],
     [ "Index2D", "struct_index2_d.html", "struct_index2_d" ],
+    [ "OuterTotalisticMultiRule2D", "class_outer_totalistic_multi_rule2_d.html", "class_outer_totalistic_multi_rule2_d" ],
+    [ "OuterTotalisticRule2D", "class_outer_totalistic_rule2_d.html", "class_outer_totalistic_rule2_d" ],
     [ "RingHistory", "class_ring_history.html", "class_ring_history" ],
     [ "Rule", "class_rule.html", "class_rule" ],
     [ "Rule1D", "class_rule1_d.html", "class_rule1_d" ],
-    [ "Rule2D", "class_rule2_d.html", "class_rule2_d" ],
     [ "Welcome", "class_welcome.html", "class_welcome" ]
 ];

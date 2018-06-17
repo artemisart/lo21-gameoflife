@@ -6,5 +6,6 @@ var searchData=
   ['grid_3c_20bool_2c_20index1d_20_3e',['Grid&lt; bool, Index1D &gt;',['../class_grid.html',1,'']]],
   ['grid_3c_20bool_2c_20index2d_20_3e',['Grid&lt; bool, Index2D &gt;',['../class_grid.html',1,'']]],
   ['grid_3c_20t_2c_20index1d_20_3e',['Grid&lt; T, Index1D &gt;',['../class_grid.html',1,'']]],
-  ['grid_3c_20t_2c_20index2d_20_3e',['Grid&lt; T, Index2D &gt;',['../class_grid.html',1,'']]]
+  ['grid_3c_20t_2c_20index2d_20_3e',['Grid&lt; T, Index2D &gt;',['../class_grid.html',1,'']]],
+  ['grid_3c_20uint8_5ft_2c_20index2d_20_3e',['Grid&lt; uint8_t, Index2D &gt;',['../class_grid.html',1,'']]]
 ];

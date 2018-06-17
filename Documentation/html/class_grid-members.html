@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>Game of Life: Member List</title>
+<title>Autocell: Member List</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -31,8 +31,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Game of Life
-   &#160;<span id="projectnumber">0.1</span>
+   <div id="projectname">Autocell
    </div>
   </td>
  </tr>
@@ -48,7 +47,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
-      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -117,14 +115,18 @@ $(document).ready(function(){initNavTree('class_grid.html','');});
   <tr class="even"><td class="entry"><a class="el" href="class_grid.html#a9820ac06f9bfdb40a48314821b2b1187">createNew</a>() const =0</td><td class="entry"><a class="el" href="class_grid.html">Grid&lt; T, I &gt;</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
   <tr><td class="entry"><a class="el" href="class_grid.html#a4ecd5e265f529317af2045609143b917">getCell</a>(const I idx) const =0</td><td class="entry"><a class="el" href="class_grid.html">Grid&lt; T, I &gt;</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_grid.html#a5749e9c8fb1ed4ae4b84720373e414bd">getSize</a>() const =0</td><td class="entry"><a class="el" href="class_grid.html">Grid&lt; T, I &gt;</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
-  <tr><td class="entry"><a class="el" href="class_grid.html#ae18ffd1ccf0c7daa6223a0b74d11a542">Grid</a>()</td><td class="entry"><a class="el" href="class_grid.html">Grid&lt; T, I &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_grid.html#ac3287f4bf6baed50d150e167f8981a9a">iterate_get</a>(const std::function&lt; void(const T cell)&gt; functor) const =0</td><td class="entry"><a class="el" href="class_grid.html">Grid&lt; T, I &gt;</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
-  <tr><td class="entry"><a class="el" href="class_grid.html#a19a2471ad75538bdf46b209248288b3a">iterate_set</a>(const std::function&lt; T(const I index)&gt; functor)=0</td><td class="entry"><a class="el" href="class_grid.html">Grid&lt; T, I &gt;</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_grid.html#a9f885d11a81be7b8327b0fffc8cd2d84">load</a>(const std::string &amp;filePath)=0</td><td class="entry"><a class="el" href="class_grid.html">Grid&lt; T, I &gt;</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>Grid</b>() (defined in <a class="el" href="class_grid.html">Grid&lt; T, I &gt;</a>)</td><td class="entry"><a class="el" href="class_grid.html">Grid&lt; T, I &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>Grid</b>(const Grid &amp;grid)=delete (defined in <a class="el" href="class_grid.html">Grid&lt; T, I &gt;</a>)</td><td class="entry"><a class="el" href="class_grid.html">Grid&lt; T, I &gt;</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_grid.html#a6a5d828220a7c38abaabc908f5909b9b">iterate_get</a>(const std::function&lt; void(const T value)&gt; functor) const =0</td><td class="entry"><a class="el" href="class_grid.html">Grid&lt; T, I &gt;</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>iterate_get</b>(const std::function&lt; void(const I index, const T value)&gt; functor) const =0 (defined in <a class="el" href="class_grid.html">Grid&lt; T, I &gt;</a>)</td><td class="entry"><a class="el" href="class_grid.html">Grid&lt; T, I &gt;</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_grid.html#a5ac5237742706fc29c0d34f1afcc1a1e">iterate_set</a>(const std::function&lt; T()&gt; functor)=0</td><td class="entry"><a class="el" href="class_grid.html">Grid&lt; T, I &gt;</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>iterate_set</b>(const std::function&lt; T(const I index)&gt; functor)=0 (defined in <a class="el" href="class_grid.html">Grid&lt; T, I &gt;</a>)</td><td class="entry"><a class="el" href="class_grid.html">Grid&lt; T, I &gt;</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_grid.html#a9f885d11a81be7b8327b0fffc8cd2d84">load</a>(const std::string &amp;filePath)=0</td><td class="entry"><a class="el" href="class_grid.html">Grid&lt; T, I &gt;</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>operator=</b>(const Grid &amp;grid)=delete (defined in <a class="el" href="class_grid.html">Grid&lt; T, I &gt;</a>)</td><td class="entry"><a class="el" href="class_grid.html">Grid&lt; T, I &gt;</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="class_grid.html#afd7034bebc657b3ce43d4b9b46890c39">save</a>(const std::string &amp;filePath) const =0</td><td class="entry"><a class="el" href="class_grid.html">Grid&lt; T, I &gt;</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_grid.html#ade45b288cdfb03d28653d42f2bc87023">setCell</a>(const I idx, const T value)=0</td><td class="entry"><a class="el" href="class_grid.html">Grid&lt; T, I &gt;</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
-  <tr><td class="entry"><a class="el" href="class_grid.html#a326b80bbf8b17aaa3c0df4eea8f219bd">wrapAround</a></td><td class="entry"><a class="el" href="class_grid.html">Grid&lt; T, I &gt;</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_grid.html#ad3304a35b29360a7cbf7d1c0c1142d1c">~Grid</a>()</td><td class="entry"><a class="el" href="class_grid.html">Grid&lt; T, I &gt;</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">virtual</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>wrapAround</b> (defined in <a class="el" href="class_grid.html">Grid&lt; T, I &gt;</a>)</td><td class="entry"><a class="el" href="class_grid.html">Grid&lt; T, I &gt;</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>~Grid</b>() (defined in <a class="el" href="class_grid.html">Grid&lt; T, I &gt;</a>)</td><td class="entry"><a class="el" href="class_grid.html">Grid&lt; T, I &gt;</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">virtual</span></td></tr>
 </table></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

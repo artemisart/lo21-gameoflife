@@ -58,8 +58,8 @@ public:
     {
         try {
             std::ofstream file(filePath, std::ios::out | std::ios::app);
-            file << "\n"
-                 << "1 " << num;
+            int u= num;
+            file << "1 " << u;
             file.close();
         } catch (const std::exception& e) {
             std::cerr << e.what() << std::endl;
@@ -79,7 +79,10 @@ public:
             if (it != 1) {
                 throw std::invalid_argument("wrong loading, expected a 1D rule \n");
             }
-            file >> num;
+            long int temp;
+            file >> temp;
+            num = temp;
+            std::cout<<"dans rule.h num est "<<num<<"\n";
             file.close();
         } catch (const std::exception& e) {
             std::cerr << e.what() << std::endl;
@@ -107,8 +110,7 @@ public:
     {
         try {
             std::ofstream file(filePath, std::ios::out | std::ios::app);
-            file << "\n"
-                 << "2 " << born;
+            file << "2 " << born;
             file << " " << survive;
             std::cerr << "saving born = " << born << "  survive = " << survive << "\n";
             file.close();
@@ -159,8 +161,7 @@ public:
     {
         try {
             std::ofstream file(filePath, std::ios::out | std::ios::app);
-            file << "\n"
-                 << "2 " << born;
+            file << "2 " << born;
             file << " " << survive;
             std::cerr << "saving born = " << born << "  survive = " << survive << "\n";
             file.close();

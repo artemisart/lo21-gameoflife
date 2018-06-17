@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>Game of Life: Automaton.h File Reference</title>
+<title>Autocell: Automaton.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -31,8 +31,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Game of Life
-   &#160;<span id="projectnumber">0.1</span>
+   <div id="projectname">Autocell
    </div>
   </td>
  </tr>
@@ -48,7 +47,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
-      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -72,7 +70,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
-      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -112,21 +109,22 @@ $(document).ready(function(){initNavTree('_automaton_8h.html','');});
 </div><!--header-->
 <div class="contents">
 
-<p><a class="el" href="class_automaton.html">Automaton</a>.  
+<p><a class="el" href="class_automaton.html" title="Automaton is composed of an History and some Rules, both can be accessed and written. This entity is used to make Rules and History work together, and run a simulation. It can be specified 1 dimensional or 2 dimensional thanks to the specification of templates. ">Automaton</a>.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="_grid_8h_source.html">Grid.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_history_8h_source.html">History.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_index_8h_source.html">Index.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_rule_8h_source.html">Rule.h</a>&quot;</code><br />
+<code>#include &lt;stdexcept&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for Automaton.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="_automaton_8h__incl.png" border="0" usemap="#_automaton_8h" alt=""/></div>
 <map name="_automaton_8h" id="_automaton_8h">
-<area shape="rect" id="node2" href="_grid_8h.html" title="Grid for 1 or 2 dimentional Automaton. " alt="" coords="258,155,315,181"/>
-<area shape="rect" id="node8" href="_index_8h.html" title="Structure for Index for 1 or 2 dimentional grids. " alt="" coords="458,229,523,256"/>
-<area shape="rect" id="node9" href="_history_8h.html" title="History made of the n last states of an Automaton. " alt="" coords="87,80,161,107"/>
-<area shape="rect" id="node10" href="_rule_8h.html" title="Rules for an Automaton to change state. " alt="" coords="325,80,385,107"/>
+<area shape="rect" id="node2" href="_grid_8h.html" title="Grid for 1 or 2 dimentional Automaton. " alt="" coords="279,155,336,181"/>
+<area shape="rect" id="node9" href="_index_8h.html" title="Structure for Index for 1 or 2 dimentional grids. " alt="" coords="563,229,628,256"/>
+<area shape="rect" id="node10" href="_history_8h.html" title="History made of the n last states of an Automaton. " alt="" coords="513,155,587,181"/>
+<area shape="rect" id="node11" href="_rule_8h.html" title="Rules for an Automaton to change state. " alt="" coords="412,80,472,107"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -134,13 +132,8 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="_automaton_8h__dep__incl.png" border="0" usemap="#_automaton_8hdep" alt=""/></div>
 <map name="_automaton_8hdep" id="_automaton_8hdep">
-<area shape="rect" id="node2" href="automate__1d_8h.html" title="Interface for a 1 dimensional automaton. " alt="" coords="281,80,389,107"/>
-<area shape="rect" id="node5" href="main_8cpp.html" title="main.cpp" alt="" coords="421,155,496,181"/>
-<area shape="rect" id="node7" href="automate__2d_8h.html" title="Interface for a 2 dimensional automaton. " alt="" coords="147,80,255,107"/>
-<area shape="rect" id="node8" href="_automaton_8cpp.html" title="Automaton.cpp" alt="" coords="465,80,575,107"/>
-<area shape="rect" id="node3" href="automate__1d_8cpp.html" title="automate_1d.cpp" alt="" coords="275,155,397,181"/>
-<area shape="rect" id="node4" href="automate__2d_8cpp.html" title="automate_2d.cpp" alt="" coords="5,155,128,181"/>
-<area shape="rect" id="node6" href="welcome_8cpp.html" title="welcome.cpp" alt="" coords="152,155,251,181"/>
+<area shape="rect" id="node2" href="automate__1d_8h.html" title="Interface for a 1 dimensional automaton This class helps to visualize a 1 dimentional automaton..." alt="" coords="5,80,113,107"/>
+<area shape="rect" id="node3" href="automate__2d_8h.html" title="Interface for a 2 dimensional automaton This class helps to visualize a two dimensional automaton..." alt="" coords="137,80,245,107"/>
 </map>
 </div>
 </div>
@@ -149,12 +142,11 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_automaton.html">Automaton&lt; T, I &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_automaton.html" title="Automaton is composed of an History and some Rules, both can be accessed and written. This entity is used to make Rules and History work together, and run a simulation. It can be specified 1 dimensional or 2 dimensional thanks to the specification of templates. ">Automaton</a> is composed of an <a class="el" href="class_history.html" title="The History abstract class stores a history of elements (usually grids, i.e. the state of an Automato...">History</a> and some Rules, both can be accessed and written. This entity is used to make Rules and <a class="el" href="class_history.html" title="The History abstract class stores a history of elements (usually grids, i.e. the state of an Automato...">History</a> work together, and run a simulation. It can be specified 1 dimensional or 2 dimensional thanks to the specification of templates.  <a href="class_automaton.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p><a class="el" href="class_automaton.html">Automaton</a>. </p>
-
-<p>Definition in file <a class="el" href="_automaton_8h_source.html">Automaton.h</a>.</p>
+<div class="textblock"><p><a class="el" href="class_automaton.html" title="Automaton is composed of an History and some Rules, both can be accessed and written. This entity is used to make Rules and History work together, and run a simulation. It can be specified 1 dimensional or 2 dimensional thanks to the specification of templates. ">Automaton</a>. </p>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

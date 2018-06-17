@@ -1,4 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$class_grid.html" title="Grid\&lt; T, Index2D \&gt;" alt="" coords="5,5,140,32"/>
-<area shape="rect" id="node2" href="$class_grid2_d.html" title="Grid2D\&lt; T \&gt;" alt="" coords="188,5,283,32"/>
+<area shape="rect" id="node1" href="$class_grid.html" title="Grid\&lt; T, Index1D \&gt;" alt="" coords="5,5,140,32"/>
+<area shape="rect" id="node2" href="$class_grid1_d.html" title="The Grid1D stores a 1 dimensional grid. " alt="" coords="188,5,283,32"/>
 </map>

@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>Game of Life: Rule&lt; T, I &gt; Class Template Reference</title>
+<title>Autocell: Rule&lt; T, I &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -31,8 +31,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Game of Life
-   &#160;<span id="projectnumber">0.1</span>
+   <div id="projectname">Autocell
    </div>
   </td>
  </tr>
@@ -48,7 +47,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
-      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -122,10 +120,6 @@ $(document).ready(function(){initNavTree('class_rule.html','');});
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aec10fa3466882b2324ce2d4bca43d127"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_rule.html#aec10fa3466882b2324ce2d4bca43d127">Rule</a> ()</td></tr>
-<tr class="separator:aec10fa3466882b2324ce2d4bca43d127"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a73bbb0b09f660c5aa3e546f7779ed721"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_rule.html#a73bbb0b09f660c5aa3e546f7779ed721">~Rule</a> ()</td></tr>
-<tr class="separator:a73bbb0b09f660c5aa3e546f7779ed721"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a328ccb6ad9da813368b958fcf260d44d"><td class="memItemLeft" align="right" valign="top">virtual T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_rule.html#a328ccb6ad9da813368b958fcf260d44d">calcNextState</a> (const <a class="el" href="class_grid.html">Grid</a>&lt; T, I &gt; &amp;grid, const I index) const =0</td></tr>
 <tr class="memdesc:a328ccb6ad9da813368b958fcf260d44d"><td class="mdescLeft">&#160;</td><td class="mdescRight">calulate the next stat of a cell  <a href="#a328ccb6ad9da813368b958fcf260d44d">More...</a><br /></td></tr>
 <tr class="separator:a328ccb6ad9da813368b958fcf260d44d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -141,64 +135,7 @@ Public Member Functions</h2></td></tr>
 class Rule&lt; T, I &gt;</h3>
 
 <p><a class="el" href="class_rule.html" title="Rule is a class that stores the rules to apply on a Grid1D or Grid2D, it can take a cell and calculte...">Rule</a> is a class that stores the rules to apply on a <a class="el" href="class_grid1_d.html" title="The Grid1D stores a 1 dimensional grid. ">Grid1D</a> or <a class="el" href="class_grid2_d.html">Grid2D</a>, it can take a cell and calculte the next stat of every value. </p>
-
-<p>Definition at line <a class="el" href="_rule_8h_source.html#l00018">18</a> of file <a class="el" href="_rule_8h_source.html">Rule.h</a>.</p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="aec10fa3466882b2324ce2d4bca43d127"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T, typename I&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_rule.html">Rule</a>&lt; T, I &gt;::<a class="el" href="class_rule.html">Rule</a> </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_rule_8h_source.html#l00020">20</a> of file <a class="el" href="_rule_8h_source.html">Rule.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a73bbb0b09f660c5aa3e546f7779ed721"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T, typename I&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual <a class="el" href="class_rule.html">Rule</a>&lt; T, I &gt;::~<a class="el" href="class_rule.html">Rule</a> </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_rule_8h_source.html#l00021">21</a> of file <a class="el" href="_rule_8h_source.html">Rule.h</a>.</p>
-
-</div>
-</div>
-<h2 class="groupheader">Member Function Documentation</h2>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="a328ccb6ad9da813368b958fcf260d44d"></a>
 <div class="memitem">
 <div class="memproto">
@@ -243,19 +180,7 @@ template&lt;typename T, typename I&gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>returns the value of the cell </dd></dl>
 
-<p>Implemented in <a class="el" href="class_rule2_d.html#a70942c759bdaaff3806048d70c24baf8">Rule2D</a>, and <a class="el" href="class_rule1_d.html#ad84e464d6bf25294df54beba25b7b6c1">Rule1D</a>.</p>
-
-<p><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="class_rule_a328ccb6ad9da813368b958fcf260d44d_icgraph.png" border="0" usemap="#class_rule_a328ccb6ad9da813368b958fcf260d44d_icgraph" alt=""/></div>
-<map name="class_rule_a328ccb6ad9da813368b958fcf260d44d_icgraph" id="class_rule_a328ccb6ad9da813368b958fcf260d44d_icgraph">
-<area shape="rect" id="node2" href="class_rule.html#a73bbb0b09f660c5aa3e546f7779ed721" title="Rule\&lt; bool, Index1D\l \&gt;::~Rule" alt="" coords="193,5,336,47"/>
-<area shape="rect" id="node3" href="class_rule1_d.html#a18e719f1cc16157cf24c0fe98bbcdd26" title="Rule1D::~Rule1D" alt="" coords="201,71,328,98"/>
-<area shape="rect" id="node4" href="class_rule2_d.html#a28bab83fec2cfac07c98b00f6007fa07" title="Rule2D::~Rule2D" alt="" coords="201,122,328,149"/>
-</map>
-</div>
-</p>
+<p>Implemented in <a class="el" href="class_outer_totalistic_multi_rule2_d.html#a3d5d2c2f80f6b83e57e80395ab6556d0">OuterTotalisticMultiRule2D</a>, <a class="el" href="class_outer_totalistic_rule2_d.html#aafe92d1fac6a6708ad24a596a2c7d670">OuterTotalisticRule2D</a>, and <a class="el" href="class_rule1_d.html#ad84e464d6bf25294df54beba25b7b6c1">Rule1D</a>.</p>
 
 </div>
 </div>
@@ -291,17 +216,7 @@ template&lt;typename T, typename I&gt; </div>
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="class_rule2_d.html#ac072019cee3813a6256fbb6f03301815">Rule2D</a>, and <a class="el" href="class_rule1_d.html#a069753fbac99d6e390d8ce74114f2300">Rule1D</a>.</p>
-
-<p><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="class_rule_a45bf12ce34c0c0b0e5a147d1357cf8f9_icgraph.png" border="0" usemap="#class_rule_a45bf12ce34c0c0b0e5a147d1357cf8f9_icgraph" alt=""/></div>
-<map name="class_rule_a45bf12ce34c0c0b0e5a147d1357cf8f9_icgraph" id="class_rule_a45bf12ce34c0c0b0e5a147d1357cf8f9_icgraph">
-<area shape="rect" id="node2" href="class_rule.html#a73bbb0b09f660c5aa3e546f7779ed721" title="Rule\&lt; bool, Index1D\l \&gt;::~Rule" alt="" coords="135,5,277,47"/>
-</map>
-</div>
-</p>
+<p>Implemented in <a class="el" href="class_outer_totalistic_multi_rule2_d.html#a5ca7753bdcd76238d69879125cfdc56e">OuterTotalisticMultiRule2D</a>, <a class="el" href="class_outer_totalistic_rule2_d.html#a4fd69af9688d30206d5fc62d18245407">OuterTotalisticRule2D</a>, and <a class="el" href="class_rule1_d.html#a069753fbac99d6e390d8ce74114f2300">Rule1D</a>.</p>
 
 </div>
 </div>
@@ -337,17 +252,7 @@ template&lt;typename T, typename I&gt; </div>
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="class_rule2_d.html#a6c6ae9959aea9bc1c87876f5464ab758">Rule2D</a>, and <a class="el" href="class_rule1_d.html#a51cc973150c8a41db6e5e0955e62b8b0">Rule1D</a>.</p>
-
-<p><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="class_rule_a24d021db683d19f6328d8b9421239616_icgraph.png" border="0" usemap="#class_rule_a24d021db683d19f6328d8b9421239616_icgraph" alt=""/></div>
-<map name="class_rule_a24d021db683d19f6328d8b9421239616_icgraph" id="class_rule_a24d021db683d19f6328d8b9421239616_icgraph">
-<area shape="rect" id="node2" href="class_rule.html#a73bbb0b09f660c5aa3e546f7779ed721" title="Rule\&lt; bool, Index1D\l \&gt;::~Rule" alt="" coords="139,5,281,47"/>
-</map>
-</div>
-</p>
+<p>Implemented in <a class="el" href="class_outer_totalistic_multi_rule2_d.html#acea83a09c5e466b531cc972e8f56aaf1">OuterTotalisticMultiRule2D</a>, <a class="el" href="class_outer_totalistic_rule2_d.html#af3ce96bb936ac36a9d37c1e9fda9d382">OuterTotalisticRule2D</a>, and <a class="el" href="class_rule1_d.html#a51cc973150c8a41db6e5e0955e62b8b0">Rule1D</a>.</p>
 
 </div>
 </div>

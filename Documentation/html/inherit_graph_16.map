@@ -1,3 +1,5 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$class_rule.html" title="Rule is a class that stores the rules to apply on a Grid1D or Grid2D, it can take a cell and calculte..." alt="" coords="5,5,99,32"/>
+<area shape="rect" id="node1" href="$struct_index.html" title="The Index struct is used to represent a position (index) in n&#45;dimensional space. Note that this struc..." alt="" coords="5,31,60,57"/>
+<area shape="rect" id="node2" href="$struct_index1_d.html" title="The Index1D struct is used to represent a position (index) in 1 dimensional space, such as an array of values. " alt="" coords="108,5,179,32"/>
+<area shape="rect" id="node3" href="$struct_index2_d.html" title="The Index2D struct is used to represent a position (index) in 2 dimensional space, such as an 2d&#45;grid of values. " alt="" coords="108,56,179,83"/>
 </map>

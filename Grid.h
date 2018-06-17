@@ -167,7 +167,7 @@ public:
         try {
             std::cerr << "save 1D, " << filePath << std::endl;
             std::ofstream file(filePath, std::ios::out | std::ios::trunc);
-            file << "1 " << values.size() << "\n";
+            file << "1 " << values.size() << " ";
             iterate_get([&](const T cell) { file << cell << " "; });
             file << "\n";
             file.close();
@@ -276,7 +276,7 @@ public:
     {
         try {
             std::ofstream file(filePath, std::ios::out | std::ios::trunc);
-            file << "2 " << height << " " << width << "\n";
+            file << "2 " << height << " " << width << " ";
             std::cerr << "saving grid height " << height << " width " << width << "\n";
             iterate_get([&](const T cell) { file << cell << " "; });
             file << "\n";
